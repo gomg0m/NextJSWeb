@@ -13,10 +13,13 @@ export default function Rightside() {
 
   return (
     <div className={styles.rightsidebox}>
+        <div className={styles.scheduletext}>일정</div>
         
-        <LocalizationProvider dateAdapter={AdapterDateFns}>
+           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <CalendarPicker date={date} onChange={(newDate) => setDate(newDate)} />
-        </LocalizationProvider>
+        </LocalizationProvider> 
+        
+        
     {/* <LocalizationProvider dateAdapter={AdapterDateFns}>
       <Grid container spacing={3}>
         <Grid item xs={12} md={6}>

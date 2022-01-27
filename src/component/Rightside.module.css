@@ -10,3 +10,30 @@
     border-style: solid;
     border-color: #E0E0E0;
 }
+
+.scheduletext{
+    position: absolute;
+    width: 45px;
+    height: 24px;
+    left: 1428px;
+    top: 152px;
+
+    font-family: Noto Sans KR;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 24px;
+    /* identical to box height, or 100% */
+
+    display: flex;
+    align-items: center;
+
+    color: #000000;
+}
+.calender{
+    position: absolute;
+    width: 432px;
+    height: 485px;
+    left: 1428px;
+    top: 208px;    
+}
