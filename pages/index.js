@@ -1,8 +1,9 @@
 import Home from './Home';
+import Prepro from './Preproduction';
 
 function T1(){
     return(
-        <Home />
+        <Prepro />
         
     );
 }

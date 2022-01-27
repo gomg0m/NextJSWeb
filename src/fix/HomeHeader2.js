@@ -19,8 +19,10 @@ export default function Header2() {
           <Link href='/Home'>
           <Button className={styles.menubutton} variant='text'>로그아웃</Button>
           </Link>
-          
+
+          <Link href='/Preproduction'>
           <Button className={styles.gobutton} variant='contained' color='primary'>공간 협업공간 가기</Button>
+          </Link>
         </div>
         </div>
     );

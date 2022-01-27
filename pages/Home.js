@@ -126,11 +126,9 @@ function Home() {
       </CardActionArea>
     </Card>
     </div>
-      <Button className={styles.morenotice} variant="contained" color='inherit'>더 보러가기</Button>
-    
-    
-    <Footer />
-      </>
+     <Button className={styles.morenotice} variant="contained" color='inherit'>더 보러가기</Button>
+     <Footer />
+    </>
   );
 }
 
