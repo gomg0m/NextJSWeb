@@ -1,8 +1,9 @@
-import Home from './Home';
+//import Home from './Home';
+import ThearterInfoPanel from '../src/component/TheaterInfoPanel';
 
 function T1(){
     return(
-        <Home />
+        <ThearterInfoPanel />
         
     );
 }
