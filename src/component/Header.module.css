@@ -1,0 +1,70 @@
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans+KR:400,700,500|Roboto:400");
+
+.headerbox{
+    display: flex;
+    width: 1920px;
+    height: 90px;
+    background-color: white; 
+    border-width: 0px 0px 2px 0px ;
+    border-style: solid;
+    border-color: #BDBDBD;
+    position: absolute;
+}
+
+.logocontainer{
+    display: flex;
+    justify-content: flex-start;
+    margin-left: 100px;
+    align-self: center;
+}
+
+.logo{
+    margin-left: 10px;
+}
+
+.logotext {
+    color: black;
+    font-family: var(--font-family-noto_sans_kr);
+    font-size: 20px;
+    font-weight: 700;
+    font-style: normal;
+    margin-top: 4px;
+    margin-left: 10px;
+}
+
+.dash {
+    color: black;
+    font-family: var(--font-family-noto_sans_kr);
+    font-size: 24px;
+    font-weight: 500;
+    font-style: normal;
+    margin-left: 600px;
+    margin-top: 25px;
+}
+
+.gobutton {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    position: absolute;
+    width: 206px;
+    height: 42px;
+    left: 1654px;
+    top: 24px;
+    background: #F3F3F3;
+    border-radius: 4px;
+    border: none;
+
+    color: #828282;
+    font-family: Noto Sans KR;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    /* identical to box height, or 150% */
+
+    letter-spacing: 0.4px;
+    text-transform: uppercase; 
+}

@@ -1,0 +1,426 @@
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans+KR:400,700,500|Roboto:400");
+
+.leftsidebox{
+    display: flex;
+    flex-direction: column;
+    width: 339px;
+    height: 1848px;
+    left: 0px;
+    top: 91px;
+    border-width: 0px 2px 0px 0px ;
+    border-style: solid;
+    border-color: #E0E0E0;
+}
+
+.contentscontainer{
+    display: flex;
+    flex-direction: column;
+    width: 259px;
+    height: 230px;
+    left: 40px;
+    margin-top: 215px;
+}
+
+.gongtong{
+    position: absolute;
+    width: 73px;
+    height: 26px;
+    left: 40px;
+    top: 215px;
+
+    font-family: Noto Sans KR;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 26px;
+    /* identical to box height */
+
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.15px;
+
+    /* Gray 3 */
+
+    color: #828282;
+}
+
+.notice{
+    position: absolute;
+    width: 67px;
+    height: 26px;
+    left: 40px;
+    top: 266px;
+
+    font-family: Noto Sans KR;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 26px;
+    /* identical to box height */
+
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.15px;
+
+    color: #000000;
+}
+
+.schedule{
+    position: absolute;
+    width: 34px;
+    height: 26px;
+    left: 40px;
+    top: 317px;
+    
+    font-family: Noto Sans KR;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 26px;
+    /* identical to box height */
+    
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.15px;
+    
+    color: #000000;
+}
+
+.library{
+    position: absolute;
+    width: 51px;
+    height: 26px;
+    left: 40px;
+    top: 368px;
+    
+    font-family: Noto Sans KR;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 26px;
+    /* identical to box height */
+    
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.15px;
+    
+    color: #000000;
+}
+
+.star{
+    position: absolute;
+    width: 106px;
+    height: 26px;
+    left: 40px;
+    top: 419px;
+    
+    font-family: Noto Sans KR;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 26px;
+    /* identical to box height */
+    
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.15px;
+    
+    color: #000000;
+}
+
+.process{
+    position: absolute;
+    width: 106px;
+    height: 26px;
+    left: 41px;
+    top: 495px;
+
+    font-family: Noto Sans KR;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 26px;
+    /* identical to box height */
+
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.15px;
+
+    /* Gray 3 */
+
+    color: #828282;
+}
+
+.processcontainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 258px;
+    height: 518px;
+    left: 41px;
+    top: 511px;
+}
+
+.numbersbox{
+    position: absolute;
+    width: 25px;
+    height: 470px;
+    left: 41px;
+    top: 550px;
+
+}
+
+.textsbox{  
+    width: 142px;
+    height: 483px;
+    left: 81px;
+    top: 546px;
+}
+
+.about{ 
+    position: absolute;
+    width: 53px;
+    height: 26px;
+    left: 80px;
+    top: 546px;
+
+    font-family: Noto Sans KR;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 26px;
+    /* identical to box height */
+
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.15px;
+
+    color: #757575;
+}
+
+.ginfo{
+    position: absolute;
+    width: 101px;
+    height: 26px;
+    left: 80px;
+    top: 581px;
+
+    font-family: Noto Sans KR;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 26px;
+    /* identical to box height */
+
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.15px;
+
+    color: #000000;
+}
+
+.janginfo{
+    position: absolute;
+    width: 84px;
+    height: 26px;
+    left: 80px;
+    top: 616px;
+
+    font-family: Noto Sans KR;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 26px;
+    /* identical to box height */
+
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.15px;
+
+    color: #BDBDBD;
+}
+
+.pre{
+    position: absolute;
+    width: 138px;
+    height: 26px;
+    left: 80px;
+    top: 675px;
+    
+    font-family: Noto Sans KR;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 26px;
+    /* identical to box height */
+    
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.15px;
+    
+    color: #757575;
+       
+}
+
+.heemang{
+    position: absolute;
+    width: 101px;
+    height: 26px;
+    left: 80px;
+    top: 710px;
+    
+    font-family: Noto Sans KR;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 26px;
+    /* identical to box height */
+    
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.15px;
+    
+    color: #BDBDBD;    
+}
+
+.gisul{
+    position: absolute;
+    width: 117px;
+    height: 26px;
+    left: 80px;
+    top: 745px;
+    
+    font-family: Noto Sans KR;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 26px;
+    /* identical to box height */
+    
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.15px;
+    
+    /* Gray 4 */
+    
+    color: #BDBDBD;    
+}
+
+.pro{
+    position: absolute;
+    width: 98px;
+    height: 26px;
+    left: 80px;
+    top: 804px;
+    
+    font-family: Noto Sans KR;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 26px;
+    /* identical to box height */
+    
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.15px;
+    
+    color: #757575;    
+}
+
+.gonginfo{
+    position: absolute;
+    width: 67px;
+    height: 26px;
+    left: 80px;
+    top: 839px;
+    
+    font-family: Noto Sans KR;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 26px;
+    /* identical to box height */
+    
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.15px;
+    
+    color: #BDBDBD;
+    
+}
+
+.post{
+    position: absolute;
+    width: 143px;
+    height: 26px;
+    left: 80px;
+    top: 933px;
+    
+    font-family: Noto Sans KR;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 26px;
+    /* identical to box height */
+    
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.15px;
+    
+    color: #757575;    
+}
+
+.chulgu{
+    position: absolute;
+    width: 133px;
+    height: 26px;
+    left: 80px;
+    top: 968px;
+    
+    font-family: Noto Sans KR;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 26px;
+    /* identical to box height */
+    
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.15px;
+    
+    color: #BDBDBD;    
+}
+
+.hyebup{
+    position: absolute;
+    width: 73px;
+    height: 26px;
+    left: 80px;
+    top: 1003px;
+    
+    font-family: Noto Sans KR;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 26px;
+    /* identical to box height */
+    
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.15px;
+    
+    /* Gray 4 */
+    
+    color: #BDBDBD;    
+}
+
+.nowbox{
+    position: absolute;
+    width: 337px;
+    height: 135px;
+    left: 0px;
+    top: 523px;
+    
+    background: #F6F7FB;
+    
+}

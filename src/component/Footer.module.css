@@ -1,0 +1,36 @@
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans+KR:400,700,500|Roboto:400");
+
+.footerbox{
+    display: flex;
+    width: 1920px;
+    height: 80px;
+    top: 2541px;
+    background-color: white; 
+    border-width: 2px 0px 0px 0px ;
+    border-style: solid;
+    border-color: #E0E0E0;
+}
+
+.logocontainer{
+    display: flex;
+    align-self: center;
+    justify-content: flex-start;
+}
+
+.userule{
+    margin-left: 120px;
+}
+
+.perinfo {
+    margin-left: 30px;
+}
+
+.cs {
+    margin-left: 30px;
+}
+
+.logo{
+    display: flex;
+    align-self: center;
+    margin-left: 1200px;
+}

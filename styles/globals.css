@@ -14,3 +14,73 @@ a {
 * {
   box-sizing: border-box;
 }
+/* Variables */
+
+:root {
+  --black-7: rgba(0, 0, 0, 0.039);
+  --black-2: rgba(0, 0, 0, 0.38);
+  --black-6: rgba(0, 0, 0, 0.4);
+  --black-4: rgba(0, 0, 0, 0.6);
+  --black-5: rgba(0, 0, 0, 0.8);
+  --black-3: rgba(0, 0, 0, 0.871);
+  --black: rgba(0, 0, 0, 1);
+  --cod-gray: rgba(7, 7, 7, 1);
+  --log-cabin: rgba(33, 33, 33, 1);
+  --curious-blue: rgba(45, 156, 219, 0.6);
+  --bluemain: rgba(45, 156, 219, 1);
+  --illuminating-emerald: rgba(48, 146, 128, 1);
+  --mine-shaft: rgba(51, 51, 51, 1);
+  --denim: rgba(60, 123, 196, 1);
+  --lapis-lazuli: rgba(61, 123, 196, 1);
+  --lapis-lazuli-2: rgba(61, 123, 197, 1);
+  --scarpa-flow: rgba(78, 87, 94, 1);
+  --abbey: rgba(79, 79, 79, 1);
+  --storm-dust: rgba(97, 97, 97, 1);
+  --title: rgba(108, 108, 108, 1);
+  --caribbean-green-pearl: rgba(111, 207, 151, 1);
+  --sonic-silver: rgba(117, 117, 117, 1);
+  --grayicon: rgba(130, 130, 130, 1);
+  --mountain-mist: rgba(153, 153, 153, 1);
+  --purple-plum: rgba(155, 81, 224, 1);
+  --lavender: rgba(187, 107, 217, 1);
+  --silver: rgba(189, 189, 189, 1);
+  --mist-gray: rgba(196, 196, 196, 1);
+  --sunglo: rgba(222, 106, 106, 1);
+  --bon-jour: rgba(224, 224, 224, 1);
+  --line: rgba(226, 231, 251, 1);
+  --tulip-tree: rgba(233, 186, 65, 1);
+  --gallery: rgba(234, 235, 239, 1);
+  --aqua-haze: rgba(234, 242, 246, 1);
+  --mandy: rgba(235, 87, 87, 1);
+  --ronchi: rgba(242, 201, 76, 1);
+  --concrete: rgba(242, 242, 242, 1);
+  --concrete-2: rgba(243, 243, 243, 1);
+  --zircon2: rgba(243, 250, 255, 1);
+  --zircon-22: rgba(243, 251, 255, 1);
+  --bg-color: rgba(246, 247, 251, 1);
+  --black-haze: rgba(247, 247, 247, 1);
+  --zircon-32: rgba(247, 250, 255, 1);
+  --desert-storm: rgba(248, 248, 248, 1);
+  --bg: rgba(249, 250, 252, 1);
+  --coconut2: rgba(250, 253, 255, 1);
+  --coconut-22: rgba(251, 253, 255, 1);
+  --baby-powder: rgba(252, 252, 252, 1);
+  --red: rgba(255, 0, 0, 1);
+  --white-3: rgba(255, 255, 255, 0.298);
+  --white-2: rgba(255, 255, 255, 0.8);
+  --white: rgba(255, 255, 255, 1);
+
+  --font-size-xxxxs: 10px;
+  --font-size-l: 24px;
+  --font-size-s2: 16px;
+  --font-size-m2: 18px;
+  --font-size-l2: 20px;
+  --font-size-xs2: 15px;
+  --font-size-xxs2: 14px;
+  --font-size-xxxs2: 12px;
+
+  --font-family-noto_sans_kr: "Noto Sans KR";
+  --font-family-noto_sans_kr-bold: "Noto Sans KR-Bold";
+  --font-family-roboto: "Roboto";
+  --font-family-roboto-regular: "Roboto-Regular";
+}
