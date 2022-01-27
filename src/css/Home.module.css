@@ -1,0 +1,197 @@
+.maintext {
+  position: relative;
+  width: 600px;
+  height: 148px;
+  left: 716.5px;
+  top: 167.5px;
+
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 50px;
+  line-height: 72px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  letter-spacing: -2px;
+  color: #212121;
+}
+
+.subtext {
+  position: absolute;
+  width: 370px;
+  height: 54px;
+  left: 797px;
+  top: 358.5px;
+
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 26px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  letter-spacing: -0.07em;
+  color: #616161;
+}
+
+.homemainimg {
+  position: absolute;
+  left: 452px;
+  right: 451px;
+  top: 523px;
+  height: 580px;
+  width: 1017px;
+  top: 523px;
+  border-radius: 0px;
+}
+
+.dbbackground {
+  position: absolute;
+  top: 1200px;
+}
+.dbtext {
+  height: 123px;
+  width: 604px;
+  left: 880px;
+  top: 1204px;
+  border-radius: 0px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px;
+  position: absolute;
+ 
+
+  font-family: Noto Sans KR;
+  font-size: 50px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 72px;
+  letter-spacing: -2px;
+  text-align: center;
+}
+
+.cardcontainer {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  left: 342px;
+  top: 1367px;
+}
+
+.card2 {
+  margin-left: 50px;
+}
+
+.card3 {
+  margin-left: 50px;
+}
+
+.homecardtitle {
+  font-family: Noto Sans KR;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24px;
+  letter-spacing: 0.4000000059604645px;
+  text-align: left;
+}
+
+.homecardsub {
+  font-family: Noto Sans KR;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0.4000000059604645px;
+  text-align: left;
+  color: #4F4F4F;
+}
+
+.moredb {
+  height: 44px;
+  width: 137px;
+  left: 892px;
+  top: 1600px;
+  border-radius: 40px;
+  padding: 10px, 24px, 10px, 24px;
+  /* background-color: #EAEBEF; */
+
+  font-family: Noto Sans KR;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24px;
+  letter-spacing: 0.4000000059604645px;
+  text-align: left;
+}
+
+.homenotice {
+  position: relative;
+  width: 600px;
+  height: 131px;
+  left: 860px;
+  top: 1700px;
+
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 50px;
+  line-height: 72px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  letter-spacing: -2px;
+  color: #212121;
+}
+
+.cardcontainer2 {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  left: 342px;
+  top: 2050px;
+}
+
+.homecardtitle2 {
+  font-family: Noto Sans KR;
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 28.96px;
+  letter-spacing: -2px;
+  text-align: left;
+}
+
+.homecardsub2 {
+  font-family: Noto Sans KR;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 200px;
+  letter-spacing: 0.4000000059604645px;
+  text-align: left;
+  color: #828282;
+}
+
+.morenotice {
+  height: 44px;
+  width: 137px;
+  left: 892px;
+  top: 2000px;
+  border-radius: 40px;
+  padding: 10px, 24px, 10px, 24px;
+  /* background-color: #EAEBEF; */
+
+  font-family: Noto Sans KR;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24px;
+  letter-spacing: 0.4000000059604645px;
+  text-align: left;
+}

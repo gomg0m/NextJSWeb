@@ -1,16 +1,16 @@
 import '../styles/globals.css';
-import Footer from "../src/component/Footer";
-import Header from "../src/component/Header";
-import Leftside from '../src/component/Leftside';
-import Rightside from '../src/component/Rightside';
+import Footer from "../src/fix/Footer";
+import Header from "../src/fix/Header";
+import Leftside from '../src/fix/Leftside';
+import Rightside from '../src/fix/Rightside';
 
 function MyApp({ Component, pageProps }) {
   return (
     <div>
       <Header />
       <Leftside />
-      
-        <Component {...pageProps} />
+      <Rightside />
+        {/* <Component {...pageProps} /> */}
       <Footer />
     </div>
   );

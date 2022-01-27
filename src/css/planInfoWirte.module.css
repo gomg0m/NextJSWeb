@@ -1,6 +1,7 @@
 @import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
 @import url("https://fonts.googleapis.com/css?family=Noto+Sans+KR:400,700,500");
 
+
 .notosanskr_bold_black_24px {
   color: var(--black);
   font-family: var(--font-family-noto_sans_kr);

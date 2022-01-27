@@ -1,5 +1,5 @@
 import React from 'react';
-import sty from './planInfoWirte.module.css'
+import sty from '../css/planInfoWirte.module.css'
 import ComboBox from './combobox';
 import BasicTextFields from './basictext';
 import ReadOnlyTextFields from './readonlytext';
@@ -18,8 +18,8 @@ export default function planInfoWirte(){
     let boxprops ={ width:400, height:150};
     
     return(
+        <div>
         <div className={sty.infoframe}>
-            <div className={sty.layout_box}><Box boxprops={boxprops}/></div>
             <div
                 style={{
                     width: "1496px",
@@ -123,6 +123,6 @@ export default function planInfoWirte(){
                 </Link>    
             </div>
         </div>
-
+      </div>
     );
 }

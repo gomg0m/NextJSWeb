@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {Card, CardContent, CardMedia, Typography, CardActionArea} from '@mui/material';
-import cardsty from "./card.module.css"
+import cardsty from "../css/card.module.css"
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 //import MediaControlCard from './cardmedia';
@@ -40,15 +40,9 @@ export default function ActionAreaCard() {
     });
   }
 
-  //useEffect(()=>{
-  //  getData();
-  //},[]);
-
-
   return (
     <>
-    <div className={cardsty.card_container}>
-
+      <div className={cardsty.card_container}>
           { 
           list.map((item)=>(
               <Card className={cardsty.card_item} sx={{ minWidth: 345, minHeight: 350 }} >
@@ -70,33 +64,33 @@ export default function ActionAreaCard() {
                 </CardActionArea>
               </Card>
           )) }
-    </div>
-    <div className={cardsty.card_container}>
-      <div style={{margin: "0px 0px 0px"}}>
-          <CardMedia
-          component="iframe"
-          sx={{ width: 640, height:480 }}
-          image="https://www.youtube.com/embed/U_W88C-_HCM"
-          alt="Youtube Test"
-        />
       </div>
-      <div style={{margin: "0px 10px 0px"}}>
-          <CardMedia
-          component="iframe"
-          sx={{ width: 640, height:480 }}
-          image="https://www.youtube.com/embed/FzW9J8iU9pQ"
-          alt="Youtube Test"
-        />
+      <div className={cardsty.card_container}>
+        <div style={{margin: "0px 0px 0px"}}>
+            <CardMedia
+            component="iframe"
+            sx={{ width: 640, height:480 }}
+            image="https://www.youtube.com/embed/U_W88C-_HCM"
+            alt="Youtube Test"
+          />
+        </div>
+        <div style={{margin: "0px 10px 0px"}}>
+            <CardMedia
+            component="iframe"
+            sx={{ width: 640, height:480 }}
+            image="https://www.youtube.com/embed/FzW9J8iU9pQ"
+            alt="Youtube Test"
+          />
+        </div>
+        <div>
+            <CardMedia
+            component="iframe"
+            sx={{ width: 640, height:480 }}
+            image="https://www.youtube.com/embed/W4gWRK-_It8"
+            alt="Youtube Test"
+          />
+          </div>
       </div>
-      <div>
-          <CardMedia
-          component="iframe"
-          sx={{ width: 640, height:480 }}
-          image="https://www.youtube.com/embed/W4gWRK-_It8"
-          alt="Youtube Test"
-        />
-      </div>
-    </div>
     </>
   );
 } 

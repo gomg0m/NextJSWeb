@@ -1,4 +1,4 @@
-import styles from './Leftside.module.css';
+import styles from '../css/Leftside.module.css';
 import { Box, Button } from '@mui/material';
 import Link from 'next/link';
 

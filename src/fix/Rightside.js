@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styles from './Rightside.module.css';
+import styles from '../css/Rightside.module.css';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import CalendarPicker from '@mui/lab/CalendarPicker';
