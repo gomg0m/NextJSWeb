@@ -1,9 +1,9 @@
-//import PlanInfoWrite from '../src/component/PlanInfoWrite'
-import PerformInfoWrite from '../src/component/PerformInfoWrite'
+import Home from './Home';
 
 function T1(){
     return(
-        <PerformInfoWrite />
+        <Home />
+        
     );
 }
 export default T1;
