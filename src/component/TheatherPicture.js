@@ -7,7 +7,9 @@ import Box from '@mui/material/Box';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import {makeStyles} from '@material-ui/core';
-import Card from './card';
+import TheaterPictureExternal from './TheaterphotosExternal';
+import TheaterPictureInternal from './TheaterphotosInternal';
+import TheaterPictureStage from './TheaterphotosStage';
 
 function BasicPagination() {
   return (
@@ -92,9 +94,10 @@ export default function BasicTabs() {
           <Tab label={<span className={classes.customStyleOnTab}>무대공간</span>} {...a11yProps(2)} />
         </Tabs>
       </Box>
-      <TabPanel value={value} index={0}></TabPanel>
-      <TabPanel value={value} index={1}><Card /></TabPanel>        
-      <TabPanel value={value} index={2}></TabPanel>
+
+      <TabPanel value={value} index={0}><TheaterPictureExternal /></TabPanel>
+      <TabPanel value={value} index={1}><TheaterPictureInternal /></TabPanel>
+      <TabPanel value={value} index={2}><TheaterPictureStage /></TabPanel>      
     </Box>
   );
 }
