@@ -1,10 +1,10 @@
-import Home from './Home';
-import Prepro from './Preproduction';
+//import Home from './Home';
+import ThearterInfoPanel from '../src/component/TheaterInfoPanel';
+
 
 function T1(){
     return(
-        <Prepro />
-        
+        <ThearterInfoPanel />
     );
 }
 export default T1;
