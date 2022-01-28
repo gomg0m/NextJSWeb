@@ -1,10 +1,10 @@
 //import Home from './Home';
-import ThearterInfoPanel from '../src/component/TheaterInfoPanel';
+import PlanInfoPanel from '../src/component/PlanInfoPanel';
 
 
 function T1(){
     return(
-        <ThearterInfoPanel />
+        <PlanInfoPanel />
     );
 }
 export default T1;
