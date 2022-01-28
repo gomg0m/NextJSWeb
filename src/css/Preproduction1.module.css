@@ -1,0 +1,239 @@
+.precontainer {
+  top: 1000px;
+}
+
+.prebackground1 {
+  position: absolute;
+  top: 90px;
+  left: 339px;
+}
+
+.presubtitle1 {
+  position: absolute;
+  width: 133px;
+  height: 36px;
+  left: 364px;
+  top: 138px;
+
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 35px;
+
+  color: #6D6D6D;
+}
+
+.addinfobutton1 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 4px 8px 4px 4px;
+
+  position: absolute;
+  width: 172px;
+  height: 32px;
+  left: 513px;
+  top: 141px;
+
+  /* blue/main */
+
+  background: #2D9CDB;
+  border-radius: 5px;
+}
+
+.addclosebutton {
+  position: absolute;
+  top: 20px;
+  left: 730px;
+
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: bold;
+  color:rgba(0, 0, 0, 0.87);
+  font-size: 24px;
+  line-height: 35px;
+}
+
+.order1 {
+  position: absolute;
+  width: 88px;
+  height: 24px;
+  left: 364px;
+  top: 222px;
+
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 24px;
+  /* identical to box height, or 133% */
+
+  display: flex;
+  align-items: center;
+
+  /* text/primary */
+
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.order2 {
+  position: absolute;
+  width: 67px;
+  height: 24px;
+  left: 507px;
+  top: 222px;
+
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 24px;
+  /* identical to box height, or 133% */
+
+  display: flex;
+  align-items: center;
+
+  /* text/primary */
+
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.addtitle {
+  position: absolute;
+  width: 165px;
+  height: 20px;
+  left: 30px;
+  top: 30px;
+
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 26px;
+  line-height: 20px;
+  /* identical to box height, or 77% */
+
+  letter-spacing: -0.02em;
+
+  color: #000000;
+}
+
+.addsubtitle {
+  position: absolute;
+  width: 237px;
+  height: 20px;
+  left: 30px;
+  top: 70px;
+
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 20px;
+  /* identical to box height, or 111% */
+
+  letter-spacing: -0.02em;
+
+  color: #000000;
+}
+
+.modaldivider {
+  /* position: absolute; */
+  margin-top: 80px;
+}
+
+.addoption1 {
+  position: absolute;
+  width: 88px;
+  height: 20px;
+  top: 162px;
+  left: 30px;
+
+  font-family: Noto Sans KR;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: -0.02em;
+  text-align: left;
+}
+
+.info1 {
+  position: absolute;
+  left: 200px;
+  top: 145px;
+}
+
+.addoption2 {
+  position: absolute;
+  width: 116px;
+  height: 20px;
+  top: 242px;
+  left: 30px;
+
+  font-family: Noto Sans KR;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: -0.02em;
+  text-align: left;
+}
+
+.info2 {
+  position: absolute;
+  left: 200px;
+  top: 225px;
+}
+
+.addoption3 {
+  position: absolute;
+  width: 116px;
+  height: 20px;
+  top: 322px;
+  left: 30px;
+
+  font-family: Noto Sans KR;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: -0.02em;
+  text-align: left;
+}
+
+.info3 {
+  position: absolute;
+  left: 200px;
+  top: 305px;
+}
+
+.fileuploadbutton {
+  position: absolute;
+  left: 727px;
+  top: 310px;
+}
+
+.filebackground {
+  position: absolute;
+  left: 723px;
+  top: 308px;
+}
+
+.addcreatebutton {
+  position: absolute;
+  width: 114px;
+  height: 48px;
+  top: 600px;
+  left: 670px;
+  background: #2D9CDB;
+  border-radius: 6px;
+
+  font-family: Noto Sans KR;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 50px;
+  letter-spacing: -0.02em;
+  text-align: left;
+}
