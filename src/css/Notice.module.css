@@ -2,50 +2,60 @@
   top: 1000px;
 }
 
-.showbackground {
+.noticebackground1 {
   position: absolute;
   top: 90px;
+  left: 339px;
 }
 
-.showsubtitle {
+.noticebackground2 {
   position: absolute;
-  width: 96px;
-  height: 24px;
-  left: 60px;
-  top: 152px;
+  top: 128px;
+  left: 364px;
+}
+
+.noticetitle {
+  position: absolute;
+  height: 46px;
+  width: 118px;
+  left: 388px;
+  top: 179px;
+  border-radius: nullpx;
 
   font-family: Noto Sans KR;
+  font-size: 32px;
   font-style: normal;
-  font-weight: bold;
-  font-size: 24px;
-  line-height: 24px;
-  /* identical to box height, or 100% */
-
-  display: flex;
-  align-items: center;
-
-  color: #000000;
+  font-weight: 700;
+  line-height: 46px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #333333;
 }
 
-.searchconcert {
-  margin-top: 188px;
-  margin-left: 1069px;
-}
-
-.addconcertbutton {
+.writetbutton {
   display: flex;
   flex-direction: row;
+  justify-content: center;
   align-items: center;
-  padding: 4px 8px 4px 4px;
+  padding: 8px 12px;
 
   position: absolute;
-  width: 143px;
-  height: 32px;
-  left: 170px;
-  top: 148px;
+  width: 91px;
+  height: 40px;
+  left: 1753px;
+  top: 190px;
 
   background: #2D9CDB;
-  border-radius: 5px;
+  border-radius: 4px;
+
+  font-family: Noto Sans KR;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0px;
+  text-align: left;
+
 }
 
 .addclosebutton {
@@ -59,55 +69,11 @@
   color:rgba(0, 0, 0, 0.87);
   font-size: 24px;
   line-height: 35px;
-}
+} 
 
-.showorder1 {
+.addnoticetitle {
   position: absolute;
-  width: 88px;
-  height: 24px;
-  left: 60px;
-  top: 208px;
-
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 18px;
-  line-height: 24px;
-  /* identical to box height, or 133% */
-
-  display: flex;
-  align-items: center;
-
-  /* text/primary */
-
-  color: rgba(0, 0, 0, 0.87);
-}
-
-.showorder2 {
-  position: absolute;
-  width: 67px;
-  height: 24px;
-  left: 203px;
-  top: 208px;
-
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 18px;
-  line-height: 24px;
-  /* identical to box height, or 133% */
-
-  display: flex;
-  align-items: center;
-
-  /* text/primary */
-
-  color: rgba(0, 0, 0, 0.87);
-}
-
-.addshowtitle {
-  position: absolute;
-  width: 165px;
+  width: 200px;
   height: 20px;
   left: 30px;
   top: 30px;
@@ -124,7 +90,7 @@
   color: #000000;
 }
 
-.addshowsubtitle {
+.addnoticesubtitle {
   position: absolute;
   width: 332px;
   height: 20px;
@@ -143,16 +109,11 @@
   color: #000000;
 }
 
-.modaldivider {
-  /* position: absolute; */
-  margin-top: 80px;
-}
-
-.addshowoption1 {
+.addnoticeoption1 {
   position: absolute;
-  width: 88px;
-  height: 20px;
-  top: 162px;
+  width: 50px;
+  height: 30px;
+  top: 156px;
   left: 30px;
 
   font-family: Noto Sans KR;
@@ -164,16 +125,17 @@
   text-align: left;
 }
 
-.showinfo1 {
+.noticeinfo1 {
   position: absolute;
   left: 200px;
-  top: 145px;
+  top: 136px;
 }
 
-.addshowoption2 {
+
+.addnoticeoption2 {
   position: absolute;
   width: 116px;
-  height: 20px;
+  height: 300px;
   top: 242px;
   left: 30px;
 
@@ -186,65 +148,13 @@
   text-align: left;
 }
 
-.showinfo2 {
+.noticeinfo2 {
   position: absolute;
   left: 200px;
   top: 225px;
 }
 
-.checkoption {
-  position: absolute;
-  left: 200px;
-  top: 280px;
-}
-
-.addshowoption3 {
-  position: absolute;
-  width: 100px;
-  height: 20px;
-  top: 338px;
-  left: 30px;
-
-  font-family: Noto Sans KR;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 20px;
-  letter-spacing: -0.02em;
-  text-align: left;
-}
-
-.showinfo3 {
-  position: absolute;
-  left: 200px;
-  top: 305px;
-}
-
-.addshowoption3_1 {
-  position: absolute;
-  width: 200px;
-  height: 20px;
-  top: 322px;
-  left: 200px;
-}
-
-.addshowoption3_2 {
-  position: absolute;
-  width: 100px;
-  height: 20px;
-  top: 335px;
-  left: 420px;
-}
-
-.addshowoption3_3 {
-  position: absolute;
-  width: 200px;
-  height: 20px;
-  top: 322px;
-  left: 450px;
-}
-
-.addshowoption4 {
+.addnoticeoption3 {
   position: absolute;
   width: 116px;
   height: 20px;
@@ -260,10 +170,15 @@
   text-align: left;
 }
 
-.showinfo4 {
+.noticeinfo3 {
   position: absolute;
   left: 200px;
   top: 405px;
+}
+
+.modaldivider {
+  /* position: absolute; */
+  margin-top: 80px;
 }
 
 .fileuploadbutton {

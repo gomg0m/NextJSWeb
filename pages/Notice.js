@@ -1,8 +1,8 @@
 import React from 'react';
 // import Header from './Header';
-import styles from '../src/css/Show.module.css';
+import styles from '../src/css/Notice.module.css';
 import { Checkbox, FormControlLabel, Box, Button, Divider, Modal, Typography, InputLabel, MenuItem, 
-  FormControl, Select, TextField, Paper, InputBase, IconButton } from '@mui/material';
+  FormControl, Select, TextField, Paper, InputBase, IconButton, Input } from '@mui/material';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DatePicker from '@mui/lab/DatePicker';
@@ -32,21 +32,64 @@ function Notice() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  // Select information
-  const [info, setInfo] = React.useState('');
-  const handleChange = (event) => {setInfo(event.target.value);};
+  // // Select information
+  // const [info, setInfo] = React.useState('');
+  // const handleChange = (event) => {setInfo(event.target.value);};
 
-  const Input = styled('input')({
-    display: 'none',
-  });
+  // const Input = styled('input')({
+  //   display: 'none',
+  // });
   
-  // calendar (datepicker)
-  const [startDate, setStartDate] = React.useState(null);
-  const [endDate, setEndDate] = React.useState(null);
+  // // calendar (datepicker)
+  // const [startDate, setStartDate] = React.useState(null);
+  // const [endDate, setEndDate] = React.useState(null);
 
   return (
     <>
-        <Box className={styles.showbackground} sx={{ width: 1365, height: '100%', backgroundColor: '#F6F7FB', }} />
+      <Box className={styles.noticebackground1} sx={{ width: 1581, height: '100%', backgroundColor: '#F6F7FB', }} />
+      <Box className={styles.noticebackground2} sx={{ width: 1496, height: 906, backgroundColor: 'white', }} />
+      
+      <div className={styles.noticetitle}>공지사항</div>
+
+
+      <Button className={styles.writetbutton} variant="contained" onClick={handleOpen}>작성하기</Button>
+
+      <Modal
+          open={open}
+          onClose={handleClose}
+        >
+          <Box sx={style}>
+          <Button className={styles.addclosebutton} variant="text" onClick={handleClose}>X</Button>
+
+            <Typography className={styles.addnoticetitle}>공지사항</Typography>
+            <Typography className={styles.addnoticesubtitle}>공지사항을 작성해주세요.</Typography>
+            <Divider className={styles.modaldivider} orientation="horizontal" variant="fullWidth" flexItem />
+
+            <div className={styles.addnoticeoption1}>제목</div>
+            <TextField className={styles.noticeinfo1} sx={{ minWidth: 570 }} id="outlined-basic" label="제목을 입력해주세요." variant="outlined"/>            
+
+            <div className={styles.addnoticeoption2}>내용</div>
+            <TextField className={styles.noticeinfo2} sx={{ minWidth: 570 }} multiline rows={5} id="outlined-basic" label="공지사항 내용을 입력해주세요." variant="outlined"/>            
+
+            <div className={styles.addnoticeoption3}>첨부자료</div>
+            <TextField className={styles.noticeinfo3} sx={{ minWidth: 510 }} id="outlined-basic" label="공연의 포스터, 공연 관련 이미지를 추가해주세요." variant="outlined"/>
+            <Box className={styles.filebackground} sx={{ width: 48, height: 48, backgroundColor: '#F2F2F2', borderRadius: '6px' }} />
+            <label htmlFor="icon-button-file" className={styles.fileuploadbutton}>
+              <IconButton color="inherit" component="span" backgroundColor="#F2F2F2">
+                <AttachFileIcon />
+              </IconButton>
+            </label>
+            
+        
+            <Button className={styles.addcreatebutton} variant="contained">만들기</Button>
+
+          </Box>
+        </Modal>
+
+
+
+
+        {/* <Box className={styles.showbackground} sx={{ width: 1365, height: '100%', backgroundColor: '#F6F7FB', }} />
         <div className={styles.showsubtitle}>협업 공연</div>
 
         <Button className={styles.addconcertbutton} variant="contained" onClick={handleOpen}>+ 새로운 공연 추가</Button>
@@ -141,7 +184,7 @@ function Notice() {
 
 
         <div className={styles.showorder1}>최근 생성순</div>
-        <div className={styles.showorder2}>모든상태</div>
+        <div className={styles.showorder2}>모든상태</div> */}
     </>
   );
 }
