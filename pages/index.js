@@ -1,10 +1,10 @@
 //import Home from './Home';
-import PlanInfoPanel from '../src/component/PlanInfoPanel';
+import TEST from '../src/component/TechDiscussWrite';
 
 
 function T1(){
     return(
-        <PlanInfoPanel />
+        <TEST />
     );
 }
 export default T1;
