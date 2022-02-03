@@ -1,8 +1,13 @@
 import React from 'react';
 // import Header from './Header';
 import styles from '../src/css/Production.module.css';
-import { Box, Button, Divider, Modal, Typography, InputLabel, MenuItem, FormControl, Select, TextField, Input, IconButton } from '@mui/material';
+import {  Box, Button, Divider, Modal, Typography, InputLabel, MenuItem, 
+  FormControl, Select, TextField, Paper, InputBase, IconButton } from '@mui/material';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import DatePicker from '@mui/lab/DatePicker';
 import { styled } from '@mui/material/styles';
+import SearchIcon from '@mui/icons-material/Search';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
 
 const style = {
@@ -52,7 +57,7 @@ function Preproduction() {
 
             <Typography className={styles.addtitle}>Production</Typography>
             <Typography className={styles.addsubtitle}>프로덕션을 추가해주세요.</Typography>
-            <Divider className={styles.modaldivider} orientation="horizontal" variant="fullWidth" flexItem />
+            <Divider className={styles.modalformdivider} orientation="horizontal" variant="fullWidth" flexItem />
 
             <div className={styles.addoption1}>프로덕션명</div>
             <TextField className={styles.info1} sx={{ minWidth: 570 }} id="outlined-basic" label="프로덕션명을 입력해주세요." variant="outlined"/>
