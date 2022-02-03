@@ -4,6 +4,9 @@ import styles from '../src/css/Preproduction1.module.css';
 import { Box, Button, Divider, Modal, Typography, InputLabel, MenuItem, FormControl, Select, TextField, Input, IconButton } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
+import Footer from "../src/fix/Footer";
+import Leftside from '../src/fix/Leftside';
+import Rightside from '../src/fix/Rightside';
 // import { borderRadius } from '@mui/system';
 
 const style = {
@@ -25,7 +28,9 @@ function Preproduction1() {
   
   return (
     <>
-      
+      <Header />
+      <Leftside />
+      <Rightside />
         <Box className={styles.prebackground1} sx={{ width: 1026, height: '100%', backgroundColor: '#F6F7FB', }} />
         <div className={styles.presubtitle1}>희망연출정보</div>
 
@@ -33,6 +38,7 @@ function Preproduction1() {
 
         <div className={styles.order1}>최근 생성순</div>
         <div className={styles.order2}>모든상태</div>
+      <Footer />
     </>
   );
 }
