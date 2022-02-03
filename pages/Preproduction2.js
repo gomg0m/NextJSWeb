@@ -39,7 +39,7 @@ function Preproduction2() {
   return (
     <>
       
-        <Box className={styles.prebackground} sx={{ width: 1026, height: '100%', backgroundColor: '#F6F7FB', }} />
+        <Box className={styles.prebackground} sx={{ width: 1026, height: '150%', backgroundColor: '#F6F7FB', }} />
         <div className={styles.presubtitle}>기술구체화협의</div>
 
         <Button className={styles.addmeetingbutton} variant="contained" onClick={handleOpen}>+ 새로운 기술구체화협의 추가</Button>
