@@ -2,7 +2,7 @@ const mysql = require('mysql');
 let connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'kitech123',
+    password: 'kitech123!', //password: 'kitech123' //Notebook mysql 
     database: 'nextjsDemo'
 });
 
