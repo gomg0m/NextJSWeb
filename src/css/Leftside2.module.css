@@ -14,6 +14,7 @@
     position: absolute;
     margin-left: 20px;
 }
+
 .contentscontainer{
     display: flex;
     flex-direction: column;
@@ -129,6 +130,30 @@
     
     color: #000000;
 }
+
+.process{
+    position: absolute;
+    width: 106px;
+    height: 26px;
+    left: 41px;
+    top: 495px;
+
+    font-family: Noto Sans KR;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 26px;
+    /* identical to box height */
+
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.15px;
+
+    /* Gray 3 */
+
+    color: #828282;
+}
+
 .mainLabel {
     color: var(--black);
     font-family: var(--font-family-noto_sans_kr);

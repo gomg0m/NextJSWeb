@@ -66,94 +66,96 @@ export default function VerticalLinearStepper() {
   return (
     <div className={styles.leftsidebox}> 
         <div className={styles.contentscontainer}>
-                <div className={styles.gongtong} style={{cursor:'pointer'}}>공통 메뉴</div>
+            <div className={styles.gongtong} style={{cursor:'pointer'}}>공통 메뉴</div>
                 <Link href ='/Notice'>
                     <div className={styles.notice} style={{cursor:'pointer'}}>공지사항</div>
                 </Link>
                     <div className={styles.schedule} style={{cursor:'pointer'}}>일정</div> 
                 
-                <div className={styles.library} style={{cursor:'pointer'}}>자료실</div>
-                <div className={styles.star} style={{cursor:'pointer'}}>즐겨찾기 자료</div>    
+                    <div className={styles.library} style={{cursor:'pointer'}}>자료실</div>
+                    
+                    <div className={styles.star} style={{cursor:'pointer'}}>즐겨찾기 자료</div>    
             </div>
-     <Box sx={{ maxWidth: 400}}>
-      <Stepper activeStep={activeStep} orientation="vertical"
-        sx={{ color: "gray" }}
-      >
-        <Step completed={false} expanded={true}>
-                <StepLabel StepIconComponent={Number1Icon} > 
-                    <div className={styles.mainLabel} >About</div>
-                </StepLabel>      
-        </Step>
-        
-        <Step completed={false} expanded={true}>
-            <Link href ='/TheaterInfoPanel'>
-                <StepLabel sx={{mt: -5}} StepIconComponent={Circle1Icon}>
-                    <Button className={styles.subLabel}>공연기획정보</Button>
-                </StepLabel>
-            </Link>
-        </Step>
 
-        <Step completed={false} expanded={true}>
-            <Link href ='/PerformInfoWrite'>
-                <StepLabel sx={{mt: -5}} StepIconComponent={Circle1Icon}>
-                    <Button className={styles.subLabel}>공연장정보</Button>
-                </StepLabel>
-            </Link>
-        </Step>
+            <div className={styles.process}>Process 메뉴</div> 
+     
+                <Box sx={{ maxWidth: 400}}>
+                    <Stepper activeStep={activeStep} orientation="vertical" sx={{ color: "gray" }}>
+                        <Step completed={false} expanded={true}>
+                                <StepLabel StepIconComponent={Number1Icon} > 
+                                    <div className={styles.mainLabel} >About</div>
+                                </StepLabel>      
+                        </Step>
+                        
+                        <Step completed={false} expanded={true}>
+                            <Link href ='/TheaterInfoPanel'>
+                                <StepLabel sx={{mt: -5}} StepIconComponent={Circle1Icon}>
+                                    <Button className={styles.subLabel}>공연기획정보</Button>
+                                </StepLabel>
+                            </Link>
+                        </Step>
 
-        <Step completed={false} expanded={true}>
-          <StepLabel StepIconComponent={Number2Icon}> 
-          <div className={styles.mainLabel}>Pre-Production</div>
-          </StepLabel>
-        </Step>
+                        <Step completed={false} expanded={true}>
+                            <Link href ='/PerformInfoWrite'>
+                                <StepLabel sx={{mt: -5}} StepIconComponent={Circle1Icon}>
+                                    <Button className={styles.subLabel}>공연장정보</Button>
+                                </StepLabel>
+                            </Link>
+                        </Step>
 
-        <Step completed={false} expanded={true}>
-            <Link href='/HopeInfoWrite'>
-                <StepLabel sx={{mt: -5}} StepIconComponent={Circle2Icon}>
-                    <Button className={styles.subLabel}>희망연출정보</Button>
-                </StepLabel>
-            </Link>
-        </Step>
+                        <Step completed={false} expanded={true}>
+                        <StepLabel StepIconComponent={Number2Icon}> 
+                        <div className={styles.mainLabel}>Pre-Production</div>
+                        </StepLabel>
+                        </Step>
 
-        <Step completed={false} expanded={true}>
-            <Link href='/TechDiscussWrite'>
-                <StepLabel sx={{mt: -5}} StepIconComponent={Circle2Icon}>
-                    <Button className={styles.subLabel}>기술구체화협의 </Button>
-                </StepLabel>
-            </Link>
-        </Step>
+                        <Step completed={false} expanded={true}>
+                            <Link href='/HopeInfoWrite'>
+                                <StepLabel sx={{mt: -5}} StepIconComponent={Circle2Icon}>
+                                    <Button className={styles.subLabel}>희망연출정보</Button>
+                                </StepLabel>
+                            </Link>
+                        </Step>
 
-        <Step completed={false} expanded={true}>
-          <StepLabel StepIconComponent={Number3Icon}>
-          <div className={styles.mainLabel}> Production </div>
-          </StepLabel>
-        </Step>
+                        <Step completed={false} expanded={true}>
+                            <Link href='/TechDiscussWrite'>
+                                <StepLabel sx={{mt: -5}} StepIconComponent={Circle2Icon}>
+                                    <Button className={styles.subLabel}>기술구체화협의 </Button>
+                                </StepLabel>
+                            </Link>
+                        </Step>
 
-        <Step completed={false} expanded={true}>
-          <StepLabel sx={{mt: -5}} StepIconComponent={Circle3Icon}> 
-          <Button className={styles.subLabel}>제작공간</Button> 
-          </StepLabel>
-        </Step>
+                        <Step completed={false} expanded={true}>
+                            <StepLabel StepIconComponent={Number3Icon}>
+                                <div className={styles.mainLabel}> Production </div>
+                            </StepLabel>
+                        </Step>
 
-        <Step completed={false} expanded={true}>
-          <StepLabel StepIconComponent={Number4Icon}>
-          <div className={styles.mainLabel}>Post-Production</div>
-          </StepLabel>
-        </Step>
+                        <Step completed={false} expanded={true}>
+                            <StepLabel sx={{mt: -5}} StepIconComponent={Circle3Icon}> 
+                                <Button className={styles.subLabel}>제작공간</Button> 
+                            </StepLabel>
+                        </Step>
 
-        <Step completed={false} expanded={true}>
-          <StepLabel sx={{mt: -5}} StepIconComponent={Circle4Icon}>
-          <Button className={styles.subLabel}>철거 및 반출 협의</Button>
-          </StepLabel>
-        </Step>
+                        <Step completed={false} expanded={true}>
+                            <StepLabel StepIconComponent={Number4Icon}>
+                                <div className={styles.mainLabel}>Post-Production</div>
+                            </StepLabel>
+                        </Step>
 
-        <Step completed={false} expanded={true}>
-          <StepLabel sx={{mt: -5}} StepIconComponent={Circle4Icon}> 
-          <Button className={styles.subLabel}>협업평가</Button> 
-          </StepLabel>
-        </Step>
-      </Stepper>
-     </Box>
+                        <Step completed={false} expanded={true}>
+                            <StepLabel sx={{mt: -5}} StepIconComponent={Circle4Icon}>
+                                <Button className={styles.subLabel}>철거 및 반출 협의</Button>
+                            </StepLabel>
+                        </Step>
+
+                        <Step completed={false} expanded={true}>
+                            <StepLabel sx={{mt: -5}} StepIconComponent={Circle4Icon}> 
+                                <Button className={styles.subLabel}>협업평가</Button> 
+                            </StepLabel>
+                        </Step>
+                    </Stepper>
+                </Box>
     </div>
   );
 }
