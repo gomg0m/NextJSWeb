@@ -1,0 +1,145 @@
+import styles from '../css/Leftside2.module.css';
+import * as React from "react";
+import Box from "@mui/material/Box";
+import Stepper from "@mui/material/Stepper";
+import Step from "@mui/material/Step";
+import StepLabel from "@mui/material/StepLabel";
+import CircleIcon from "@mui/icons-material/Circle";
+import LooksOneIcon from "@mui/icons-material/LooksOne";
+import LooksTwoIcon from "@mui/icons-material/LooksTwo";
+import Looks3Icon from "@mui/icons-material/Looks3";
+import Looks4Icon from "@mui/icons-material/Looks4";
+import { createTheme } from "@mui/material/styles";
+import Typography from '@mui/material/Typography';
+import Link from 'next/link';
+import StepButton from '@mui/material/StepButton';
+import Button from '@mui/material/Button';
+
+const theme = createTheme({
+  typography: {
+    fontFamily: 'Noto Sans KR'
+  },
+});
+
+theme.typography.subject = {
+  fontSize: '1.125rem',
+};
+
+//1번 about
+function Number1Icon(props) {
+  return <LooksOneIcon fontSize="large"  sx={{ color: "#E2B644", ml: -0.5 }} />;
+}
+//2번 preproduction
+function Number2Icon(props) {
+  return <LooksTwoIcon fontSize="large" sx={{ color: "#D36767", ml: -0.5 }} />;
+}
+//3번 production
+function Number3Icon(props) {
+  return <Looks3Icon fontSize="large" sx={{ color: "#3B74B8", ml: -0.5 }} />;
+}
+
+function Number4Icon(props) {
+  return <Looks4Icon fontSize="large" sx={{ color: "#318D7C", ml: -0.5 }} />;
+}
+
+function Circle1Icon(props) {
+  return <CircleIcon fontSize="xsmall" sx={{ ml: 0.6 }} />;
+}
+function Circle2Icon(props) {
+  return <CircleIcon fontSize="xsmall" color="second" sx={{ ml: 0.6 }} />;
+}
+function Circle3Icon(props) {
+  return <CircleIcon fontSize="xsmall" color="third" sx={{ ml: 0.6 }} />;
+}
+function Circle4Icon(props) {
+  return <CircleIcon fontSize="xsmall" color="fourth" sx={{ ml: 0.6 }} />;
+}
+
+export default function VerticalLinearStepper() {
+  const [activeStep] = React.useState(0);
+
+
+  return (
+    <div className={styles.leftsidebox}> 
+     <Box sx={{ maxWidth: 400}}>
+      <Stepper activeStep={activeStep} orientation="vertical"
+        sx={{ color: "gray" }}
+      >
+        <Step completed={false} expanded={true}>
+            <Link href ='/Notice'>
+                <StepLabel StepIconComponent={Number1Icon} > 
+                    <div className={styles.mainLabel} >About</div>
+                </StepLabel>
+            </Link>
+        </Step>
+        
+        <Step completed={false} expanded={true}>
+            <Link href ='/Notice'>
+                <StepLabel sx={{mt: -5}} StepIconComponent={Circle1Icon}>
+                    <Button className={styles.subLabel}>공연기획정보</Button>
+                </StepLabel>
+            </Link>
+        </Step>
+
+        <Step completed={false} expanded={true}>
+            <Link href ='/'>
+                <StepLabel sx={{mt: -5}} StepIconComponent={Circle1Icon}>
+                    <Button className={styles.subLabel}>공연장정보</Button>
+                </StepLabel>
+            </Link>
+        </Step>
+
+        <Step completed={false} expanded={true}>
+        <Link href ='/Notice'>
+          <StepLabel StepIconComponent={Number2Icon}> 
+          <div className={styles.mainLabel}>Pre-Production</div>
+          </StepLabel>
+          </ Link>
+        </Step>
+
+        <Step completed={false} expanded={true}>
+          <StepLabel sx={{mt: -5}} StepIconComponent={Circle2Icon}>
+              <Button className={styles.subLabel}>희망연출정보</Button>
+              </StepLabel>
+        </Step>
+
+        <Step completed={false} expanded={true}>
+          <StepLabel sx={{mt: -5}} StepIconComponent={Circle2Icon}>
+          <Button className={styles.subLabel}>기술구체화협의 </Button>
+          </StepLabel>
+        </Step>
+
+        <Step completed={false} expanded={true}>
+          <StepLabel StepIconComponent={Number3Icon}>
+          <div className={styles.mainLabel}> Production </div>
+          </StepLabel>
+        </Step>
+
+        <Step completed={false} expanded={true}>
+          <StepLabel sx={{mt: -5}} StepIconComponent={Circle3Icon}> 
+          <Button className={styles.subLabel}>제작공간</Button> 
+          </StepLabel>
+        </Step>
+
+        <Step completed={false} expanded={true}>
+          <StepLabel StepIconComponent={Number4Icon}>
+          <div className={styles.mainLabel}>Post-Production</div>
+          </StepLabel>
+        </Step>
+
+        <Step completed={false} expanded={true}>
+          <StepLabel sx={{mt: -5}} StepIconComponent={Circle4Icon}>
+          <Button className={styles.subLabel}>철거 및 반출 협의</Button>
+          </StepLabel>
+        </Step>
+
+        <Step completed={false} expanded={true}>
+          <StepLabel sx={{mt: -5}} StepIconComponent={Circle4Icon}> 
+          <Button className={styles.subLabel}>협업평가</Button> 
+          </StepLabel>
+        </Step>
+      </Stepper>
+     </Box>
+    </div>
+  );
+}

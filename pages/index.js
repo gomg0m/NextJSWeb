@@ -1,5 +1,5 @@
-//import Home from './Home';
-import TEST from '../src/component/PlanInfoPanel';
+import Home from './Home';
+import TEST from './Postproduction';
 
 function T1(){
     return(
