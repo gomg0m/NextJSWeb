@@ -1,16 +1,18 @@
 import React from 'react';
-import sty from '../css/TechDiscussWrite.module.css'
-import BasicTextFields from './basictext';
-import MultilineTextFields from './multitext'
+import Header from '../src/fix/Header';
+import sty from '../src/css/TechDiscussWrite.module.css'
+import BasicTextFields from '../src/component/basictext';
+import MultilineTextFields from '../src/component/multitext'
 import Link from 'next/link'
 import Button from '@mui/material/Button';
-import ComboBox from './combobox';
+import ComboBox from '../src/component/combobox';
 
 export default function HopeInfoWirte(){
     let boxprops ={ width:400, height:150};
     
     return(
     <div>
+        <Header />
         <div className={sty.infoframe}>
             <div
                 style={{

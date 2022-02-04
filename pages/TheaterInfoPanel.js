@@ -1,14 +1,16 @@
 import React from 'react';
-import sty from '../css/TheaterInfoPanel.module.css';
+import Header from '../src/fix/Header';
+import sty from '../src/css/TheaterInfoPanel.module.css';
 import Link from 'next/link';
 import Button from '@mui/material/Button';
-import PlanInfoTable from './PlanInfoTable';
-import PlanInfoPicture from './PlanphotosInfo';
-import PlanFilePicture from './PlanphotosFile';
+import TheaterTable from '../src/component/TheaterTable';
+import TheaterDrawing from '../src/component/TheatherDrawing';
+import TheaterPicture from '../src/component/TheatherPicture';
 
-export default function PlanInfoPanel(){       
+export default function TheaterInfoPanel(){       
     return(
         <div className={sty.infoframe}>
+            <Header />
             <div
                 style={{
                     width: "1496px",
@@ -18,11 +20,10 @@ export default function PlanInfoPanel(){
                     margin: "0px 0 20px",                    
                 }}></div>
             <div className={sty.layout_top}>
-                <div className={sty.layout_top_txt1}>공연기획 정보</div>
-                <div className={sty.layout_top_txt2}>공연기획 정보</div>
-                <div className={sty.layout_top_image}><img src="images/planPhoto1.png" alt="Map"></img></div>
-                <div className={sty.layout_body_drawing}> <PlanInfoPicture /> </div>
-                <div className={sty.layout_top_table}><PlanInfoTable /></div>
+                <div className={sty.layout_top_txt1}>공연장정보</div>
+                <div className={sty.layout_top_txt2}>공연장정보</div>
+                <div className={sty.layout_top_image}><img src="images/map.png" alt="Map"></img></div>
+                <div className={sty.layout_top_table}><TheaterTable /></div>
                 <div
                     style={{
                         width: "1496px",
@@ -32,8 +33,10 @@ export default function PlanInfoPanel(){
                         margin: "40px 0 20px",
                     }}></div>
             <div className={sty.layout_body}>
-                <div>첨부자료</div>
-                <div className={sty.layout_body_picture}> <PlanFilePicture /> </div>
+                <div>공연장 도면</div>
+                <div className={sty.layout_body_drawing}> <TheaterDrawing /> </div>
+                <div>공연장 사진</div>
+                <div className={sty.layout_body_picture}> <TheaterPicture /> </div>
             </div>
             <div className={sty.layout_bottom}>            
                 <Link href="/About">    
