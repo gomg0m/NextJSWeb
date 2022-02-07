@@ -1,0 +1,261 @@
+.precontainer {
+  top: 1000px;
+}
+
+.schebackground {
+  position: absolute;
+  top: 90px;
+  left: 339px;
+}
+
+.schebackgroundmid1 {
+  position: absolute;
+  top: 128px;
+  left: 364px;
+}
+
+.schebackgroundmid2 {
+  position: absolute;
+  top: 128px;
+  left: 1276px;
+}
+
+.schesubtitle {
+  position: absolute;
+  width: 118px;
+  height: 46px;
+  left: 388px;
+  top: 179px;
+
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 32px;
+  line-height: 46px;
+
+  color: #333333;
+}
+
+.addschebutton {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 12px;
+
+  position: absolute;
+  width: 98px;
+  height: 40px;
+  left: 1134px;
+  top: 192px;
+
+  background: #2D9CDB;
+  border-radius: 4px;
+
+  font-family: Noto Sans KR;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0px;
+  text-align: left;
+}
+
+.addclosebutton {
+  position: absolute;
+  top: 20px;
+  left: 730px;
+
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: bold;
+  color:rgba(0, 0, 0, 0.87);
+  font-size: 24px;
+  line-height: 35px;
+}
+
+.addschetitle {
+  position: absolute;
+  width: 185px;
+  height: 20px;
+  left: 30px;
+  top: 30px;
+
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 26px;
+  line-height: 20px;
+  /* identical to box height, or 77% */
+
+  letter-spacing: -0.02em;
+
+  color: #000000;
+}
+
+.addschesubtitle {
+  position: absolute;
+  width: 285px;
+  height: 20px;
+  left: 30px;
+  top: 70px;
+
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 20px;
+  /* identical to box height, or 111% */
+
+  letter-spacing: -0.02em;
+
+  color: #000000;
+}
+
+.modaldivider {
+  /* position: absolute; */
+  margin-top: 80px;
+}
+
+.addscheoption1 {
+  position: absolute;
+  width: 88px;
+  height: 20px;
+  top: 162px;
+  left: 30px;
+
+  font-family: Noto Sans KR;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: -0.02em;
+  text-align: left;
+}
+
+.addinfo1 {
+  position: absolute;
+  left: 200px;
+  top: 145px;
+}
+
+.addscheoption2 {
+  position: absolute;
+  width: 116px;
+  height: 20px;
+  top: 242px;
+  left: 30px;
+
+  font-family: Noto Sans KR;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: -0.02em;
+  text-align: left;
+}
+
+.datepicker1 {
+  position: absolute;
+  height: 48px;
+  margin-left: 170px;
+  margin-top: 110px;
+  border-radius: 4px;
+}
+
+.datepicker2 {
+  position: absolute;
+  height: 48px;
+  margin-left: 450px;
+  margin-top: 110px;
+  border-radius: 4px;
+}
+
+
+.addscheoption3 {
+  position: absolute;
+  width: 116px;
+  height: 20px;
+  top: 322px;
+  left: 30px;
+
+  font-family: Noto Sans KR;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: -0.02em;
+  text-align: left;
+}
+
+.datepicker3 {
+  position: absolute;
+  height: 48px;
+  margin-left: 170px;
+  margin-top: 190px;
+  border-radius: 4px;
+}
+
+.datepicker4 {
+  position: absolute;
+  height: 48px;
+  margin-left: 450px;
+  margin-top: 190px;
+  border-radius: 4px;
+}
+
+.addscheoption4 {
+  position: absolute;
+  width: 116px;
+  height: 20px;
+  top: 402px;
+  left: 30px;
+
+  font-family: Noto Sans KR;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: -0.02em;
+  text-align: left;
+}
+
+.disinfo4 {
+  position: absolute;
+  left: 200px;
+  top: 385px;
+}
+
+.addscheoption5 {
+  position: absolute;
+  width: 116px;
+  height: 20px;
+  top: 482px;
+  left: 30px;
+
+  font-family: Noto Sans KR;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: -0.02em;
+  text-align: left;
+}
+
+.registerbutton {
+  position: absolute;
+  width: 114px;
+  height: 48px;
+  top: 600px;
+  left: 670px;
+  background: #2D9CDB;
+  border-radius: 6px;
+
+  font-family: Noto Sans KR;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 50px;
+  letter-spacing: -0.02em;
+  text-align: left;
+}

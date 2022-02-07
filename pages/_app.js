@@ -8,9 +8,9 @@ import styles from './App.module.css';
 function MyApp({ Component, pageProps }) {
   return (
     <div> 
-      <Header />
+      {/* <Header />
       <Leftside />
-      <Rightside />
+      <Rightside /> */}
         <Component {...pageProps} />
     </div>
   );
