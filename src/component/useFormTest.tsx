@@ -36,11 +36,10 @@ const FormDemo = () => {
 
       <FormInputText name="textValue" control={control} label="Text Input" />
 
-    
-    {/*<FormInputRadio name={"radioValue"} control={control} label={"Radio Input"} />    
+{/*
+   <FormInputRadio name={"radioValue"} control={control} label={"Radio Input"} />    
    <FormInputDropdown name="dropdownValue"control={control}label="Dropdown Input"/>
-      <FormInputDate name="dateValue" control={control} label="Date Input" /> 
-   
+   <FormInputDate name="dateValue" control={control} label="Date Input" /> 
       <FormInputMultiCheckbox
         control={control}
         setValue={setValue}
@@ -48,13 +47,14 @@ const FormDemo = () => {
         label={"Checkbox Input"}
       />
 */}
+
       <FormInputSlider
         name={"sliderValue"}
         control={control}
         setValue={setValue}
         label={"Slider Input"}
       />
-   
+
       <Button onClick={handleSubmit(onSubmit)} variant={"contained"}>
         Submit
       </Button>
@@ -64,6 +64,5 @@ const FormDemo = () => {
     </Paper>
   );
 };
-
 
 export default FormDemo;
