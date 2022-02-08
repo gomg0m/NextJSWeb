@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from '../src/fix/Header';
 import styles from '../src/css/Schedule.module.css';
+import styledcom from 'styled-components';
 import ScheduleCalendar from './ScheduleCalendar';
 import { Checkbox, FormControlLabel, Box, Button, Divider, Modal, Typography, InputLabel, MenuItem, 
   FormControl, Select, TextField, Paper, InputBase, IconButton } from '@mui/material';
@@ -29,6 +30,9 @@ const style = {
   p: 4,
 };
 
+// const ScheduleWrapper = styledcom.div`
+//   position: relative;
+// `;
 
 function Postproduction() {
 
@@ -55,10 +59,10 @@ function Postproduction() {
   
   return (
     <>
-      
-      <Box className={styles.schebackground} sx={{ width: '100%', height: '100%', backgroundColor: '#F6F7FB', }} />
-      <div>
-        <Box className={styles.schebackgroundmid1} sx={{ width: 888, height: 917, backgroundColor: '#FFFFFF', }} />
+      {/* <ScheduleWrapper> */}
+        <Box className={styles.schebackground} sx={{ width: '100%', height: '100%', backgroundColor: '#F6F7FB', }} />
+      <Box className={styles.schebackgroundmid1} sx={{ width: 888, height: 917, backgroundColor: '#FFFFFF', }} />
+      <div className={styles.calendarpos}>
         <ScheduleCalendar />
       </div>
       
@@ -67,7 +71,7 @@ function Postproduction() {
 
       <Button className={styles.addschebutton} variant="contained" onClick={handleOpen}>일정 추가</Button>
 
-      
+      {/* </ScheduleWrapper> */}
 
       <Modal
           open={open}
@@ -129,6 +133,7 @@ function Postproduction() {
 
           </Box>        
         </Modal>
+      
     </>
   );
 }

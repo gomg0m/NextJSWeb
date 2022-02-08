@@ -125,7 +125,7 @@ const Dow = styled.div`
   border-right: 0.5px solid #ebebeb;
   background: #f2f2f2;
   width: 100%;
-  height: 15px;
+  height: 30px;
   color: #616161;
   font-size: 12px;
   text-align: center;

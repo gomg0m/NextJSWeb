@@ -2,6 +2,14 @@
   top: 1000px;
 }
 
+.calendarpos {
+  position: absolute;
+  width: 830px;
+  height: 500px;
+  top: 230px;
+  left: 391px;
+}
+
 .schebackground {
   position: absolute;
   top: 90px;
