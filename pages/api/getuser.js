@@ -14,13 +14,10 @@ connection.connect(function(err) {
   console.log('MySQL Connection Successful.');
 });
 
-function getUsers(req, res) {
+export default function handler(req,res){
     const user_query = "select * from test";
     connection.query(user_query, function (error, result, fields){
         if (error) throw error;
         res.status(200).json({ users: result})
-    })
+    });
 }
-
-
-export default getUsers;

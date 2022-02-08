@@ -1,19 +1,18 @@
 import React from 'react';
 import Header from '../fix/Header';
 import Leftside from '../fix/Leftside1';
-import sty from '../css/planInfoWirte.module.css'
+import sty from '../css/planInfoWirte.module.css';
 import ComboBox from './combobox';
 import ReadOnlyTextFields from './readonlytext';
 import MultilineTextFields from './multitext'
 import DateTimePicker  from './datetimepicker';
 import IconButton from './withiconbtn';
-
+import Axios from 'axios';
 import Button from '@mui/material/Button';
 import FormDialog2 from './fileattachdialogbtn';
 
 import { FormProvider, useForm } from "react-hook-form";
 import { FormInputText } from "./FormInputText";
-
 
 
 interface IFormInput {
@@ -42,7 +41,14 @@ export const planInfoWirte = ()=> {
     let boxprops ={ width:400, height:150};
     const methods = useForm({ defaultValues: defaultValues });
     const { handleSubmit, reset, control, setValue } = methods;
-    const onSubmit = (data: IFormInput) => console.log(data);
+    const onSubmit = (data: IFormInput) => {
+        Axios.post("/api/getuser").then((res)=>{
+            if(res.status == 200){
+                //login 성공
+                console.log(res.data.users);
+            }
+        });
+    }
 
     return(
         <div>
