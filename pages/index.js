@@ -1,5 +1,5 @@
 import Home from './Home';
-import TEST from './PlanInfoWriteTest';
+import TEST from '../src/component/PlanInfoWriteTest';
 
 
 function T1(){
