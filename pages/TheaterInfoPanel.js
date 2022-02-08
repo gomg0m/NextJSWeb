@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from '../src/fix/Header';
+import Leftside from '../src/fix/Leftside1';
 import sty from '../src/css/TheaterInfoPanel.module.css';
 import Link from 'next/link';
 import Button from '@mui/material/Button';
@@ -9,8 +10,11 @@ import TheaterPicture from '../src/component/TheatherPicture';
 
 export default function TheaterInfoPanel(){       
     return(
+        <>
+        <Header />
+        <Leftside />
         <div className={sty.infoframe}>
-            <Header />
+            
             <div
                 style={{
                     width: "1496px",
@@ -45,6 +49,7 @@ export default function TheaterInfoPanel(){
                 </Link>    
             </div>
         </div>
-    </div>                
+    </div>
+    </>                
     );
 }
