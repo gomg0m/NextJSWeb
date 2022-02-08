@@ -21,8 +21,7 @@ export default function Leftside() {
 
             <div className={styles.processcontainer}>
                 <Box className={styles.nowbox}/>  
-
-                <div className={styles.textsbox}>
+                 <div className={styles.textsbox}>
                     <div className={styles.about} style={{cursor:'pointer'}}>About</div>
                     <div className={styles.ginfo} style={{cursor:'pointer'}}>공연기획정보</div>
                     <div className={styles.janginfo} style={{cursor:'pointer'}}>공연장정보</div>  
@@ -37,7 +36,7 @@ export default function Leftside() {
                     <div className={styles.post} style={{cursor:'pointer'}}>Post-Production</div>
                     <div className={styles.chulgu} style={{cursor:'pointer'}}>철거 및 반출 협의</div>
                     <div className={styles.hyebup} style={{cursor:'pointer'}}>협업 평가</div>                    
-                </div>                
+                 </div>                
             </div>
         </div>
 

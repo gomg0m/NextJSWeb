@@ -1,5 +1,5 @@
 import React from 'react';
-// import Header from './Header';
+import Header from "../src/fix/Header";
 import styles from '../src/css/Show.module.css';
 import { Checkbox, FormControlLabel, Box, Button, Divider, Modal, Typography, InputLabel, MenuItem, 
   FormControl, Select, TextField, Paper, InputBase, IconButton } from '@mui/material';
@@ -9,6 +9,7 @@ import DatePicker from '@mui/lab/DatePicker';
 import { styled } from '@mui/material/styles';
 import SearchIcon from '@mui/icons-material/Search';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
+import Rightside from '../src/fix/Rightside';
 
 const style = {
   position: 'absolute',
@@ -46,6 +47,7 @@ function Show() {
 
   return (
     <>
+    <Header />
         <Box className={styles.showbackground} sx={{ width: 1365, height: '100%', backgroundColor: '#F6F7FB', }} />
         <div className={styles.showsubtitle}>협업 공연</div>
 
@@ -142,6 +144,7 @@ function Show() {
 
         <div className={styles.showorder1}>최근 생성순</div>
         <div className={styles.showorder2}>모든상태</div>
+        <Rightside />
     </>
   );
 }
