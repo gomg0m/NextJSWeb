@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from '../src/fix/Header';
+import Leftside from '../src/fix/Leftside1(1)';
 import sty from '../src/css/PerformInfoWirte.module.css'
 import BasicTextFields from '../src/component/basictext';
 import ReadOnlyTextFields from '../src/component/readonlytext';
@@ -14,9 +15,11 @@ import { height } from '@mui/system';
 
 export default function planInfoWirte(){       
     return(
-        
+        <>
+        <Header />
+        <Leftside />
         <div className={sty.fullbox}>
-            <Header />
+            
         <div className={sty.infoframe}>
             <div
                 style={{
@@ -122,6 +125,7 @@ export default function planInfoWirte(){
                 </Link>    
             </div>
         </div>
-    </div>                
+    </div>
+    </>                
     );
 }

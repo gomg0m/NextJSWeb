@@ -31,7 +31,7 @@ function Number1Icon(props) {
 }
 //2번 pre-production
 function Number2Icon(props) {
-  return <LooksTwoIcon fontSize="large" sx={{ ml: -0.5 }} />;
+  return <LooksTwoIcon fontSize="large" sx={{ color: "#D36767", ml: -0.5 }} />;
 }
 //3번 production
 function Number3Icon(props) {
@@ -47,11 +47,11 @@ function Circle1Icon(props) {
   return <CircleIcon fontSize="xsmall" sx={{color: "#E2B644", ml: 0.6 }} />;
 }
 function Circle11Icon(props) {
-    return <CircleIcon fontSize="xsmall" sx={{ ml: 0.6 }} />;
+    return <CircleIcon fontSize="xsmall" sx={{ color: "#E2B644", ml: 0.6 }} />;
   }
 //2번 pre-production
 function Circle2Icon(props) {
-  return <CircleIcon fontSize="xsmall" color="second" sx={{ ml: 0.6 }} />;
+  return <CircleIcon fontSize="xsmall" color="second" sx={{ color: "#D36767", ml: 0.6 }} />;
 }
 function Circle22Icon(props) {
     return <CircleIcon fontSize="xsmall" color="second" sx={{ ml: 0.6 }} />;

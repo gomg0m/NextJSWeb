@@ -31,15 +31,15 @@ function Number1Icon(props) {
 }
 //2번 pre-production
 function Number2Icon(props) {
-  return <LooksTwoIcon fontSize="large" sx={{ ml: -0.5 }} />;
+  return <LooksTwoIcon fontSize="large" sx={{ color: "#D36767", ml: -0.5 }} />;
 }
 //3번 production
 function Number3Icon(props) {
-  return <Looks3Icon fontSize="large" sx={{ ml: -0.5 }} />;
+  return <Looks3Icon fontSize="large" sx={{ color: "#3B74B8", ml: -0.5 }} />;
 }
 //4번 Post-production
 function Number4Icon(props) {
-  return <Looks4Icon fontSize="large" sx={{ ml: -0.5 }} />;
+  return <Looks4Icon fontSize="large" sx={{ color: "#318D7C", ml: -0.5 }} />;
 }
 
 //1번 about
@@ -47,22 +47,22 @@ function Circle1Icon(props) {
   return <CircleIcon fontSize="xsmall" sx={{color: "#E2B644", ml: 0.6 }} />;
 }
 function Circle11Icon(props) {
-    return <CircleIcon fontSize="xsmall" sx={{ ml: 0.6 }} />;
+    return <CircleIcon fontSize="xsmall" sx={{ color: "#E2B644", ml: 0.6 }} />;
   }
 //2번 pre-production
 function Circle2Icon(props) {
-  return <CircleIcon fontSize="xsmall" color="second" sx={{ ml: 0.6 }} />;
+  return <CircleIcon fontSize="xsmall" color="second" sx={{ color: "#D36767", ml: 0.6 }} />;
 }
 function Circle22Icon(props) {
-    return <CircleIcon fontSize="xsmall" color="second" sx={{ ml: 0.6 }} />;
+    return <CircleIcon fontSize="xsmall" color="second" sx={{ color: "#D36767", ml: 0.6 }} />;
   }
 //3번 production
 function Circle3Icon(props) {
-  return <CircleIcon fontSize="xsmall" color="third" sx={{ ml: 0.6 }} />;
+  return <CircleIcon fontSize="xsmall" color="third" sx={{ color: "#3B74B8", ml: 0.6 }} />;
 }
 //4번 Post-production
 function Circle4Icon(props) {
-  return <CircleIcon fontSize="xsmall" color="fourth" sx={{ ml: 0.6 }} />;
+  return <CircleIcon fontSize="xsmall" color="fourth" sx={{ color: "#318D7C", ml: 0.6 }} />;
 }
 function Circle44Icon(props) {
     return <CircleIcon fontSize="xsmall" color="fourth" sx={{ ml: 0.6 }} />;

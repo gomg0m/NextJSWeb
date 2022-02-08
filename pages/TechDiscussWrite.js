@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from '../src/fix/Header';
+import Leftside from '../src/fix/Leftside2(2)';
 import sty from '../src/css/TechDiscussWrite.module.css'
 import BasicTextFields from '../src/component/basictext';
 import MultilineTextFields from '../src/component/multitext'
@@ -13,6 +14,7 @@ export default function HopeInfoWirte(){
     return(
     <div>
         <Header />
+        <Leftside />
         <div className={sty.infoframe}>
             <div
                 style={{

@@ -47,7 +47,7 @@ function Circle1Icon(props) {
   return <CircleIcon fontSize="xsmall" sx={{color: "#E2B644", ml: 0.6 }} />;
 }
 function Circle11Icon(props) {
-    return <CircleIcon fontSize="xsmall" sx={{ ml: 0.6 }} />;
+    return <CircleIcon fontSize="xsmall" sx={{ color: "#E2B644", ml: 0.6 }} />;
   }
 //2번 pre-production
 function Circle2Icon(props) {
