@@ -1,59 +1,45 @@
 import React from 'react';
-import Header from '../fix/Header';
-import Leftside from '../fix/Leftside1';
-import sty from '../css/planInfoWirte.module.css';
+import sty from '../css/planInfoWirte.module.css'
 import ComboBox from './combobox';
 import ReadOnlyTextFields from './readonlytext';
 import MultilineTextFields from './multitext'
 import DateTimePicker  from './datetimepicker';
 import IconButton from './withiconbtn';
-import Axios from 'axios';
 import Button from '@mui/material/Button';
 import FormDialog2 from './fileattachdialogbtn';
 
 import { FormProvider, useForm } from "react-hook-form";
 import { FormInputText } from "./FormInputText";
 
-
 interface IFormInput {
-    team: string;
-    time: string;
-    count: string;
-    budget: string;
-    targetnumber: string;
-    targetprice: string;
-    subject: string;
-    dropdownValue: string;
+textValue0: string;
+textValue1: string;
+textValue2: string;
+textValue3: string;
+textValue4: string;
+textValue5: string;
+textValue6: string;
+dropdownValue: string;
 }
 
 const defaultValues = {
-    team: "",
-    time: "",
-    count: "",
-    budget: "",
-    targetnumber: "",
-    targetprice: "",
-    subject: "",
-    dropdownValue: "",
+  textValue0: "",
+  textValue1: "",
+  textValue2: "",
+  textValue3: "",
+  textValue4: "",
+  textValue5: "",
+  textValue6: "",
+  dropdownValue: "",
 };
 
 export const planInfoWirte = ()=> {
     let boxprops ={ width:400, height:150};
     const methods = useForm({ defaultValues: defaultValues });
     const { handleSubmit, reset, control, setValue } = methods;
-    const onSubmit = (data: IFormInput) => {
-        Axios.post("/api/getuser").then((res)=>{
-            if(res.status == 200){
-                //login 성공
-                console.log(res.data.users);
-            }
-        });
-    }
-
+    const onSubmit = (data: IFormInput) => console.log(data);
     return(
         <div>
-            <Header />
-            <Leftside />
         <div className={sty.infoframe}>
             <div
                 style={{
@@ -83,7 +69,8 @@ export const planInfoWirte = ()=> {
                 </div>
                 <div className={sty.body_row2}>
                     <div className={sty.body_row_subitem1}>공연명</div>                     
-                    <div className={sty.body_row_subitem2} style={{width:"700px", margin:"-15px 30px 0px"}} ><FormInputText name="subject" control={control} label="Text Input" /></div>
+
+                    <div className={sty.body_row_subitem2} style={{width:"700px", margin:"-15px 30px 0px"}} ><FormInputText name="textValue6" control={control} label="Text Input" /></div>
                 </div>
 
                 <div className={sty.body_row3}>
@@ -99,7 +86,7 @@ export const planInfoWirte = ()=> {
                 </div>
                 <div className={sty.body_row5}>
                     <div className={sty.body_row_subitem1}>협업팀 초대</div>
-                    <div className={sty.body_row_subitem2} style={{width:"300px", margin:"-15px 30px 0px"}} ><FormInputText name="team" control={control} label="협업팀 입력"/></div>
+                    <div className={sty.body_row_subitem2} style={{width:"300px", margin:"-15px 30px 0px"}} ><FormInputText name="textValue0" control={control} label="협업팀 입력"/></div>
                     <div style={{display:"flex", width:"800px", justifyContent:"flex-start"}}>
                         <div style={{margin:"0px 0px 0px"}}><IconButton labeltext={"홍길동"} /></div>
                         <div style={{margin:"0px 10px 0px"}}><IconButton labeltext={"BTS"} /></div>
@@ -110,29 +97,31 @@ export const planInfoWirte = ()=> {
                 <div className={sty.body_row6}>
                     <div className={sty.body_row_subitem1}>공연시간</div>
                     <div></div>
-                    <div className={sty.body_row_subitem2} style={{width:"700px", margin:"-15px 30px 0px"}} ><FormInputText name="time" control={control}label="공연시간을 입력하세요"/></div>                    
+                    <div className={sty.body_row_subitem2} style={{width:"700px", margin:"-15px 30px 0px"}} ><FormInputText name="textValue1" control={control}label="공연시간을 입력하세요"/></div>                    
                     <div>분</div>
 
                 </div>
                 <div className={sty.body_row7}>
                     <div className={sty.body_row_subitem1}>공연횟수</div>
                     <div></div>                   
-                    <div className={sty.body_row_subitem2} style={{width:"700px", margin:"-15px 30px 0px"}} ><FormInputText name="count" control={control} label="공연횟수를 입력하세요"/></div>
+                    <div className={sty.body_row_subitem2} style={{width:"700px", margin:"-15px 30px 0px"}} ><FormInputText name="textValue2" control={control} label="공연횟수를 입력하세요"/></div>
                     <div>회</div>
                 </div>
                 <div className={sty.body_row8}>
                     <div className={sty.body_row_subitem1}>총 예산규모</div>
-                    <div className={sty.body_row_subitem2} style={{width:"700px", margin:"-15px 30px 0px"}} ><FormInputText name="budget" control={control} label="총 예산규모를 입력하세요"/></div>
+                    <div className={sty.body_row_subitem2} style={{width:"700px", margin:"-15px 30px 0px"}} ><FormInputText name="textValue3" control={control} label="총 예산규모를 입력하세요"/></div>
                     <div>천원</div>
                 </div>
                 <div className={sty.body_row9}>
                     <div className={sty.body_row_subitem1}>목표관객 수</div>
-                    <div className={sty.body_row_subitem2} style={{width:"700px", margin:"-15px 30px 0px"}} ><FormInputText name="targetnumber" control={control} label="목표 관객수를 입력하세요"/></div>
+
+                    <div className={sty.body_row_subitem2} style={{width:"700px", margin:"-15px 30px 0px"}} ><FormInputText name="textValue4" control={control} label="목표 관객수를 입력하세요"/></div>
                     <div>명</div>
                 </div>
                 <div className={sty.body_row10}>
                     <div className={sty.body_row_subitem1}>목표티켓가격</div>
-                    <div className={sty.body_row_subitem2} style={{width:"700px", margin:"-15px 30px 0px"}} ><FormInputText name="targetprice" control={control} label="목표하는 티켓가격을 입력하세요"/></div>
+
+                    <div className={sty.body_row_subitem2} style={{width:"700px", margin:"-15px 30px 0px"}} ><FormInputText name="textValue5" control={control} label="목표하는 티켓가격을 입력하세요"/></div>
                     <div>원</div>
                 </div>
                 <div className={sty.body_row11}>

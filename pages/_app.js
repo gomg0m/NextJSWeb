@@ -7,8 +7,7 @@ import styles from './App.module.css';
 
 function MyApp({ Component, pageProps }) {
   return (
-    <div> 
-      
+    <div>       
         <Component {...pageProps} />
      
         

@@ -14,7 +14,7 @@ connection.connect(function(err) {
   console.log('MySQL Connection Successful.');
 });
 
-export default function handler(req,res){
+function getUsers(req, res) {
     const user_query = "select * from test";
     connection.query(user_query, function (error, result, fields){
         if (error) throw error;
