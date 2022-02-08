@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from '../src/fix/Header';
+import Left from '../src/fix/Leftside2';
 import styles from '../src/css/Notice.module.css';
 import { Checkbox, FormControlLabel, Box, Button, Divider, Modal, Typography, InputLabel, MenuItem, 
   FormControl, Select, TextField, Paper, InputBase, IconButton, Input } from '@mui/material';

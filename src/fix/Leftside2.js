@@ -66,7 +66,7 @@ export default function VerticalLinearStepper() {
   return (
     <div className={styles.leftsidebox}> 
         <div className={styles.contentscontainer}>
-            <div className={styles.gongtong} style={{cursor:'pointer'}}>공통 메뉴</div>
+            <div className={styles.gongtong}> 공통 메뉴</div>
                 <Link href ='/Notice'>
                     <div className={styles.notice} style={{cursor:'pointer'}}>공지사항</div>
                 </Link>
@@ -79,7 +79,7 @@ export default function VerticalLinearStepper() {
 
             <div className={styles.process}>Process 메뉴</div> 
      
-                <Box sx={{ maxWidth: 400}}>
+                <Box sx={{ maxWidth: 400}, {mt: 7}}>
                     <Stepper activeStep={activeStep} orientation="vertical" sx={{ color: "gray" }}>
                         <Step completed={false} expanded={true}>
                                 <StepLabel StepIconComponent={Number1Icon} > 
