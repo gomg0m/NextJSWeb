@@ -1,4 +1,6 @@
 import React from 'react';
+import Header from '../fix/Header';
+import Leftside from '../fix/Leftside1';
 import sty from '../css/planInfoWirte.module.css'
 import ComboBox from './combobox';
 import ReadOnlyTextFields from './readonlytext';
@@ -44,6 +46,8 @@ export const planInfoWirte = ()=> {
 
     return(
         <div>
+            <Header />
+            <Leftside />
         <div className={sty.infoframe}>
             <div
                 style={{
