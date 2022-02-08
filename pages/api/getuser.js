@@ -4,6 +4,7 @@ let connection = mysql.createConnection({
     user: 'root',
     password: 'kitech123!', //password: 'kitech123' //Notebook mysql 
     database: 'nextjsDemo'
+
 });
 
 
@@ -15,7 +16,7 @@ connection.connect(function(err) {
 });
 
 function getUsers(req, res) {
-    const user_query = "select * from users";
+    const user_query = "select * from test";
     connection.query(user_query, function (error, result, fields){
         if (error) throw error;
         res.status(200).json({ users: result})

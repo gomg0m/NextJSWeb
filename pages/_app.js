@@ -7,10 +7,7 @@ import styles from './App.module.css';
 
 function MyApp({ Component, pageProps }) {
   return (
-    <div> 
-      <Header />
-      <Leftside />
-      <Rightside />
+    <div>       
         <Component {...pageProps} />
     </div>
   );
