@@ -9,7 +9,7 @@ export default function Admin(){
     const [isLogin, setIsLogin]=useState(false);
 
     function checkLogin(){
-        Axios.get("api/isLogin").then((res)=>{
+        Axios.get("/api/isLogin").then((res)=>{
             if (res.status==200 && res.data.name) {
                 //로그인
                 setIsLogin(true);
