@@ -1,9 +1,9 @@
 const mysql = require('mysql');
 let connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
+    host: 'repledb.c7vqsuewchgh.ap-northeast-2.rds.amazonaws.com',
+    user: 'admin',
     password: 'kitech123',
-    database: 'nextjsDemo'
+    database: 'reple'
 });
 
 
@@ -15,7 +15,7 @@ connection.connect(function(err) {
 });
 
 function getUsers(req, res) {
-    const user_query = "select * from users";
+    const user_query = "select * from test";
     connection.query(user_query, function (error, result, fields){
         if (error) throw error;
         res.status(200).json({ users: result})
