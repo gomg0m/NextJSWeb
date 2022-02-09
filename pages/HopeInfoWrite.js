@@ -1,18 +1,21 @@
 import React from 'react';
-import sty from '../css/HopeInfoWrite.module.css'
-import BasicTextFields from './basictext';
-import ReadOnlyTextFields from './readonlytext';
-import MultilineTextFields from './multitext'
+import Header from '../src/fix/Header';
+import Leftside from '../src/fix/Leftside2';
+import sty from '../src/css/HopeInfoWrite.module.css'
+import BasicTextFields from '../src/component/basictext';
+import ReadOnlyTextFields from '../src/component/readonlytext';
+import MultilineTextFields from '../src/component/multitext'
 import Link from 'next/link'
 import Button from '@mui/material/Button';
-import FormDialog2 from './fileattachdialogbtn';
-
+import FormDialog2 from '../src/component/fileattachdialogbtn';
 
 export default function HopeInfoWirte(){
     let boxprops ={ width:400, height:150};
     
     return(
         <div>
+         <Header />
+         <Leftside />
         <div className={sty.infoframe}>
             <div
                 style={{

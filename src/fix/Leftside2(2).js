@@ -1,4 +1,4 @@
-import styles from '../css/Leftside.module.css';
+import styles from '../css/Leftside1.module.css';
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Stepper from "@mui/material/Stepper";
@@ -35,21 +35,27 @@ function Number2Icon(props) {
 }
 //3번 production
 function Number3Icon(props) {
-  return <Looks3Icon fontSize="large" sx={{ color: "#3B74B8", ml: -0.5 }} />;
+  return <Looks3Icon fontSize="large" sx={{ ml: -0.5 }} />;
 }
 //4번 Post-production
 function Number4Icon(props) {
-  return <Looks4Icon fontSize="large" sx={{ color: "#318D7C", ml: -0.5 }} />;
+  return <Looks4Icon fontSize="large" sx={{ ml: -0.5 }} />;
 }
 
 //1번 about
 function Circle1Icon(props) {
-  return <CircleIcon fontSize="xsmall" sx={{ ml: 0.6 }} />;
+  return <CircleIcon fontSize="xsmall" sx={{color: "#E2B644", ml: 0.6 }} />;
 }
+function Circle11Icon(props) {
+    return <CircleIcon fontSize="xsmall" sx={{ color: "#E2B644", ml: 0.6 }} />;
+  }
 //2번 pre-production
 function Circle2Icon(props) {
-  return <CircleIcon fontSize="xsmall" color="second" sx={{ ml: 0.6 }} />;
+  return <CircleIcon fontSize="xsmall" color="second" sx={{ color: "#D36767", ml: 0.6 }} />;
 }
+function Circle22Icon(props) {
+    return <CircleIcon fontSize="xsmall" color="second" sx={{color: "#D36767", ml: 0.6 }} />;
+  }
 //3번 production
 function Circle3Icon(props) {
   return <CircleIcon fontSize="xsmall" color="third" sx={{ ml: 0.6 }} />;
@@ -58,6 +64,9 @@ function Circle3Icon(props) {
 function Circle4Icon(props) {
   return <CircleIcon fontSize="xsmall" color="fourth" sx={{ ml: 0.6 }} />;
 }
+function Circle44Icon(props) {
+    return <CircleIcon fontSize="xsmall" color="fourth" sx={{ ml: 0.6 }} />;
+  }
 
 export default function VerticalLinearStepper() {
   const [activeStep] = React.useState(0);
@@ -97,7 +106,7 @@ export default function VerticalLinearStepper() {
 
                         <Step completed={false} expanded={true}>
                             <Link href ='/PerformInfoWrite'>
-                                <StepLabel sx={{mt: -5}} StepIconComponent={Circle1Icon}>
+                                <StepLabel sx={{mt: -5}} StepIconComponent={Circle11Icon}>
                                     <Button className={styles.subLabel}>공연장정보</Button>
                                 </StepLabel>
                             </Link>
@@ -119,7 +128,7 @@ export default function VerticalLinearStepper() {
 
                         <Step completed={false} expanded={true}>
                             <Link href='/TechDiscussWrite'>
-                                <StepLabel sx={{mt: -5}} StepIconComponent={Circle2Icon}>
+                                <StepLabel sx={{mt: -5}} StepIconComponent={Circle22Icon}>
                                     <Button className={styles.subLabel}>기술구체화협의 </Button>
                                 </StepLabel>
                             </Link>
@@ -150,7 +159,7 @@ export default function VerticalLinearStepper() {
                         </Step>
 
                         <Step completed={false} expanded={true}>
-                            <StepLabel sx={{mt: -5}} StepIconComponent={Circle4Icon}> 
+                            <StepLabel sx={{mt: -5}} StepIconComponent={Circle44Icon}> 
                                 <Button className={styles.subLabel}>협업평가</Button> 
                             </StepLabel>
                         </Step>

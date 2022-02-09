@@ -1,19 +1,25 @@
 import React from 'react';
-import sty from '../css/PerformInfoWirte.module.css';
-import BasicTextFields from './basictext';
-import ReadOnlyTextFields from './readonlytext';
-import MultilineTextFields from './multitext';
-import IconButton from './withiconbtn';
-import SearchTextFields from './searchicontext2';
+import Header from '../src/fix/Header';
+import Leftside from '../src/fix/Leftside1(1)';
+import sty from '../src/css/PerformInfoWirte.module.css'
+import BasicTextFields from '../src/component/basictext';
+import ReadOnlyTextFields from '../src/component/readonlytext';
+import MultilineTextFields from '../src/component/multitext';
+import IconButton from '../src/component/withiconbtn';
+import SearchTextFields from '../src/component/searchicontext2';
 import Link from 'next/link';
 import Button from '@mui/material/Button';
-import FormDialog2 from './fileattachdialogbtn';
+import FormDialog2 from '../src/component/fileattachdialogbtn';
 import { height } from '@mui/system';
 
 
 export default function planInfoWirte(){       
     return(
+        <>
+        <Header />
+        <Leftside />
         <div className={sty.fullbox}>
+            
         <div className={sty.infoframe}>
             <div
                 style={{
@@ -119,6 +125,7 @@ export default function planInfoWirte(){
                 </Link>    
             </div>
         </div>
-    </div>                
+    </div>
+    </>                
     );
 }

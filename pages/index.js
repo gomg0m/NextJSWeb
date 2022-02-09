@@ -1,10 +1,8 @@
-//import Home from './Home';
-import TEST from '../src/component/PlanInfoPanel';
+import TEST from './PlanInfoWriteTest';
 
 
-function T1(){
+export default function T1(){
     return(
         <TEST />
     );
 }
-export default T1;

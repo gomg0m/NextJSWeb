@@ -5,12 +5,20 @@ import { FormInputProps } from "./FormInputProps";
 
 const options = [
   {
-    label: "Dropdown Option 1",
-    value: "1",
+    label: "뮤지컬",
+    value: "뮤지컬",
   },
   {
-    label: "Dropdown Option 2",
-    value: "2",
+    label: "연극",
+    value: "연극",
+  },
+  {
+    label: "쇼",
+    value: "쇼",
+  },
+  {
+    label: "콘서트",
+    value: "콘서트",
   },
 ];
 

@@ -1,50 +1,53 @@
 import React from 'react';
-import sty from '../css/planInfoWirte.module.css'
-import ComboBox from './combobox';
-import ReadOnlyTextFields from './readonlytext';
-import IconButton from './withiconbtn';
-
+import sty from '../src/css/planInfoWirte.module.css'
+import ReadOnlyTextFields from '../src/component/readonlytext';
+import IconButton from '../src/component/withiconbtn';
 import Button from '@mui/material/Button';
-import FormDialog2 from './fileattachdialogbtn';
-
-import { FormProvider, useForm } from "react-hook-form";
-import { FormInputText } from "./FormInputText";
-import { FormInputDatetimePicker } from "./FormInputDatetimePicker";
-import {FormInputMultilineText} from './FormInputMultilineText'
-import {FormInputDropdown} from './FormInputDropdown'
-import Axios from "axios";
+import FormDialog2 from '../src/component/fileattachdialogbtn';
+import Axios from 'axios';
+import { useForm } from "react-hook-form";
+import { FormInputText } from "../src/component/FormInputText";
+import { FormInputDatetimePicker } from "../src/component/FormInputDatetimePicker";
+import {FormInputMultilineText} from '../src/component/FormInputMultilineText'
+import {FormInputDropdown} from '../src/component/FormInputDropdown'
+import Router from 'next/router';
+import Header from '../src/fix/Header';
+import Leftside from '../src/fix/Leftside1';
 
 
 interface IFormInput {
-textValue0: string;
-textValue1: string;
-textValue2: string;
-textValue3: string;
-textValue4: string;
-textValue5: string;
-textValue6: string;
-textValue9: string;
-textValue10: string;
-textValue11: string;
-textValue12: string;
-textValue13: string;
-dropdownValue: string;
+plan_id: string;
+plan_name: string;
+plan_genre: string;
+plan_start: string;
+plan_end: string;
+plan_image: string;
+plan_time: string;
+plan_number: string;
+plan_budget: string;
+goal_people: string;
+goal_price: string;
+plan_contents: string;
+plan_exception: string;
+plan_file: string;
 }
 
 const defaultValues = {
-  textValue0: "",
-  textValue1: "",
-  textValue2: "",
-  textValue3: "",
-  textValue4: "",
-  textValue5: "",
-  textValue6: "",
-  textValue9: "",
-  textValue10: "",
-  textValue11: "",
-  textValue12: "",
-  textValue13: "",
-  dropdownValue: "",
+plan_id: "",
+plan_name:"",
+plan_genre: "",
+plan_start: "",
+plan_end: "",
+plan_image:"",
+plan_time: "",
+plan_number: "",
+plan_budget: "",
+goal_people: "",
+goal_price: "",
+plan_contents: "",
+plan_exception: "",
+plan_file: "",
+
 };
 
 export const planInfoWirte = ()=> {
@@ -52,22 +55,20 @@ export const planInfoWirte = ()=> {
     const methods = useForm({ defaultValues: defaultValues });
     const { handleSubmit, reset, control, setValue } = methods;
 
-    const onSubmit = (data: IFormInput) => { 
-
-        console.log(data);
-        
-        Axios.post("/api/dbtest", {data}).then((res)=>{
-          if(res.status == 200){
-              //login 성공
-              console.log(res.data.users);
-          }
-          else console.log('Failed');
+    const onSubmit = (data: IFormInput) => {
+        Axios.post("/api/getuser", {data}).then((res)=>{
+            if(res.status == 200){
+                //login 성공
+                console.log(res.data.users);
+                Router.push("/PlanInfoPanel")
+            }
         });
-
-      };
+    }
 
     return(
         <div>
+            <Header />
+            <Leftside />
         <div className={sty.infoframe}>
             <div
                 style={{
@@ -93,19 +94,21 @@ export const planInfoWirte = ()=> {
             <div className={sty.layout_body}>
                 <div className={sty.body_row1}>
                     <div className={sty.body_row_subitem1}>장르</div>
-                    <div className={sty.body_row_subitem2} style={{margin:"0px 40px 0px"}}><FormInputDropdown name="dropdownValue" label="Text Input" control={control} /></div>
+                    <div className={sty.body_row_subitem2} style={{margin:"0px 40px 0px"}}><FormInputDropdown name="plan_genre" control={control} label="Text Input"/></div>
                 </div>
                 <div className={sty.body_row2}>
                     <div className={sty.body_row_subitem1}>공연명</div>                     
-                    <div className={sty.body_row_subitem2} style={{width:"700px", margin:"-15px 30px 0px"}} ><FormInputText name="textValue6" control={control} label="Text Input" /></div>
+
+                    <div className={sty.body_row_subitem2} style={{width:"700px", margin:"-15px 30px 0px"}} ><FormInputText name="plan_name" control={control} label="Text Input" /></div>
                 </div>
 
                 <div className={sty.body_row3}>
                     <div className={sty.body_row_subitem1}>공연예상일자</div>
-                    <div className={sty.body_row_subitem2} style={{margin:"0px 40px 0px"}}><FormInputDatetimePicker  name="textValue9" control={control} label="시작일자"/></div>
+                    <div className={sty.body_row_subitem2} style={{margin:"0px 40px 0px"}}><FormInputDatetimePicker name="plan_start" control={control} label="시작일자"/></div>
                     <div style={{margin:"15px 0px 0px"}}>-</div>
-                    <div style={{margin:"0px 40px 0px"}} ><FormInputDatetimePicker  name="textValue10" control={control}  label="종료일자"/></div>
+                    <div style={{margin:"0px 40px 0px"}} ><FormInputDatetimePicker name="plan_end" control={control} label="종료일자"/></div>
                 </div>
+
                 <div className={sty.body_row4}>
                     <div className={sty.body_row_subitem1}>공연이미지</div>
                     <div className={sty.body_row_subitem2}><ReadOnlyTextFields labeltext={"샤이니.jpg"}/></div>
@@ -113,7 +116,7 @@ export const planInfoWirte = ()=> {
                 </div>
                 <div className={sty.body_row5}>
                     <div className={sty.body_row_subitem1}>협업팀 초대</div>
-                    <div className={sty.body_row_subitem2} style={{width:"300px", margin:"-15px 30px 0px"}} ><FormInputText name="textValue0" control={control} label="협업팀 입력"/></div>
+                    <div className={sty.body_row_subitem2} style={{width:"300px", margin:"-15px 30px 0px"}} ><FormInputText name="member" control={control} label="협업팀 입력"/></div>
                     <div style={{display:"flex", width:"800px", justifyContent:"flex-start"}}>
                         <div style={{margin:"0px 0px 0px"}}><IconButton labeltext={"홍길동"} /></div>
                         <div style={{margin:"0px 10px 0px"}}><IconButton labeltext={"BTS"} /></div>
@@ -124,42 +127,44 @@ export const planInfoWirte = ()=> {
                 <div className={sty.body_row6}>
                     <div className={sty.body_row_subitem1}>공연시간</div>
                     <div></div>
-                    <div className={sty.body_row_subitem2} style={{width:"700px", margin:"-15px 30px 0px"}} ><FormInputText name="textValue1" control={control}label="공연시간을 입력하세요"/></div>                    
+                    <div className={sty.body_row_subitem2} style={{width:"700px", margin:"-15px 30px 0px"}} ><FormInputText name="plan_time" control={control}label="공연시간을 입력하세요"/></div>                    
                     <div>분</div>
 
                 </div>
                 <div className={sty.body_row7}>
                     <div className={sty.body_row_subitem1}>공연횟수</div>
                     <div></div>                   
-                    <div className={sty.body_row_subitem2} style={{width:"700px", margin:"-15px 30px 0px"}} ><FormInputText name="textValue2" control={control} label="공연횟수를 입력하세요"/></div>
+                    <div className={sty.body_row_subitem2} style={{width:"700px", margin:"-15px 30px 0px"}} ><FormInputText name="plan_number" control={control} label="공연횟수를 입력하세요"/></div>
                     <div>회</div>
                 </div>
                 <div className={sty.body_row8}>
                     <div className={sty.body_row_subitem1}>총 예산규모</div>
-                    <div className={sty.body_row_subitem2} style={{width:"700px", margin:"-15px 30px 0px"}} ><FormInputText name="textValue3" control={control} label="총 예산규모를 입력하세요"/></div>
+                    <div className={sty.body_row_subitem2} style={{width:"700px", margin:"-15px 30px 0px"}} ><FormInputText name="plan_budget" control={control} label="총 예산규모를 입력하세요"/></div>
                     <div>천원</div>
                 </div>
                 <div className={sty.body_row9}>
                     <div className={sty.body_row_subitem1}>목표관객 수</div>
-                    <div className={sty.body_row_subitem2} style={{width:"700px", margin:"-15px 30px 0px"}} ><FormInputText name="textValue4" control={control} label="목표 관객수를 입력하세요"/></div>
+
+                    <div className={sty.body_row_subitem2} style={{width:"700px", margin:"-15px 30px 0px"}} ><FormInputText name="goal_people" control={control} label="목표 관객수를 입력하세요"/></div>
                     <div>명</div>
                 </div>
                 <div className={sty.body_row10}>
                     <div className={sty.body_row_subitem1}>목표티켓가격</div>
-                    <div className={sty.body_row_subitem2} style={{width:"700px", margin:"-15px 30px 0px"}} ><FormInputText name="textValue5" control={control} label="목표하는 티켓가격을 입력하세요"/></div>
+
+                    <div className={sty.body_row_subitem2} style={{width:"700px", margin:"-15px 30px 0px"}} ><FormInputText name="goal_price" control={control} label="목표하는 티켓가격을 입력하세요"/></div>
                     <div>원</div>
                 </div>
                 <div className={sty.body_row11}>
                     <div className={sty.body_row_subitem1}>공연구성 및 내용</div>
-                    <div className={sty.body_row_subitem2} style={{width:"1100px", margin:"-25px 30px 0px"}} ><FormInputMultilineText name="textValue11" control={control} label="공연구성 및 내용을 작성하세요"/></div>
+                    <div className={sty.body_row_subitem2} style={{width:"1100px", margin:"-25px 30px 0px"}} ><FormInputMultilineText name="plan_contents" control={control} label="공연구성 및 내용을 작성하세요"/></div>
                 </div>
                 <div className={sty.body_row12}>
                     <div className={sty.body_row_subitem1}>특이사항</div>
-                    <div className={sty.body_row_subitem2} style={{width:"1100px", margin:"-25px 30px 0px"}} ><FormInputMultilineText name="textValue12" control={control} label="기타 특이사항을 작성하세요"/></div>
+                    <div className={sty.body_row_subitem2} style={{width:"1100px", margin:"-25px 30px 0px"}} ><FormInputMultilineText name="plan_exception" control={control} label="기타 특이사항을 작성하세요"/></div>
                 </div>
                 <div className={sty.body_row13}>
                     <div className={sty.body_row_subitem1}>자료</div>
-                    <div className={sty.body_row_subitem2} style={{width:"1100px", margin:"-25px 30px 0px"}} ><FormInputMultilineText name="textValue13" control={control} label="기타 자료관련 내용을 작성하세요"/></div>
+                    <div className={sty.body_row_subitem2} style={{width:"1100px", margin:"-25px 30px 0px"}} ><FormInputMultilineText name="plan_file" control={control} label="기타 자료관련 내용을 작성하세요"/></div>
                 </div>
             </div>
             <div className={sty.layout_bottom}>
