@@ -29,7 +29,7 @@ const IndexPage = () => {
       <UiFileInputButton
         label="Upload Single File"
         // allowMultipleFiles 가 false 일경우, 하나씩만 올릴 수 있다.
-        allowMultipleFiles={false}
+        allowMultipleFiles={true}
         uploadFileName="file"
         onChange={onChange}
       />
