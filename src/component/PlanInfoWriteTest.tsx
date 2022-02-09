@@ -2,8 +2,6 @@ import React from 'react';
 import sty from '../css/planInfoWirte.module.css'
 import ComboBox from './combobox';
 import ReadOnlyTextFields from './readonlytext';
-import MultilineTextFields from './multitext'
-import DateTimePicker  from './datetimepicker';
 import IconButton from './withiconbtn';
 
 import Button from '@mui/material/Button';
@@ -11,7 +9,10 @@ import FormDialog2 from './fileattachdialogbtn';
 
 import { FormProvider, useForm } from "react-hook-form";
 import { FormInputText } from "./FormInputText";
-
+import { FormInputDatetimePicker } from "./FormInputDatetimePicker";
+import {FormInputMultilineText} from './FormInputMultilineText'
+import {FormInputDropdown} from './FormInputDropdown'
+import Axios from "axios";
 
 
 interface IFormInput {
@@ -22,6 +23,11 @@ textValue3: string;
 textValue4: string;
 textValue5: string;
 textValue6: string;
+textValue9: string;
+textValue10: string;
+textValue11: string;
+textValue12: string;
+textValue13: string;
 dropdownValue: string;
 }
 
@@ -33,6 +39,11 @@ const defaultValues = {
   textValue4: "",
   textValue5: "",
   textValue6: "",
+  textValue9: "",
+  textValue10: "",
+  textValue11: "",
+  textValue12: "",
+  textValue13: "",
   dropdownValue: "",
 };
 
@@ -40,7 +51,20 @@ export const planInfoWirte = ()=> {
     let boxprops ={ width:400, height:150};
     const methods = useForm({ defaultValues: defaultValues });
     const { handleSubmit, reset, control, setValue } = methods;
-    const onSubmit = (data: IFormInput) => console.log(data);
+
+    const onSubmit = (data: IFormInput) => { 
+
+        console.log(data);
+        
+        Axios.post("/api/dbtest", {data}).then((res)=>{
+          if(res.status == 200){
+              //login 성공
+              console.log(res.data.users);
+          }
+          else console.log('Failed');
+        });
+
+      };
 
     return(
         <div>
@@ -69,7 +93,7 @@ export const planInfoWirte = ()=> {
             <div className={sty.layout_body}>
                 <div className={sty.body_row1}>
                     <div className={sty.body_row_subitem1}>장르</div>
-                    <div className={sty.body_row_subitem2} style={{margin:"0px 40px 0px"}}><ComboBox /></div>
+                    <div className={sty.body_row_subitem2} style={{margin:"0px 40px 0px"}}><FormInputDropdown name="dropdownValue" label="Text Input" control={control} /></div>
                 </div>
                 <div className={sty.body_row2}>
                     <div className={sty.body_row_subitem1}>공연명</div>                     
@@ -78,9 +102,9 @@ export const planInfoWirte = ()=> {
 
                 <div className={sty.body_row3}>
                     <div className={sty.body_row_subitem1}>공연예상일자</div>
-                    <div className={sty.body_row_subitem2} style={{margin:"0px 40px 0px"}}><DateTimePicker labeltext={"시작일자"}/></div>
+                    <div className={sty.body_row_subitem2} style={{margin:"0px 40px 0px"}}><FormInputDatetimePicker  name="textValue9" control={control} label="시작일자"/></div>
                     <div style={{margin:"15px 0px 0px"}}>-</div>
-                    <div style={{margin:"0px 40px 0px"}} ><DateTimePicker labeltext={"종료일자"}/></div>
+                    <div style={{margin:"0px 40px 0px"}} ><FormInputDatetimePicker  name="textValue10" control={control}  label="종료일자"/></div>
                 </div>
                 <div className={sty.body_row4}>
                     <div className={sty.body_row_subitem1}>공연이미지</div>
@@ -127,15 +151,15 @@ export const planInfoWirte = ()=> {
                 </div>
                 <div className={sty.body_row11}>
                     <div className={sty.body_row_subitem1}>공연구성 및 내용</div>
-                    <div className={sty.body_row_subitem2} style={{width:"1100px", margin:"-25px 30px 0px"}} ><MultilineTextFields labeltext={"공연구성 및 내용을 작성하세요"}/></div>
+                    <div className={sty.body_row_subitem2} style={{width:"1100px", margin:"-25px 30px 0px"}} ><FormInputMultilineText name="textValue11" control={control} label="공연구성 및 내용을 작성하세요"/></div>
                 </div>
                 <div className={sty.body_row12}>
                     <div className={sty.body_row_subitem1}>특이사항</div>
-                    <div className={sty.body_row_subitem2} style={{width:"1100px", margin:"-25px 30px 0px"}} ><MultilineTextFields labeltext={"기타 특이사항을 작성하세요"}/></div>
+                    <div className={sty.body_row_subitem2} style={{width:"1100px", margin:"-25px 30px 0px"}} ><FormInputMultilineText name="textValue12" control={control} label="기타 특이사항을 작성하세요"/></div>
                 </div>
                 <div className={sty.body_row13}>
                     <div className={sty.body_row_subitem1}>자료</div>
-                    <div className={sty.body_row_subitem2} style={{width:"1100px", margin:"-25px 30px 0px"}} ><MultilineTextFields labeltext={"기타 자료관련 내용을 작성하세요"}/></div>
+                    <div className={sty.body_row_subitem2} style={{width:"1100px", margin:"-25px 30px 0px"}} ><FormInputMultilineText name="textValue13" control={control} label="기타 자료관련 내용을 작성하세요"/></div>
                 </div>
             </div>
             <div className={sty.layout_bottom}>

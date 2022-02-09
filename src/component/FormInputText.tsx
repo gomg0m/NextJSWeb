@@ -15,7 +15,6 @@ export const FormInputText = ({ name, control, label }: FormInputProps) => {
       }) => (
         <TextField
           helperText={error ? error.message : null}
-          size="small"
           error={!!error}
           onChange={onChange}
           value={value}

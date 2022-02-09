@@ -1,4 +1,5 @@
 const mysql = require('mysql');
+
 let connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
@@ -15,15 +16,11 @@ connection.connect(function(err) {
   console.log('MySQL Connection Successful.');
 });
 
-function getUsers(req, res) {
-    const user_query = "select * from test";
+export default function handler(req,res){
+    const user_query = "select * from users";
     connection.query(user_query, function (error, result, fields){
         if (error) throw error;
-        console.log(req);
         res.status(200).json({ users: result})
         
     })
 }
-
-
-export default getUsers;

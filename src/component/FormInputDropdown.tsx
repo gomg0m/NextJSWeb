@@ -14,7 +14,7 @@ const options = [
   },
 ];
 
-export const FormInputDropdown= ({name,control, label}) => {
+export const FormInputDropdown = ({name,control, label}) => {
 
   const generateSelectOptions = () => {
     return options.map((option) => {
