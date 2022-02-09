@@ -59,7 +59,6 @@ function Postproduction() {
   
   return (
     <>
-      {/* <ScheduleWrapper> */}
         <Box className={styles.schebackground} sx={{ width: '100%', height: '100%', backgroundColor: '#F6F7FB', }} />
       <Box className={styles.schebackgroundmid1} sx={{ width: 888, height: 917, backgroundColor: '#FFFFFF', }} />
       <div className={styles.calendarpos}>
@@ -71,7 +70,7 @@ function Postproduction() {
 
       <Button className={styles.addschebutton} variant="contained" onClick={handleOpen}>일정 추가</Button>
 
-      {/* </ScheduleWrapper> */}
+      <div >다가오는 일정</div>
 
       <Modal
           open={open}
