@@ -1,4 +1,4 @@
-import TEST from '../src/component/PlanInfoWriteTest';
+import TEST from './PlanInfoWriteTest';
 
 
 export default function T1(){

@@ -1,40 +1,52 @@
 import React from 'react';
-import sty from '../css/planInfoWirte.module.css'
-import ComboBox from './combobox';
-import ReadOnlyTextFields from './readonlytext';
-import MultilineTextFields from './multitext'
-//import DateTimePicker from './datetimepicker';
-import IconButton from './withiconbtn';
+import sty from '../src/css/planInfoWirte.module.css'
+import ReadOnlyTextFields from '../src/component/readonlytext';
+import IconButton from '../src/component/withiconbtn';
 import Button from '@mui/material/Button';
-import FormDialog2 from './fileattachdialogbtn';
+import FormDialog2 from '../src/component/fileattachdialogbtn';
 import Axios from 'axios';
-import { FormProvider, useForm } from "react-hook-form";
-import { FormInputText } from "./FormInputText";
-import { FormInputDate } from './FormInputData';
+import { useForm } from "react-hook-form";
+import { FormInputText } from "../src/component/FormInputText";
+import { FormInputDatetimePicker } from "../src/component/FormInputDatetimePicker";
+import {FormInputMultilineText} from '../src/component/FormInputMultilineText'
+import {FormInputDropdown} from '../src/component/FormInputDropdown'
 import Router from 'next/router';
-import Header from '../fix/Header';
-import Leftside from '../fix/Leftside1';
+import Header from '../src/fix/Header';
+import Leftside from '../src/fix/Leftside1';
+
 
 interface IFormInput {
 plan_id: string;
-member: string;
+plan_name: string;
+plan_genre: string;
+plan_start: string;
+plan_end: string;
+plan_image: string;
 plan_time: string;
 plan_number: string;
 plan_budget: string;
 goal_people: string;
 goal_price: string;
-dropdownValue: string;
+plan_contents: string;
+plan_exception: string;
+plan_file: string;
 }
 
 const defaultValues = {
 plan_id: "",
-member: "",
+plan_name:"",
+plan_genre: "",
+plan_start: "",
+plan_end: "",
+plan_image:"",
 plan_time: "",
 plan_number: "",
 plan_budget: "",
 goal_people: "",
 goal_price: "",
-dropdownValue: "",
+plan_contents: "",
+plan_exception: "",
+plan_file: "",
 };
 
 export const planInfoWirte = ()=> {
@@ -80,20 +92,21 @@ export const planInfoWirte = ()=> {
             <div className={sty.layout_body}>
                 <div className={sty.body_row1}>
                     <div className={sty.body_row_subitem1}>장르</div>
-                    <div className={sty.body_row_subitem2} style={{margin:"0px 40px 0px"}}><ComboBox /></div>
+                    <div className={sty.body_row_subitem2} style={{margin:"0px 40px 0px"}}><FormInputDropdown name="plan_genre" control={control} label="Text Input"/></div>
                 </div>
                 <div className={sty.body_row2}>
                     <div className={sty.body_row_subitem1}>공연명</div>                     
 
-                    <div className={sty.body_row_subitem2} style={{width:"700px", margin:"-15px 30px 0px"}} ><FormInputText name="plan_id" control={control} label="Text Input" /></div>
+                    <div className={sty.body_row_subitem2} style={{width:"700px", margin:"-15px 30px 0px"}} ><FormInputText name="plan_name" control={control} label="Text Input" /></div>
                 </div>
 
-                {/* <div className={sty.body_row3}>
+                <div className={sty.body_row3}>
                     <div className={sty.body_row_subitem1}>공연예상일자</div>
-                    <div className={sty.body_row_subitem2} style={{margin:"0px 40px 0px"}}><FormInputDate name="plan_start" control={control} label="시작일자"/></div>
+                    <div className={sty.body_row_subitem2} style={{margin:"0px 40px 0px"}}><FormInputDatetimePicker name="plan_start" control={control} label="시작일자"/></div>
                     <div style={{margin:"15px 0px 0px"}}>-</div>
-                    <div style={{margin:"0px 40px 0px"}} ><FormInputDate name="plan_end" control={control} label="종료일자"/></div>
-                </div> */}
+                    <div style={{margin:"0px 40px 0px"}} ><FormInputDatetimePicker name="plan_end" control={control} label="종료일자"/></div>
+                </div>
+
                 <div className={sty.body_row4}>
                     <div className={sty.body_row_subitem1}>공연이미지</div>
                     <div className={sty.body_row_subitem2}><ReadOnlyTextFields labeltext={"샤이니.jpg"}/></div>
@@ -141,15 +154,15 @@ export const planInfoWirte = ()=> {
                 </div>
                 <div className={sty.body_row11}>
                     <div className={sty.body_row_subitem1}>공연구성 및 내용</div>
-                    <div className={sty.body_row_subitem2} style={{width:"1100px", margin:"-25px 30px 0px"}} ><MultilineTextFields labeltext={"공연구성 및 내용을 작성하세요"}/></div>
+                    <div className={sty.body_row_subitem2} style={{width:"1100px", margin:"-25px 30px 0px"}} ><FormInputMultilineText name="plan_contents" control={control} label="공연구성 및 내용을 작성하세요"/></div>
                 </div>
                 <div className={sty.body_row12}>
                     <div className={sty.body_row_subitem1}>특이사항</div>
-                    <div className={sty.body_row_subitem2} style={{width:"1100px", margin:"-25px 30px 0px"}} ><MultilineTextFields labeltext={"기타 특이사항을 작성하세요"}/></div>
+                    <div className={sty.body_row_subitem2} style={{width:"1100px", margin:"-25px 30px 0px"}} ><FormInputMultilineText name="plan_exception" control={control} label="기타 특이사항을 작성하세요"/></div>
                 </div>
                 <div className={sty.body_row13}>
                     <div className={sty.body_row_subitem1}>자료</div>
-                    <div className={sty.body_row_subitem2} style={{width:"1100px", margin:"-25px 30px 0px"}} ><MultilineTextFields labeltext={"기타 자료관련 내용을 작성하세요"}/></div>
+                    <div className={sty.body_row_subitem2} style={{width:"1100px", margin:"-25px 30px 0px"}} ><FormInputMultilineText name="plan_file" control={control} label="기타 자료관련 내용을 작성하세요"/></div>
                 </div>
             </div>
             <div className={sty.layout_bottom}>
