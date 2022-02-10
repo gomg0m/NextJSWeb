@@ -5,7 +5,7 @@ import { IconButton, Slider } from "@material-ui/core";
 import Button from '@mui/material/Button';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import Axios from "axios";
-import MyDropZone from './Tst_MyDropzone';
+import FileDropzone from './FileDropzone';
 
   type Information = { src:string; width:number; height:number };
 
@@ -82,9 +82,9 @@ import MyDropZone from './Tst_MyDropzone';
           allowMultipleFiles={true}
           uploadFileName="file"
           onChange={onChange}
-        /> */}
-        <MyDropZone/>
-        <Slider value={progress} />   
+        />         */}
+        <FileDropzone />
+        {/* <Slider value={progress} />    */}
       </div>
       <div style={{margin:"0px 15px 0px", display:"flex"}}>
           {thumb &&
