@@ -76,14 +76,14 @@ import MyDropZone from './Tst_MyDropzone';
     
     <div style={{display:"flex"}}>
       <div>      
-        <UiFileInputButton
+        {/* <UiFileInputButton
           label="Upload File 선택"
           // allowMultipleFiles 가 false 일경우, 하나씩만 올릴 수 있다.
           allowMultipleFiles={true}
           uploadFileName="file"
           onChange={onChange}
-        />
-        {/* <MyDropZone/> */}
+        /> */}
+        <MyDropZone/>
         <Slider value={progress} />   
       </div>
       <div style={{margin:"0px 15px 0px", display:"flex"}}>
