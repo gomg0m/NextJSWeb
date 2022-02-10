@@ -54,7 +54,7 @@ export const planInfoWirte = ()=> {
     const methods = useForm({ defaultValues: defaultValues });
     const { handleSubmit, reset, control, setValue } = methods;
     const onSubmit = (data: IFormInput) => {
-        Axios.post("/api/getuser", {data}).then((res)=>{
+        Axios.post("/api/getPlanInfo", {data}).then((res)=>{
             if(res.status == 200){
                 //login 성공
                 console.log(res.data.users);
@@ -92,12 +92,12 @@ export const planInfoWirte = ()=> {
             <div className={sty.layout_body}>
                 <div className={sty.body_row1}>
                     <div className={sty.body_row_subitem1}>장르</div>
-                    <div className={sty.body_row_subitem2} style={{margin:"0px 40px 0px"}}><FormInputDropdown name="plan_genre" control={control} label="Text Input"/></div>
+                    <div className={sty.body_row_subitem2} style={{margin:"0px 40px 0px"}}><FormInputDropdown name="plan_genre" control={control} label="장르를 선택하세요"/></div>
                 </div>
                 <div className={sty.body_row2}>
                     <div className={sty.body_row_subitem1}>공연명</div>                     
 
-                    <div className={sty.body_row_subitem2} style={{width:"700px", margin:"-15px 30px 0px"}} ><FormInputText name="plan_name" control={control} label="Text Input" /></div>
+                    <div className={sty.body_row_subitem2} style={{width:"700px", margin:"-15px 30px 0px"}} ><FormInputText name="plan_name" control={control} label="공연명을 입력하세요" /></div>
                 </div>
 
                 <div className={sty.body_row3}>
@@ -114,7 +114,7 @@ export const planInfoWirte = ()=> {
                 </div>
                 <div className={sty.body_row5}>
                     <div className={sty.body_row_subitem1}>협업팀 초대</div>
-                    <div className={sty.body_row_subitem2} style={{width:"300px", margin:"-15px 30px 0px"}} ><FormInputText name="member" control={control} label="협업팀 입력"/></div>
+                    <div className={sty.body_row_subitem2} style={{width:"300px", margin:"-15px 30px 0px"}} ><FormInputText name="member" control={control} label="협업팀을 검색하세요"/></div>
                     <div style={{display:"flex", width:"800px", justifyContent:"flex-start"}}>
                         <div style={{margin:"0px 0px 0px"}}><IconButton labeltext={"홍길동"} /></div>
                         <div style={{margin:"0px 10px 0px"}}><IconButton labeltext={"BTS"} /></div>

@@ -8,7 +8,6 @@ let connection = mysql.createConnection({
     database: 'reple'
 });
 
-
 connection.connect(function(err) {
   if (err) {
     return console.error('error: ' + err.message);
@@ -19,7 +18,7 @@ connection.connect(function(err) {
 export default function handler(req, res) {
 
   if(req.method =='GET'){
-    const user_query = 'SELECT * FROM PLANINFO';
+    const user_query = 'SELECT * FROM HOPEINFO';
 
       console.log(req.body.data);
         connection.query(user_query, function (error, result, fields){
@@ -31,23 +30,21 @@ export default function handler(req, res) {
   }
 
   if(req.method == 'POST') {
-    const user_query = 'INSERT INTO PLANINFO VALUES (null, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
-    let id = req.body.data.plan_id;
-    let genre = req.body.data.plan_genre;
-    let name = req.body.data.plan_name;
-    let start = req.body.data.plan_start;
-    let end = req.body.data.plan_end;
-    let image = req.body.data.plan_image;
-    let time = req.body.data.plan_time;
-    let number = req.body.data.plan_number
-    let budget = req.body.data.plan_budget;
-    let people = req.body.data.goal_people;
-    let price = req.body.data.goal_price;
-    let contents = req.body.data.plan_contents;
-    let exception =req.body.data.plan_exception;
-    let file = req.body.data.plan_file;
+    const user_query = 'INSERT INTO HOPEINFO VALUES(null, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+    let id = req.body.data.hope_id;
+    let name = req.body.data.hope_name;
+    let image = req.body.data.hope_image;
+    let content = req.body.data.hope_content;
+    let intention = req.body.data.hope_intention;
+    let exception = req.body.data.hope_exception;
+    let time = req.body.data.hope_time;
+    let budget = req.body.data.hope_budget
+    let tech = req.body.data.hope_tech;
+    let reason = req.body.data.hope_reason;
+    let reference = req.body.data.hope_reference;
+    let addtime = req.body.data.hope_addtime;
 
-    let params = [genre, name, start, end, image, time, number, budget, people, price, contents, exception, file];
+    let params = [name, image, content, intention, exception, time, budget, tech, reason, reference, addtime];
     console.log(req.body.data);
         connection.query(user_query, params, function (error, result, fields){
             if (error) throw error;

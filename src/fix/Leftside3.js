@@ -97,7 +97,7 @@ export default function VerticalLinearStepper() {
                         </Step>
                         
                         <Step completed={false} expanded={true}>
-                            <Link href ='/TheaterInfoPanel'>
+                            <Link href ='/PlanInfoWrite'>
                                 <StepLabel sx={{mt: -5}} StepIconComponent={Circle1Icon}>
                                     <Button className={styles.subLabel}>공연기획정보</Button>
                                 </StepLabel>
@@ -105,7 +105,7 @@ export default function VerticalLinearStepper() {
                         </Step>
 
                         <Step completed={false} expanded={true}>
-                            <Link href ='/PerformInfoWrite'>
+                            <Link href ='/TheaterInfoWrite'>
                                 <StepLabel sx={{mt: -5}} StepIconComponent={Circle11Icon}>
                                     <Button className={styles.subLabel}>공연장정보</Button>
                                 </StepLabel>

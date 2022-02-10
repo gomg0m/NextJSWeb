@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from '../src/fix/Header';
-import Lightside from '../src/fix/Leftside1';
+import Leftside from '../src/fix/Leftside1';
 import sty from '../src/css/TheaterInfoPanel.module.css';
 import Link from 'next/link';
 import Button from '@mui/material/Button';
@@ -48,7 +48,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     return { name, content };
   }
   
-  function CustomizedTables() {
+  function PlanInfoTable() {
   
     const [list, setList] = useState([
       {name: '공연장르', content: ''},
@@ -83,19 +83,18 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   
      
     function getData(){
-      Axios.get("/api/getuser").then((res) =>{
-      console.log(res.data.users[7].plan_genre);
-      obj[0].content = res.data.users[7].plan_genre;
-      obj[1].content = res.data.users[7].plan_name;
-      obj[2].content = res.data.users[7].plan_start + " ~ " + res.data.users[7].plan_end;
-      obj[3].content = res.data.users[7].plan_time;
-      obj[4].content = res.data.users[7].plan_number;
-      obj[5].content = res.data.users[7].plan_budget;
-      obj[6].content = res.data.users[7].goal_people;
-      obj[7].content = res.data.users[7].goal_price;
-      obj[8].content = res.data.users[7].plan_contents;
-      obj[9].content = res.data.users[7].plan_exception;
-      obj[10].content = res.data.users[7].plan_file;
+      Axios.get("/api/getPlanInfo").then((res) =>{
+      obj[0].content = res.data.users[0].plan_genre;
+      obj[1].content = res.data.users[0].plan_name;
+      obj[2].content = res.data.users[0].plan_start + " ~ " + res.data.users[0].plan_end;
+      obj[3].content = res.data.users[0].plan_time;
+      obj[4].content = res.data.users[0].plan_number;
+      obj[5].content = res.data.users[0].plan_budget;
+      obj[6].content = res.data.users[0].goal_people;
+      obj[7].content = res.data.users[0].goal_price;
+      obj[8].content = res.data.users[0].plan_contents;
+      obj[9].content = res.data.users[0].plan_exception;
+      obj[10].content = res.data.users[0].plan_file;
   
       setList( obj );
       });
@@ -125,7 +124,7 @@ export default function PlanInfoPanel(){
     return(
         <>
         <Header />
-        <Lightside />
+        <Leftside />
         <div className={sty.infoframe}>
             <div
                 style={{
@@ -139,11 +138,10 @@ export default function PlanInfoPanel(){
                 <div className={sty.layout_top_txt1}>공연기획 정보</div>
                 <div className={sty.layout_top_txt2}>공연기획 정보</div>
                 <div className={sty.layout_top_image}><img src="images/planPhoto1.png" alt="Map" width={1300}></img></div>
-                
-                {/* 테이블 만들기 */}
-                <div className={sty.layout_body_drawing}> <PlanInfoPicture /> </div>
 
-                <div className={sty.layout_top_table}><CustomizedTables /></div>
+                <div className={sty.layout_body_drawing}> <PlanInfoPicture /> </div>
+                {/* 테이블 만들기 -> PlanInfoTable*/}
+                <div className={sty.layout_top_table}><PlanInfoTable /></div>
 
                 <div
                     style={{
@@ -159,7 +157,6 @@ export default function PlanInfoPanel(){
             </div>
             <div className={sty.layout_bottom}>            
                 <Link href="/About">    
-                    {/*</Link>/<button className={sty.notosanskr_bold_cyan_24px} style={{margin:"0px 20px 0px"}}>저장하기</button>*/}
                     <Button className={sty.notosanskr_bold_cyan_24px} style={{margin:"0px 20px 0px"}} variant="contained">  수정하기 </Button>
                 </Link>    
             </div>

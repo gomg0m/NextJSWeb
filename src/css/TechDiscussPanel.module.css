@@ -121,16 +121,16 @@
 
 .subtitle {
   /* position: absolute;
-  width: 120px;
-  height: 29px;
-  left: 0px;
+  width: 63px;
+  height: 23px;
+  left: 1px;
   top: 0px; */
+  
   font-family: Noto Sans KR;
   font-style: normal;
-  font-weight: bold;
-  font-size: 20px;
-  line-height: 29px;
-  /* identical to box height */
-  /* Gray 1 */
-  color: #333333;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 23px;
+  
+  color: #000000;
 }
