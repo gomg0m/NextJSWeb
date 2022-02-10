@@ -25,7 +25,7 @@ connection.connect(function(err) {
 
 export default function handler(req, res) {
     if(req.method =='GET'){
-        const user_query = 'SELECT * FROM filename WHERE id=?';            
+        const user_query = 'SELECT * FROM filename';            
         let params = ["1"];
         connection.query(user_query, params, function (error, result, fields){
             if (error) throw error;
@@ -37,10 +37,10 @@ export default function handler(req, res) {
 
     if(req.method == 'POST') {
         const user_query = 'UPDATE filename SET fn = ? WHERE id = ?';
-        let fileName = JSON.stringify(req.body.data);
+        let fileName = JSON.stringify(req.body.newThumb);
         let keyword = "1";
-        let params = [keyword, fileName];
-        console.log(req.body.data);
+        let params = [fileName, keyword];
+        console.log("DB요청 파일명 배열값", req.body.newThumb);
             connection.query(user_query, params, function (error, result, fields){
                 if (error) throw error;
                 res.status(200).json({ users: result})

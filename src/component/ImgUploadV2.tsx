@@ -49,8 +49,47 @@ import Axios from "axios";
   const [thumb, setThumb] = useState<string[]>([]);
   const [progress, setProgress] = useState<number>(0);
   
-  const Deleted =() =>{
-    console.log("Deleted!") 
+  const deleteHandler =(index) =>{
+    console.log("deleting index", index);
+    //지워질 이미지 이름 저장.
+    let delThumb = thumb[index];
+
+    //이미지 스테이트에 들어있는 모든 이미지 이름을 복사해서
+    // newThemb이라는 배열에 넣는다.
+    let newThumb = [...thumb];
+
+    //newThumb배열안에 있는 파일 이름 중 
+    //클릭한 인덱스의 파일이름을 지워줌
+    newThumb.splice(index, 1);
+
+    //새로운 이미지 이름 배열인 newThumb으로
+    //setThumb 해준다.
+    setThumb(newThumb);
+    
+    ////미리 저장된 지워질 이미지을 Sever측에 삭제 요청 API를 호출한다.
+     const data = "e:/webdev_work/nextjsweb/public/uploads/"+ delThumb;
+     console.log("deleting file", delThumb);
+     
+     Axios.post("/api/deletefile", {data}).then((res)=>{
+       if(res.status == 200){
+    //       //login 성공
+           console.log("파일삭제 결과", res.data.users);
+       }
+     });    
+    ////////
+
+    ///MySQL에 지워진 파일을 반영한 이미지 파일이름 배열 데이터 저장    
+    console.log("deleted 배열", newThumb);
+    Axios.post("/api/jsonaccess", {newThumb}).then((res)=>{
+      if(res.status == 200){
+          //login 성공
+          console.log("삭제후 DB결과",res.data.users);
+      }
+    });
+    ///
+
+    /////MySQL에 저장된 이미지 파일이름 배열 데이터를 가지고 와서 Json 형식을 파싱하여 
+    //// 이미지 파일이름 배열 변수(string형식)에 저장함.
     // Axios.get("/api/jsonaccess").then((res)=>{
     //   if(res.status == 200){
     //       //login 성공
@@ -60,68 +99,42 @@ import Axios from "axios";
     //       let pp = JSON.parse(fN.users[0].fn);
     //       console.log("parsing filename", pp);
     //   }
-    // });
-    const data = "e:/webdev_work/nextjsweb/public/uploads/"+ "2202032302_IU.jpg";
-    Axios.post("/api/deletefile", {data}).then((res)=>{
-      if(res.status == 200){
-          //login 성공
-          console.log(res.data.users);
-      }
-    });
-  };
+    // });  
 
-   const onChange = useCallback(
-    async (formData: FormData) => {
-      const config = {
-        headers: { "content-type": "multipart/form-data" },
-        onUploadProgress: (event: { loaded: number; total: number }) => {
-          setProgress(Math.round((event.loaded * 100) / event.total));
-        },
-      };
 
-      Axios.post<any>("/api/imgupload", formData, config).then((res) => {
-        setThumb([...thumb, ...res.data]);        
-        console.log(res.data);        
-        
-        res.data.map(()=>pics.push({src:'', width:3, height:2}));           
-        res.data.map((pic:Information, i:number) => {           
-          pics[i+pic_count].src= '/uploads/'+ pic;        
-        });
-        pics[0].width = 3;
-        pics[0].height = 2;        
-        pic_count = pics.length;        
-        console.log("pics", pics);     
-        console.log("length",pics.length);
-      });
-      
 
-    },
-    [thumb]
-  );
+  }; //End Of deleteHandler
+  
 
   const onDrop = useCallback(
-     
+    
+  
     acceptedFiles => {
       const formData = new FormData();
       const config = { headers: { "content-type": "multipart/form-data" } }
 
       acceptedFiles.forEach((file) => {        
         formData.append("file", file);
-        console.log("acceptFilesNum",acceptedFiles.length);
+        console.log("acceptFilesNum",acceptedFiles);
       })
 
-      Axios.post<any>("/api/imgupload", formData, config).then((res) => {
+    {///let은 Block 내에서만 작용하기 떄문에 newThumb을 사용하려면 이렇게 빈 블럭구분을 사용해야 함.
+      let newThumb = [...thumb]; 
+      Axios.post<any>("/api/imgupload", formData, config).then((res) => {                 
         setThumb([...thumb, ...res.data]);        
-        console.log("KJY:Axios.Post=>res.data", res.data);        
-        
-        res.data.map(()=>pics.push({src:'', width:3, height:2}));           
-        res.data.map((pic:Information, i:number) => { pics[i+pic_count].src= '/uploads/'+ pic; });
-        pics[0].width = 3;
-        pics[0].height = 2;        
-        pic_count = pics.length;        
-        console.log("pics", pics);     
-        console.log("length",pics.length);
-    });
+        newThumb =[...thumb, ...res.data];
+        console.log("new thumb list", newThumb);
+
+        /////MySQL에 Upload한 이미지 파일이름 배열 데이터 저장    
+        Axios.post("/api/jsonaccess", {newThumb}).then((res)=>{
+          if(res.status == 200){
+            //login 성공
+            console.log("Upload DB저장 결과", res.data.user);
+          }
+        });
+      /////
+      });    
+    }
     
     
   }, [thumb])
@@ -155,13 +168,12 @@ import Axios from "axios";
       </div>
       <div style={{margin:"0px 15px 0px", display:"flex"}}>
           {thumb &&
-            thumb.map((item: string, i: number) => {
-              console.log("item", item);
+            thumb.map((item: string, index: number) => {
               return (              
                 <div>                  
                   <img src={`/uploads/${item}`} height="50" alt="업로드이미지"></img>
                   <IconButton color="primary" aria-label="upload picture" component="span">
-                    <HighlightOffIcon onClick={Deleted}/>
+                    <HighlightOffIcon onClick={()=> deleteHandler(index)}/>
                   </IconButton>                                    
                 </div>
               );

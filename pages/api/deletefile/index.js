@@ -7,12 +7,12 @@ export default function handler(req,res){
       if(err) {
         console.log("Error : ", err)
       }
-      res.status(200).json({ result: 'File Deleted' })
+      res.status(200).json({ users: 'File Deleted' })
     })
   }
 
   console.log("deletefile accessed!!");
-  console.log(req.body.data);
+  console.log("삭제요청 파일명", req.body.data);
   let file2 = req.body.data;
   clean(file2);
 
