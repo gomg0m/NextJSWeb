@@ -84,18 +84,18 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
      
     function getData(){
       Axios.get("/api/getuser").then((res) =>{
-      console.log(res.data.users[7].plan_genre);
-      obj[0].content = res.data.users[7].plan_genre;
-      obj[1].content = res.data.users[7].plan_name;
-      obj[2].content = res.data.users[7].plan_start + " ~ " + res.data.users[7].plan_end;
-      obj[3].content = res.data.users[7].plan_time;
-      obj[4].content = res.data.users[7].plan_number;
-      obj[5].content = res.data.users[7].plan_budget;
-      obj[6].content = res.data.users[7].goal_people;
-      obj[7].content = res.data.users[7].goal_price;
-      obj[8].content = res.data.users[7].plan_contents;
-      obj[9].content = res.data.users[7].plan_exception;
-      obj[10].content = res.data.users[7].plan_file;
+      console.log(res.data.users[0].plan_genre);
+      obj[0].content = res.data.users[0].plan_genre;
+      obj[1].content = res.data.users[0].plan_name;
+      obj[2].content = res.data.users[0].plan_start + " ~ " + res.data.users[0].plan_end;
+      obj[3].content = res.data.users[0].plan_time;
+      obj[4].content = res.data.users[0].plan_number;
+      obj[5].content = res.data.users[0].plan_budget;
+      obj[6].content = res.data.users[0].goal_people;
+      obj[7].content = res.data.users[0].goal_price;
+      obj[8].content = res.data.users[0].plan_contents;
+      obj[9].content = res.data.users[0].plan_exception;
+      obj[10].content = res.data.users[0].plan_file;
   
       setList( obj );
       });

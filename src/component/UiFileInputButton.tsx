@@ -25,13 +25,14 @@ export const UiFileInputButton: React.FC<IProps> = (props) => {
 
     Array.from(event.target.files).forEach((file) => {
       formData.append(event.target.name, file);
+      console.log(file.name);
     });
 
     props.onChange(formData);
 
     formRef.current?.reset();
   };
-
+   
   return (
     <form ref={formRef}>
       <button type="button" onClick={onClickHandler}>
