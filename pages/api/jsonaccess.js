@@ -25,19 +25,20 @@ connection.connect(function(err) {
 
 export default function handler(req, res) {
     if(req.method =='GET'){
-        const user_query = 'SELECT * FROM filename';            
-            connection.query(user_query, function (error, result, fields){
-                if (error) throw error;
-                res.status(200).json({ users: result})
-            });
+        const user_query = 'SELECT * FROM filename WHERE id=?';            
+        let params = ["1"];
+        connection.query(user_query, params, function (error, result, fields){
+            if (error) throw error;
+            res.status(200).json({ users: result})
+        });
 
         res.statusCode = 200;
     }
 
     if(req.method == 'POST') {
-        const user_query = 'INSERT INTO filename (id, fn) VALUES (?, ?)';
+        const user_query = 'UPDATE filename SET fn = ? WHERE id = ?';
         let fileName = JSON.stringify(req.body.data);
-        let keyword = "2";
+        let keyword = "1";
         let params = [keyword, fileName];
         console.log(req.body.data);
             connection.query(user_query, params, function (error, result, fields){

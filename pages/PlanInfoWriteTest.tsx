@@ -1,9 +1,7 @@
 import React from 'react';
 import sty from '../src/css/planInfoWirte.module.css'
-import ReadOnlyTextFields from '../src/component/readonlytext';
 import IconButton from '../src/component/withiconbtn';
 import Button from '@mui/material/Button';
-import FormDialog2 from '../src/component/fileattachdialogbtn';
 import Axios from 'axios';
 import { useForm } from "react-hook-form";
 import { FormInputText } from "../src/component/FormInputText";
@@ -13,7 +11,7 @@ import {FormInputDropdown} from '../src/component/FormInputDropdown'
 import Router from 'next/router';
 import Header from '../src/fix/Header';
 import Leftside from '../src/fix/Leftside1';
-import ImgUpload from '../src/component/ImgUpload';
+import ImgUpload from '../src/component/ImgUploadV2';
 
 
 interface IFormInput {
