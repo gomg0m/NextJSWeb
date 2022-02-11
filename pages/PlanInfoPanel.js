@@ -99,8 +99,21 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   
       setList( obj );
       });
+
+    /////MySQL에 저장된 이미지 파일이름 배열 데이터를 가지고 와서 Json 형식을 파싱하여 
+    //// 이미지 파일이름 배열 변수(string형식)에 저장함.
+    Axios.get("/api/table/PlanInfo").then((res)=>{
+      if(res.status == 200){
+          //login 성공
+          console.log("JSON Access OK!!", res.data);
+          let fN = res.data;
+          console.log("fileName", fN.users[0].fn);
+          let pp = JSON.parse(fN.users[0].fn);
+          console.log("parsing filename", pp);
+      }
+    });  
     }
-  
+
       useEffect(() => {
         getData();
       }, []);
