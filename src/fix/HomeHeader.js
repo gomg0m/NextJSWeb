@@ -2,8 +2,6 @@ import styles from '../css/HomeHeader.module.css';
 import Link from 'next/link';
 import React from 'react';
 import { Box, Button, Divider, Modal, Typography, InputLabel, MenuItem, FormControl, Select, TextField, Input, IconButton } from '@mui/material';
-import { styled } from '@mui/material/styles';
-import AttachFileIcon from '@mui/icons-material/AttachFile';
 
 const style = {
   position: 'absolute',
@@ -11,7 +9,21 @@ const style = {
   left: '50%',
   transform: 'translate(-50%, -50%)',
   width: 500,
-  height: 600,
+  height: 570,
+  bgcolor: 'background.paper',
+  border: '1px solid #E0E0E0',
+  borderRadius: 2,
+  boxShadow: 24,
+  p: 4,
+};
+
+const style2 = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 500,
+  height: 450,
   bgcolor: 'background.paper',
   border: '1px solid #E0E0E0',
   borderRadius: 2,
@@ -21,10 +33,15 @@ const style = {
 
 export default function HomeHeader() {
 
-  // Modal Open/Close
+  // 회원가입창
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  // 로그인 창
+  const [open2, setOpen2] = React.useState(false);
+  const handleOpen2 = () => setOpen2(true);
+  const handleClose2 = () => setOpen2(false);
 
   return (
     <div className={styles.headerbox}>
@@ -46,7 +63,6 @@ export default function HomeHeader() {
         >
           <Box sx={style}>
             <Typography className={styles.jointitle}>회원가입</Typography>
-            {/* <Typography className={styles.joinsubtitle}>첨단융합공연 지식기반정보플랫폼에 <br/> 오신 여러분을 환영합니다.</Typography> */}
             <Divider className={styles.modaldivider} orientation="horizontal" variant="fullWidth" flexItem />
 
             <div className={styles.joinoption1}>이름</div>
@@ -66,11 +82,26 @@ export default function HomeHeader() {
           </Box>
         </Modal>
 
-        <Link href='/Home2'>
-          <Button className={styles.loginbutton} variant='contained' color='primary'>로그인</Button>
-        </Link>
+          <Button className={styles.loginbutton} variant='contained' color='primary' onClick={handleOpen2}>로그인</Button>
 
+          <Modal
+          open={open2}
+          onClose={handleClose2}
+        >
+          <Box sx={style2}>
+            <div className={styles.loginlogo} > <img src="images/kitechlogo.svg" alt="logo" width='150px'/></div>
+            <Typography className={styles.jointitle2}>첨단융합공연 지식기반정보플랫폼</Typography>
+            <Divider className={styles.modaldivider2} orientation="horizontal" variant="fullWidth" flexItem />
 
+            <div className={styles.loginoption1}>이메일</div>
+            <TextField className={styles.logininfo1} sx={{ minWidth: 250 }} id="outlined-basic" label="이메일을 입력해주세요." variant="outlined"/>
+
+            <div className={styles.loginoption2}>비밀번호</div>
+            <TextField className={styles.logininfo2} sx={{ minWidth: 250 }} id="outlined-basic" label="비밀번호를 입력해주세요." variant="outlined"/>
+
+            <Button className={styles.loginbutton2} variant="contained">로그인</Button>
+          </Box>
+        </Modal>
 
       </div>
     </div>
