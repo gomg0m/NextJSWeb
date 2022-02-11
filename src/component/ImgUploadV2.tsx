@@ -39,12 +39,7 @@ import Axios from "axios";
     borderColor: '#ff1744'
   };
 
-  
-
-
   const ImgUpload = () => {
-
-
 
   const [thumb, setThumb] = useState<string[]>([]);
   const [progress, setProgress] = useState<number>(0);
@@ -67,7 +62,7 @@ import Axios from "axios";
     setThumb(newThumb);
     
     ////미리 저장된 지워질 이미지을 Sever측에 삭제 요청 API를 호출한다.
-     const data = "e:/webdev_work/nextjsweb/public/uploads/"+ delThumb;
+     const data = "C:/Web/nextjsweb/public/uploads/"+ delThumb;
      console.log("deleting file", delThumb);
      
      Axios.post("/api/deletefile", {data}).then((res)=>{
@@ -86,22 +81,6 @@ import Axios from "axios";
           console.log("삭제후 DB결과",res.data.users);
       }
     });
-    ///
-
-    /////MySQL에 저장된 이미지 파일이름 배열 데이터를 가지고 와서 Json 형식을 파싱하여 
-    //// 이미지 파일이름 배열 변수(string형식)에 저장함.
-    // Axios.get("/api/jsonaccess").then((res)=>{
-    //   if(res.status == 200){
-    //       //login 성공
-    //       console.log("JSON Access OK!!", res.data);
-    //       let fN = res.data;
-    //       console.log("fileName", fN.users[0].fn);
-    //       let pp = JSON.parse(fN.users[0].fn);
-    //       console.log("parsing filename", pp);
-    //   }
-    // });  
-
-
 
   }; //End Of deleteHandler
   
@@ -116,7 +95,7 @@ import Axios from "axios";
       acceptedFiles.forEach((file) => {        
         formData.append("file", file);
         console.log("acceptFilesNum",acceptedFiles);
-      })
+    })
 
     {///let은 Block 내에서만 작용하기 떄문에 newThumb을 사용하려면 이렇게 빈 블럭구분을 사용해야 함.
       let newThumb = [...thumb]; 

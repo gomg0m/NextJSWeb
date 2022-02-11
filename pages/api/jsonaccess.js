@@ -2,10 +2,10 @@ import { result } from 'lodash';
 
 const mysql = require('mysql');
 let connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'kitech123!', //password: 'kitech123' //Notebook mysql 
-    database: 'nextjsDemo'  
+    host: 'repledb.c7vqsuewchgh.ap-northeast-2.rds.amazonaws.com',
+    user: 'admin',
+    password: 'kitech123',
+    database: 'reple'
 });
 
 // JSON 형식의 'keyword' 테이블 생성 SQL
@@ -24,16 +24,16 @@ connection.connect(function(err) {
 });
 
 export default function handler(req, res) {
-    if(req.method =='GET'){
-        const user_query = 'SELECT * FROM filename';            
-        let params = ["1"];
-        connection.query(user_query, params, function (error, result, fields){
-            if (error) throw error;
-            res.status(200).json({ users: result})
-        });
+    // if(req.method =='GET'){
+    //     const user_query = 'SELECT * FROM filename';            
+    //     let params = ["1"];
+    //     connection.query(user_query, params, function (error, result, fields){
+    //         if (error) throw error;
+    //         res.status(200).json({ users: result})
+    //     });
 
-        res.statusCode = 200;
-    }
+    //     res.statusCode = 200;
+    // }
 
     if(req.method == 'POST') {
         const user_query = 'UPDATE filename SET fn = ? WHERE id = ?';
