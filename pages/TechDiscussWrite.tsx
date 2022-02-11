@@ -42,7 +42,7 @@ export default function HopeInfoWirte(){
             if(res.status == 200){
                 //login 성공
                 console.log(res.data.users);
-                Router.push("/PlanInfoPanel")
+                Router.push("/TechDisucssPanel")
             }
         });
     }
@@ -61,11 +61,6 @@ export default function HopeInfoWirte(){
                     lineHeight: "0.2em",
                     margin: "0px 0 20px",                    
                 }}></div>
-
-            <div className={sty.layout_bottom}>  
-                <Button className={sty.notosanskr_bold_black_24px} style={{margin:"0px 20px 0px"}} variant="contained">  취소 </Button>
-                <Button className={sty.notosanskr_bold_cyan_24px} style={{margin:"0px 20px 0px"}} variant="contained">  저장하기 </Button>
-            </div>
 
             <div className={sty.layout_top}>
                 <div className={sty.layout_top_txt1}>기술구체화협의</div>
@@ -87,17 +82,17 @@ export default function HopeInfoWirte(){
                 </div>
                 <div className={sty.body_row3}>
                     <div className={sty.body_row_subitem1}>검토내용</div>
-                    <div className={sty.body_row_subitem2} style={{margin:"0px 40px 0px"}}><FormInputDropdown1 name="tech_1stsubject" control={control} label="검토 주제를 선택하세요" /></div>
-                    <div className={sty.body_row_subitem2} style={{margin:"0px 40px 0px"}}><FormInputDropdown2 name="tech_1stsubject" control={control} label="검토 주제를 선택하세요" /></div>                    
+                    <div className={sty.body_row_subitem2} style={{margin:"0px 40px 0px"}}><FormInputDropdown1 name="tech_1stsubject" control={control} label="검토 주제" /></div>
+                    <div className={sty.body_row_subitem2} style={{margin:"0px 40px 0px"}}><FormInputDropdown2 name="tech_2ndsubject" control={control} label="세부 주제" /></div>                    
                 </div>
                 <div className={sty.body_row3}>
                     <div className={sty.body_row_subitem1}></div>
                     <div className={sty.body_row_subitem2} style={{width:"1100px", margin:"-25px 30px 0px"}} ><FormInputMultilineText name="tech_contents" control={control} label="기타 특이사항을 작성하세요"/></div>
                 </div>
             </div>
-            <div className={sty.layout_bottom}>
-                <Button className={sty.notosanskr_bold_black_24px} style={{margin:"0px 20px 0px"}} variant="contained">  취소 </Button>
-                <Button className={sty.notosanskr_bold_cyan_24px} style={{margin:"0px 20px 0px"}} variant="contained">  저장하기 </Button> 
+            <div className={sty.button}>
+                <Button className={sty.notosanskr_bold_black_24px} style={{margin:"100px 20px 0px"}} onClick={() => reset()} variant={"contained"}>  취소 </Button>
+                <Button className={sty.notosanskr_bold_cyan_24px} style={{margin:"100px 20px 0px"}} onClick={handleSubmit(onSubmit)} variant={"contained"}>  저장하기 </Button> 
             </div>
 
         </div>

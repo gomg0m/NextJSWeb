@@ -18,7 +18,7 @@ connection.connect(function(err) {
 export default function handler(req, res) {
 
   if(req.method =='GET'){
-    const user_query = 'SELECT * FROM HOPEINFO';
+    const user_query = 'SELECT * FROM TECHINFO';
 
       console.log(req.body.data);
         connection.query(user_query, function (error, result, fields){
@@ -30,21 +30,15 @@ export default function handler(req, res) {
   }
 
   if(req.method == 'POST') {
-    const user_query = 'INSERT INTO HOPEINFO VALUES(null, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
-    let id = req.body.data.hope_id;
-    let name = req.body.data.hope_name;
-    let image = req.body.data.hope_image;
-    let content = req.body.data.hope_content;
-    let intention = req.body.data.hope_intention;
-    let exception = req.body.data.hope_exception;
-    let time = req.body.data.hope_time;
-    let budget = req.body.data.hope_budget
-    let tech = req.body.data.hope_tech;
-    let reason = req.body.data.hope_reason;
-    let reference = req.body.data.hope_reference;
-    let addtime = req.body.data.hope_addtime;
+    const user_query = 'INSERT INTO TECHINFO VALUES(null, ?, ?, ?, ?, ?)';
+    let id = req.body.data.tech_id;
+    let name = req.body.data.tech_name;
+    let firsubject = req.body.data.tech_1stsubject;
+    let secsubject = req.body.data.tech_2ndsubject;
+    let contents = req.body.data.tech_contents;
+    let addtime = req.body.data.tech_addtime;
 
-    let params = [name, image, content, intention, exception, time, budget, tech, reason, reference, addtime];
+    let params = [name, firsubject, secsubject, contents, addtime];
     console.log(req.body.data);
         connection.query(user_query, params, function (error, result, fields){
             if (error) throw error;
