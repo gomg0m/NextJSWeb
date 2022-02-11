@@ -69,3 +69,261 @@
   width: 77px;
   height: 36px;
 }
+
+.jointitle {
+  position: absolute;
+  width: 165px;
+  height: 20px;
+  left: 195px;
+  top: 50px;
+
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 30px;
+  line-height: 20px;
+  /* identical to box height, or 77% */
+
+  letter-spacing: -0.02em;
+
+  color: #000000;
+}
+
+.joinsubtitle {
+  position: absolute;
+  width: 500px;
+  height: 20px;
+  left: 15px;
+  top: 100px;
+
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 20px;
+  /* identical to box height, or 111% */
+
+  letter-spacing: -0.02em;
+
+  color: #000000;
+}
+
+.modaldivider {
+  /* position: absolute; */
+  margin-top: 80px;
+}
+
+.joinoption1 {
+  position: absolute;
+  width: 88px;
+  height: 20px;
+  top: 165px;
+  left: 70px;
+
+  font-family: Noto Sans KR;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: -0.02em;
+  text-align: left;
+}
+
+.info1 {
+  position: absolute;
+  left: 180px;
+  top: 150px;
+}
+
+.joinoption2 {
+  position: absolute;
+  width: 116px;
+  height: 20px;
+  top: 245px;
+  left: 70px;
+
+  font-family: Noto Sans KR;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: -0.02em;
+  text-align: left;
+}
+
+.info2 {
+  position: absolute;
+  left: 180px;
+  top: 230px;
+}
+
+.joinoption3 {
+  position: absolute;
+  width: 116px;
+  height: 20px;
+  top: 327px;
+  left: 70px;
+
+  font-family: Noto Sans KR;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: -0.02em;
+  text-align: left;
+}
+
+.info3 {
+  position: absolute;
+  left: 180px;
+  top: 310px;
+}
+
+.joinoption4 {
+  position: absolute;
+  width: 116px;
+  height: 20px;
+  top: 407px;
+  left: 70px;
+
+  font-family: Noto Sans KR;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: -0.02em;
+  text-align: left;
+}
+
+.info4 {
+  position: absolute;
+  left: 180px;
+  top: 390px;
+}
+
+.canclebutton {
+  position: absolute;
+  width: 170px;
+  height: 48px;
+  top: 490px;
+  right: 70px;
+  background: #dfdfdf;
+  border-radius: 6px;
+
+  font-family: Noto Sans KR;
+  font-size: 20px;
+  font-style: normal;
+  color: black;
+  font-weight: 400;
+  line-height: 50px;
+  letter-spacing: -0.02em;
+  text-align: left;
+}
+
+.joinbutton {
+  position: absolute;
+  width: 170px;
+  height: 48px;
+  top: 490px;
+  left: 70px;
+  background: #2D9CDB;
+  border-radius: 6px;
+
+  font-family: Noto Sans KR;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 50px;
+  letter-spacing: -0.02em;
+  text-align: left;
+}
+
+.loginlogo {
+  margin-left: 140px;
+}
+
+.jointitle2 {
+  position: absolute;
+  width: 500px;
+  height: 20px;
+  left: 80px;
+  top: 90px;
+
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 20px;
+  /* identical to box height, or 77% */
+
+  letter-spacing: -0.02em;
+
+  color: #000000;
+}
+
+.modaldivider2 {
+  /* position: absolute; */
+  margin-top: 50px;
+}
+
+.loginoption1 {
+  position: absolute;
+  width: 88px;
+  height: 20px;
+  top: 200px;
+  left: 80px;
+
+  font-family: Noto Sans KR;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: -0.02em;
+  text-align: left;
+}
+
+.logininfo1 {
+  position: absolute;
+  left: 180px;
+  top: 183px;
+}
+
+.loginoption2 {
+  position: absolute;
+  width: 116px;
+  height: 20px;
+  top: 280px;
+  left: 80px;
+
+  font-family: Noto Sans KR;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: -0.02em;
+  text-align: left;
+}
+
+.logininfo2 {
+  position: absolute;
+  left: 180px;
+  top: 260px;
+}
+
+.loginbutton2 {
+  position: absolute;
+  width: 350px;
+  height: 48px;
+  top: 350px;
+  left: 80px;
+  background: #2D9CDB;
+  border-radius: 6px;
+
+  font-family: Noto Sans KR;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 50px;
+  letter-spacing: -0.02em;
+  text-align: left;
+}

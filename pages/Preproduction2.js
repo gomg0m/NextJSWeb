@@ -1,10 +1,8 @@
 import React from 'react';
-import Header from '../src/fix/Header';
 import styles from '../src/css/Preproduction2.module.css';
 import { Box, Button, Divider, Modal, Typography, InputLabel, MenuItem, FormControl, Select, TextField, Input, IconButton } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
-// import { borderRadius } from '@mui/system';
 
 const style = {
   position: 'absolute',
@@ -82,14 +80,8 @@ function Preproduction2() {
                 <AttachFileIcon />
               </IconButton>
             </label>
-            
-        
             <Button className={styles.addcreatebutton} variant="contained">만들기</Button>
-
           </Box>
-
-        
-
         </Modal>
 
 
