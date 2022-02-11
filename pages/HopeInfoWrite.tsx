@@ -152,7 +152,7 @@ interface IFormInput {
                 </div>
             </div>
 
-            <div className={sty.layout_bottom}>  
+            <div className={sty.button}>  
                     <Button className={sty.notosanskr_bold_black_24px} style={{margin:"0px 20px 0px"}} onClick={() => reset()} variant={"contained"}>  취소 </Button>           
                     <Button className={sty.notosanskr_bold_cyan_24px} style={{margin:"0px 20px 0px"}} onClick={handleSubmit(onSubmit)} variant={"contained"}>  저장하기 </Button>  
             </div>
