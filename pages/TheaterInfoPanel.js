@@ -1,17 +1,19 @@
-import React from 'react';
+import React, { useState, useEffect, useCallback } from "react";
 import Header from '../src/fix/Header';
 import Leftside from '../src/fix/Leftside1(1)';
 import sty from '../src/css/TheaterInfoPanel.module.css';
 import Link from 'next/link';
 import Button from '@mui/material/Button';
-import TheaterDrawing from '../src/component/TheatherDrawing';
-import TheaterPicture from '../src/component/TheatherPicture';
 import Axios from 'axios';
-import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import { FormInputText } from "../src/component/FormInputText";
-import {FormInputMultilineText} from '../src/component/FormInputMultilineText'
-import Router from 'next/router';
+
+import PropTypes from 'prop-types';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
+import {makeStyles} from '@material-ui/core';
 
 //정보 테이블 만들기
 import { styled } from '@mui/material/styles';
@@ -21,6 +23,9 @@ import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+
+import Gallery from "react-photo-gallery";
+import Carousel, { Modal, ModalGateway } from "react-images";
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -37,9 +42,178 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     },
   }));
   
-  function createData(name, content) {
-    return { name, content };
-  }
+  
+  const StyledTableCell2 = styled(TableCell)(({ theme }) => ({
+    [`&.${tableCellClasses.head}`]: {
+      backgroundColor: "lightblue",
+      color: theme.palette.primary.white,
+    },
+    [`&.${tableCellClasses.body}`]: {
+      backgroundColor: 'white',
+      color: 'black',
+      fontSize: 20,    
+    },
+  }));
+
+  const photos = [
+    {
+      src: "images/OlympicHallDrawing1.png",
+      width: 4,
+      height: 3
+    },
+    {
+      src: "images/OlympicHallDrawing2.png",
+      width: 1,
+      height: 1
+    },
+    {
+      src: "images/OlympicHallDrawing3.png",
+      width: 3,
+      height: 4
+    },
+    {
+      src: "images/OlympicHallDrawing4.png",
+      width: 3,
+      height: 4
+    },
+  ];
+
+  const photos1 = [
+    {
+      src: "images/OlympicHallInternal1.png",
+      width: 4,
+      height: 3
+    },
+    {
+      src: "images/OlympicHallInternal2.png",
+      width: 4,
+      height: 3
+    },
+    {
+      src: "images/OlympicHallInternal3.png",
+      width: 4,
+      height: 3
+    },
+    {
+      src: "images/OlympicHallInternal4.png",
+      width: 4,
+      height: 3
+    },
+    {
+      src: "images/OlympicHallInternal5.png",
+      width: 4,
+      height: 3
+    },
+    {
+      src: "images/OlympicHallInternal6.png",
+      width: 4,
+      height: 3
+    },
+    {
+      src: "images/OlympicHallInternal7.png",
+      width: 4,
+      height: 3
+    },
+    
+  ];
+  
+  const photos2 = [
+    {
+      src: "images/OlympicHallExternal1.png",
+      width: 4,
+      height: 3
+    },
+    {
+      src: "images/OlympicHallExternal2.png",
+      width: 1,
+      height: 1
+    },
+    {
+      src: "images/OlympicHallExternal3.png",
+      width: 3,
+      height: 4
+    },
+    {
+      src: "images/OlympicHallExternal4.png",
+      width: 3,
+      height: 4
+    },
+  ];
+  
+  const photos3 = [
+    {
+      src: "images/OlympicHallStage1.png",
+      width: 4,
+      height: 3
+    },
+    {
+      src: "images/OlympicHallStage2.png",
+      width: 1,
+      height: 1
+    },
+    {
+      src: "images/OlympicHallStage3.png",
+      width: 3,
+      height: 4
+    },
+    {
+      src: "images/OlympicHallStage4.png",
+      width: 4,
+      height: 3
+    },
+    {
+      src: "images/OlympicHallStage5.png",
+      width: 1,
+      height: 1
+    },
+    {
+      src: "images/OlympicHallStage6.png",
+      width: 3,
+      height: 4
+    },
+    {
+      src: "images/OlympicHallStage7.png",
+      width: 4,
+      height: 3
+    },
+    {
+      src: "images/OlympicHallStage8.png",
+      width: 1,
+      height: 1
+    },
+    {
+      src: "images/OlympicHallStage9.png",
+      width: 3,
+      height: 4
+    },
+    {
+      src: "images/OlympicHallStage10.png",
+      width: 3,
+      height: 4
+    },
+  ];
+      
+
+  const useStyles = makeStyles({
+    customStyleOnTab:{
+      fontSize:'20px',
+      color:'black',
+      fontWeight: '700'
+  
+    },
+    customStyleOnActiveTab:{
+      color:'red'
+    },
+    activeTab:{
+      fontSize:'16px',
+      fontWeight:'600',
+      color:'pink'
+    },
+    PanelText:{
+      fontSize:'16px',
+      color:'pink'
+    }
+  })
   
   function TheaterInfoTable() {
   
@@ -90,20 +264,227 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     );
   }
 
-  const StyledTableCell2 = styled(TableCell)(({ theme }) => ({
-    [`&.${tableCellClasses.head}`]: {
-      backgroundColor: "lightblue",
-      color: theme.palette.primary.white,
-    },
-    [`&.${tableCellClasses.body}`]: {
-      backgroundColor: 'white',
-      color: 'black',
-      fontSize: 20,    
-    },
-  }));
+
+  
+function TheaterDrawing() {
+  const [currentImage, setCurrentImage] = useState(0);
+  const [viewerIsOpen, setViewerIsOpen] = useState(false);
+
+  const openLightbox = useCallback((event, { photo, index }) => {
+    setCurrentImage(index);
+    setViewerIsOpen(true);
+  }, []);
+
+  const closeLightbox = () => {
+    setCurrentImage(0);
+    setViewerIsOpen(false);
+  };
+  
+  return (
+    <div>
+      <Gallery photos={photos} onClick={openLightbox} />
+      <ModalGateway>
+        {viewerIsOpen ? (
+          <Modal onClose={closeLightbox}>
+            <Carousel
+              currentIndex={currentImage}
+              views={photos.map((x) => ({
+                ...x,
+                srcset: x.srcSet,
+                caption: x.title
+              }))}
+            />
+          </Modal>
+        ) : null}
+      </ModalGateway>
+    </div>
+  );
+}
+
+
+function BasicPagination() {
+  return (
+    <Stack spacing={2}>
+      <Pagination count={10} />
+      <Pagination count={10} color="primary" />
+      <Pagination count={10} color="secondary" />
+      <Pagination count={10} disabled />
+    </Stack>
+  );
+}
+
+function TabPanel(props) {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}      
+      {...other}      
+    >
+      {value === index && (
+        <Box sx={{ p: 3 }}>
+          <Typography>{children}</Typography>
+        </Box>
+      )}
+    </div>
+  );
+}
+
+TabPanel.propTypes = {
+  children: PropTypes.node,
+  index: PropTypes.number.isRequired,
+  value: PropTypes.number.isRequired,
+};
+
+function a11yProps(index) {
+  return {
+    id: `simple-tab-${index}`,
+    'aria-controls': `simple-tabpanel-${index}`,
+  };
+}
+
+function TheaterPicture() {
+  const classes = useStyles()
+  const [value, setValue] = React.useState(0);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
+  return (
+    <Box sx={{ width: '100%' }}>
+      <Box sx={{borderBottom: 1, borderColor: 'divider' }}>
+        <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" >
+          <Tab label={<span className={classes.customStyleOnTab}>외관</span>} {...a11yProps(0)}/> 
+          <Tab label={<span className={classes.customStyleOnTab}>내부</span>} {...a11yProps(1)} />
+          <Tab label={<span className={classes.customStyleOnTab}>무대공간</span>} {...a11yProps(2)} />
+        </Tabs>
+      </Box>
+
+      <TabPanel value={value} index={0}><TheaterPictureExternal /></TabPanel>
+      <TabPanel value={value} index={1}><TheaterPictureInternal /></TabPanel>
+      <TabPanel value={value} index={2}><TheaterPictureStage /></TabPanel>      
+    </Box>
+  );
+}
+
+
+
+
+ 
+function TheaterPictureInternal() {
+    const [currentImage, setCurrentImage] = useState(0);
+    const [viewerIsOpen, setViewerIsOpen] = useState(false);
+  
+    const openLightbox = useCallback((event, { photo, index }) => {
+      setCurrentImage(index);
+      setViewerIsOpen(true);
+    }, []);
+  
+    const closeLightbox = () => {
+      setCurrentImage(0);
+      setViewerIsOpen(false);
+    };
     
+    return (
+      <div>
+        <Gallery photos={photos} onClick={openLightbox} />
+        <ModalGateway>
+          {viewerIsOpen ? (
+            <Modal onClose={closeLightbox}>
+              <Carousel
+                currentIndex={currentImage}
+                views={photos.map((x) => ({
+                  ...x,
+                  srcset: x.srcSet,
+                  caption: x.title
+                }))}
+              />
+            </Modal>
+          ) : null}
+        </ModalGateway>
+      </div>
+    );
+  }
+
+
+function TheaterPictureExternal() {
+    const [currentImage, setCurrentImage] = useState(0);
+    const [viewerIsOpen, setViewerIsOpen] = useState(false);
+  
+    const openLightbox = useCallback((event, { photo, index }) => {
+      setCurrentImage(index);
+      setViewerIsOpen(true);
+    }, []);
+  
+    const closeLightbox = () => {
+      setCurrentImage(0);
+      setViewerIsOpen(false);
+    };
+    
+    return (
+      <div>
+        <Gallery photos={photos} onClick={openLightbox} />
+        <ModalGateway>
+          {viewerIsOpen ? (
+            <Modal onClose={closeLightbox}>
+              <Carousel
+                currentIndex={currentImage}
+                views={photos.map((x) => ({
+                  ...x,
+                  srcset: x.srcSet,
+                  caption: x.title
+                }))}
+              />
+            </Modal>
+          ) : null}
+        </ModalGateway>
+      </div>
+    );
+  }
+
+
+ 
+function TheaterPictureStage() {
+    const [currentImage, setCurrentImage] = useState(0);
+    const [viewerIsOpen, setViewerIsOpen] = useState(false);
+  
+    const openLightbox = useCallback((event, { photo, index }) => {
+      setCurrentImage(index);
+      setViewerIsOpen(true);
+    }, []);
+  
+    const closeLightbox = () => {
+      setCurrentImage(0);
+      setViewerIsOpen(false);
+    };
+    
+    return (
+      <div>
+        <Gallery photos={photos} onClick={openLightbox} />
+        <ModalGateway>
+          {viewerIsOpen ? (
+            <Modal onClose={closeLightbox}>
+              <Carousel
+                currentIndex={currentImage}
+                views={photos.map((x) => ({
+                  ...x,
+                  srcset: x.srcSet,
+                  caption: x.title
+                }))}
+              />
+            </Modal>
+          ) : null}
+        </ModalGateway>
+      </div>
+    );
+  }  
+
 export default function TheaterInfoPanel(){       
-    return(
+  return(
         <>
         <Header />
         <Leftside />
@@ -146,5 +527,5 @@ export default function TheaterInfoPanel(){
         </div>
     </div>
     </>                
-    );
+  );
 }

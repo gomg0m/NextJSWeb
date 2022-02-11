@@ -1,11 +1,10 @@
-import React from 'react';
+import React, { useState,useEffect, useCallback } from "react";
 import Header from '../src/fix/Header';
 import Leftside from '../src/fix/Leftside1';
 import sty from '../src/css/TheaterInfoPanel.module.css';
 import Link from 'next/link';
 import Button from '@mui/material/Button';
-import PlanInfoPicture from '../src/component/PlanphotosInfo';
-import PlanFilePicture from '../src/component/PlanphotosFile';
+
 
 //정보 테이블 만들기
 import { styled } from '@mui/material/styles';
@@ -15,7 +14,10 @@ import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { useEffect, useState } from "react";
+
+import Gallery from "react-photo-gallery";
+import Carousel, { Modal, ModalGateway } from "react-images";
+
 import Axios from 'axios';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -48,7 +50,30 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     return { name, content };
   }
   
-  function PlanInfoTable() {
+  const photos = [
+    {
+      src: "images/OlympicHallDrawing1.png",
+      width: 4,
+      height: 3
+    },
+    {
+      src: "images/OlympicHallDrawing2.png",
+      width: 1,
+      height: 1
+    },
+    {
+      src: "images/OlympicHallDrawing3.png",
+      width: 3,
+      height: 4
+    },
+    {
+      src: "images/OlympicHallDrawing4.png",
+      width: 3,
+      height: 4
+    },
+  ];
+  
+function PlanInfoTable() {
   
     const [list, setList] = useState([
       {name: '공연장르', content: ''},
@@ -100,9 +125,9 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
       });
     }
 
-      useEffect(() => {
+    useEffect(() => {
         getData();
-      }, []);
+    }, []);
       
     return (
       <TableContainer component={Paper}>
@@ -119,6 +144,81 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
       </TableContainer>
     );
   }
+
+
+  
+    
+function PlanFilePicture() {
+    const [currentImage, setCurrentImage] = useState(0);
+    const [viewerIsOpen, setViewerIsOpen] = useState(false);
+
+    const openLightbox = useCallback((event, { photo, index }) => {
+      setCurrentImage(index);
+      setViewerIsOpen(true);
+    }, []);
+
+    const closeLightbox = () => {
+      setCurrentImage(0);
+      setViewerIsOpen(false);
+    };
+    
+    return (
+      <div>
+        <Gallery photos={photos} onClick={openLightbox} />
+        <ModalGateway>
+          {viewerIsOpen ? (
+            <Modal onClose={closeLightbox}>
+              <Carousel
+                currentIndex={currentImage}
+                views={photos.map((x) => ({
+                  ...x,
+                  srcset: x.srcSet,
+                  caption: x.title
+                }))}
+              />
+            </Modal>
+          ) : null}
+        </ModalGateway>
+      </div>
+    );
+}
+
+
+
+function PlanInfoPicture() {
+    const [currentImage, setCurrentImage] = useState(0);
+    const [viewerIsOpen, setViewerIsOpen] = useState(false);
+  
+    const openLightbox = useCallback((event, { photo, index }) => {
+      setCurrentImage(index);
+      setViewerIsOpen(true);
+    }, []);
+  
+    const closeLightbox = () => {
+      setCurrentImage(0);
+      setViewerIsOpen(false);
+    };
+    
+    return (
+      <div>
+        <Gallery photos={photos} onClick={openLightbox} />
+        <ModalGateway>
+          {viewerIsOpen ? (
+            <Modal onClose={closeLightbox}>
+              <Carousel
+                currentIndex={currentImage}
+                views={photos.map((x) => ({
+                  ...x,
+                  srcset: x.srcSet,
+                  caption: x.title
+                }))}
+              />
+            </Modal>
+          ) : null}
+        </ModalGateway>
+      </div>
+    );
+}
 
 export default function PlanInfoPanel(){       
     return(
