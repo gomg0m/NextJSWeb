@@ -1,9 +1,7 @@
 import React from 'react';
 import sty from '../src/css/planInfoWirte.module.css'
-import ReadOnlyTextFields from '../src/component/readonlytext';
 import IconButton from '../src/component/withiconbtn';
 import Button from '@mui/material/Button';
-import FormDialog2 from '../src/component/fileattachdialogbtn';
 import Axios from 'axios';
 import { useForm } from "react-hook-form";
 import { FormInputText } from "../src/component/FormInputText";
@@ -13,6 +11,7 @@ import {FormInputDropdown} from '../src/component/FormInputDropdown'
 import Router from 'next/router';
 import Header from '../src/fix/Header';
 import Leftside from '../src/fix/Leftside1';
+import ImgUpload from '../src/component/ImgUploadV2';
 
 
 interface IFormInput {
@@ -47,12 +46,14 @@ goal_price: "",
 plan_contents: "",
 plan_exception: "",
 plan_file: "",
+
 };
 
 export const planInfoWirte = ()=> {
     let boxprops ={ width:400, height:150};
     const methods = useForm({ defaultValues: defaultValues });
     const { handleSubmit, reset, control, setValue } = methods;
+
     const onSubmit = (data: IFormInput) => {
         Axios.post("/api/getPlanInfo", {data}).then((res)=>{
             if(res.status == 200){
@@ -109,8 +110,7 @@ export const planInfoWirte = ()=> {
 
                 <div className={sty.body_row4}>
                     <div className={sty.body_row_subitem1}>공연이미지</div>
-                    <div className={sty.body_row_subitem2}><ReadOnlyTextFields labeltext={"샤이니.jpg"}/></div>
-                    <div style={{margin:"15px 0px 0px"}}> <FormDialog2 /></div>                    
+                    <div style={{margin:"15px 0px 0px"}}> <ImgUpload /></div>                
                 </div>
                 <div className={sty.body_row5}>
                     <div className={sty.body_row_subitem1}>협업팀 초대</div>

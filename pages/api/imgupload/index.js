@@ -35,8 +35,6 @@ const app = nextConnect({
   },
 });
 
-console.log('Hello');
-
 var upload = multer({ storage: storage });
 app.post(upload.array("file"), function (req, res) {  
   res.json(req.files.map((v)=>v.filename))
