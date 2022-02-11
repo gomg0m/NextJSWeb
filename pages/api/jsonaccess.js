@@ -36,7 +36,7 @@ export default function handler(req, res) {
     // }
 
     if(req.method == 'POST') {
-        const user_query = 'UPDATE filename SET fn = ? WHERE id = ?';
+        const user_query = 'UPDATE IMAGE SET file_name = ? WHERE file_id = ?';
         let fileName = JSON.stringify(req.body.newThumb);
         let keyword = "1";
         let params = [fileName, keyword];

@@ -18,7 +18,7 @@ connection.connect(function(err) {
 
 export default function handler(req, res) {
     if(req.method =='GET'){
-        const user_query = 'SELECT * FROM filename';            
+        const user_query = 'SELECT * FROM IMAGE';            
         let params = ["1"];
         connection.query(user_query, params, function (error, result, fields){
             if (error) throw error;
