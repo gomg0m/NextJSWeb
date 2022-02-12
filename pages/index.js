@@ -1,4 +1,4 @@
-import TEST from './PlanInfoWriteTestV2';
+import TEST from './PlanInfoWrite';
 
 
 export default function T1(){
