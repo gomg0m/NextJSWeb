@@ -24,7 +24,7 @@ export const FormInputDatetimePicker = ({ name, control, label }: FormInputProps
               variant="outlined"      
               id="datetime-local"
               type="datetime-local"
-              defaultValue="2017-05-24T10:30"
+              // defaultValue="2017-05-24T10:30"
               fullWidth
               sx={{ width: 250 }}
               InputLabelProps={{

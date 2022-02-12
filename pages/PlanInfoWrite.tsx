@@ -53,7 +53,8 @@ type Information = { src:string; width:number; height:number };
 
 var pics = new Array<Information>(); 
 var pic_count:number = 0 ;
-  
+var imgUploadFileList:string;
+
 const baseStyle = {
     display : 'flex',
     align: 'center',
@@ -124,13 +125,13 @@ const ImgUpload = () => {
         ////////
 
         ///MySQL에 지워진 파일을 반영한 이미지 파일이름 배열 데이터 저장    
-        console.log("deleted 배열", newThumb);
-        Axios.post("/api/jsonaccess", {newThumb}).then((res)=>{
-        if(res.status == 200){
-            //login 성공
-            console.log("삭제후 DB결과",res.data.users);
-        }
-        });
+        // console.log("deleted 배열", newThumb);
+        // Axios.post("/api/jsonaccess", {newThumb}).then((res)=>{
+        // if(res.status == 200){
+        //     //login 성공
+        //     console.log("삭제후 DB결과",res.data.users);
+        // }
+        // });
 
     }; //End Of deleteHandler
   
@@ -148,18 +149,19 @@ const ImgUpload = () => {
             {///let은 Block 내에서만 작용하기 떄문에 newThumb을 사용하려면 이렇게 빈 블럭구분을 사용해야 함.
                 let newThumb = [...thumb]; 
                 Axios.post<any>("/api/imgupload", formData, config).then((res) => {                 
-                    setThumb([...thumb, ...res.data]);        
+                    setThumb([...thumb, ...res.data]);  
                     newThumb =[...thumb, ...res.data];
                     console.log("new thumb list", newThumb);
-
-                    /////MySQL에 Upload한 이미지 파일이름 배열 데이터 저장    
-                    Axios.post("/api/jsonaccess", {newThumb}).then((res)=>{
-                        if(res.status == 200){
-                            //login 성공
-                            console.log("Upload DB저장 결과", res.data.user);
-                        }
-                    });
-                    /////
+                    imgUploadFileList=JSON.stringify(newThumb);
+                    console.log("imgUplist", imgUploadFileList);
+                    // /////MySQL에 Upload한 이미지 파일이름 배열 데이터 저장    
+                    // Axios.post("/api/jsonaccess", {newThumb}).then((res)=>{
+                    //     if(res.status == 200){
+                    //         //login 성공
+                    //         console.log("Upload DB저장 결과", res.data.user);
+                    //     }
+                    // });
+                    // /////
                 });    
             }
         }, [thumb]
@@ -215,18 +217,29 @@ const ImgUpload = () => {
 
 
 
-/////=========== PlanInfo 페이지 메인 =====================================
-export const planInfoWirte = ()=> {
+/////=========== PlanInfoWrite 페이지 메인 =====================================
+export const planInfoWirteWrite = ()=> {
     let boxprops ={ width:400, height:150};
     const methods = useForm({ defaultValues: defaultValues });
     const { handleSubmit, reset, control, setValue } = methods;
 
     const onSubmit = (data: IFormInput) => {
-        Axios.post("/api/getuser", {data}).then((res)=>{
+        data.plan_id = "9262333";
+        data.plan_image=imgUploadFileList; //Dropzone에서 등록된 image file list를 data에 추가함.
+        console.log("Form data", data);
+        Axios.post("/api/insertPlanInfo", {data}).then((res)=>{
             if(res.status == 200){
                 //login 성공
                 console.log(res.data.users);
-                Router.push("/PlanInfoPanel")
+                Axios.get("/api/InsertPlanInfo").then((res)=>{
+                    if(res.status == 200){
+                        //login 성공
+                        console.log("last plan_id", res.data.users);
+                        let routname = '/PlanInfoPanel/'+String(res.data.users[0].plan_id);
+                        Router.push(routname);
+                        console.log("routing plan_id", routname);
+                    }
+                });
             }
         });
     }
@@ -337,4 +350,4 @@ export const planInfoWirte = ()=> {
     );
 }
 
-export default planInfoWirte;
+export default planInfoWirteWrite;

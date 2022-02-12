@@ -1,7 +1,7 @@
 import React, { useState,useEffect, useCallback } from "react";
-import Header from '../src/fix/Header';
-import Leftside from '../src/fix/Leftside1';
-import sty from '../src/css/TheaterInfoPanel.module.css';
+import Header from '../../src/fix/Header';
+import Leftside from '../../src/fix/Leftside1';
+import sty from '../../src/css/TheaterInfoPanel.module.css';
 import Link from 'next/link';
 import Button from '@mui/material/Button';
 
@@ -19,6 +19,7 @@ import Gallery from "react-photo-gallery";
 import Carousel, { Modal, ModalGateway } from "react-images";
 
 import Axios from 'axios';
+import { useRouter } from "next/router";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -52,88 +53,34 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   
   const photos = [
     {
-      src: "images/OlympicHallDrawing1.png",
+      src: "/images/OlympicHallDrawing1.png",
       width: 4,
       height: 3
     },
     {
-      src: "images/OlympicHallDrawing2.png",
+      src: "/images/OlympicHallDrawing2.png",
       width: 1,
       height: 1
     },
     {
-      src: "images/OlympicHallDrawing3.png",
+      src: "/images/OlympicHallDrawing3.png",
       width: 3,
       height: 4
     },
     {
-      src: "images/OlympicHallDrawing4.png",
+      src: "/images/OlympicHallDrawing4.png",
       width: 3,
       height: 4
     },
   ];
   
-function PlanInfoTable() {
-  
-    const [list, setList] = useState([
-      {name: '공연장르', content: ''},
-      {name: '공연명', content: ''},
-      {name: '공연시작시간', content: ''},
-      {name: '공연종료시간', content: ''},
-      {name: '공연이미지', content: ''},
-      {name: '공연시간', content: ''},
-      {name: '공연횟수', content: ''},
-      {name: '공연예산', content: ''},
-      {name: '목표금액', content: ''},
-      {name: '목표관객수', content: ''},
-      {name: '공연내용', content: ''},
-      {name: '공연특이사항', content: ''},
-      {name: '공연첨부파일', content: ''}
-    ]);
-  
-    var obj = 
-        [
-        {name: '공연장르', content: ''},
-        {name: '공연명', content: ''},
-        {name: '공연예상일정', content: ''},
-        {name: '공연시간', content: ''},
-        {name: '공연횟수', content: ''},
-        {name: '공연예산', content: ''},
-        {name: '목표금액', content: ''},
-        {name: '목표관객수', content: ''},
-        {name: '공연내용', content: ''},
-        {name: '공연특이사항', content: ''},
-        {name: '공연첨부파일', content: ''}
-      ];
-  
-     
-    function getData(){
-      Axios.get("/api/getPlanInfo").then((res) =>{
-      obj[0].content = res.data.users[0].plan_genre;
-      obj[1].content = res.data.users[0].plan_name;
-      obj[2].content = res.data.users[0].plan_start + " ~ " + res.data.users[0].plan_end;
-      obj[3].content = res.data.users[0].plan_time;
-      obj[4].content = res.data.users[0].plan_number;
-      obj[5].content = res.data.users[0].plan_budget;
-      obj[6].content = res.data.users[0].goal_people;
-      obj[7].content = res.data.users[0].goal_price;
-      obj[8].content = res.data.users[0].plan_contents;
-      obj[9].content = res.data.users[0].plan_exception;
-      obj[10].content = res.data.users[0].plan_file;
-  
-      setList( obj );
-      });
-    }
-
-    useEffect(() => {
-        getData();
-    }, []);
-      
+function PlanInfoTable(props) {
+ 
     return (
       <TableContainer component={Paper}>
         <Table aria-label="customized table">
           <TableBody>          
-            {list.map((row) => (
+            {props.tableContents.map((row) => (
               <TableRow key={row.name}>
                 <StyledTableCell component="th" scope="row"> {row.name} </StyledTableCell>
                 <StyledTableCell2 align="left">{row.content}</StyledTableCell2>
@@ -148,7 +95,7 @@ function PlanInfoTable() {
 
   
     
-function PlanFilePicture() {
+function PlanFilePicture(props) {
     const [currentImage, setCurrentImage] = useState(0);
     const [viewerIsOpen, setViewerIsOpen] = useState(false);
 
@@ -185,7 +132,7 @@ function PlanFilePicture() {
 
 
 
-function PlanInfoPicture() {
+function PlanInfoPicture(props) {
     const [currentImage, setCurrentImage] = useState(0);
     const [viewerIsOpen, setViewerIsOpen] = useState(false);
   
@@ -201,13 +148,13 @@ function PlanInfoPicture() {
     
     return (
       <div>
-        <Gallery photos={photos} onClick={openLightbox} />
+        <Gallery photos={props.photos} onClick={openLightbox} />
         <ModalGateway>
           {viewerIsOpen ? (
             <Modal onClose={closeLightbox}>
               <Carousel
                 currentIndex={currentImage}
-                views={photos.map((x) => ({
+                views={props.photos.map((x) => ({
                   ...x,
                   srcset: x.srcSet,
                   caption: x.title
@@ -220,11 +167,84 @@ function PlanInfoPicture() {
     );
 }
 
-export default function PlanInfoPanel(){       
-    return(
+
+
+/////=========== PlanInfoPanel 메인 페이지 ================================
+export default function PlanInfoPanel(){ 
+  const router = useRouter();
+  const {planInfoPanel_id} = router.query;
+  const [planInfoTable, setPlanInfoTable] = useState([
+    {name: '공연장르', content: ''},
+    {name: '공연명', content: ''},
+    {name: '공연시간', content: ''},
+    {name: '공연횟수', content: ''},
+    {name: '공연예산', content: ''},
+    {name: '목표금액', content: ''},
+    {name: '목표관객수', content: ''},
+    {name: '공연내용', content: ''},
+    {name: '공연특이사항', content: ''},
+  ]);
+  const [photos, setPhotos] = useState([]);
+  const [firstImage, setFirstImage] = useState();
+
+  var obj = [
+    {name: '공연장르', content: ''},
+    {name: '공연명', content: ''},
+    {name: '공연시간', content: ''},
+    {name: '공연횟수', content: ''},
+    {name: '공연예산', content: ''},
+    {name: '목표금액', content: ''},
+    {name: '목표관객수', content: ''},
+    {name: '공연내용', content: ''},
+    {name: '공연특이사항', content: ''}
+  ];
+
+  function getData(id){
+      Axios.post("/api/getPlanInfo", {id} ).then((res) =>{
+        console.log(res.data.users);
+        obj[0].content = res.data.users[0].plan_genre;
+        obj[1].content = res.data.users[0].plan_name;
+        obj[2].content = res.data.users[0].plan_start + " ~ " + res.data.users[0].plan_end + '( '+res.data.users[0].plan_time+' 시간)';
+        obj[3].content = res.data.users[0].plan_number;
+        obj[4].content = res.data.users[0].plan_budget;
+        obj[5].content = res.data.users[0].goal_people;
+        obj[6].content = res.data.users[0].goal_price;
+        obj[7].content = res.data.users[0].plan_contents;
+        obj[8].content = res.data.users[0].plan_exception;
+
+        setPlanInfoTable(obj);
+        let parsedPhotos = JSON.parse(res.data.users[0].plan_image);
+        let photosFormat =[];
+        
+        /////파싱된 이미지 파일이름 배열을 react-Gallery 형식에 맞는 photosFormat로 변환 
+        parsedPhotos.map((photo)=>{
+          photo = '/uploads/'+ photo;
+          console.log('photo3',photo);
+          photosFormat.push({src:photo,width:3,height:3});
+        });
+        /////
+
+        setPhotos(photosFormat);
+        setFirstImage('/uploads/'+parsedPhotos[0]);  //대표이미지이름에 서버 저장경로 붙임.
+      });
+  }
+
+  useEffect(()=>{
+    if(planInfoPanel_id)
+    {
+     
+      getData(planInfoPanel_id);
+
+    }
+
+    }
+  ,[planInfoPanel_id]);
+  
+  return(
         <>
         <Header />
         <Leftside />
+        
         <div className={sty.infoframe}>
             <div
                 style={{
@@ -237,11 +257,10 @@ export default function PlanInfoPanel(){
             <div className={sty.layout_top}>
                 <div className={sty.layout_top_txt1}>공연기획 정보</div>
                 <div className={sty.layout_top_txt2}>공연기획 정보</div>
-                <div className={sty.layout_top_image}><img src="images/planPhoto1.png" alt="Map" width={1300}></img></div>
+                <div className={sty.layout_top_image}><img src={firstImage} alt="Map" width={1300}></img></div>
 
-                <div className={sty.layout_body_drawing}> <PlanInfoPicture /> </div>
-                {/* 테이블 만들기 -> PlanInfoTable*/}
-                <div className={sty.layout_top_table}><PlanInfoTable /></div>
+                <div className={sty.layout_body_drawing}> <PlanInfoPicture photos={photos}/> </div>
+                <div className={sty.layout_top_table}><PlanInfoTable tableContents={planInfoTable}/></div>
 
                 <div
                     style={{
@@ -263,5 +282,5 @@ export default function PlanInfoPanel(){
         </div>
     </div> 
     </>               
-    );
+  );
 }

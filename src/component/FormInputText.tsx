@@ -25,4 +25,4 @@ export const FormInputText = ({ name, control, label }: FormInputProps) => {
         )}
         />
       );
-    };
+};
