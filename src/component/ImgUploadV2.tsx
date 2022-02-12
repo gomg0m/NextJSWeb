@@ -62,8 +62,8 @@ import Axios from "axios";
     setThumb(newThumb);
     
     ////미리 저장된 지워질 이미지을 Sever측에 삭제 요청 API를 호출한다.
-     const data = "C:/Web/nextjsweb/public/uploads/"+ delThumb;
-     console.log("deleting file", delThumb);
+     const data = "d:/Web_dev/nextjsweb/public/uploads/"+ delThumb;
+     console.log("deleting file", data);
      
      Axios.post("/api/deletefile", {data}).then((res)=>{
        if(res.status == 200){

@@ -18,8 +18,8 @@ connection.connect(function(err) {
 
 export default function handler(req, res) {
     if(req.method =='GET'){
-        const user_query = 'SELECT * FROM IMAGE';            
-        let params = ["1"];
+        const user_query = 'SELECT plan_image FROM PLANINFO WHERE plan_id = ?';            
+        let params = ["8"];
         connection.query(user_query, params, function (error, result, fields){
             if (error) throw error;
             res.status(200).json({ users: result})

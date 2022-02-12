@@ -29,7 +29,10 @@ export default function handler(req, res) {
   }
 
   if(req.method == 'POST') {
-    const user_query = 'INSERT INTO PLANINFO VALUES (null, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+    /////plan_image항목은 뺌. File dropzone부분에서 api호출하기 때문
+    const user_query = 'INSERT INTO PLANINFO'
+    + ' (plan_genre, plan_name, plan_start, plan_end, plan_time, plan_number, plan_budget, goal_people, goal_price, plan_contents, plan_exception, plan_file)'
+    + ' VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
     let id = req.body.data.plan_id;
     let genre = req.body.data.plan_genre;
     let name = req.body.data.plan_name;
@@ -45,7 +48,8 @@ export default function handler(req, res) {
     let exception =req.body.data.plan_exception;
     let file = req.body.data.plan_file;
 
-    let params = [genre, name, start, end, image, time, number, budget, people, price, contents, exception, file];
+    let params = [genre, name, start, end, time, number, budget, people, price, contents, exception, file];
+
     console.log(req.body.data);
         connection.query(user_query, params, function (error, result, fields){
             if (error) throw error;

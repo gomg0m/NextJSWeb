@@ -36,9 +36,9 @@ export default function handler(req, res) {
     // }
 
     if(req.method == 'POST') {
-        const user_query = 'UPDATE IMAGE SET file_name = ? WHERE file_id = ?';
+        const user_query = 'UPDATE PLANINFO SET plan_image = ? WHERE plan_id = ?';
         let fileName = JSON.stringify(req.body.newThumb);
-        let keyword = "1";
+        let keyword = "8";
         let params = [fileName, keyword];
         console.log("DB요청 파일명 배열값", req.body.newThumb);
             connection.query(user_query, params, function (error, result, fields){
