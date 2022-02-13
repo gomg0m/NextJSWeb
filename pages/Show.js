@@ -31,7 +31,13 @@ function Show() {
   // Modal Open/Close
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const handleClose = (kkk) => {
+    console.log("kkk",kkk);
+    setOpen(false);
+  }
+  const handleClick=()=>{
+    handleClose("s");
+  }
 
   // Select information
   const [info, setInfo] = React.useState('');
@@ -132,7 +138,7 @@ function Show() {
             </label>
             
         
-            <Button className={styles.addcreatebutton} variant="contained">만들기</Button>
+            <Button className={styles.addcreatebutton} variant="contained" onClick={handleClick}>만들기</Button>
 
           </Box>
 

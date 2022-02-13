@@ -185,28 +185,28 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   const photos3 = [
     {
       src: "images/OlympicHallStage1.png",
-      width: 4,
-      height: 3
+      width: 0.4,
+      height: 0.3
     },
     {
       src: "images/OlympicHallStage2.png",
-      width: 1,
-      height: 1
+      width: 0.1,
+      height: 0.1
     },
     {
       src: "images/OlympicHallStage3.png",
-      width: 3,
-      height: 4
+      width: 0.3,
+      height: 0.4
     },
     {
       src: "images/OlympicHallStage4.png",
-      width: 4,
-      height: 3
+      width: 0.4,
+      height: 0.3
     },
     {
       src: "images/OlympicHallStage5.png",
-      width: 1,
-      height: 1
+      width: 0.1,
+      height: 0.1
     },
     {
       src: "images/OlympicHallStage6.png",
@@ -321,19 +321,19 @@ function TheaterDrawing() {
     setCurrentImage(0);
     setViewerIsOpen(false);
   };
-  
+
   return (
-    <div>
+    <div >
       <Gallery direction={"row"} photos={photos3} onClick={openLightbox} />
       <ModalGateway>
         {viewerIsOpen ? (
           <Modal onClose={closeLightbox}>
             <Carousel
               currentIndex={currentImage}
-              views={photos.map((x) => ({
+              views={photos3.map((x) => ({
                 ...x,
                 srcset: x.srcSet,
-                caption: x.title
+                caption: x.title,
               }))}
             />
           </Modal>
@@ -478,7 +478,7 @@ function TheaterPictureExternal() {
                 views={photos.map((x) => ({
                   ...x,
                   srcset: x.srcSet,
-                  caption: x.title
+                  caption: x.title,
                 }))}
               />
             </Modal>
@@ -558,9 +558,9 @@ export default function TheaterInfoPanel(){
                     }}></div>
             <div className={sty.layout_body} >
                 <div>공연장 도면</div>
-                <div className={sty.layout_body_drawing} ref={scrollRef} style={{ overflow: "auto" }}> <TheaterDrawing /> </div>
+                <div className={sty.layout_body_drawing} style={{ overflow: "auto", width:"1450px", height:"250px" }}> <TheaterDrawing /> </div>
                 <div>공연장 사진</div>
-                <div className={sty.layout_body_picture}> <TheaterPicture /> </div>
+                <div className={sty.layout_body_picture} style={{ overflow: "auto", width:"1450px", height:"250px" }}> <TheaterPicture /> </div>
             </div>
             <div className={sty.layout_bottom}>            
                 <Link href="/About">    
