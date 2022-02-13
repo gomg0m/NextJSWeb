@@ -1,13 +1,18 @@
 import React, { useState,useEffect, useCallback } from "react";
 import Header from '../src/fix/Header';
 import Link from 'next/link';
-import Button from '@mui/material/Button';
 import Axios from 'axios';
 
-import {Card, CardContent, CardMedia, Typography, CardActionArea, CardActions } from '@mui/material';
+import {Card, CardContent, CardMedia, CardActionArea, CardActions } from '@mui/material';
 import cardsty from "../src/css/card.module.css"
 
 import {FormInputDropdown} from '../src/component/FormInputDropdown'
+import styles from '../src/css/Show.module.css';
+import { Checkbox, FormControlLabel, Box, Button, Divider, Modal, Typography, InputLabel, MenuItem, 
+  FormControl, Select, TextField, Paper, InputBase, IconButton } from '@mui/material';
+import Router from "next/router";
+import SearchIcon from '@mui/icons-material/Search';
+import DialogNewProject from "./DialogNewProject";
 
 interface IFormInput {
   plan_id: string;
@@ -45,11 +50,8 @@ interface IFormInput {
   };
 
 
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-import Router from "next/router";
+
+
 
 function Combo(){
   const [age, setAge] = React.useState('');
@@ -78,6 +80,9 @@ function Combo(){
 export default function DashboardView(){ 
 
   const [list, setList] = useState([]);
+  const handleOpen = () => setOpen(true);
+  const handleClose = ()=> setOpen(false);
+  const [open, setOpen] = React.useState(false);
 
   function getData(){
       Axios.get("/api/getProjects").then((res) =>{
@@ -122,8 +127,19 @@ export default function DashboardView(){
   return(
         <>
         <Header />   
-            
-          <div className={cardsty.card_container} style= {{ position:"absolute", top:"100px", overflow:"auto", width:"1450px", height:"450px"}} >
+        <Box className={styles.showbackground} sx={{ width: 1365, height: '100%', backgroundColor: '#F6F7FB', }} />
+        <div className={styles.showsubtitle}>협업 공연</div>
+
+        <Button className={styles.addconcertbutton} variant="contained" onClick={handleOpen}>+ 새로운 공연 추가</Button>
+
+        <div className={styles.searchconcert}>
+          <Paper component="form" sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 250 }}>
+            <InputBase sx={{ ml: 1, flex: 1 }} placeholder="공연 검색" inputProps={{ 'aria-label': 'search google maps' }} />
+            <IconButton type="submit" sx={{ p: '10px' }} aria-label="search"> <SearchIcon /> </IconButton>
+          </Paper>
+        </div>     
+
+          <div className={cardsty.card_container} style= {{ position:"absolute", top:"300px", overflow:"auto", width:"1310px", height:"450px"}} >
             { 
             list.map((item)=>(
                 <Card className={cardsty.card_item} sx={{ minWidth: 345, minHeight: 350 }} >
@@ -161,6 +177,7 @@ export default function DashboardView(){
                 </Card>
             )) }
         </div>
+        < DialogNewProject open={open} close={handleClose}/>
       </>               
   );
 }
