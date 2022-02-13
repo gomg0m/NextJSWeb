@@ -118,12 +118,12 @@ export default function DashboardView(){
     console.log("id", routeTarget);
     Router.push(routeTarget);
   };
-
+  
   return(
         <>
         <Header />   
             
-          <div className={cardsty.card_container} >
+          <div className={cardsty.card_container} style= {{ position:"absolute", top:"100px", overflow:"auto", width:"1450px", height:"450px"}} >
             { 
             list.map((item)=>(
                 <Card className={cardsty.card_item} sx={{ minWidth: 345, minHeight: 350 }} >
@@ -131,7 +131,7 @@ export default function DashboardView(){
                     <CardActions>
                       <CardMedia
                         component="img"
-                        height="240"
+                        height="150"
                         image={item.plan_firstimage}
                         alt="IU"
                         onClick={cardHandler}
