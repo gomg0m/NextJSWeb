@@ -27,6 +27,27 @@ import Paper from '@mui/material/Paper';
 import Gallery from "react-photo-gallery";
 import Carousel, { Modal, ModalGateway } from "react-images";
 
+import { useRef} from "react";
+
+export function useHorizontalScroll() {
+  const elRef = useRef();
+  useEffect(() => {
+    const el = elRef.current;
+    if (el) {
+      const onWheel = e => {
+        if (e.deltaY == 0) return;
+        e.preventDefault();
+        el.scrollTo({
+          left: el.scrollLeft + e.deltaY,
+          behavior: "smooth"
+        });
+      };
+      el.addEventListener("wheel", onWheel);
+      return () => el.removeEventListener("wheel", onWheel);
+    }
+  }, []);
+  return elRef;
+}
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -94,6 +115,27 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
       width: 4,
       height: 3
     },
+    {
+      src: "images/OlympicHallInternal4.png",
+      width: 4,
+      height: 3
+    },
+    {
+      src: "images/OlympicHallInternal5.png",
+      width: 4,
+      height: 3
+    },
+    {
+      src: "images/OlympicHallInternal6.png",
+      width: 4,
+      height: 3
+    },
+    {
+      src: "images/OlympicHallInternal7.png",
+      width: 4,
+      height: 3
+    },
+
     {
       src: "images/OlympicHallInternal4.png",
       width: 4,
@@ -282,7 +324,7 @@ function TheaterDrawing() {
   
   return (
     <div>
-      <Gallery photos={photos} onClick={openLightbox} />
+      <Gallery direction={"row"} photos={photos3} onClick={openLightbox} />
       <ModalGateway>
         {viewerIsOpen ? (
           <Modal onClose={closeLightbox}>
@@ -483,13 +525,14 @@ function TheaterPictureStage() {
     );
   }  
 
-export default function TheaterInfoPanel(){       
+export default function TheaterInfoPanel(){    
+  const scrollRef = useHorizontalScroll();  
+
   return(
         <>
         <Header />
         <Leftside />
         <div className={sty.infoframe}>
-            
             <div
                 style={{
                     width: "1496px",
@@ -513,9 +556,9 @@ export default function TheaterInfoPanel(){
                         lineHeight: "0.2em",
                         margin: "40px 0 20px",
                     }}></div>
-            <div className={sty.layout_body}>
+            <div className={sty.layout_body} >
                 <div>공연장 도면</div>
-                <div className={sty.layout_body_drawing}> <TheaterDrawing /> </div>
+                <div className={sty.layout_body_drawing} ref={scrollRef} style={{ overflow: "auto" }}> <TheaterDrawing /> </div>
                 <div>공연장 사진</div>
                 <div className={sty.layout_body_picture}> <TheaterPicture /> </div>
             </div>

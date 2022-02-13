@@ -1,20 +1,20 @@
 import React, { useState,useEffect, useCallback } from "react";
-import Header from '../../src/fix/Header';
-import Leftside from '../../src/fix/Leftside1';
-import sty from '../../src/css/TheaterInfoPanel.module.css';
+import Header from '../../../src/fix/Header';
+import Leftside from '../../../src/fix/Leftside1';
+import sty from '../../../src/css/TheaterInfoPanel.module.css';
 import Link from 'next/link';
 import Button from '@mui/material/Button';
 import Axios from 'axios';
 import { useRouter } from "next/router";
 
-import ListViewTable from '../../src/component/ListViewTable';
-import ListViewPicture from '../../src/component/ListViewPicture';
+import ListViewTable from '../../../src/component/ListViewTable';
+import ListViewPicture from '../../../src/component/ListViewPicture';
 
 
 /////=========== PlanInfoPanel 메인 페이지 ================================
 export default function PlanInfoPanel(){ 
   const router = useRouter();
-  const {planInfoPanel_id} = router.query;
+  const {Panel_Id} = router.query;
   const [planInfoTable, setPlanInfoTable] = useState([
     {name: '공연장르', content: ''},
     {name: '공연명', content: ''},
@@ -29,24 +29,19 @@ export default function PlanInfoPanel(){
   const [photos, setPhotos] = useState([]);
   const [firstImage, setFirstImage] = useState();
 
-  var obj = [
-    {name: '공연장르', content: ''},
-    {name: '공연명', content: ''},
-    {name: '공연시간', content: ''},
-    {name: '공연횟수', content: ''},
-    {name: '공연예산', content: ''},
-    {name: '목표금액', content: ''},
-    {name: '목표관객수', content: ''},
-    {name: '공연내용', content: ''},
-    {name: '공연특이사항', content: ''}
-  ];
+  var obj = [...planInfoTable]; //state인 planInfoTable의 변경에 사용할 변수
 
+  
   function getData(id){
+    console.log('pageid',Panel_Id);
       Axios.post("/api/getPlanInfo", {id} ).then((res) =>{
-        console.log(res.data.users);
+        //// 가져온 DB값으로 PlanInfoTable 변경 => ListViewTable props로 전달
         obj[0].content = res.data.users[0].plan_genre;
         obj[1].content = res.data.users[0].plan_name;
-        obj[2].content = res.data.users[0].plan_start + " ~ " + res.data.users[0].plan_end + '( '+res.data.users[0].plan_time+' 시간)';
+        obj[2].content = res.data.users[0].plan_start
+                          + " ~ " 
+                          + res.data.users[0].plan_end 
+                          + '( '+res.data.users[0].plan_time+' 시간)';
         obj[3].content = res.data.users[0].plan_number;
         obj[4].content = res.data.users[0].plan_budget;
         obj[5].content = res.data.users[0].goal_people;
@@ -55,6 +50,8 @@ export default function PlanInfoPanel(){
         obj[8].content = res.data.users[0].plan_exception;
 
         setPlanInfoTable(obj);
+
+        //// 가져온 DB값으로 FirstImage 및 photos 변경 => <img> 및 ListViewPicture props로 전달 /////
         let parsedPhotos = JSON.parse(res.data.users[0].plan_image);
         let photosFormat =[];
         
@@ -72,16 +69,17 @@ export default function PlanInfoPanel(){
   }
 
   useEffect(()=>{
-    if(planInfoPanel_id)
+    if(Panel_Id)
     {
      
-      getData(planInfoPanel_id);
+      getData(Panel_Id);
 
     }
 
     }
-  ,[planInfoPanel_id]);
+  ,[Panel_Id]);
   
+ 
   return(
         <>
         <Header />
@@ -101,7 +99,7 @@ export default function PlanInfoPanel(){
                 <div className={sty.layout_top_txt2}>공연기획 정보</div>
                 <div className={sty.layout_top_image}><img src={firstImage} alt="Map" width={1300}></img></div>
 
-                <div className={sty.layout_body_drawing}> <ListViewPicture photos={photos}/> </div>
+                <div className={sty.layout_body_drawing} > <ListViewPicture photos={photos}/> </div>
                 <div className={sty.layout_top_table}><ListViewTable tableContents={planInfoTable}/></div>
 
                 <div
