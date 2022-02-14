@@ -1,4 +1,4 @@
-import React, { useState,useEffect, useCallback } from "react";
+import React, { useState,useEffect, useCallback, useMemo } from "react";
 import Header from '../src/fix/Header';
 import Link from 'next/link';
 import Axios from 'axios';
@@ -13,6 +13,7 @@ import { Checkbox, FormControlLabel, Box, Button, Divider, Modal, Typography, In
 import Router from "next/router";
 import SearchIcon from '@mui/icons-material/Search';
 import DialogNewProject from "./DialogNewProject";
+
 
 interface IFormInput {
   plan_id: string;
@@ -50,9 +51,6 @@ interface IFormInput {
   };
 
 
-
-
-
 function Combo(){
   const [age, setAge] = React.useState('');
 
@@ -76,6 +74,8 @@ function Combo(){
 </FormControl>
 );
 }
+
+
 /////=========== Dashboard 메인 페이지 ================================
 export default function DashboardView(){ 
 
@@ -88,29 +88,6 @@ export default function DashboardView(){
       Axios.get("/api/getProjects").then((res) =>{
         console.log("projects get data",res.data.users);
         setList(res.data.users);
-          //// 가져온 DB값으로 PlanInfoTable 변경 => ListViewTable props로 전달
-          // obj[0].content = res.data.users[0].plan_genre;
-          // obj[1].content = res.data.users[0].plan_name;
-          // obj[2].content = res.data.users[0].plan_start
-          //                   + " ~ " 
-          //                   + res.data.users[0].plan_end 
-          //                   + '( '+res.data.users[0].plan_time+' 시간)';
-          // obj[3].content = res.data.users[0].plan_firstimage;
-
-          //// 가져온 DB값으로 FirstImage 및 photos 변경 => <img> 및 ListViewPicture props로 전달 /////
-          //let parsedPhotos = JSON.parse(res.data.users[0].plan_firstimage);
-          
-          /////파싱된 이미지 파일이름 배열을 react-Gallery 형식에 맞는 photosFormat로 변환 
-          // parsedPhotos.map((photo)=>{
-          //   photo = '/uploads/'+ photo;
-          //   console.log('photo3',photo);
-          //   photosFormat.push({src:photo,width:3,height:3});
-          // });
-          // /////
-
-          // setPhotos(photosFormat);
-          // setFirstImage('/uploads/'+parsedPhotos[0]);  //대표이미지이름에 서버 저장경로 붙임.
-        // });
     });
   }
 
@@ -123,6 +100,31 @@ export default function DashboardView(){
     console.log("id", routeTarget);
     Router.push(routeTarget);
   };
+
+  interface IDialogueNewProject {
+    prj_genre: string,
+    prj_name: string,
+    prj_start: string,
+    prj_end: string,
+    prj_firstimage: string
+  }
+
+  function handleDialogData(diglogdata:IDialogueNewProject){
+    console.log('handleDialogData',diglogdata);
+    Axios.post("/api/insertPrjInfo", {diglogdata}).then((res)=>{
+      if(res.status == 200){
+          //login 성공
+          console.log(res.data.users);
+          Axios.get("/api/getProjects").then((res)=>{
+              if(res.status == 200){
+                  //login 성공
+                  setList(res.data.users);
+              }
+          });
+      }
+    });
+
+  }
   
   return(
         <>
@@ -177,7 +179,7 @@ export default function DashboardView(){
                 </Card>
             )) }
         </div>
-        < DialogNewProject open={open} close={handleClose}/>
+        < DialogNewProject open={open} close={handleClose} getdialogdata={handleDialogData}/>
       </>               
   );
 }
