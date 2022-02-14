@@ -88,29 +88,6 @@ export default function DashboardView(){
       Axios.get("/api/getProjects").then((res) =>{
         console.log("projects get data",res.data.users);
         setList(res.data.users);
-          //// 가져온 DB값으로 PlanInfoTable 변경 => ListViewTable props로 전달
-          // obj[0].content = res.data.users[0].plan_genre;
-          // obj[1].content = res.data.users[0].plan_name;
-          // obj[2].content = res.data.users[0].plan_start
-          //                   + " ~ " 
-          //                   + res.data.users[0].plan_end 
-          //                   + '( '+res.data.users[0].plan_time+' 시간)';
-          // obj[3].content = res.data.users[0].plan_firstimage;
-
-          //// 가져온 DB값으로 FirstImage 및 photos 변경 => <img> 및 ListViewPicture props로 전달 /////
-          //let parsedPhotos = JSON.parse(res.data.users[0].plan_firstimage);
-          
-          /////파싱된 이미지 파일이름 배열을 react-Gallery 형식에 맞는 photosFormat로 변환 
-          // parsedPhotos.map((photo)=>{
-          //   photo = '/uploads/'+ photo;
-          //   console.log('photo3',photo);
-          //   photosFormat.push({src:photo,width:3,height:3});
-          // });
-          // /////
-
-          // setPhotos(photosFormat);
-          // setFirstImage('/uploads/'+parsedPhotos[0]);  //대표이미지이름에 서버 저장경로 붙임.
-        // });
     });
   }
 
@@ -127,20 +104,21 @@ export default function DashboardView(){
   interface IDialogueNewProject {
     prj_genre: string,
     prj_name: string,
-    prj_time: string,
-    prj_image: string
+    prj_start: string,
+    prj_end: string,
+    prj_firstimage: string
   }
 
   function handleDialogData(diglogdata:IDialogueNewProject){
     console.log('handleDialogData',diglogdata);
-    Axios.post("/api/insertPrjInfo", {data}).then((res)=>{
+    Axios.post("/api/insertPrjInfo", {diglogdata}).then((res)=>{
       if(res.status == 200){
           //login 성공
           console.log(res.data.users);
-          Axios.get("/api/InsertPrjInfo").then((res)=>{
+          Axios.get("/api/getProjects").then((res)=>{
               if(res.status == 200){
                   //login 성공
-                  Axios.get
+                  setList(res.data.users);
               }
           });
       }
