@@ -8,7 +8,13 @@ import FormDialog2 from '../src/component/fileattachdialogbtn';
 import Axios from 'axios';
 import { useForm } from "react-hook-form";
 import { FormInputText } from "../src/component/FormInputText";
+import {FormInputMultilineText} from '../src/component/FormInputMultilineText'
 import Router from 'next/router';
+import { useState, useCallback, useEffect, useMemo } from "react";
+import { useDropzone } from 'react-dropzone';
+import { IconButton } from "@material-ui/core";
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
+
 
 interface IFormInput {
     hope_id: string;
@@ -38,26 +44,182 @@ interface IFormInput {
     hope_reason: "",
     hope_reference: "",
     hope_addtime: ""
-    };
+};
 
-    export const HopeInfoWirte = () => {
+    ///Dropzone에 사용할 변수
+type Information = { src:string; width:number; height:number };
+
+var pics = new Array<Information>(); 
+var pic_count:number = 0 ;
+var imgUploadFileList:string;
+
+const baseStyle = {
+    display : 'flex',
+    align: 'center',
+    padding: '2px',
+    borderWidth: 2,
+    borderRadius: 2,
+    borderColor: '#eeeeee',
+    borderStyle: 'dashed',
+    backgroundColor: '#fafafa',
+    color: '#bdbdbd',
+    transition: 'border .3s ease-in-out',
+    width: '300px',
+    height: '40px',
+    margin: "-10px 30px 0px",
+    font: 'bold 0.7em/1em areal',
+};
+    
+const activeStyle = {
+    borderColor: '#2196f3'
+};
+    
+const acceptStyle = {
+    borderColor: '#00e676'
+};
+    
+const rejectStyle = {
+    borderColor: '#ff1744'
+};
+    
+
+//---------------- Image File Drag&Drop Component ----------------
+const ImgUpload = () => {
+
+const [thumb, setThumb] = useState<string[]>([]);
+const [progress, setProgress] = useState<number>(0);
+  
+//--- 이미지 thumbnail의 Delete Icon Button의 이벤트 핸들러
+const deleteHandler =(index) =>{
+    console.log("deleting index", index);
+    //지워질 이미지 이름 저장.
+    let delThumb = thumb[index];
+
+    //이미지 스테이트에 들어있는 모든 이미지 이름을 복사해서
+    // newThemb이라는 배열에 넣는다.
+    let newThumb = [...thumb];
+
+    //newThumb배열안에 있는 파일 이름 중 
+    //클릭한 인덱스의 파일이름을 지워줌
+    newThumb.splice(index, 1);
+
+    //새로운 이미지 이름 배열인 newThumb으로
+    //setThumb 해준다.
+    setThumb(newThumb);
+        
+    ////미리 저장된 지워질 이미지을 Sever측에 삭제 요청 API를 호출한다.
+    const data = "C:/Web/nextjsweb/public/uploads/"+ delThumb;
+    console.log("deleting file", data);
+        
+    Axios.post("/api/deletefile", {data}).then((res)=>{
+        if(res.status == 200){
+        //login 성공
+        console.log("파일삭제 결과", res.data.users);
+        }
+    });    
+}; //End Of deleteHandler
+
+//--- Dropzone Area Drop시의 이벤트 핸들러
+const onDrop = useCallback(
+    acceptedFiles => {
+        const formData = new FormData();
+        const config = { headers: { "content-type": "multipart/form-data" } }
+
+        acceptedFiles.forEach((file) => {        
+            formData.append("file", file);
+            console.log("acceptFilesNum",acceptedFiles);
+        })
+
+        {///let은 Block 내에서만 작용하기 떄문에 newThumb을 사용하려면 이렇게 빈 블럭구분을 사용해야 함.
+            let newThumb = [...thumb]; 
+            Axios.post<any>("/api/imgupload", formData, config).then((res) => {                 
+                setThumb([...thumb, ...res.data]);  
+                newThumb =[...thumb, ...res.data];
+                console.log("new thumb list", newThumb);
+                imgUploadFileList=JSON.stringify(newThumb);
+                console.log("imgUplist", imgUploadFileList);
+            });    
+        }
+    }, [thumb]
+)
+   
+//--- Dropzon Area 설정 및 작동 부분 
+const {getRootProps,getInputProps,isDragActive, isDragAccept,isDragReject} = useDropzone({onDrop,accept: 'image/jpeg, image/png', multiple:true});
+
+const style = useMemo(() => ({
+    ...baseStyle,
+    ...(isDragActive ? activeStyle : {}),
+    ...(isDragAccept ? acceptStyle : {}),
+    ...(isDragReject ? rejectStyle : {})
+    }), 
+    [
+        isDragActive,
+        isDragReject,
+        isDragAccept
+    ]
+);
+
+return (  
+    <div style={{display:"flex"}}>
+        <div>      
+            <div {...getRootProps({style})} >    
+            <input {...getInputProps()} />
+            {
+                isDragActive ?
+                <p>여기에 드롭!</p> :
+                <p>파일 드래그 또는 클릭</p>         
+            }      
+        </div>
+    </div>
+    <div style={{margin:"0px 15px 0px", display:"flex"}}>
+        {thumb &&
+            thumb.map((item: string, index: number) => {
+                return (              
+                    <div>                  
+                        <img src={`/uploads/${item}`} height="50" alt="업로드이미지"></img>
+                        <IconButton color="primary" aria-label="upload picture" component="span">
+                            <HighlightOffIcon onClick={()=> deleteHandler(index)}/>
+                        </IconButton>                                    
+                    </div>
+                );
+            })
+        }
+        </div>
+    </div>  
+);
+};
+
+
+/////=========== HopeInfoWrite 페이지 메인 ============================
+export const HopeInfoWrite = () => {
     let boxprops ={ width:400, height:150};
     const methods = useForm({ defaultValues: defaultValues });
     const { handleSubmit, reset, control, setValue } = methods;
+
     const onSubmit = (data: IFormInput) => {
-        Axios.post("/api/getHopeInfo", {data}).then((res)=>{
+        data.hope_image=imgUploadFileList; //Dropzone에서 등록된 image file list를 data에 추가함.
+        console.log("Form data", data);
+        Axios.post("/api/insertHopeInfo", {data}).then((res)=>{
             if(res.status == 200){
                 //login 성공
                 console.log(res.data.users);
-                Router.push("/HopeInfoPanel")
+                Axios.get("/api/insertHopeInfo").then((res)=>{
+                    if(res.status == 200){
+                        //login 성공
+                        console.log("last hope_id", res.data.users);
+                        let routname = '/HopeInfo/'+String(res.data.users[0].hope_id);
+                        Router.push(routname);
+                        console.log("routing hope_id", routname);
+                    }
+                });
             }
         });
     }
-    
+
     return(
         <div>
-         <Header />
-         <Leftside />
+            <Header />
+            <Leftside />
         <div className={sty.infoframe}>
             <div
                 style={{
@@ -88,8 +250,7 @@ interface IFormInput {
                 </div>
                 <div className={sty.body_row2}>
                     <div className={sty.body_row_subitem1}>대표이미지</div>
-                    <div className={sty.body_row_subitem2}><ReadOnlyTextFields labeltext={"샤이니.jpg"}/></div>
-                    <div style={{margin:"15px 0px 0px"}}> <FormDialog2 /></div>                    
+                    <div style={{margin:"15px 0px 0px"}}> <ImgUpload /></div>                    
                 </div>
                 <div className={sty.body_row3}>
                     <div className={sty.body_row_subitem1}>세부내용</div>                     
@@ -101,7 +262,7 @@ interface IFormInput {
                 </div>
                 <div className={sty.body_row5}>
                     <div className={sty.body_row_subitem1}>특이사항 및 추가참고 사항</div>
-                    <div className={sty.body_row_subitem2} style={{width:"1100px", margin:"0px 30px 0px"}} ><FormInputText name="hope_exception" control={control} label="특이사항 및 추가 참고사항을 입력하세요"/></div>
+                    <div className={sty.body_row_subitem2} style={{width:"1100px", margin:"0px 30px 0px"}} ><FormInputMultilineText name="hope_exception" control={control} label="특이사항 및 추가 참고사항을 입력하세요"/></div>
                     <div style={{margin:"15px 0px 0px"}}> <FormDialog2 /></div>  
                 </div>
 
@@ -147,18 +308,18 @@ interface IFormInput {
                 </div>
                 <div className={sty.body_row10}>
                     <div className={sty.body_row_subitem1}>특이사항 및 추가참고 사항</div>
-                    <div className={sty.body_row_subitem2} style={{width:"1100px", margin:"0px 30px 0px"}} ><FormInputText name="hope_reference" control={control} label="특이사항 및 추가 참고사항을 입력하세요"/></div>
-                    <div style={{margin:"15px 0px 0px"}}> <FormDialog2 /></div>  
+                    <div className={sty.body_row_subitem2} style={{width:"1100px", margin:"0px 30px 0px"}} ><FormInputMultilineText name="hope_reference" control={control} label="특이사항 및 추가 참고사항을 입력하세요"/></div>
                 </div>
             </div>
 
             <div className={sty.button}>  
-                    <Button className={sty.notosanskr_bold_black_24px} style={{margin:"0px 20px 0px"}} onClick={() => reset()} variant={"contained"}>  취소 </Button>           
-                    <Button className={sty.notosanskr_bold_cyan_24px} style={{margin:"0px 20px 0px"}} onClick={handleSubmit(onSubmit)} variant={"contained"}>  저장하기 </Button>  
+                <Button className={sty.notosanskr_bold_black_24px} style={{margin:"0px 20px 0px"}} onClick={() => reset()} variant={"contained"}>  취소 </Button>           
+                <Button className={sty.notosanskr_bold_cyan_24px} style={{margin:"0px 20px 0px"}} onClick={handleSubmit(onSubmit)} variant={"contained"}>  저장하기 </Button>  
             </div>
             
         </div>
       </div>
     );
 }
-export default HopeInfoWirte;
+
+export default HopeInfoWrite;
