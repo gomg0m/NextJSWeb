@@ -1,0 +1,218 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans+KR:400,700,500");
+
+.fullbox{
+ 
+}
+
+.notosanskr_bold_black_24px {
+  color: #828282;
+  font-family: Noto Sans KR;
+  font-size: 18px;
+  font-weight: 500;
+  font-style: normal;
+  background: #ffff;
+  border-radius: 4px;
+  border: 1px solid #999999;
+}
+
+.notosanskr_bold_cyan_24px {
+  color: var(--white);
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-size: 18px;
+  font-weight: 500;
+  font-style: normal;
+  background: #2D9CDB;
+  border-radius: 4px;
+  border: 1px solid #999999;
+}
+
+.notosanskr_medium_black_16px {
+  color: var(--black);
+  font-family: var(--font-family-noto_sans_kr);
+  font-size: var(--font-size-s);
+  font-weight: 500;
+  font-style: normal;
+}
+
+.infoframe {
+  position: absolute;
+  width: 1496px;
+  left: 364px;
+  top: 176px;
+}
+
+.layout_top {
+  display: block;
+}
+
+.layout_top_txt1 {
+  color: rgb(134, 134, 134);
+  font-family: var(--font-family-noto_sans_kr);
+  font-size: 29px;
+  font-weight: 500;
+  font-style: normal;
+  margin-top: 107px;
+  margin-left: 24px;
+}
+.layout_top_txt2 {
+  color: black;
+  font-family: var(--font-family-noto_sans_kr);
+  font-size: 46px;
+  font-weight: 500;
+  font-style: normal;
+  margin-top: 20px;
+  margin-left: 24px;
+}
+
+.layout_body {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  width: 1296px;
+  margin-top: 80px;
+  margin-left: 100px;
+
+  color: var(--black);
+  font-family: var(--font-family-noto_sans_kr);
+  font-size: 24px;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.body_row1 {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  width: 1400px;
+  height: 100px;
+}
+
+.body_row2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  width: 1400px;
+  height: 100px;
+}
+
+.body_row3 {
+  display: flex;
+  justify-content: flex-start;
+  width: 1400px;
+  height: 100px;
+}
+
+.body_row4 {
+  display: flex;
+  justify-content: flex-start;
+  width: 1400px;
+  height: 100px;
+}
+
+.body_row5 {
+  display: flex;
+  justify-content: flex-start;
+  width: 1400px;
+  height: 100px;
+}
+
+.body_row6 {
+  display: flex;
+  justify-content: flex-start;
+  width: 1400px;
+  height: 100px;
+}
+
+.body_row7 {
+  display: flex;
+  justify-content: flex-start;
+  width: 1400px;
+  height: 100px;
+}
+
+.body_row8 {
+  display: flex;
+  justify-content: flex-start;
+  width: 1400px;
+  height: 100px;
+}
+
+.body_row9 {
+  display: flex;
+  justify-content: flex-start;
+  width: 1400px;
+  height: 100px;
+}
+
+.body_row10 {
+  display: flex;
+  justify-content: flex-start;
+  width: 1400px;
+  height: 100px;
+}
+
+.body_row11 {
+  display: flex;
+  justify-content: flex-start;
+  width: 1400px;
+  height: 250px;
+}
+
+.body_row12 {
+  display: flex;
+  justify-content: flex-start;
+  width: 1400px;
+  height: 250px;
+}
+
+.body_row13 {
+  display: flex;
+  justify-content: flex-start;
+  width: 1400px;
+  height: 250px;
+}
+
+.body_row_subitem1 {
+  width: 200px;
+  margin-top: 10px;
+}
+
+.body_row_subitem2 {
+  margin-left: 30px;
+}
+
+.body_row_subitem3 {
+  margin-left: 10px;
+}
+
+.body_row_subitem3 {
+  margin-left: 10px;
+}
+
+.layout_bottom {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  width: 1400px;
+  height: 50px;
+  margin-top: 130px;
+}
+
+.layout_box {
+  position: absolute;
+  left: 10px;
+  top: 100px;
+}
+
+.button{
+  margin-left: 1100px;
+  width: 350px;
+  color: var(--black);
+  font-family: var(--font-family-noto_sans_kr);
+  font-size: 24px;
+  font-weight: 500;
+  font-style: normal;
+}

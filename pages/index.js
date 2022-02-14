@@ -1,10 +1,8 @@
-import Home from './Home';
-import Prepro from './Preproduction1';
+import TEST from './PlanInfoWrite';
 
-function T1(){
+
+export default function T1(){
     return(
-        <Prepro />
-        
+        <TEST />
     );
 }
-export default T1;

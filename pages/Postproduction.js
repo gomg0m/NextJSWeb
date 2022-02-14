@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from '../src/fix/Header';
+import Leftside from '../src/fix/Leftside';
 import styles from '../src/css/Postproduction.module.css';
 import { Checkbox, FormControlLabel, Box, Button, Divider, Modal, Typography, InputLabel, MenuItem, 
   FormControl, Select, TextField, Paper, InputBase, IconButton } from '@mui/material';
@@ -10,7 +11,6 @@ import { styled } from '@mui/material/styles';
 import SearchIcon from '@mui/icons-material/Search';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
 import DateTimePicker from '@mui/lab/DateTimePicker';
-
 
 // import { borderRadius } from '@mui/system';
 
@@ -53,8 +53,10 @@ function Postproduction() {
   // const [endDate, setEndDate] = React.useState(null);
   
   return (
+    
     <>
-      
+    <Header /> 
+    <Leftside /> 
       <Box className={styles.postbackground} sx={{ width: 1026, height: '100%', backgroundColor: '#F6F7FB', }} />
       <div className={styles.postsubtitle}>철거 및 반출 협의</div>
 

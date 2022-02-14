@@ -1,5 +1,6 @@
 import React from 'react';
-// import Header from './Header';
+import Header from '../src/fix/Header';
+import Left from '../src/fix/Leftside2';
 import styles from '../src/css/Notice.module.css';
 import { Checkbox, FormControlLabel, Box, Button, Divider, Modal, Typography, InputLabel, MenuItem, 
   FormControl, Select, TextField, Paper, InputBase, IconButton, Input } from '@mui/material';
@@ -46,6 +47,7 @@ function Notice() {
 
   return (
     <>
+    <Header />
       <Box className={styles.noticebackground1} sx={{ width: 1581, height: '100%', backgroundColor: '#F6F7FB', }} />
       <Box className={styles.noticebackground2} sx={{ width: 1496, height: 906, backgroundColor: 'white', }} />
       
