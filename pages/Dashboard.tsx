@@ -1,4 +1,4 @@
-import React, { useState,useEffect, useCallback } from "react";
+import React, { useState,useEffect, useCallback, useMemo } from "react";
 import Header from '../src/fix/Header';
 import Link from 'next/link';
 import Axios from 'axios';
@@ -13,6 +13,7 @@ import { Checkbox, FormControlLabel, Box, Button, Divider, Modal, Typography, In
 import Router from "next/router";
 import SearchIcon from '@mui/icons-material/Search';
 import DialogNewProject from "./DialogNewProject";
+
 
 interface IFormInput {
   plan_id: string;
@@ -50,9 +51,6 @@ interface IFormInput {
   };
 
 
-
-
-
 function Combo(){
   const [age, setAge] = React.useState('');
 
@@ -76,6 +74,8 @@ function Combo(){
 </FormControl>
 );
 }
+
+
 /////=========== Dashboard 메인 페이지 ================================
 export default function DashboardView(){ 
 
@@ -123,6 +123,30 @@ export default function DashboardView(){
     console.log("id", routeTarget);
     Router.push(routeTarget);
   };
+
+  interface IDialogueNewProject {
+    prj_genre: string,
+    prj_name: string,
+    prj_time: string,
+    prj_image: string
+  }
+
+  function handleDialogData(diglogdata:IDialogueNewProject){
+    console.log('handleDialogData',diglogdata);
+    Axios.post("/api/insertPrjInfo", {data}).then((res)=>{
+      if(res.status == 200){
+          //login 성공
+          console.log(res.data.users);
+          Axios.get("/api/InsertPrjInfo").then((res)=>{
+              if(res.status == 200){
+                  //login 성공
+                  Axios.get
+              }
+          });
+      }
+    });
+
+  }
   
   return(
         <>
@@ -177,7 +201,7 @@ export default function DashboardView(){
                 </Card>
             )) }
         </div>
-        < DialogNewProject open={open} close={handleClose}/>
+        < DialogNewProject open={open} close={handleClose} getdialogdata={handleDialogData}/>
       </>               
   );
 }

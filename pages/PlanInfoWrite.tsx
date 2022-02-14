@@ -49,6 +49,8 @@ plan_file: "",
 
 };
 
+
+///Dropzone에 사용할 변수
 type Information = { src:string; width:number; height:number };
 
 var pics = new Array<Information>(); 
@@ -83,8 +85,6 @@ const acceptStyle = {
 const rejectStyle = {
     borderColor: '#ff1744'
 };
-
-
 
 
 
@@ -124,15 +124,6 @@ const ImgUpload = () => {
         });    
         ////////
 
-        ///MySQL에 지워진 파일을 반영한 이미지 파일이름 배열 데이터 저장    
-        // console.log("deleted 배열", newThumb);
-        // Axios.post("/api/jsonaccess", {newThumb}).then((res)=>{
-        // if(res.status == 200){
-        //     //login 성공
-        //     console.log("삭제후 DB결과",res.data.users);
-        // }
-        // });
-
     }; //End Of deleteHandler
   
     //--- Dropzone Area Drop시의 이벤트 핸들러
@@ -154,14 +145,6 @@ const ImgUpload = () => {
                     console.log("new thumb list", newThumb);
                     imgUploadFileList=JSON.stringify(newThumb);
                     console.log("imgUplist", imgUploadFileList);
-                    // /////MySQL에 Upload한 이미지 파일이름 배열 데이터 저장    
-                    // Axios.post("/api/jsonaccess", {newThumb}).then((res)=>{
-                    //     if(res.status == 200){
-                    //         //login 성공
-                    //         console.log("Upload DB저장 결과", res.data.user);
-                    //     }
-                    // });
-                    // /////
                 });    
             }
         }, [thumb]
@@ -301,7 +284,7 @@ export const planInfoWirteWrite = ()=> {
                 <div className={sty.body_row6}>
                     <div className={sty.body_row_subitem1}>공연시간</div>
                     <div></div>
-                    <div className={sty.body_row_subitem2} style={{width:"700px", margin:"-15px 30px 0px"}} ><FormInputText name="plan_time" control={control}label="공연시간을 입력하세요"/></div>                    
+                    <div className={sty.body_row_subitem2} style={{width:"700px", margin:"-15px 30px 0px"}} ><FormInputText name="plan_time" control={control} label="공연시간을 입력하세요"/></div>                    
                     <div>분</div>
 
                 </div>
