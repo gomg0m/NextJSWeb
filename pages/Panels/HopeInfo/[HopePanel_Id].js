@@ -5,49 +5,12 @@ import sty from '../src/css/HopeInfoPanel.module.css';
 import Button from '@mui/material/Button';
 import HopePicture from '../../../src/component/HopePicture';
 
-//테이블들 생성
-import { styled } from '@mui/material/styles';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell, { tableCellClasses } from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-import { useEffect, useState } from "react";
-import Axios from 'axios';
-
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
-    [`&.${tableCellClasses.head}`]: {
-      backgroundColor: "lightblue",
-      color: theme.palette.primary.white,
-    },
-    [`&.${tableCellClasses.body}`]: {
-      backgroundColor: 'whitesmoke',
-      color: '#4F4F4F',
-      fontSize: 16,
-      minWidth: 200,
-      fontWeight: 'bold'
-    },
-}));
-
-const StyledTableCell2 = styled(TableCell)(({ theme }) => ({
-    [`&.${tableCellClasses.head}`]: {
-      backgroundColor: "lightblue",
-      color: theme.palette.primary.white,
-    },
-    [`&.${tableCellClasses.body}`]: {
-      backgroundColor: 'white',
-      color: '#333333',
-      minWidth: 980,
-      fontSize: 16,    
-    },
-}));
+//테이블 불러오기
+import ListViewTable from '../../../src/component/ListViewTable';
+import ListViewPicture from '../../../src/component/ListViewPicture';
 
 
-function createData(name, content) {
-    return { name, content };
-}
-
+//희망 연출명 제목으로 불러오기
 function HopeTitle(){
   const [list, setList] = useState([
     {name: '희망연출명', content: ''}
@@ -76,6 +39,7 @@ function HopeTitle(){
     );
 }
   
+//희망연출내용 테이블
 function HopeInfoTable(){
   const [list, setList] = useState([
     {name: '희망연출명', content: ''},
@@ -122,7 +86,8 @@ function HopeInfoTable(){
           </TableContainer>
         );       
 }
-  
+
+//희망연출목표 테이블
 function HopeObjectiveTable(){
 const [list, setList] = useState([
     {name: '희망연출 시간', content: ''},
@@ -165,6 +130,7 @@ const [list, setList] = useState([
         ); 
 }
 
+////희망연출기술 테이블
 function HopeTechTable(){
   const [list, setList] = useState([
     {name: '희망연출기술명', content: ''},
@@ -209,6 +175,7 @@ function HopeTechTable(){
         ); 
 }
 
+//리턴!!!
 export default function TheaterInfoPanel(){       
     return(
         <>
