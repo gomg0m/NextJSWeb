@@ -8839,10 +8839,10 @@
   dependencies:
     "fscreen" "^1.0.2"
 
-"react-hook-form@^7.26.0":
-  "integrity" "sha512-/Qw/7IsCCVfYSGryJAMcouEpIDgWZJPeHR15J0IFSgo1BgofcfnY+AeUDcYD1E3yzzXYpR7NHyJehhkBKvjdMg=="
-  "resolved" "https://registry.npmjs.org/react-hook-form/-/react-hook-form-7.26.1.tgz"
-  "version" "7.26.1"
+"react-hook-form@^7.27.0":
+  "integrity" "sha512-NEh3Qbz1Rg3w95SRZv0kHorHN3frtMKasplznMBr8RkFrE4pVxjd/zo3clnFXpD0FppUVHBMfsTMtTsa6wyQrA=="
+  "resolved" "https://registry.npmjs.org/react-hook-form/-/react-hook-form-7.27.0.tgz"
+  "version" "7.27.0"
 
 "react-icons@^4.3.1":
   "integrity" "sha512-cB10MXLTs3gVuXimblAdI71jrJx8njrJZmNMEMC+sQu5B/BIOmlsAjskdqpn81y8UBVEGuHODd7/ci5DvoSzTQ=="

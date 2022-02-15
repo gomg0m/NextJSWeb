@@ -1,7 +1,7 @@
 import styles from '../css/HomeHeader.module.css';
 import Link from 'next/link';
 import React from 'react';
-import { Box, Button, Divider, Modal, Typography, InputLabel, MenuItem, FormControl, Select, TextField, Input, IconButton } from '@mui/material';
+import { Box, Button, Divider, Modal, Typography, TextField } from '@mui/material';
 
 const style = {
   position: 'absolute',
