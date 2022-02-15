@@ -113,6 +113,7 @@ export default function HopeInfoPanel(){
 
             <div className={sty.layout_top}>
               <div className={sty.layout_top_txt1}>희망연출정보</div>
+              {/* 희명연출정보 제목 가져오기 */}
               <div className={sty.layout_top_txt2}> {HopeInfoTable[0].content} </div>
               <div className={sty.layout_body_drawing} > <ListViewPicture photos={photos}/> </div>
 

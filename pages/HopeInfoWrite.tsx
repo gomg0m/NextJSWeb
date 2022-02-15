@@ -258,11 +258,11 @@ export const HopeInfoWrite = () => {
                 </div>
                 <div className={sty.body_row4}>
                     <div className={sty.body_row_subitem1}>의도 및 기대효과</div>
-                    <div className={sty.body_row_subitem2} style={{width:"1100px", margin:"0px 30px 0px"}} ><FormInputText name="hope_intention" control={control} label="의도 및 기대효과를 입력하세요"/></div>
+                    <div className={sty.body_row_subitem2} style={{width:"700px", margin:"0px 30px 0px"}} ><FormInputText name="hope_intention" control={control} label="의도 및 기대효과를 입력하세요"/></div>
                 </div>
                 <div className={sty.body_row5}>
                     <div className={sty.body_row_subitem1}>특이사항 및 추가참고 사항</div>
-                    <div className={sty.body_row_subitem2} style={{width:"1100px", margin:"0px 30px 0px"}} ><FormInputMultilineText name="hope_exception" control={control} label="특이사항 및 추가 참고사항을 입력하세요"/></div>
+                    <div className={sty.body_row_subitem2} style={{width:"700px", margin:"0px 30px 0px"}} ><FormInputMultilineText name="hope_exception" control={control} label="특이사항 및 추가 참고사항을 입력하세요"/></div>
                     <div style={{margin:"15px 0px 0px"}}> <FormDialog2 /></div>  
                 </div>
 
@@ -308,7 +308,7 @@ export const HopeInfoWrite = () => {
                 </div>
                 <div className={sty.body_row10}>
                     <div className={sty.body_row_subitem1}>특이사항 및 추가참고 사항</div>
-                    <div className={sty.body_row_subitem2} style={{width:"1100px", margin:"0px 30px 0px"}} ><FormInputMultilineText name="hope_reference" control={control} label="특이사항 및 추가 참고사항을 입력하세요"/></div>
+                    <div className={sty.body_row_subitem2} style={{width:"700px", margin:"0px 30px 0px"}} ><FormInputMultilineText name="hope_reference" control={control} label="특이사항 및 추가 참고사항을 입력하세요"/></div>
                 </div>
             </div>
 

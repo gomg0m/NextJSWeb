@@ -8,6 +8,7 @@ import Footer from "../src/fix/Footer";
 import Leftside from '../src/fix/Leftside';
 import Rightside from '../src/fix/Rightside';
 // import { borderRadius } from '@mui/system';
+import Link from 'next/link';
 
 const style = {
   position: 'absolute',
@@ -34,8 +35,9 @@ function Preproduction1() {
         <Box className={styles.prebackground1} sx={{ width: 1026, height: '100%', backgroundColor: '#F6F7FB', }} />
         <div className={styles.presubtitle1}>희망연출정보</div>
 
-        <Button className={styles.addinfobutton1} variant="contained">+ 새로운 연출정보 추가</Button>
-
+        <Link href ='/HopeInfoWrite'>
+          <Button className={styles.addinfobutton1} variant="contained">+ 새로운 연출정보 추가</Button>
+        </Link>
         <div className={styles.order1}>최근 생성순</div>
         <div className={styles.order2}>모든상태</div>
       <Footer />
