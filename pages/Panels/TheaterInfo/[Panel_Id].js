@@ -18,6 +18,8 @@ import {makeStyles} from '@material-ui/core';
 import ListViewTable from '../../../src/component/ListViewTable';
 import ListViewPicture from '../../../src/component/ListViewPicture';
 
+
+/////TabPanel 관련 
   const useStyles = makeStyles({
     customStyleOnTab:{
       fontSize:'20px',
@@ -40,7 +42,7 @@ import ListViewPicture from '../../../src/component/ListViewPicture';
   })
   
    
-/////TabPanel 관련 
+
 TabPanel.propTypes = {
   children: PropTypes.node,
   index: PropTypes.number.isRequired,
@@ -128,32 +130,43 @@ export default function TheaterInfoPanel(){
         let PFStage =[];
         
         /////파싱된 이미지 파일이름 배열을 react-Gallery 형식에 맞는 photosFormat로 변환 
-        ImglistDrawing.map((photo)=>{
-          photo = '/uploads/'+ photo;
-          console.log('photo3',photo);
-          PFDrawing.push({src:photo,width:3,height:3});
-        })
-        ImglistExterior.map((photo)=>{
-          photo = '/uploads/'+ photo;
-          console.log('photo3',photo);
-          PFExterior.push({src:photo,width:3,height:3});
-        })
-        ImglistInterior.map((photo)=>{
-          photo = '/uploads/'+ photo;
-          console.log('photo3',photo);
-          PFInterior.push({src:photo,width:3,height:3});
-        })
-        ImglistStage.map((photo)=>{
-          photo = '/uploads/'+ photo;
-          console.log('photo3',photo);
-          PFStage.push({src:photo,width:3,height:3});
-        });
+        if (ImglistDrawing){ //이미지 리스트가 Null이 아니면
+          ImglistDrawing.map((photo)=>{
+            photo = '/uploads/'+ photo;
+            console.log('photo3',photo);
+            PFDrawing.push({src:photo,width:3,height:3});
+          });     
+          setPhotosDrawing(PFDrawing);
+        }
+        if (ImglistExterior){  //이미지 리스트가 Null이 아니면
+          ImglistExterior.map((photo)=>{
+            photo = '/uploads/'+ photo;
+            console.log('photo3',photo);
+            PFExterior.push({src:photo,width:3,height:3});
+          });
+          setPhotosInterior(ImglistExterior);
+        }
+        if (ImglistInterior){  //이미지 리스트가 Null이 아니면
+          ImglistInterior.map((photo)=>{
+            photo = '/uploads/'+ photo;
+            console.log('photo3',photo);
+            PFInterior.push({src:photo,width:3,height:3});
+          });
+          setPhotosExterior(PFInterior);
+        }
+        if (ImglistStage){  //이미지 리스트가 Null이 아니면
+          ImglistStage.map((photo)=>{
+            photo = '/uploads/'+ photo;
+            console.log('photo3',photo);
+            PFStage.push({src:photo,width:3,height:3});
+          });
+          setPhotosStage(PFStage);
         /////
-        setPhotosDrawing(PFDrawing);
-        setPhotosInterior(ImglistExterior);
-        setPhotosExterior(PFInterior);
-        setPhotosStage(PFStage);
-        setFirstImage('/uploads/'+ ImglistDrawing[0]);  //대표이미지이름에 서버 저장경로 붙임.
+        }                
+        if (ImglistDrawing){  //이미지 리스트가 Null이 아니면
+          setFirstImage('/uploads/'+ ImglistDrawing[0]);  //대표이미지이름에 서버 저장경로 붙임.
+        }
+
       });
   }
 /////

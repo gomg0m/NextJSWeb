@@ -23,18 +23,19 @@ import {FormInputDropdown} from '../src/component/FormInputDropdown'
   var pic_count:number = 0 ;
   var imgUploadFileList:string;
 
+  ////// Dropzone Style 적용: Dropzone Area width, height 등.
   const baseStyle = {
     display : 'flex',
     align: 'center',
     padding: '2px',
-    borderWidth: 2,
+    borderWidth: 3,
     borderRadius: 2,
     borderColor: '#eeeeee',
     borderStyle: 'dashed',
     backgroundColor: '#fafafa',
     color: '#bdbdbd',
     transition: 'border .3s ease-in-out',
-    width: '300px',
+    width: '600px',
     height: '40px',
     margin: "-10px 30px 0px",
     font: 'bold 0.7em/1em areal',
@@ -51,43 +52,29 @@ const acceptStyle = {
 const rejectStyle = {
     borderColor: '#ff1744'
 };
-
+//////
 
 //---------------- Image File Drag&Drop Component ----------------
-const ImgUpload = () => {
+const ImgUpload = (props) => {
 
-  const [thumb, setThumb] = useState<string[]>([]);
+  const [thumb, setThumb] = useState<string>();
   const [progress, setProgress] = useState<number>(0);
 
   //--- 이미지 thumbnail의 Delete Icon Button의 이벤트 핸들러
-  const deleteHandler =(index) =>{
-      console.log("deleting index", index);
-      //지워질 이미지 이름 저장.
-      let delThumb = thumb[index];
-
-      //이미지 스테이트에 들어있는 모든 이미지 이름을 복사해서
-      // newThemb이라는 배열에 넣는다.
-      let newThumb = [...thumb];
-
-      //newThumb배열안에 있는 파일 이름 중 
-      //클릭한 인덱스의 파일이름을 지워줌
-      newThumb.splice(index, 1);
-
-      //새로운 이미지 이름 배열인 newThumb으로
-      //setThumb 해준다.
-      setThumb(newThumb);
+  const deleteHandler =() =>{      
+      
+    //지워질 이미지 이름 저장.
+      let delThumb = thumb;       
+      setThumb("");
       
       ////미리 저장된 지워질 이미지을 Sever측에 삭제 요청 API를 호출한다.
-      const data = "d:/Web_dev/nextjsweb/public/uploads/"+ delThumb;
-      console.log("deleting file", data);
+      const data = "E:/webdev_work/nextjsweb/public/uploads/"+ imgUploadFileList;
       
       Axios.post("/api/deletefile", {data}).then((res)=>{
-      if(res.status == 200){
-      //       //login 성공
+      if(res.status == 200){      
           console.log("파일삭제 결과", res.data.users);
       }
-      });    
-      ////////
+      });      
 
   }; //End Of deleteHandler
 
@@ -99,24 +86,17 @@ const ImgUpload = () => {
 
           acceptedFiles.forEach((file) => {        
               formData.append("file", file);
-              console.log("acceptFilesNum",acceptedFiles);
           })
 
-          {///let은 Block 내에서만 작용하기 떄문에 newThumb을 사용하려면 이렇게 빈 블럭구분을 사용해야 함.
-              let newThumb = [...thumb]; 
-              Axios.post<any>("/api/imgupload", formData, config).then((res) => {                 
-                  setThumb([...thumb, ...res.data]);  
-                  newThumb =[...thumb, ...res.data];
-                  console.log("new thumb list", newThumb);
-                  imgUploadFileList=JSON.stringify(newThumb);
-                  console.log("imgUplist", imgUploadFileList);
-              });    
-          }
-      }, [thumb]
-  )
+           Axios.post<any>("/api/imgupload", formData, config).then((res) => {                 
+                  setThumb(res.data); 
+                  imgUploadFileList=res.data;
+                  console.log('res.data',res.data);
+           });    
+      }, [thumb])
  
   //--- Dropzon Area 설정 및 작동 부분 
-  const {getRootProps,getInputProps,isDragActive, isDragAccept,isDragReject} = useDropzone({onDrop,accept: 'image/jpeg, image/png', multiple:true});
+  const {getRootProps,getInputProps,isDragActive, isDragAccept,isDragReject} = useDropzone({onDrop,accept: 'image/jpeg, image/png', multiple:false});
 
   const style = useMemo(() => ({
       ...baseStyle,
@@ -138,7 +118,7 @@ const ImgUpload = () => {
           {
               isDragActive ?
               <p>여기에 드롭!</p> :
-              <p>파일 드래그 또는 클릭</p>         
+              <p>{props.label} 파일 드래그 또는 클릭</p>         
           }      
           </div>
       </div>
@@ -149,7 +129,7 @@ const ImgUpload = () => {
                   <div>                  
                   <img src={`/uploads/${item}`} height="50" alt="업로드이미지"></img>
                   <IconButton color="primary" aria-label="upload picture" component="span">
-                      <HighlightOffIcon onClick={()=> deleteHandler(index)}/>
+                      <HighlightOffIcon onClick={()=> deleteHandler()}/>
                   </IconButton>                                    
                   </div>
               );
@@ -182,8 +162,7 @@ import sty from '../src/css/planInfoWirte.module.css';
 export default function NewProjectDialog(props) {
   
   const [open, setOpen] = React.useState(props.open);
-  const handleClose = (kkk) => {
-    console.log("kkk",kkk);
+  const handleClose = () => {
     setOpen(false);
     props.close();
   }
@@ -206,7 +185,7 @@ export default function NewProjectDialog(props) {
     prj_name: string,
     prj_start: string,
     prj_end: string,
-    prj_image: string
+    prj_firstimage: string
   };
 
   const defaultValues = {
@@ -214,7 +193,7 @@ export default function NewProjectDialog(props) {
     prj_name: '',
     prj_start: '',
     prj_end: '',
-    prj_image: ''
+    prj_firstimage: ''
   };
 
   const methods = useForm({ defaultValues: defaultValues });
@@ -222,7 +201,8 @@ export default function NewProjectDialog(props) {
 
 
   //부모에게 값 전달
-  const onSubmit = (dialogdata:IDialogueNewProject)=>{    
+  const onSubmit = (dialogdata:IDialogueNewProject)=>{
+    dialogdata.prj_firstimage = imgUploadFileList;
     props.getdialogdata(dialogdata);
     setOpen(false);
     props.close();
@@ -258,17 +238,8 @@ export default function NewProjectDialog(props) {
                 </div>
             
             <div className={styles.addshowoption4}>대표 이미지
-            <div style={{margin:"15px 0px 0px"}}><ImgUpload/></div>
-            </div>
-            <TextField className={styles.showinfo4} sx={{ minWidth: 510 }} id="outlined-basic" label="공연의 포스터, 공연 관련 이미지를 추가해주세요." variant="outlined"/>
-            <Box className={styles.filebackground} sx={{ width: 48, height: 48, backgroundColor: '#F2F2F2', borderRadius: '6px' }} />
-            <label htmlFor="icon-button-file" className={styles.fileuploadbutton}>
-              <Input accept="image/*" id="icon-button-file" type="file" />
-              <IconButton color="inherit" component="span" backgroundColor="#F2F2F2">
-                <AttachFileIcon />
-              </IconButton>
-            </label>
-                 
+              <div style={{margin:"15px 0px 0px"}}><ImgUpload label="공연의 포스터, 공연 관련 이미지를 추가해주세요."/></div>
+            </div>                 
             <Button  className={sty.notosanskr_bold_cyan_24px} style={{margin:"0px 20px 0px"}}  onClick={handleSubmit(onSubmit)} >만들기</Button>
 
           </Box>
