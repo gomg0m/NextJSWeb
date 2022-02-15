@@ -179,14 +179,14 @@ export default function DashboardView(){
   /////-----Card Image Click시 핸들러 
   const cardHandler=(e)=>{
     console.log("e",e)        
-    setCardID(e.target.attributes[4].value);
+    setCardID(e.currentTarget.id);
     console.log("id", cardID);
-    clickID = e.target.attributes[4].value;
+    clickID = e.currentTarget.id;
     console.log("clickid",clickID);
     console.log("tabValue",tabValue);
 
     if(tabValue==0) {
-      AboutButtonState(e.target.attributes[4].value);
+      AboutButtonState(e.currentTarget.id);
     }
 
     if(tabValue==1)
@@ -412,13 +412,14 @@ export default function DashboardView(){
   }
 
   const onHopeBtnClick = (e)=>{
-    console.log('e', e.target.attributes[3].value);
-    Router.push('/Panels/HopeInfo/'+String(e.target.attributes[3].value));
+    console.log('clickid', e.currentTarget.id);
+
+    Router.push('/Panels/HopeInfo/'+String(e.currentTarget.id));
   }
 
   const onTechBtnClick = (e)=>{
-    console.log('e', e.target.attributes[3].value);
-    Router.push('/Panels/TechDiscuss/'+String(e.target.attributes[3].value));
+    console.log('e', e.currentTarget.id);
+    Router.push('/Panels/TechDiscuss/'+String(e.currentTarget.id));
   }
 
   return(
@@ -439,7 +440,7 @@ export default function DashboardView(){
           <div className={cardsty.card_container} style= {{ position:"absolute", top:"300px", overflow:"auto", width:"1310px", height:"550px"}} >
             { 
             list.map((item)=>(
-                <Card className={cardsty.card_item} sx={{ minWidth: 345, minHeight: 350 }} style={border:1}  >
+                <Card className={cardsty.card_item} sx={{ minWidth: 345, minHeight: 350, borderColor: 'primary.main', border:0 }}  >
                   <CardActionArea>
                     <CardActions>
                       <CardMedia
