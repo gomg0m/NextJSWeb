@@ -69,7 +69,7 @@ function Combo(){
     label="Age"
     onChange={handleChange}
   >
-    <MenuItem value={10}>계획중</MenuItem>
+    <MenuItem value={10}>계획중!!!!!!</MenuItem>
     <MenuItem value={20}>제작중</MenuItem>
     <MenuItem value={30}>종료</MenuItem>
   </Select>
