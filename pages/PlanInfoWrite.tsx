@@ -260,7 +260,6 @@ export const planInfoWirteWrite = ()=> {
                 </div>
                 <div className={sty.body_row2}>
                     <div className={sty.body_row_subitem1}>공연명</div>                     
-
                     <div className={sty.body_row_subitem2} style={{width:"700px", margin:"-15px 30px 0px"}} ><FormInputText name="plan_name" control={control} label="공연명을 입력하세요" /></div>
                 </div>
 

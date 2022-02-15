@@ -19,6 +19,9 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import {makeStyles} from '@material-ui/core';
 
+import { useContext } from "react";
+import AppContext from "../src/component/AppContext";
+
 
 interface IFormInput {
   plan_id: string;
@@ -162,6 +165,7 @@ export default function DashboardView(){
   const [hopeIds, setHopeIds] = useState([]);
   const [techIds, setTechIds] = useState([]);
 
+  const globalPlanID = useContext(AppContext);
 
   var CardID:number;
 
@@ -184,6 +188,8 @@ export default function DashboardView(){
     clickID = e.currentTarget.id;
     console.log("clickid",clickID);
     console.log("tabValue",tabValue);
+
+    globalPlanID.statefunc(100);
 
     if(tabValue==0) {
       AboutButtonState(e.currentTarget.id);

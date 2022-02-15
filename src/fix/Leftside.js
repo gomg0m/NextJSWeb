@@ -15,6 +15,8 @@ import Link from 'next/link';
 import StepButton from '@mui/material/StepButton';
 import Button from '@mui/material/Button';
 
+import AppContext from '../AppContext';
+
 const theme = createTheme({
   typography: {
     fontFamily: 'Noto Sans KR'
@@ -26,7 +28,7 @@ theme.typography.subject = {
 };
 
 //1번 about
-function Number1Icon(props) {
+function Number1Icon(props) {    
   return <LooksOneIcon fontSize="large"  sx={{ color: "#E2B644", ml: -0.5 }} />;
 }
 //2번 pre-production
@@ -61,6 +63,8 @@ function Circle4Icon(props) {
 
 export default function VerticalLinearStepper() {
   const [activeStep] = React.useState(0);
+  const globalPlanID = useContext(AppContext);
+
 
 
   return (

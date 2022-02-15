@@ -1,4 +1,4 @@
-import React, { useState,useEffect, useCallback } from "react";
+import React, { useState,useEffect, useCallback, useContext } from "react";
 import Header from '../../../src/fix/Header';
 import Leftside from '../../../src/fix/Leftside1';
 import sty from '../../../src/css/TheaterInfoPanel.module.css';
@@ -9,6 +9,8 @@ import { useRouter } from "next/router";
 
 import ListViewTable from '../../../src/component/ListViewTable';
 import ListViewPicture from '../../../src/component/ListViewPicture';
+
+import AppContext from "../../../src/component/AppContext";
 
 
 /////=========== PlanInfoPanel 메인 페이지 ================================
@@ -29,11 +31,15 @@ export default function PlanInfoPanel(){
   const [photos, setPhotos] = useState([]);
   const [firstImage, setFirstImage] = useState();
 
+  const globalPlanID = useContext(AppContext);
+
+
   var obj = [...planInfoTable]; //state인 planInfoTable의 변경에 사용할 변수
 
   
   function getData(id){
-    console.log('pageid',Panel_Id);
+    console.log("globalPlanID",globalPlanID.state.statevar);
+    
       Axios.post("/api/getPlanInfo", {id} ).then((res) =>{
         console.log("planInfo", res.data.users[0]);
         //// 가져온 DB값으로 PlanInfoTable 변경 => ListViewTable props로 전달
