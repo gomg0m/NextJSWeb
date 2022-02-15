@@ -30,17 +30,22 @@ export default function handler(req, res) {
   }
 
   if(req.method == 'POST') {
-    if(req.method == 'POST') {
-      const user_query = 'SELECT * FROM HOPEINFO WHERE plan_id = [?] ';
+      console.log('req',req.body.ids);
+      let user_query ='SELECT hope_firstimage, hope_lasttime, hope_techids FROM HOPEINFO WHERE hope_id in (';
       
-      let params = [req.body.id];
-      connection.query(user_query, params, function (error, result, fields){
+      req.body.ids.map((id,i)=>{
+        if(i<(req.body.ids.length-1)) user_query += id+',';
+        else user_query += id;
+      });
+      user_query += ')';
+      console.log('query',user_query);
+      
+      connection.query(user_query, function (error, result, fields){
         if (error) throw error;
         
         res.status(200).json({ users: result})
       });
     }
       res.statusCode = 200;
-  }  
     
 }

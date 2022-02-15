@@ -35,6 +35,7 @@ export default function PlanInfoPanel(){
   function getData(id){
     console.log('pageid',Panel_Id);
       Axios.post("/api/getPlanInfo", {id} ).then((res) =>{
+        console.log("planInfo", res.data.users[0]);
         //// 가져온 DB값으로 PlanInfoTable 변경 => ListViewTable props로 전달
         obj[0].content = res.data.users[0].plan_genre;
         obj[1].content = res.data.users[0].plan_name;
@@ -56,15 +57,17 @@ export default function PlanInfoPanel(){
         let photosFormat =[];
         
         /////파싱된 이미지 파일이름 배열을 react-Gallery 형식에 맞는 photosFormat로 변환 
-        parsedPhotos.map((photo)=>{
-          photo = '/uploads/'+ photo;
-          console.log('photo3',photo);
-          photosFormat.push({src:photo,width:3,height:3});
-        });
-        /////
+        if(parsedPhotos){
+          parsedPhotos.map((photo)=>{
+            photo = '/uploads/'+ photo;
+            console.log('photo3',photo);
+            photosFormat.push({src:photo,width:3,height:3});
+          });
+          /////
 
-        setPhotos(photosFormat);
-        setFirstImage('/uploads/'+parsedPhotos[0]);  //대표이미지이름에 서버 저장경로 붙임.
+          setPhotos(photosFormat);
+          setFirstImage('/uploads/'+parsedPhotos[0]);  //대표이미지이름에 서버 저장경로 붙임.
+        }
       });
   }
 

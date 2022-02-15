@@ -2,7 +2,7 @@ import React from 'react';
 import Header from '../../../src/fix/Header';
 import Leftside from '../../../src/fix/Leftside3';
 import Rightside from '../../../src/fix/Rightside';
-import sty from '../src/css/TechDiscussPanel.module.css';
+import sty from '../../../src/css/TechDiscussPanel.module.css';
 import Link from 'next/link';
 // import HopeTableContent from '../src/component/HopeTable_content';
 // import HopeTableObjective from '../src/component/HopeTable_objective';

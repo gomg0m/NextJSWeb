@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../../../src/fix/Header';
 import Leftside from '../../../src/fix/Leftside2';
-import sty from '../src/css/HopeInfoPanel.module.css';
+import sty from '../../../src/css/HopeInfoPanel.module.css';
 import Button from '@mui/material/Button';
 import HopePicture from '../../../src/component/HopePicture';
 
