@@ -46,7 +46,7 @@ interface IFormInput {
     hope_addtime: ""
 };
 
-    ///Dropzone에 사용할 변수
+///Dropzone에 사용할 변수
 type Information = { src:string; width:number; height:number };
 
 var pics = new Array<Information>(); 

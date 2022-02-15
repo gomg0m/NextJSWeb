@@ -2,13 +2,14 @@ import React from 'react';
 import Header from '../../../src/fix/Header';
 import Leftside from '../../../src/fix/Leftside3';
 import Rightside from '../../../src/fix/Rightside';
-import sty from '../src/css/TechDiscussPanel.module.css';
+import sty from '../../../src/css/TechDiscussPanel.module.css';
 import Link from 'next/link';
 // import HopeTableContent from '../src/component/HopeTable_content';
 // import HopeTableObjective from '../src/component/HopeTable_objective';
 // import HopeTableTech from '../src/component/HopeTable_tech';
 import HopePicture from '../../../src/component/HopePicture';
 import { useEffect, useState } from "react";
+ import { useRouter } from 'next/router';
 import Axios from 'axios';
 import { Box, Button, Divider, Modal, Typography, InputLabel, MenuItem, FormControl, Select, TextField, Input, IconButton } from '@mui/material';
 import { styled } from '@mui/material/styles';
@@ -142,6 +143,55 @@ export default function TheaterInfoPanel(){
     const Input = styled('input')({
         display: 'none',
     });
+
+  const router = useRouter();
+  const {Panel_Id} = router.query;
+  const [TechInfoTable, setTechInfoTable] = useState([
+    {name: '기술명', content: ''},
+    {name: '검토주제', content: ''},
+    {name: '세부주제', content: ''},
+    {name: '검토내용', content: ''},
+  ]);
+
+  const [photos, setPhotos] = useState([]);
+  const [firstImage, setFirstImage] = useState();
+
+  var obj = [...TechInfoTable]; //state인 TechInfoTable의 변경에 사용할 변수
+
+  function getData(id){
+    console.log('pageid',Panel_Id);
+      Axios.post("/api/getTechDiscussInfo", {id} ).then((res) =>{
+        //// 가져온 DB값으로 TechInfoTable 변경 => ListViewTable props로 전달
+        obj[0].content = res.data.users[0].plan_genre;
+        obj[1].content = res.data.users[0].plan_name;
+        obj[2].content = res.data.users[0].plan_number;
+        obj[3].content = res.data.users[0].plan_budget;
+
+        setTechInfoTable(obj);
+
+        //// 가져온 DB값으로 FirstImage 및 photos 변경 => <img> 및 ListViewPicture props로 전달 /////
+        let parsedPhotos = JSON.parse(res.data.users[0].plan_image);
+        let photosFormat =[];
+        
+        /////파싱된 이미지 파일이름 배열을 react-Gallery 형식에 맞는 photosFormat로 변환 
+        parsedPhotos.map((photo)=>{
+          photo = '/uploads/'+ photo;
+          console.log('photo3',photo);
+          photosFormat.push({src:photo,width:3,height:3});
+        });
+        /////
+
+        setPhotos(photosFormat);
+        setFirstImage('/uploads/'+parsedPhotos[0]);  //대표이미지이름에 서버 저장경로 붙임.
+      });
+  }
+
+  useEffect(()=>{
+    if(Panel_Id) {
+      getData(Panel_Id);
+    }
+  } ,[Panel_Id]);
+
 
     return(
         <>
