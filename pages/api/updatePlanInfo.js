@@ -22,6 +22,7 @@ export default function handler(req, res) {
     + ' plan_genre=?, plan_name=?, plan_start=?, plan_end=?, plan_image=?, plan_time=?, plan_number=?'
     + ', plan_budget=?, goal_people=?, goal_price=?, plan_contents=?, plan_exception=?, plan_file=?'
     + ' WHERE plan_id = ?';
+    
     let id = req.body.data.plan_id;
     let genre = req.body.data.plan_genre;
     let name = req.body.data.plan_name;
