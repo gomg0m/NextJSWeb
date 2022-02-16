@@ -5,7 +5,7 @@ import AppContext from "../src/component/AppContext";
 
 
 function MyApp({ Component, pageProps }) {
-  const [planID, setPlanID] = useState(0);
+  const [planID, setPlanID] = useState(1);
   return (
     <AppContext.Provider
       value={{
