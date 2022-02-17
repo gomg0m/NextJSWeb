@@ -1,3 +1,4 @@
+import axios from 'axios';
 import Axios from 'axios';
 import React, {useState} from 'react';
 
@@ -18,8 +19,11 @@ export default function Home() {
 
         const user = Axios.post('/api/auth/login', credentials).then((res)=> {
             console.log(user);
-        } );
+        } );                
+    }
 
+    const handleClick = async() => {
+        const user = await Axios.get('/api/user');
         
     }
 
@@ -33,6 +37,8 @@ export default function Home() {
                 <input type='password' name='password' id='password' onChange={e=>setPassword(e.target.value)}></input>
 
                 <button> Log in </button>
+
+                <button onClick={handleClick}> User </button>
                 
             </form>
         </div>
