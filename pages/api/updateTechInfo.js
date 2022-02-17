@@ -19,20 +19,21 @@ export default function handler(req, res) {
   if(req.method == 'POST') {
     /////plan_image항목은 뺌. File dropzone부분에서 api호출하기 때문
     const user_query = 'UPDATE TECHINFO SET'
-    + ' tech_hope=?, tech_name=?, tech_image=?, tech_1stsubject=?, tech_2ndsubject=?'
-    + ', tech_contents=?, tech_addtime=?'
+    + ' tech_hope=?, tech_discussname=?, tech_name=?, tech_1stsubject=?, tech_2ndsubject=?'
+    + ', tech_contents=?, tech_image=?, tech_addtime=?'
     + ' WHERE plan_id = ?';
     
     let id = req.body.data.tech_id;
     let hope = req.body.data.tech_hope;
+    let name = req.body.data.tech_discussname;
     let name = req.body.data.tech_name;
-    let image = req.body.data.tech_image;
     let firsubject = req.body.data.tech_1stsubject;
     let secsubject = req.body.data.tech_2ndsubject;
     let contents = req.body.data.tech_contents;
+    let image = req.body.data.tech_image;
     let addtime = req.body.data.tech_addtime;
 
-    let params = [id, hope, name, image, firsubject, secsubject, contents, addtime];
+    let params = [id, hope, discussname, name, firsubject, secsubject, contents, image, addtime];
 
     console.log(req.body.data);
 

@@ -50,7 +50,7 @@ const btnHandler=()=>{console.log('btn clickted')};
 //카드 누르면 해당 페이지로 이동
 const cardHandler=(e)=>{
   console.log("e",e.target.attributes[3].value)
-  let routeTarget = "/Panels/TechDiscussInfo/"+ e.target.attributes[3].value;
+  let routeTarget = "/Panels/TechInfo/"+ e.target.attributes[3].value;
   console.log("id", routeTarget);
   Router.push(routeTarget);
 };
@@ -114,8 +114,8 @@ function handleDialogData(diglogdata:IDialogueNewProject){
                 </CardActionArea>
 
                 <CardContent>
-                  <Typography gutterBottom variant="h4" component="div">
-                    {item.tech_name}
+                  <Typography gutterBottom variant="h5" component="div">
+                    {item.tech_discussname} 기술구체화협의
                   </Typography>
                   <Typography gutterBottom variant="h6" component="div">
                     {item.tech_hope}

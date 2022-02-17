@@ -20,7 +20,7 @@ connection.connect(function(err) {
 export default function handler(req, res) {
 
   if(req.method =='GET'){
-    const user_query = 'SELECT * FROM TECHINFO';
+    const user_query = 'SELECT * FROM TECHREPLEINFO';
 
       console.log(req.body.data);
         connection.query(user_query, function (error, result, fields){
@@ -32,17 +32,18 @@ export default function handler(req, res) {
   }
 
   if(req.method == 'POST') {
-    console.log("req.body.dia",req.body.diglogdata );
-    
-    const user_query = 'INSERT INTO TECHINFO'
-    + ' (tech_hope, tech_discussname, tech_firstimage)'
-    + ' VALUES (?, ?, ?)';
+   
+    let user_query = 'INSERT INTO TECHREPLE'
+    + ' (techreple_name, techreple_1stsubject, techreple_2ndsubject, techreple_contents, techreple_image)'
+    + ' VALUES (?, ?, ?, ?, ?)';
 
-    let hope = req.body.diglogdata.prj_hope;
-    let name = req.body.diglogdata.prj_name;
-    let firstimage = req.body.diglogdata.prj_firstimage;
+    let name = req.body.data.techreple_name;
+    let firsubject = req.body.data.techreple_1stsubject;
+    let secsubject = req.body.data.techreple_2ndsubject;
+    let contents = req.body.data.techreple_contents;
+    let image = req.body.data.techreple_image;
 
-    let params = [hope, name, firstimage];
+    let params = [name, firsubject, secsubject, contents, image];
 
         connection.query(user_query, params, function (error, result, fields){
             if (error) throw error;
