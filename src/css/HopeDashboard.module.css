@@ -4,15 +4,15 @@
 
 .prebackground1 {
   position: absolute;
-  top: 90px;
-  left: 339px;
+  top: 92px;
+  left: 362px;
 }
 
 .presubtitle1 {
   position: absolute;
   width: 133px;
   height: 36px;
-  left: 364px;
+  left: 390px;
   top: 138px;
 
   font-family: Noto Sans KR;
@@ -33,7 +33,7 @@
   position: absolute;
   width: 172px;
   height: 32px;
-  left: 513px;
+  left: 553px;
   top: 141px;
 
   /* blue/main */
@@ -59,7 +59,7 @@
   position: absolute;
   width: 88px;
   height: 24px;
-  left: 364px;
+  left: 390px;
   top: 222px;
 
   font-family: Noto Sans KR;

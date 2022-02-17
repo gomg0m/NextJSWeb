@@ -18,14 +18,14 @@ import { FormInputText } from "../src/component/FormInputText";
 import { FormInputDatetimePicker } from "../src/component/FormInputDatetimePicker";
 import {FormInputDropdown} from '../src/component/FormInputDropdown'
 
-  ////  Dropzone에 사용할 변수
-  type Information = { src:string; width:number; height:number };
-  var pics = new Array<Information>(); 
-  var pic_count:number = 0 ;
-  var imgUploadFileList:string;
+////  Dropzone에 사용할 변수
+type Information = { src:string; width:number; height:number };
+var pics = new Array<Information>(); 
+var pic_count:number = 0 ;
+var imgUploadFileList:string;
 
-  ////// Dropzone Style 적용: Dropzone Area width, height 등.
-  const baseStyle = {
+////// Dropzone Style 적용: Dropzone Area width, height 등.
+const baseStyle = {
     display : 'flex',
     align: 'center',
     padding: '2px',
@@ -111,20 +111,21 @@ const ImgUpload = (props) => {
   ]);
 
   return (
-    <div style={{display:"flex"}}>
+      
+      <div style={{display:"flex"}}>
       <div>      
           <div {...getRootProps({style})} >    
-            <input {...getInputProps()} />
-              {
-                isDragActive ?
-                <p>여기에 드롭!</p> :
-                <p>{props.label} 파일 드래그 또는 클릭</p>         
-              }      
+          <input {...getInputProps()} />
+          {
+              isDragActive ?
+              <p>여기에 드롭!</p> :
+              <p>{props.label} 파일 드래그 또는 클릭</p>         
+          }      
           </div>
       </div>
       <div style={{margin:"0px 15px 0px", display:"flex"}}>
           {thumb &&
-            thumb.map((item: string, index: number) => {
+              thumb.map((item: string, index: number) => {
               return (              
                   <div>                  
                   <img src={`/uploads/${item}`} height="50" alt="업로드이미지"></img>
@@ -133,10 +134,9 @@ const ImgUpload = (props) => {
                   </IconButton>                                    
                   </div>
               );
-            })
-          }
-        </div>
-    </div>    
+              })}
+              </div>
+      </div>     
   );
 };
 
@@ -155,57 +155,54 @@ const style = {
 };
 
 /////=========== modal 메인 페이지 ================================
-export default function NewProjectDialog(props) {
+export default function NewTechProject(props){ 
+
+    const [open, setOpen] = React.useState(props.open);
+    const handleClose = () => {
+      setOpen(false);
+      props.close();
+    }
   
-  const [open, setOpen] = React.useState(props.open);
-  const handleClose = () => {
-    setOpen(false);
-    props.close();
-  }
+    // Select information
+    const [info, setInfo] = React.useState('');
 
-  // Select information
-  const [info, setInfo] = React.useState('');
-  //장르선택 핸들러
-  const handleGenreChange = (event) => {
-    setInfo(event.target.value);
-  };
+    //장르선택 핸들러
+    const handleGenreChange = (event) => {
+      setInfo(event.target.value);
+    };
+    
+    const Input = styled('input')({
+      display: 'none',
+    });
+    
+    //=====NewTechProject 모달 부분======//
+    interface IDialogueNewProject {
+      prj_hope: string,
+      prj_name: string,
+      prj_firstimage: string
+    };
+  
+    const defaultValues = {
+      prj_hope: "",
+      prj_name: '',
+      prj_firstimage: ''
+    };
+  
+    const methods = useForm({ defaultValues: defaultValues });
+    const { handleSubmit, reset, control, setValue } = methods;
   
   
-  const Input = styled('input')({
-    display: 'none',
-  });
+    //부모에게 값 전달
+    const onSubmit = (dialogdata:IDialogueNewProject)=>{
+      dialogdata.prj_firstimage = imgUploadFileList;
+      props.getdialogdata(dialogdata);
+      setOpen(false);
+      props.close();
+    };
+    
   
-
-  interface IDialogueNewProject {
-    prj_genre: string,
-    prj_name: string,
-    prj_start: string,
-    prj_end: string,
-    prj_firstimage: string
-  };
-
-  const defaultValues = {
-    prj_genre: '',
-    prj_name: '',
-    prj_start: '',
-    prj_end: '',
-    prj_firstimage: ''
-  };
-
-  const methods = useForm({ defaultValues: defaultValues });
-  const { handleSubmit, reset, control, setValue } = methods;
-
-
-  //부모에게 값 전달
-  const onSubmit = (dialogdata:IDialogueNewProject)=>{
-    dialogdata.prj_firstimage = imgUploadFileList;
-    props.getdialogdata(dialogdata);
-    setOpen(false);
-    props.close();
-  };
-
-  return (
-    <>
+  return(
+        <>
         <Modal
           open={props.open}
           onClose={handleClose}
@@ -213,33 +210,26 @@ export default function NewProjectDialog(props) {
           <Box sx={style}>
             <Button className={styles.addclosebutton} variant="text" onClick={handleClose}>X</Button>
 
-            <Typography className={styles.addshowtitle}>새로운 공연</Typography>
-            <Typography className={styles.addshowsubtitle}>기획중인 공연에 대해 간략하게 작성해주세요.</Typography>
+            <Typography className={styles.addshowtitle}>기술구체화협의</Typography>
+            <Typography className={styles.addshowsubtitle}>기술구체화협의를 추가해주세요.</Typography>
             <Divider className={styles.modaldivider} orientation="horizontal" variant="fullWidth" flexItem />            
-                <div className={sty.body_row1}>
-                    <div className={sty.body_row_subitem1}>장르</div>
-                    <div className={sty.body_row_subitem2} style={{margin:"0px 40px 0px"}}><FormInputDropdown name="prj_genre" control={control} label="Text Input"/></div>
-                </div>
-                <div className={sty.body_row2}>
-                    <div className={sty.body_row_subitem1}>공연명</div>                     
-
-                    <div className={sty.body_row_subitem2} style={{width:"700px", margin:"-15px 30px 0px"}} ><FormInputText name="prj_name" control={control} label="공연명을 입력하세요" /></div>
-                </div>
-
-                <div className={sty.body_row3}>
-                    <div className={sty.body_row_subitem1}>공연예상일자</div>
-                    <div className={sty.body_row_subitem2} style={{margin:"0px 40px 0px"}}><FormInputDatetimePicker name="prj_start" control={control} label="시작일자"/></div>
-                    <div style={{margin:"15px 0px 0px"}}>-</div>
-                    <div style={{margin:"0px 40px 0px"}} ><FormInputDatetimePicker name="prj_end" control={control} label="종료일자"/></div>
-                </div>
+            <div className={sty.body_row1}>
+                <div className={sty.body_row_subitem1}>희망연출정보</div>
+                <div className={sty.body_row_subitem2} style={{margin:"0px 40px 0px"}}><FormInputDropdown name="prj_hope" control={control} label="Text Input"/></div>
+            </div>
+            <div className={sty.body_row2}>
+                <div className={sty.body_row_subitem1}>기술구체화협의명</div>                     
+                <div className={sty.body_row_subitem2} style={{width:"500px", margin:"-15px 30px 0px"}} ><FormInputText name="prj_name" control={control} label="기술구체화협의명을 입력해주세요." /></div>
+            </div>
             
             <div className={styles.addshowoption4}>대표 이미지
-              <div style={{margin:"15px 0px 0px"}}><ImgUpload label="공연의 포스터, 공연 관련 이미지를 추가해주세요."/></div>
-            </div>                 
-            <Button  className={sty.notosanskr_bold_cyan_24px} style={{margin:"0px 300px 0px"}}  onClick={handleSubmit(onSubmit)} >만들기</Button>
+              <div style={{margin:"15px 0px 0px"}}><ImgUpload label="기술구체화협의 대표 이미지를 추가헤주세요."/></div>
+            </div>
+
+            <Button  className={sty.notosanskr_bold_cyan_24px} style={{margin:"0px 20px 0px"}}  onClick={handleSubmit(onSubmit)} >만들기</Button>
 
           </Box>
         </Modal>
-    </>
+      </>               
   );
 }

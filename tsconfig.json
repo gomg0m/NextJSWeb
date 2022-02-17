@@ -23,7 +23,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-, "src/component/PlanInfoTable.js", "pages/HopeInfoPanel.js"  ],
+, "src/component/PlanInfoTable.js", "pages/HopeInfoPanel.js", "pages/HopeDashboard.js", "pages/TechDashboard.ㅓㄴ"  ],
   "exclude": [
     "node_modules"
   ]

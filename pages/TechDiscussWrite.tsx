@@ -18,7 +18,9 @@ import Router from 'next/router';
 
 interface IFormInput {
     tech_id: string;
+    tech_hope: string;
     tech_name: string;
+    tech_image: string;
     tech_1stsubject: string;
     tech_2ndsubject: string;
     tech_contents: string;
@@ -26,7 +28,9 @@ interface IFormInput {
     
     const defaultValues = {
     tech_id: "",
+    tech_hope: "",
     tech_name:"",
+    tech_image:"",
     tech_1stsubject: "",
     tech_2ndsubject: "",
     tech_contents: "",

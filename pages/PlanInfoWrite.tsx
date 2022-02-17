@@ -8,11 +8,16 @@ import {FormInputDropdown} from '../src/component/FormInputDropdown'
 import Router from 'next/router';
 import Header from '../src/fix/Header';
 import Leftside from '../src/fix/Leftside1';
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState, useContext} from "react";
 import { IconButton } from "@material-ui/core";
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import { useDropzone } from 'react-dropzone';
 import Axios from "axios";
+
+//협업팀 입련 관련
+import Autocomplete from '@mui/material/Autocomplete';
+import TextField from '@mui/material/TextField';
+import AppContext from "../src/component/AppContext";
 
 interface IFormInput {
 plan_id: string;
@@ -113,7 +118,7 @@ const ImgUpload = () => {
         setThumb(newThumb);
         
         ////미리 저장된 지워질 이미지을 Sever측에 삭제 요청 API를 호출한다.
-        const data = "C:/Web/nextjsweb/public/uploads/"+ delThumb;
+        const data = "d:/Web_dev/nextjsweb/public/uploads/"+ delThumb;
         console.log("deleting file", data);
         
         Axios.post("/api/deletefile", {data}).then((res)=>{
@@ -198,31 +203,34 @@ const ImgUpload = () => {
 
 };
 
-
+var newTeamList = [];
 
 /////=========== PlanInfoWrite 페이지 메인 =====================================
 export const planInfoWirteWrite = ()=> {
     let boxprops ={ width:400, height:150};
     const methods = useForm({ defaultValues: defaultValues });
     const { handleSubmit, reset, control, setValue } = methods;
+    const options = ["김진영", "조자양", "김승조", "윤다예", "김지만"];
 
+    const [teamList, setTeamList] = useState('');
+    
+    const globalPlanID = useContext(AppContext);
+
+    const onTeamChanged = (event, newValue) => {
+        setTeamList(newValue);
+        newTeamList = [...newTeamList,newValue]
+        console.log(newTeamList);
+
+    }
     const onSubmit = (data: IFormInput) => {
-        data.plan_id = "9262333";
+        data.plan_id = globalPlanID.state.statevar;
         data.plan_image=imgUploadFileList; //Dropzone에서 등록된 image file list를 data에 추가함.
         console.log("Form data", data);
-        Axios.post("/api/insertPlanInfo", {data}).then((res)=>{
+        Axios.post("/api/updatePlanInfo", {data}).then((res)=>{
             if(res.status == 200){
                 //login 성공
                 console.log(res.data.users);
-                Axios.get("/api/InsertPlanInfo").then((res)=>{
-                    if(res.status == 200){
-                        //login 성공
-                        console.log("last plan_id", res.data.users);
-                        let routname = '/PlanInfoPanel/'+String(res.data.users[0].plan_id);
-                        Router.push(routname);
-                        console.log("routing plan_id", routname);
-                    }
-                });
+                Router.push('/Panels/PlanInfo/'+ String(globalPlanID.state.statevar) );
             }
         });
     }
@@ -260,7 +268,6 @@ export const planInfoWirteWrite = ()=> {
                 </div>
                 <div className={sty.body_row2}>
                     <div className={sty.body_row_subitem1}>공연명</div>                     
-
                     <div className={sty.body_row_subitem2} style={{width:"700px", margin:"-15px 30px 0px"}} ><FormInputText name="plan_name" control={control} label="공연명을 입력하세요" /></div>
                 </div>
 
@@ -277,7 +284,15 @@ export const planInfoWirteWrite = ()=> {
                 </div>
                 <div className={sty.body_row5}>
                     <div className={sty.body_row_subitem1}>협업팀 초대</div>
-                    <div className={sty.body_row_subitem2} style={{width:"300px", margin:"-15px 30px 0px"}} ><FormInputText name="member" control={control} label="협업팀 입력"/></div>
+                    <div className={sty.body_row_subitem2} style={{width:"300px", margin:"-15px 30px 0px"}}>                       
+                        <Autocomplete
+                            value={teamList}
+                            onChange={onTeamChanged}
+                            options={options}
+                            sx={{ width: 300 }}
+                            renderInput={(params) => <TextField {...params} label="이름검색" />}
+                        />
+                    </div>
                     <div style={{display:"flex", width:"800px", justifyContent:"flex-start"}}>
                     </div>
                 </div>

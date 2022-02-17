@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from '../../../src/fix/Header';
-import Leftside from '../../../src/fix/Leftside3';
+import Leftside from '../../../src/fix/Leftside2(2)';
 import Rightside from '../../../src/fix/Rightside';
 import sty from '../../../src/css/TechDiscussPanel.module.css';
 import Link from 'next/link';
@@ -129,7 +129,8 @@ function Contents() {
 }
 
 
-export default function TheaterInfoPanel(){   
+/////=========== HopeInfoPanel 메인 페이지 ================================
+export default function TechDiscussInfoPanel(){   
     
     // Modal Open/Close
     const [open, setOpen] = React.useState(false);
