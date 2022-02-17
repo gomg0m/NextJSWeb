@@ -9,9 +9,13 @@ export default function middleware(req) {
     const jwt = cookies.OursiteJWT;
 
     const url = req.url;
+    
+    //const decoded = verify(jwt, secret);
 
+
+    // console.log("deced", decoded);
     console.log('middleware called~');
-    console.log('jwt', jwt);
+    // console.log('jwt', jwt);
 
     if (url.includes('/Dashboard')) {
         if (jwt== undefined) {

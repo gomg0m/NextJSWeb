@@ -28,8 +28,10 @@ export default function handler(req, res) {
         path: '/',
     });
 
-    res.setHeader('Set-Cookie', serialised);
+    res.setHeader('Set-Cookie', serialised); //헤더에 쿠키 추가
+
     res.status(200).json( { messagge: "Success!"} );
+    
     console.log('success');
 
     } else {
