@@ -181,6 +181,10 @@ const ImgUpload = () => {
 };//==================이미지 업로드 부분 끝!============================//
 
 
+
+
+
+
 var kkk=0;
 /////=========== TechDisucssInfoPanel 메인 페이지 ================================
 export default function TechDiscussInfoPanel(){  
@@ -189,27 +193,74 @@ export default function TechDiscussInfoPanel(){
   const methods = useForm({ defaultValues: defaultValues });
   const { handleSubmit, reset, control, setValue } = methods;
   
+  const [techRepleIds, setTechRepleIds] = useState([]);
+  const [techRepleName, setTechRepleName] = useState([]);
+  const [techRepleFirSubject, setTechrepleFirSubject] = useState([]);
+  const [techRepleSecSubject, setTechrepleSecSubject] = useState([]);
+  const [techRepleContents, setTechrepleContents] = useState([]);
+  const [techRepleImage, setTechrepleImage] = useState([]);
+  const [techRepleLastTime, setTechreplelastTime] = useState([]);
+  const [rightsideTabID, setRightsideTabID] = useState({TabID:0, RepleID:1});
+
+  //===========TECH 테이블에서 tech_discussname 가져오기============//
+  const [techname, setTechname] = React.useState([]);
+  const router = useRouter();
+  const {Panel_Id} = router.query;
+
+//=============아래 리플들 정보 갖고오는 부분=================//
+   //★★★리플 박스 내용들
+  const [TechRepleInfoTable, setTechRepleInfoTable] = useState([
+    {name: '기술명', content: ''},
+    {name: '검토주제', content: ''},
+    {name: '세부주제', content: ''},
+    {name: '검토내용', content: ''},
+  ]);
+
+
+  var obj = [...TechRepleInfoTable]; //state인 TechInfoTable의 변경에 사용할 변수
+
   const onSubmit = (data: IFormInput) => {
     data.techreple_image=imgUploadFileList; //Dropzone에서 등록된 image file list를 data에 추가함.
     console.log("Form data", data);
-    Axios.post("/api/insertTechRepleInfo", {data}).then((res)=>{
+    let tableID;
+    
+    Axios.post("/api/insertTechRepleInfo", {data}).then((res)=>{  //TechReple 테이블에 새로운 행 추가
         if(res.status == 200){
             //login 성공
             console.log(res.data.users);
-            Axios.get("/api/insertTechRepleInfo").then((res)=>{
+            Axios.get("/api/getLastTechRepleInfo").then((res)=>{ //추가된 행의 ID 값은 자동생성되므로 그 값을 얻기위해  최근 추가행의 값들을 다시 읽어옴.
                 if(res.status == 200){
                     //login 성공
-                    console.log("last techreple_id", res.data.users);
+                    
+                    tableID = res.data.users[0].techreple_id;
+                    console.log("last techreple_id",tableID);
+                    Axios.post("/api/createCommentTable",{tableID}).then((res)=>{ //추가된 행의 ID 값으로 TECHCOMMENT 테이블 생성
+                        if(res.status == 200){
+                            //login 성공
+                            console.log("create comment success", res.data.users);
+                        }
+                    });
+                    //1. 새로 생성된 techriple id를 techinfo 테이블의 techrple_ids에 추가하고 json techreple_ids 값으로 변환
+                    let tmp_arrids =[...techRepleIds,String(tableID)];//기존 ids값에 새 id 추가
+                    let tmp_jsids = JSON.stringify(tmp_arrids);
+
+                    let data = {tech_id: Panel_Id , tech_repleids: tmp_jsids };
+                    console.log("tmp_jsids",tmp_jsids );
+                    //2. TechInfo의 ids update
+                    Axios.post("/api/updateTechInfoids",{data}).then((res)=>{ 
+                        if(res.status == 200){
+                            //login 성공
+                            console.log("updateTechInfoids", res.data.users);
+                            //3. 새로 추가된 techriple을 리랜더링하기 위해 DB 다시 읽어들임.
+                            getData(Panel_Id);
+                        }
+                    });
+
                 }
             });
         }
     });
 }
-
-//===========TECH 테이블에서 tech_discussname 가져오기============//
-const [techname, setTechname] = React.useState([]);
-const router = useRouter();
-const {Panel_Id} = router.query;
   
     function getTechData(){
         console.log('페이지아이디',techname);
@@ -228,25 +279,8 @@ const {Panel_Id} = router.query;
 
 }, [])
 
-//=============아래 리플들 정보 갖고오는 부분=================//
-   //★★★리플 박스 내용들
-  const [TechRepleInfoTable, setTechRepleInfoTable] = useState([
-    {name: '기술명', content: ''},
-    {name: '검토주제', content: ''},
-    {name: '세부주제', content: ''},
-    {name: '검토내용', content: ''},
-  ]);
-  
-  const [techRepleIds, setTechRepleIds] = useState([]);
-  const [techRepleName, setTechRepleName] = useState([]);
-  const [techRepleFirSubject, setTechrepleFirSubject] = useState([]);
-  const [techRepleSecSubject, setTechrepleSecSubject] = useState([]);
-  const [techRepleContents, setTechrepleContents] = useState([]);
-  const [techRepleImage, setTechrepleImage] = useState([]);
-  const [techRepleLastTime, setTechreplelastTime] = useState([]);
-  const [rightsideTabID, setRightsideTabID] = useState({TabID:0, RepleID:1});
 
-  var obj = [...TechRepleInfoTable]; //state인 TechInfoTable의 변경에 사용할 변수
+
 
   function getData(id){
     console.log('pageid',Panel_Id);

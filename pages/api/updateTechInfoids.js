@@ -18,22 +18,12 @@ connection.connect(function(err) {
 export default function handler(req, res) {
   if(req.method == 'POST') {
     /////plan_image항목은 뺌. File dropzone부분에서 api호출하기 때문
-    const user_query = 'UPDATE TECHINFO SET'
-    + ' tech_hope=?, tech_discussname=?, tech_name=?, tech_1stsubject=?, tech_2ndsubject=?'
-    + ', tech_contents=?, tech_image=?, tech_addtime=?'
-    + ' WHERE tech_id = ?';
+    const user_query = 'UPDATE TECHINFO SET tech_repleids=? WHERE tech_id = ?';
     
     let id = req.body.data.tech_id;
-    let hope = req.body.data.tech_hope;
-    let name = req.body.data.tech_discussname;
-    let name = req.body.data.tech_name;
-    let firsubject = req.body.data.tech_1stsubject;
-    let secsubject = req.body.data.tech_2ndsubject;
-    let contents = req.body.data.tech_contents;
-    let image = req.body.data.tech_image;
-    let addtime = req.body.data.tech_addtime;
+    let repleids = req.body.data.tech_repleids;
 
-    let params = [hope, discussname, name, firsubject, secsubject, contents, image, addtime, id];
+    let params = [repleids, id];
 
     console.log(req.body.data);
 

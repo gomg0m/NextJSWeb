@@ -11,29 +11,21 @@ import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import { useDropzone } from 'react-dropzone';
 
 interface IFormInput {
-    concerthall_id: string;
-    hall_place: string;
-    hall_seatnumber: string;
-    hall_size: string;
-    hall_blueprint: string;
-    hall_exterior: string;
-    hall_interior: string;
-    hall_seatinformation: string;
-    hall_exception: string;
+    name:String;
+    team:String;
+    comment:String;
+    image:String;
+    lasttime:String;
     }
     
     const defaultValues = {
-    concerthall_id: "",
-    hall_place:"",
-    hall_seatnumber: "",
-    hall_size: "",
-    hall_blueprint: "",
-    hall_exterior: "",
-    hall_interior: "",
-    hall_seatinformation: "",
-    hall_exception: "",
+        name:"",
+        team:"",
+        comment:"",
+        image: "",
+        lasttime: "",
     };
-
+    
 
     
 ///Dropzone에 사용할 변수
@@ -186,19 +178,14 @@ const ImgUpload = () => {
 
 
 /////=========== TheaterInfoWrite 페이지 메인 =====================================
-export const TechCommentWrite = ()=> {
+export const TechCommentWrite = (props)=> {
     let boxprops ={ width:400, height:150};
     const methods = useForm({ defaultValues: defaultValues });
     const { handleSubmit, reset, control, setValue } = methods;
     
     const onSubmit = (data: IFormInput) => {
-        Axios.post("/api/getTheaterInfo", {data}).then((res)=>{
-            if(res.status == 200){
-                //login 성공
-                console.log(res.data.users);
-                Router.push("/TheaterInfoPanel")
-            }
-        });
+        let sendData:IFormInput = {name:data.name, team:"기술팀", comment:data.comment, image:imgUploadFileList, lasttime:"20220219"};
+        props.parentFunc(sendData);
     }
 
     return(
@@ -206,10 +193,13 @@ export const TechCommentWrite = ()=> {
             
             <div className={sty.body_row8}>
                 <div className={sty.body_row_subitem1}>의견</div>
-                <div className={sty.body_row_subitem2} style={{width:"1100px", margin:"-25px 30px 0px"}} ><FormInputMultilineText name="hall_exception" control={control} label="기타 특이사항을 작성하세요"/></div>
+                <div className={sty.body_row_subitem2} style={{width:"1100px", margin:"-25px 30px 0px"}} ><FormInputText name="name" control={control} label="작성자의 이름을 등록하세요"/></div>
+                <div className={sty.body_row_subitem2} style={{width:"1100px", margin:"-25px 30px 0px"}} ><FormInputText name="team" control={control} label="소속을 적으세요"/></div>
+                <div className={sty.body_row_subitem2} style={{width:"1100px", margin:"-25px 30px 0px"}} ><FormInputMultilineText name="comment" control={control} label="기타 특이사항을 작성하세요"/></div>
+
             </div>
             <div className={sty.body_row4}>
-                <div style={{margin:"15px 0px 0px"}}> <ImgUpload /></div>
+                <div style={{margin:"100px 800px 0px"}}> <ImgUpload /></div>
             </div>
             <div className={sty.layout_bottom}>                 
                 <Button className={sty.notosanskr_bold_cyan_24px} style={{margin:"0px 20px 0px"}} onClick={handleSubmit(onSubmit)} variant="contained"> 의견쓰기 </Button> 

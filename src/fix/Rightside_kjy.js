@@ -85,15 +85,14 @@ export default function Rightside(props) {
   const [date, setDate] = React.useState(new Date());
   const classes = useStyles(); /////TabPanne CustomStyle 사용
   const [repleID, setRepleID] = React.useState(1);  ///TabPanel 관련
-  const [value, setValue] = React.useState(1);  ///TabPanel 관련
+  const [tabValue, setTabValue] = React.useState(1);  ///TabPanel 관련
   const [techComment, setTechComment] = React.useState([{}]);
- 
+  
   
     //Tabs Handle 
     const handleTabChange = (event, newValue) => {      
       
-      setValue(newValue);
-      console.log(value);
+      setTabValue(newValue);
     };
   
     const calcHeight = 1020; ///??? 향후 관련 로직 추가 필요
@@ -150,9 +149,24 @@ export default function Rightside(props) {
   
   useEffect(()=>{    
     var id = props.tabID.RepleID;
+    setTabValue(Number(props.tabID.TabID));
     getCommentTable(id);
 
   },[props.tabID.RepleID]);
+
+
+  function onClickDiscussWrite (params){
+    //1.새로운 의견을 Comment Table에 새로운 행으로 추가
+    //Comment Table의 뒷자리수는 RepleID와 동일
+    let data = {...params, tableid: props.tabID.RepleID}
+    Axios.post("/api/insertTechComments", {data}).then((res)=>{
+      if (res.status == 200 )
+      {
+      }
+    })
+    //2. 다시 해당 Comment Table을 읽어와 리렌더링
+    getCommentTable(props.tabID.RepleID)
+  }
 
   return (
      
@@ -160,20 +174,20 @@ export default function Rightside(props) {
       <Paper sx={{width:680, height:[calcHeight], m:"0px 20px 0px"}} elevation={1}>
         <Box sx={{ width: '100%' }}>  {/*----- Tab 메뉴 -----*/}
           <Box sx={{borderBottom: 1, borderColor: 'divider' }}>
-            <Tabs value={Number(props.tabID.TabID)} onChange={handleTabChange} aria-label="basic tabs example" >
+            <Tabs value={tabValue} onChange={handleTabChange} aria-label="basic tabs example" >
               <Tab label={<span className={classes.customStyleOnTab}>연출정보</span>} {...a11yProps(0)}/> 
               <Tab label={<span className={classes.customStyleOnTab}>체크리스트</span>} {...a11yProps(1)} />
               <Tab label={<span className={classes.customStyleOnTab}>의견</span>} {...a11yProps(2)} />
             </Tabs>
           </Box>
-          <TabPanel value={Number(props.tabID.TabID)} index={0}>  {/*----- 연출정보 Tab 내용 -----*/}
+          <TabPanel value={tabValue} index={0}>  {/*----- 연출정보 Tab 내용 -----*/}
               <ViewHopeInfoPanel Panel_Id = {HopeInfo_Id}/>
           </TabPanel>
-          <TabPanel value={Number(props.tabID.TabID)} index={1}>  {/*----- 체크리스트 Tab 내용 -----*/}
+          <TabPanel value={tabValue} index={1}>  {/*----- 체크리스트 Tab 내용 -----*/}
               ... 공사중 : 체크리스트 페이지 
             </TabPanel>
-          <TabPanel value={Number(props.tabID.TabID)} index={2}>  {/*----- 의견 Tab 내용 -----*/}              
-              <TechCommentWrite />
+          <TabPanel value={tabValue} index={2}>  {/*----- 의견 Tab 내용 -----*/}              
+              <TechCommentWrite parentFunc={onClickDiscussWrite}/>
               {
                   techComment.map((item)=>(<TechCommentElement value={item}/>))
               }
