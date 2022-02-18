@@ -20,7 +20,7 @@ connection.connect(function(err) {
 export default function handler(req, res) {
 
   if(req.method =='GET'){
-    const user_query = 'SELECT * FROM TECHREPLEINFO';
+    const user_query = 'SELECT * FROM TECHREPLE';
 
       console.log(req.body.data);
         connection.query(user_query, function (error, result, fields){
