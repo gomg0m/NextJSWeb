@@ -38,7 +38,7 @@ export default function handler(req, res) {
     let exception =req.body.data.plan_exception;
     let file = req.body.data.plan_file;
 
-    let params = [genre, name, start, end, image, time, number, budget, people, price, contents, exception, file, id];
+    let params = [id, genre, name, start, end, image, time, number, budget, people, price, contents, exception, file];
 
     console.log(req.body.data);
 

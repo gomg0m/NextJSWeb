@@ -2,218 +2,103 @@ import React from 'react';
 import Header from '../../../src/fix/Header';
 import Leftside from '../../../src/fix/Leftside2';
 import sty from '../../../src/css/HopeInfoPanel.module.css';
-import Button from '@mui/material/Button';
-import HopePicture from '../../../src/component/HopePicture';
-
-//테이블들 생성
-import { styled } from '@mui/material/styles';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell, { tableCellClasses } from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
 import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import Axios from 'axios';
+import { Box, Button, Divider, Modal, Typography, InputLabel, MenuItem, FormControl, Select, TextField, Input, IconButton } from '@mui/material';
+import { styled } from '@mui/material/styles';
+import AttachFileIcon from '@mui/icons-material/AttachFile';
 
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
-    [`&.${tableCellClasses.head}`]: {
-      backgroundColor: "lightblue",
-      color: theme.palette.primary.white,
-    },
-    [`&.${tableCellClasses.body}`]: {
-      backgroundColor: 'whitesmoke',
-      color: '#4F4F4F',
-      fontSize: 16,
-      minWidth: 200,
-      fontWeight: 'bold'
-    },
-}));
-
-const StyledTableCell2 = styled(TableCell)(({ theme }) => ({
-    [`&.${tableCellClasses.head}`]: {
-      backgroundColor: "lightblue",
-      color: theme.palette.primary.white,
-    },
-    [`&.${tableCellClasses.body}`]: {
-      backgroundColor: 'white',
-      color: '#333333',
-      minWidth: 980,
-      fontSize: 16,    
-    },
-}));
+//테이블 불러오기
+import ListViewTable from '../../../src/component/ListViewTable';
+import ListViewPicture from '../../../src/component/ListViewPicture';
 
 
-function createData(name, content) {
-    return { name, content };
-}
+/////=========== HopeInfoPanel 메인 페이지 ================================
+export default function HopeInfoPanel(){
 
-function HopeTitle(){
-  const [list, setList] = useState([
-    {name: '희망연출명', content: ''}
-  ]);
+  const router = useRouter();
+  const {Panel_Id} = router.query;
 
-  var obj = 
-    [
-      {name: '희망연출명', content: ''}
-    ];
-
-    function getData(){
-      Axios.get("/api/getHopeInfo").then((res) =>{
-      obj[0].content = res.data.users[0].hope_name;
-
-      setList(obj);
-        });
-    }
-    useEffect(() => {
-      getData();
-    }, []);
-
-    return (
-      <span>
-        {list[0].content}
-      </span>
-    );
-}
-  
-function HopeInfoTable(){
-  const [list, setList] = useState([
+  //★★★연출기술테이블
+  const [HopeInfoTable, setHopeInfoTable] = useState([
     {name: '희망연출명', content: ''},
     {name: '세부내용', content: ''},
     {name: '의도 및 기대효과', content: ''},
-    {name: '특이사항 및 추가 참고사항', content: ''},
+    {name: '특이사항 및 추가 참고사항', content: ''}
   ]);
 
-  var obj = 
-      [
-        {name: '희망연출명', content: ''},
-        {name: '세부내용', content: ''},
-        {name: '의도 및 기대효과', content: ''},
-        {name: '특이사항 및 추가 참고사항', content: ''},
-    ];
-
-    function getData(){
-      Axios.get("/api/getHopeInfo").then((res) =>{
-      obj[0].content = res.data.users[0].hope_name;
-      obj[1].content = res.data.users[0].hope_content;
-      obj[2].content = res.data.users[0].hope_intention;
-      obj[3].content = res.data.users[0].hope_exception;
-      
-      setList(obj);
-        });
-    }
-
-    useEffect(() => {
-      getData();
-    }, []);
-
-    return (
-        <TableContainer component={Paper}>
-            <Table aria-label="customized table">
-              <TableBody>          
-                {list.map((row) => (
-                  <TableRow key={row.name}>
-                    <StyledTableCell component="th" scope="row"> {row.name} </StyledTableCell>
-                    <StyledTableCell2 align="left">{row.content}</StyledTableCell2>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-        );       
-}
-  
-function HopeObjectiveTable(){
-const [list, setList] = useState([
+    //★★★연출목표테이블
+  const [HopeObjectiveTable, setHopeObjectiveTable] = useState([
     {name: '희망연출 시간', content: ''},
-    {name: '예산 규모', content: ''},
-
+    {name: '예산 규모', content: ''}
   ]);
 
-  var obj = 
-      [
-        {name: '희망연출 시간', content: ''},
-        {name: '예산 규모', content: ''},
-    ];
-
-    function getData(){
-      Axios.get("/api/getHopeInfo").then((res) =>{
-        obj[0].content = res.data.users[0].hope_time;
-        obj[1].content = res.data.users[0].hope_budget;
-      
-      setList(obj);
-        });
-    }
-    
-    useEffect(() => {
-      getData();
-    }, []);
-     
-    return (
-        <TableContainer component={Paper}>
-            <Table aria-label="customized table">
-              <TableBody>          
-                {list.map((row) => (
-                  <TableRow key={row.name}>
-                    <StyledTableCell component="th" scope="row"> {row.name} </StyledTableCell>
-                    <StyledTableCell2 align="left">{row.content}</StyledTableCell2>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-        ); 
-}
-
-function HopeTechTable(){
-  const [list, setList] = useState([
+    //★★★연출기술테이블
+    const [HopeTechTable, setHopeTechTable] = useState([
     {name: '희망연출기술명', content: ''},
     {name: '희망이유', content: ''},
-    {name: '특이사항 및 추가 참고사항', content: ''},
+    {name: '특이사항 및 추가 참고사항', content: ''}
   ]);
 
-  var obj = 
-      [
-        {name: '희망연출기술명', content: ''},
-        {name: '희망이유', content: ''},
-        {name: '특이사항 및 추가 참고사항', content: ''},
-    ];
+  const [photos, setPhotos] = useState([]);
+  const [firstImage, setFirstImage] = useState();
 
-    function getData(){
-      Axios.get("/api/getHopeInfo").then((res) =>{
+  var obj1 = [...HopeInfoTable]; //state인 HopeInfoTable 변경에 사용할 변수
+  var obj2 = [...HopeObjectiveTable]; //state인 HopeObjectiveTable 변경에 사용할 변수
+  var obj3 = [...HopeTechTable]; //state인 HopeTechTable 변경에 사용할 변수
 
-        obj[0].content = res.data.users[0].hope_tech;
-        obj[1].content = res.data.users[0].hope_reason;
-        obj[2].content = res.data.users[0].hope_reference;
-      
-      setList(obj);
+  function getData(id){
+    console.log('pageid',Panel_Id);
+      Axios.post("/api/getHopeInfo", {id} ).then((res) =>{
+        if (res.status == 200) {
+        //// 가져온 DB값으로 HopeInfoTable 변경 => ListViewTable props로 전달             
+        obj1[0].content = res.data.users[0].hope_name;
+        obj1[1].content = res.data.users[0].hope_content
+        obj1[2].content = res.data.users[0].hope_intention;
+        obj1[3].content = res.data.users[0].hope_exception;
+
+        obj2[0].content = res.data.users[0].hope_time;
+        obj2[1].content = res.data.users[0].hope_budget
+
+        obj3[0].content = res.data.users[0].hope_tech;
+        obj3[1].content = res.data.users[0].hope_reason
+        obj3[2].content = res.data.users[0].hope_reference;
+
+        
+        setHopeInfoTable(obj1);
+        setHopeObjectiveTable(obj2);
+        setHopeTechTable(obj3);
+
+        //// 가져온 DB값으로 FirstImage 및 photos 변경 => <img> 및 ListViewPicture props로 전달 /////
+        let parsedPhotos = JSON.parse(res.data.users[0].hope_image);
+        let photosFormat =[];
+
+        /////파싱된 이미지 파일이름 배열을 react-Gallery 형식에 맞는 photosFormat로 변환 
+        parsedPhotos.map((photo)=>{
+          photo = '/uploads/'+ photo;
+          console.log('photo:',photo);
+          photosFormat.push({src:photo,width:3,height:3});
         });
-    }
+        /////
 
-    useEffect(() => {
-      getData();
-    }, []);
-    return (
-        <TableContainer component={Paper}>
-            <Table aria-label="customized table">
-              <TableBody>          
-                {list.map((row) => (
-                  <TableRow key={row.name}>
-                    <StyledTableCell component="th" scope="row"> {row.name} </StyledTableCell>
-                    <StyledTableCell2 align="left">{row.content}</StyledTableCell2>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-        ); 
-}
+        setPhotos(photosFormat);
+        setFirstImage('/uploads/'+parsedPhotos[0]);  //대표이미지이름에 서버 저장경로 붙임.
+      }
+    }); 
+      
+  }
+    useEffect(()=>{
+      if(Panel_Id)
+        { getData(Panel_Id); }
+      }
+      ,[Panel_Id]
+      );
 
-export default function TheaterInfoPanel(){       
     return(
         <>
-            <Header />
-            <Leftside />
+          <Header />
+          <Leftside />
         <div className={sty.infoframe}>
             <div
                 //빨강색 선
@@ -227,23 +112,23 @@ export default function TheaterInfoPanel(){
               </div>
 
             <div className={sty.layout_top}>
-                <div className={sty.layout_top_txt1}>희망연출정보</div>
-                <div className={sty.layout_top_txt2}> <HopeTitle /></div>
-                <div style={{margin:"50px 0px 0px"}}><HopePicture /></div>
-
+              <div className={sty.layout_top_txt1}>희망연출정보</div>
+              {/* 희명연출정보 제목 가져오기 */}
+              <div className={sty.layout_top_txt2}> {HopeInfoTable[0].content} </div>
+              <div className={sty.layout_body_drawing} > <ListViewPicture photos={photos}/> </div>
 
             <div className={sty.layout_body}>
               <div className={sty.subtitle} style={{margin:"50px 0px 0px"}}>희망연출 기술</div>
-                <div className={sty.layout_top_table} style={{margin:"20px 0px 0px"}}><HopeInfoTable /></div>
-                <div className={sty.subtitle} style={{margin:"50px 0px 0px"}}>희망연출 목표</div>
-                <div className={sty.layout_body_drawing} style={{margin:"20px 0px 0px"}}> <HopeObjectiveTable /> </div>
-                <div className={sty.subtitle} style={{margin:"50px 0px 0px"}}>희망연출 기술</div>
-                <div className={sty.layout_body_drawing} style={{margin:"20px 0px 0px"}}> <HopeTechTable /> </div>
+              <div className={sty.layout_top_table} style={{margin:"20px 0px 0px"}}><ListViewTable tableContents={HopeInfoTable}/></div>
+              <div className={sty.subtitle} style={{margin:"50px 0px 0px"}}>희망연출 목표</div>
+              <div className={sty.layout_top_table} style={{margin:"20px 0px 0px"}}><ListViewTable tableContents={HopeObjectiveTable}/></div>
+              <div className={sty.subtitle} style={{margin:"50px 0px 0px"}}>희망연출 기술</div>
+              <div className={sty.layout_top_table} style={{margin:"20px 0px 0px"}}><ListViewTable tableContents={HopeTechTable}/></div>
             </div>            
             
             <div className={sty.button}>       
-                <Button className={sty.notosanskr_bold_black_24px} style={{margin:"50px 20px 0px"}} variant="contained">  수정 </Button>          
-                <Button className={sty.notosanskr_bold_cyan_24px} style={{margin:"50px 20px 0px"}} variant="contained">  논의 확정하기 </Button>
+              <Button className={sty.notosanskr_bold_black_24px} style={{margin:"50px 20px 0px"}} variant="contained">  수정 </Button>          
+              <Button className={sty.notosanskr_bold_cyan_24px} style={{margin:"50px 20px 0px"}} variant="contained">  논의 확정하기 </Button>
             </div>
         </div>
     </div>  

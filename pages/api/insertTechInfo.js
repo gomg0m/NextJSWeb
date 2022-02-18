@@ -1,3 +1,5 @@
+//TechDashboard에서 처음 정보 입력할 때!!! 
+
 import { result } from 'lodash';
 
 const mysql = require('mysql');
@@ -30,16 +32,18 @@ export default function handler(req, res) {
   }
 
   if(req.method == 'POST') {
-    const user_query = 'INSERT INTO TECHINFO VALUES(null, ?, ?, ?, ?, ?)';
-    let id = req.body.data.tech_id;
-    let name = req.body.data.tech_name;
-    let firsubject = req.body.data.tech_1stsubject;
-    let secsubject = req.body.data.tech_2ndsubject;
-    let contents = req.body.data.tech_contents;
-    let addtime = req.body.data.tech_addtime;
+    console.log("req.body.dia",req.body.diglogdata );
+    
+    const user_query = 'INSERT INTO TECHINFO'
+    + ' (tech_hope, tech_discussname, tech_firstimage)'
+    + ' VALUES (?, ?, ?)';
 
-    let params = [name, firsubject, secsubject, contents, addtime];
-    console.log(req.body.data);
+    let hope = req.body.diglogdata.prj_hope;
+    let name = req.body.diglogdata.prj_name;
+    let firstimage = req.body.diglogdata.prj_firstimage;
+
+    let params = [hope, name, firstimage];
+
         connection.query(user_query, params, function (error, result, fields){
             if (error) throw error;
             res.status(200).json({ users: result})

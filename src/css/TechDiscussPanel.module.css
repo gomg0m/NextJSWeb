@@ -130,12 +130,52 @@
   color: #000000;
 }
 
-.addbox{
-  background: #FFFFFF;
-  border: 1px solid #E0E0E0;
-  box-sizing: border-box;
-  border-radius: 8px; 
-  width: 900px;
+.addreple{
+  margin-left: 10px;
+  margin-top: 50px;
+}
+
+.body_row1{
+  margin-top: 30px;
+  margin-left: 20px;
+}
+
+.body_row2{
+  margin-top: 70px;
+  margin-left: 20px;
+}
+
+.body_row3{
+  margin-top: 30px;
+  margin-left: 20px;
+}
+
+.title{
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 22px;
+}
+
+.inputbox{
+  margin-top: -40px;
+  margin-left: 100px;
+}
+
+.dropdown1{
+  margin-top: -40px;
+  margin-left: 100px;
+}
+
+.dropdown2{
+  margin-top: -48px;
+  margin-left: 400px;
+}
+
+.inputbox2{
+  margin-top: 30px;
+  margin-left: 90px;
 }
 
 .contentbox { 

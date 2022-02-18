@@ -4,7 +4,10 @@
     // 자세한 내용을 보려면 https://go.microsoft.com/fwlink/?linkid=830387을(를) 방문하세요.
     "version": "0.2.0",
     "configurations": [
+<<<<<<< HEAD
 
+=======
+>>>>>>> ea57a4a7b0edb9de3f907cdfa3a437fa51fe6732
         {
             "type": "pwa-chrome",
             "request": "launch",

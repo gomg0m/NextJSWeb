@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from '../src/css/Show.module.css';
+import sty from '../src/css/planInfoWirte.module.css';
 import { Checkbox, FormControlLabel, Box, Button, Divider, Modal, Typography, InputLabel, MenuItem, 
   FormControl, Select, TextField, Paper, InputBase} from '@mui/material';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
@@ -68,7 +69,7 @@ const ImgUpload = (props) => {
       setThumb("");
       
       ////미리 저장된 지워질 이미지을 Sever측에 삭제 요청 API를 호출한다.
-      const data = "E:/webdev_work/nextjsweb/public/uploads/"+ imgUploadFileList;
+      const data = "c:/Web/nextjsweb/public/uploads/"+ imgUploadFileList;
       
       Axios.post("/api/deletefile", {data}).then((res)=>{
       if(res.status == 200){      
@@ -110,21 +111,20 @@ const ImgUpload = (props) => {
   ]);
 
   return (
-      
-      <div style={{display:"flex"}}>
+    <div style={{display:"flex"}}>
       <div>      
           <div {...getRootProps({style})} >    
-          <input {...getInputProps()} />
-          {
-              isDragActive ?
-              <p>여기에 드롭!</p> :
-              <p>{props.label} 파일 드래그 또는 클릭</p>         
-          }      
+            <input {...getInputProps()} />
+              {
+                isDragActive ?
+                <p>여기에 드롭!</p> :
+                <p>{props.label} 파일 드래그 또는 클릭</p>         
+              }      
           </div>
       </div>
       <div style={{margin:"0px 15px 0px", display:"flex"}}>
           {thumb &&
-              thumb.map((item: string, index: number) => {
+            thumb.map((item: string, index: number) => {
               return (              
                   <div>                  
                   <img src={`/uploads/${item}`} height="50" alt="업로드이미지"></img>
@@ -133,14 +133,11 @@ const ImgUpload = (props) => {
                   </IconButton>                                    
                   </div>
               );
-              })}
-              </div>
-      </div>
-      
+            })
+          }
+        </div>
+    </div>    
   );
-
-
-
 };
 
 const style = {
@@ -157,8 +154,7 @@ const style = {
   p: 4,
 };
 
-import sty from '../src/css/planInfoWirte.module.css';
-
+/////=========== modal 메인 페이지 ================================
 export default function NewProjectDialog(props) {
   
   const [open, setOpen] = React.useState(props.open);
@@ -208,6 +204,8 @@ export default function NewProjectDialog(props) {
     props.close();
   };
 
+  const options = [ "뮤지컬", "무용", "연극", "음악", "쇼", "기타 예술 공연" ];
+
   return (
     <>
         <Modal
@@ -222,7 +220,7 @@ export default function NewProjectDialog(props) {
             <Divider className={styles.modaldivider} orientation="horizontal" variant="fullWidth" flexItem />            
                 <div className={sty.body_row1}>
                     <div className={sty.body_row_subitem1}>장르</div>
-                    <div className={sty.body_row_subitem2} style={{margin:"0px 40px 0px"}}><FormInputDropdown name="prj_genre" control={control} label="Text Input"/></div>
+                    <div className={sty.body_row_subitem2} style={{width:"130px", margin:"10px 40px 0px"}}><InputLabel>장르 선택</InputLabel><FormInputDropdown MenuList={options} name="prj_genre" control={control} label="Text Input"/></div>
                 </div>
                 <div className={sty.body_row2}>
                     <div className={sty.body_row_subitem1}>공연명</div>                     
@@ -232,15 +230,15 @@ export default function NewProjectDialog(props) {
 
                 <div className={sty.body_row3}>
                     <div className={sty.body_row_subitem1}>공연예상일자</div>
-                    <div className={sty.body_row_subitem2} style={{margin:"0px 40px 0px"}}><FormInputDatetimePicker name="prj_start" control={control} label="시작일자"/></div>
+                    <div className={sty.body_row_subitem2} style={{margin:"0px 20px 0px"}}><FormInputDatetimePicker name="prj_start" control={control} label="시작일자"/></div>
                     <div style={{margin:"15px 0px 0px"}}>-</div>
-                    <div style={{margin:"0px 40px 0px"}} ><FormInputDatetimePicker name="prj_end" control={control} label="종료일자"/></div>
+                    <div style={{margin:"px 20px 0px"}} ><FormInputDatetimePicker name="prj_end" control={control} label="종료일자"/></div>
                 </div>
             
             <div className={styles.addshowoption4}>대표 이미지
               <div style={{margin:"15px 0px 0px"}}><ImgUpload label="공연의 포스터, 공연 관련 이미지를 추가해주세요."/></div>
             </div>                 
-            <Button  className={sty.notosanskr_bold_cyan_24px} style={{margin:"0px 20px 0px"}}  onClick={handleSubmit(onSubmit)} >만들기</Button>
+            <Button  className={sty.notosanskr_bold_cyan_24px} style={{margin:"0px 700px 0px"}}  onClick={handleSubmit(onSubmit)} >만들기</Button>
 
           </Box>
         </Modal>

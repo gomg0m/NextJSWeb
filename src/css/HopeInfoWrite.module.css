@@ -209,6 +209,7 @@
 
 .button{
   margin-left: 1100px;
+  margin-top: 150px;
   width: 350px;
   color: var(--black);
   font-family: var(--font-family-noto_sans_kr);

@@ -9,7 +9,7 @@ import { Container, Card, CardContent, CardMedia, Typography, CardActionArea, Bu
 function Home() {
   return (
     <>
-      <Header />
+      {/* <Header /> */}
 
       <div className={styles.maintext}>
         공연의 과정이 <br/>

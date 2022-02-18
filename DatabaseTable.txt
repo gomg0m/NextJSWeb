@@ -1,0 +1,141 @@
+--------------
+1. 사용자 테이블
+--------------
+
+1) 사용자 고유 번호(Key로 활용) 2) 이름 3) 회사 4) 이메일 5) 비밀번호 6) 회원가입 시간
+
+CREATE TABLE reple.USER (
+	user_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    user_name VARCHAR(30) NOT NULL,
+    user_company VARCHAR(45) NOT NULL,
+	user_email VARCHAR(64) NOT NULL UNIQUE,
+	user_password VARCHAR(100) NOT NULL,
+	user_created DATETIME NULL DEFAULT NULL
+)
+
+--------------------
+2. 협업 공연 추가 테이블 
+--------------------
+
+1) 공연 고유 번호 (Key로 활용) 2) 장르 3) 공연 이름 4) 공연 시작일 5) 공연 종료일 6) 공연 이미지 7) 공연 정보 추가 시간
+
+CREATE TABLE reple.SHOWINFO (
+	show_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	show_genre VARCHAR(50) NOT NULL,
+	show_name VARCHAR(250) NOT NULL,
+	show_start DATETIME NOT NULL,
+	show_end DATETIME NOT NULL,
+	show_image BLOB NOT NULL,
+	show_addtime DATETIME
+)
+
+-----------------
+3. 기술 구체화 협의
+-----------------
+
+1) 희망 기술 고유 번호 (Key로 활용) 2) 연출 정보 3) 구체화협의명 4) 대표 이미지 5) 협의사항 추가 시간
+
+CREATE TABLE reple.HOPETECHINFO (
+	hopetech_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	hopetech_infomation VARCHAR(50) NOT NULL,
+	hopetech_name VARCHAR(50) NOT NULL,
+	hopetech_image BLOB NOT NULL,
+	hopetech_addtime DATETIME NULL
+)
+
+-------------------
+4. Productoon 추가
+-------------------
+
+1) 프로덕션 고유 번호 (Key로 활용) 2) 프로덕션명 3) 희망연출정보 4) 기술구체화협의명 5) 대표 이미지 6) Production 추가 시간
+
+CREATE TABLE reple.PRODUCTIONINFO (
+  production_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  production_name VARCHAR(50) NOT NULL,
+  production_infomation VARCHAR(50) NOT NULL,
+  production_discussname VARCHAR(50) NOT NULL,
+  production_image BLOB NOT NULL,
+  production_addtime DATETIME NULL
+)
+
+---------------------
+5. 스마트 스테이지 등록
+---------------------
+
+1) 스테이지 고유 번호 (Key로 활용) 2) 내용 3) 파일 첨부 4) 사람 소환 5) 태그 6) 일정 추가 7) 스테이지 등록 시간
+
+CREATE TABLE reple.STAGEINFO (
+	stage_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	stage_contents VARCHAR(2000),
+    stage_file VARCHAR(1000),
+    stage_people VARCHAR(1000),
+    stage_tag VARCHAR(1000),
+    stage_schedule VARCHAR(1000),
+	stage_addtime DATETIME NULL
+)
+
+---------------------
+6. 철거 및 반출 협의 등록
+---------------------
+
+1) 협의 고유 번호 (KEY로 활용) 2) 철거 시작일 3) 철거 종료일 4) 반출 시작일 5) 반출 종료일 6) 대표 이미지 7) 협의 등록 시간
+
+CREATE TABLE reple.ENDINFO (
+	end_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	end_remove_start DATETIME NOT NULL,
+	end_remove_end DATETIME NOT NULL,
+	end_out_start DATETIME NOT NULL,
+	end_out_end DATETIME NOT NULL,
+	end_out DATETIME NOT NULL,
+	end_image BLOB NOT NULL,
+	end_addtime DATETIME NOT NULL
+)
+
+---------------------
+7. 철거 및 반출 내용 입력
+---------------------
+
+1) 내용 고유 번호 (Key로 활용) 2) 내용 3) 파일 첨부 4) 사람 소환 5) 태그 6) 일정 추가 7) 철거 정보 등록 시간
+
+CREATE TABLE reple.ENDTWOINFO (
+	end_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	endtwo_contents VARCHAR(2000),
+    endtwo_file VARCHAR(1000),
+    endtwo_people VARCHAR(1000),
+    endtwo_tag VARCHAR(1000),
+    endtwo_schedule VARCHAR(1000),
+	endtwo_addtime DATETIME NULL
+)
+
+----------------------
+8. 공지사항
+----------------------
+
+1) 공지사항 고유 번호 (Key로 활용) 2) 작성자 3) 제목 4) 내용 5) 첨부자료 6) 공지사항 등록 시간 
+
+CREATE TABLE reple.NOTICEINFO (
+	notice_id INT PRIMARY KEY NOT NULL,
+    notice_writer VARCHAR(50) NOT NULL,
+  notice_name VARCHAR(100) NOT NULL,
+  notice_content VARCHAR(2000) NOT NULL,
+  notice_file VARCHAR(50) NULL,
+  notice_addtime DATETIME NULL
+)
+
+-----------------------
+9. 일정 추가
+-----------------------
+
+1) 일정 고유 번호 (Key로 활용) 2) 작성자 3) 일정 제목 4) 협업공간 5) 시작일 6) 종료일 7) 참여자 8) 장소 9) 일정 등록 시간
+
+CREATE TABLE reple.SCHEDULEINFO (
+	schedule_id INT PRIMARY KEY NOT NULL,
+    schedule_writer VARCHAR(50) NOT NULL,
+    schedule_title VARCHAR(50) NOT NULL,
+    schedule_place VARCHAR(50) NOT NULL,
+    schedule_start DATETIME NOT NULL,
+    schedule_end DATETIME NOT NULL,
+    schedule_people VARCHAR(100) NOT NULL,
+    schedule_location VARCHAR(150) NOT NULL,
+    schedule_addtime DATETIME NULL
+)
