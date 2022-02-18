@@ -206,10 +206,29 @@ export default function TechDiscussInfoPanel(){
     });
 }
 
-//=============아래 리플들 정보 갖고오는 부분=================//
-  const router = useRouter();
-  const {Panel_Id} = router.query;
+//===========TECH 테이블에서 tech_discussname 가져오기============//
+const [techname, setTechname] = React.useState([]);
+const router = useRouter();
+const {Panel_Id} = router.query;
+  
+    function getTechData(){
+        console.log('페이지아이디',techname);
+        Axios.get("/api/getTechInfo").then((res) => {                 
+            if(res.status == 200){      
+                res.data.users.map((item, i) => {
+                    if(item.tech_id == Panel_Id){
+                    setTechname(res.data.users[i].tech_discussname);
+                }})
+            }
+        });    
+    }
+    
+    useEffect(() => {
+    getTechData();
 
+}, [])
+
+//=============아래 리플들 정보 갖고오는 부분=================//
    //★★★리플 박스 내용들
   const [TechRepleInfoTable, setTechRepleInfoTable] = useState([
     {name: '기술명', content: ''},
@@ -286,14 +305,9 @@ export default function TechDiscussInfoPanel(){
                     //         setTechLastTime(techlasttime);
                     //     }//if
                     // });
-                }//if2
-              }//axios2 then2
-              ); //axios2 then1
-        
-            }//if1
-
-            }//axios1 then2
-        )//axios1 then1
+                }
+            });//if2
+        }})//if1
     }//function
 
   useEffect(()=>{
@@ -302,9 +316,6 @@ export default function TechDiscussInfoPanel(){
     }
   } ,[Panel_Id]);
 
-  function getHopeName(){
-      
-  }
 
   //========================불러오는 정보 끝========================//
   const options1 = [ "사전확인", "사업계획", "고려사항",  "대상물", "연출내용", "구현환경", "반입 및 설치" ];
@@ -330,7 +341,7 @@ export default function TechDiscussInfoPanel(){
                 }}></div>
             <div className={sty.layout_top}>
                 <div className={sty.layout_top_txt1}>기술구체화협의</div>
-                <div className={sty.layout_top_txt2}>현재 id값의 협의명 들어가야함</div>
+                <div className={sty.layout_top_txt2}>{techname} 기술구체화 협의</div>
 
                 <div
                     style={{

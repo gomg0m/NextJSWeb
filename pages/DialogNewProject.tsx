@@ -204,6 +204,8 @@ export default function NewProjectDialog(props) {
     props.close();
   };
 
+  const options = [ "뮤지컬", "무용", "연극", "음악", "쇼", "기타 예술 공연" ];
+
   return (
     <>
         <Modal
@@ -218,7 +220,7 @@ export default function NewProjectDialog(props) {
             <Divider className={styles.modaldivider} orientation="horizontal" variant="fullWidth" flexItem />            
                 <div className={sty.body_row1}>
                     <div className={sty.body_row_subitem1}>장르</div>
-                    <div className={sty.body_row_subitem2} style={{margin:"0px 40px 0px"}}><FormInputDropdown name="prj_genre" control={control} label="Text Input"/></div>
+                    <div className={sty.body_row_subitem2} style={{width:"130px", margin:"10px 40px 0px"}}><InputLabel>장르 선택</InputLabel><FormInputDropdown MenuList={options} name="prj_genre" control={control} label="Text Input"/></div>
                 </div>
                 <div className={sty.body_row2}>
                     <div className={sty.body_row_subitem1}>공연명</div>                     
@@ -228,15 +230,15 @@ export default function NewProjectDialog(props) {
 
                 <div className={sty.body_row3}>
                     <div className={sty.body_row_subitem1}>공연예상일자</div>
-                    <div className={sty.body_row_subitem2} style={{margin:"0px 40px 0px"}}><FormInputDatetimePicker name="prj_start" control={control} label="시작일자"/></div>
+                    <div className={sty.body_row_subitem2} style={{margin:"0px 20px 0px"}}><FormInputDatetimePicker name="prj_start" control={control} label="시작일자"/></div>
                     <div style={{margin:"15px 0px 0px"}}>-</div>
-                    <div style={{margin:"0px 40px 0px"}} ><FormInputDatetimePicker name="prj_end" control={control} label="종료일자"/></div>
+                    <div style={{margin:"px 20px 0px"}} ><FormInputDatetimePicker name="prj_end" control={control} label="종료일자"/></div>
                 </div>
             
             <div className={styles.addshowoption4}>대표 이미지
               <div style={{margin:"15px 0px 0px"}}><ImgUpload label="공연의 포스터, 공연 관련 이미지를 추가해주세요."/></div>
             </div>                 
-            <Button  className={sty.notosanskr_bold_cyan_24px} style={{margin:"0px 300px 0px"}}  onClick={handleSubmit(onSubmit)} >만들기</Button>
+            <Button  className={sty.notosanskr_bold_cyan_24px} style={{margin:"0px 700px 0px"}}  onClick={handleSubmit(onSubmit)} >만들기</Button>
 
           </Box>
         </Modal>

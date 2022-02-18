@@ -2,7 +2,7 @@ import React, { useState,useEffect } from 'react';
 import Header from '../src/fix/Header';
 import sty from '../src/css/HopeDashboard.module.css';
 import Footer from "../src/fix/Footer";
-import Leftside from '../src/fix/Leftside';
+import Leftside from '../src/fix/Leftside2';
 import Link from 'next/link';
 
 import Axios from 'axios';
