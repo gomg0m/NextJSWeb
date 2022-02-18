@@ -8,16 +8,11 @@ import {FormInputDropdown} from '../src/component/FormInputDropdown'
 import Router from 'next/router';
 import Header from '../src/fix/Header';
 import Leftside from '../src/fix/Leftside1';
-import React, { useCallback, useEffect, useMemo, useState, useContext} from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { IconButton } from "@material-ui/core";
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import { useDropzone } from 'react-dropzone';
 import Axios from "axios";
-
-//협업팀 입련 관련
-import Autocomplete from '@mui/material/Autocomplete';
-import TextField from '@mui/material/TextField';
-import AppContext from "../src/component/AppContext";
 
 interface IFormInput {
 plan_id: string;
@@ -54,8 +49,6 @@ plan_file: "",
 
 };
 
-
-///Dropzone에 사용할 변수
 type Information = { src:string; width:number; height:number };
 
 var pics = new Array<Information>(); 
@@ -90,6 +83,8 @@ const acceptStyle = {
 const rejectStyle = {
     borderColor: '#ff1744'
 };
+
+
 
 
 
@@ -129,6 +124,15 @@ const ImgUpload = () => {
         });    
         ////////
 
+        ///MySQL에 지워진 파일을 반영한 이미지 파일이름 배열 데이터 저장    
+        // console.log("deleted 배열", newThumb);
+        // Axios.post("/api/jsonaccess", {newThumb}).then((res)=>{
+        // if(res.status == 200){
+        //     //login 성공
+        //     console.log("삭제후 DB결과",res.data.users);
+        // }
+        // });
+
     }; //End Of deleteHandler
   
     //--- Dropzone Area Drop시의 이벤트 핸들러
@@ -150,6 +154,14 @@ const ImgUpload = () => {
                     console.log("new thumb list", newThumb);
                     imgUploadFileList=JSON.stringify(newThumb);
                     console.log("imgUplist", imgUploadFileList);
+                    // /////MySQL에 Upload한 이미지 파일이름 배열 데이터 저장    
+                    // Axios.post("/api/jsonaccess", {newThumb}).then((res)=>{
+                    //     if(res.status == 200){
+                    //         //login 성공
+                    //         console.log("Upload DB저장 결과", res.data.user);
+                    //     }
+                    // });
+                    // /////
                 });    
             }
         }, [thumb]
@@ -203,34 +215,31 @@ const ImgUpload = () => {
 
 };
 
-var newTeamList = [];
+
 
 /////=========== PlanInfoWrite 페이지 메인 =====================================
 export const planInfoWirteWrite = ()=> {
     let boxprops ={ width:400, height:150};
     const methods = useForm({ defaultValues: defaultValues });
     const { handleSubmit, reset, control, setValue } = methods;
-    const options = ["김진영", "조자양", "김승조", "윤다예", "김지만"];
 
-    const [teamList, setTeamList] = useState('');
-    
-    const globalPlanID = useContext(AppContext);
-
-    const onTeamChanged = (event, newValue) => {
-        setTeamList(newValue);
-        newTeamList = [...newTeamList,newValue]
-        console.log(newTeamList);
-
-    }
     const onSubmit = (data: IFormInput) => {
-        data.plan_id = globalPlanID.state.statevar;
+        data.plan_id = "9262333";
         data.plan_image=imgUploadFileList; //Dropzone에서 등록된 image file list를 data에 추가함.
         console.log("Form data", data);
-        Axios.post("/api/updatePlanInfo", {data}).then((res)=>{
+        Axios.post("/api/insertPlanInfo", {data}).then((res)=>{
             if(res.status == 200){
                 //login 성공
                 console.log(res.data.users);
-                Router.push('/Panels/PlanInfo/'+ String(globalPlanID.state.statevar) );
+                Axios.get("/api/InsertPlanInfo").then((res)=>{
+                    if(res.status == 200){
+                        //login 성공
+                        console.log("last plan_id", res.data.users);
+                        let routname = '/PlanInfoPanel/'+String(res.data.users[0].plan_id);
+                        Router.push(routname);
+                        console.log("routing plan_id", routname);
+                    }
+                });
             }
         });
     }
@@ -268,6 +277,7 @@ export const planInfoWirteWrite = ()=> {
                 </div>
                 <div className={sty.body_row2}>
                     <div className={sty.body_row_subitem1}>공연명</div>                     
+
                     <div className={sty.body_row_subitem2} style={{width:"700px", margin:"-15px 30px 0px"}} ><FormInputText name="plan_name" control={control} label="공연명을 입력하세요" /></div>
                 </div>
 
@@ -284,22 +294,14 @@ export const planInfoWirteWrite = ()=> {
                 </div>
                 <div className={sty.body_row5}>
                     <div className={sty.body_row_subitem1}>협업팀 초대</div>
-                    <div className={sty.body_row_subitem2} style={{width:"300px", margin:"-15px 30px 0px"}}>                       
-                        <Autocomplete
-                            value={teamList}
-                            onChange={onTeamChanged}
-                            options={options}
-                            sx={{ width: 300 }}
-                            renderInput={(params) => <TextField {...params} label="이름검색" />}
-                        />
-                    </div>
+                    <div className={sty.body_row_subitem2} style={{width:"300px", margin:"-15px 30px 0px"}} ><FormInputText name="member" control={control} label="협업팀 입력"/></div>
                     <div style={{display:"flex", width:"800px", justifyContent:"flex-start"}}>
                     </div>
                 </div>
                 <div className={sty.body_row6}>
                     <div className={sty.body_row_subitem1}>공연시간</div>
                     <div></div>
-                    <div className={sty.body_row_subitem2} style={{width:"700px", margin:"-15px 30px 0px"}} ><FormInputText name="plan_time" control={control} label="공연시간을 입력하세요"/></div>                    
+                    <div className={sty.body_row_subitem2} style={{width:"700px", margin:"-15px 30px 0px"}} ><FormInputText name="plan_time" control={control}label="공연시간을 입력하세요"/></div>                    
                     <div>분</div>
 
                 </div>

@@ -18,7 +18,7 @@ connection.connect(function(err) {
 export default function handler(req, res) {
   if(req.method == 'POST') {
     const user_query = 'SELECT * FROM PLANINFO WHERE plan_id = ? ';
-
+    console.log('getPlanInfoid',req.body.id);
     let params = [req.body.id];
     connection.query(user_query, params, function (error, result, fields){
       if (error) throw error;

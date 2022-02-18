@@ -17,7 +17,6 @@ connection.connect(function(err) {
 });
 
 export default function handler(req, res) {
-  if(req.method == 'POST') {
     if(req.method == 'POST') {
       const user_query = 'SELECT * FROM THEATERINFO WHERE theater_id = ? ';
   
@@ -29,6 +28,4 @@ export default function handler(req, res) {
       });
     }
       res.statusCode = 200;
-}
-    
 }
