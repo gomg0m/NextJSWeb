@@ -16,8 +16,9 @@ import {makeStyles} from '@material-ui/core';
 import {Paper} from '@mui/material';
 /////
 
-import ViewHopeInfoPanel from '../component/ViewHopeInfoPanel'
-
+import ViewHopeInfoPanel from '../component/ViewHopeInfoPanel';
+import TechCommentWrite from '../component/TechCommentWrite';
+import TechCommentElement from '../component/TechCommentBox';
 
 /////TabPanel 관련 
 const useStyles = makeStyles({
@@ -82,9 +83,10 @@ const maxDate = new Date('2034-01-01T00:00:00.000');
 export default function Rightside(props) {
   const [date, setDate] = React.useState(new Date());
   const classes = useStyles(); /////TabPanne CustomStyle 사용
-  const [value, setValue] = React.useState(0);  ///TabPanel 관련
+  const [repleID, setRepleID] = React.useState(1);  ///TabPanel 관련
+  const [value, setValue] = React.useState(1);  ///TabPanel 관련
 
-  console.log ('props tabID', props.tabID);
+  console.log ('props tabID', props.tabID.TabID);
   
     //Tabs Handle 
     const handleTabChange = (event, newValue) => {      
@@ -108,6 +110,10 @@ export default function Rightside(props) {
 
   //     }); //Eof Axios
   // }
+  useEffect(()=>{
+    //getCommentTable(props.tableID);
+    console.log("TechRiple Clicked", props.tabID.RepleID);
+},[props.tabID.RepleID]);
 
   return (
      
@@ -115,20 +121,22 @@ export default function Rightside(props) {
       <Paper sx={{width:680, height:[calcHeight], m:"0px 20px 0px"}} elevation={1}>
         <Box sx={{ width: '100%' }}>  {/*----- Tab 메뉴 -----*/}
           <Box sx={{borderBottom: 1, borderColor: 'divider' }}>
-            <Tabs value={Number(props.tabID)} onChange={handleTabChange} aria-label="basic tabs example" >
+            <Tabs value={Number(props.tabID.TabID)} onChange={handleTabChange} aria-label="basic tabs example" >
               <Tab label={<span className={classes.customStyleOnTab}>연출정보</span>} {...a11yProps(0)}/> 
               <Tab label={<span className={classes.customStyleOnTab}>체크리스트</span>} {...a11yProps(1)} />
               <Tab label={<span className={classes.customStyleOnTab}>의견</span>} {...a11yProps(2)} />
             </Tabs>
           </Box>
-          <TabPanel value={Number(props.tabID)} index={0}>  {/*----- 연출정보 Tab 내용 -----*/}
+          <TabPanel value={Number(props.tabID.TabID)} index={0}>  {/*----- 연출정보 Tab 내용 -----*/}
               <ViewHopeInfoPanel Panel_Id = {HopeInfo_Id}/>
           </TabPanel>
-          <TabPanel value={Number(props.tabID)} index={1}>  {/*----- 체크리스트 Tab 내용 -----*/}
+          <TabPanel value={Number(props.tabID.TabID)} index={1}>  {/*----- 체크리스트 Tab 내용 -----*/}
               ... 공사중 : 체크리스트 페이지 
             </TabPanel>
-          <TabPanel value={Number(props.tabID)} index={2}>  {/*----- 의견 Tab 내용 -----*/}
+          <TabPanel value={Number(props.tabID.TabID)} index={2}>  {/*----- 의견 Tab 내용 -----*/}
               ... 공사중 : 의견 페이지
+              TechCommentWrite 
+              TechCommentElement
           </TabPanel>      
         </Box>        
       </Paper>

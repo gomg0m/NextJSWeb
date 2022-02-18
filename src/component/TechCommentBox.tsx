@@ -7,7 +7,8 @@ export default function TechCommentBox (props){
     
 
     return (
-        //사진, 이름, 소속, 작성일자, 의견, 이미지
-
+        <div>{/*//사진, 이름, 소속, 작성일자, 의견, 이미지*/}
+            좋은 내용
+        </div>
     );
 }

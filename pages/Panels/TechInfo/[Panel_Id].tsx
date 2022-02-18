@@ -244,7 +244,7 @@ const {Panel_Id} = router.query;
   const [techRepleContents, setTechrepleContents] = useState([]);
   const [techRepleImage, setTechrepleImage] = useState([]);
   const [techRepleLastTime, setTechreplelastTime] = useState([]);
-  const [rightsideTabID, setRightsideTabID] = useState(0);
+  const [rightsideTabID, setRightsideTabID] = useState({TabID:0, RepleID:1});
 
   var obj = [...TechRepleInfoTable]; //state인 TechInfoTable의 변경에 사용할 변수
 
@@ -322,7 +322,8 @@ const {Panel_Id} = router.query;
   const options2 = [ "공연에서 차지하는 비중", "연출 영역(반경)", "동선",  "리프팅 높이", "이동 거리", "속도", "이동 시의 움직임" ];
 
   function handleTechRepleClick(e){    
-    setRightsideTabID(2);
+      let rpID = techRepleIds[e.currentTarget.id];
+    setRightsideTabID({TabID:2, RepleID:rpID});
   }
 
     return(
