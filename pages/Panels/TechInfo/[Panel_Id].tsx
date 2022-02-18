@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../../../src/fix/Header';
 import Leftside from '../../../src/fix/Leftside2(2)';
-import Rightside from '../../../src/fix/Rightside';
+import Rightside from '../../../src/fix/Rightside_kjy';
 import sty from '../../../src/css/TechDiscussPanel.module.css';
 import Link from 'next/link';
 import HopePicture from '../../../src/component/HopePicture';
@@ -181,7 +181,7 @@ const ImgUpload = () => {
 };//==================이미지 업로드 부분 끝!============================//
 
 
-
+var kkk=0;
 /////=========== TechDisucssInfoPanel 메인 페이지 ================================
 export default function TechDiscussInfoPanel(){  
   
@@ -225,6 +225,7 @@ export default function TechDiscussInfoPanel(){
   const [techRepleContents, setTechrepleContents] = useState([]);
   const [techRepleImage, setTechrepleImage] = useState([]);
   const [techRepleLastTime, setTechreplelastTime] = useState([]);
+  const [rightsideTabID, setRightsideTabID] = useState(0);
 
   var obj = [...TechRepleInfoTable]; //state인 TechInfoTable의 변경에 사용할 변수
 
@@ -309,11 +310,15 @@ export default function TechDiscussInfoPanel(){
   const options1 = [ "사전확인", "사업계획", "고려사항",  "대상물", "연출내용", "구현환경", "반입 및 설치" ];
   const options2 = [ "공연에서 차지하는 비중", "연출 영역(반경)", "동선",  "리프팅 높이", "이동 거리", "속도", "이동 시의 움직임" ];
 
+  function handleTechRepleClick(e){    
+    setRightsideTabID(2);
+  }
+
     return(
         <>
         <Header />
         <Leftside />
-        <Rightside />
+        <Rightside tabID={rightsideTabID} />
         <div className={sty.infoframe}>
             <div
                 style={{
@@ -371,7 +376,7 @@ export default function TechDiscussInfoPanel(){
                <div>
                 {
                     techRepleName.map((item, i) => (
-                        <div className={sty.contentbox} style={{margin:"0px 40px 20px"}}>                      
+                        <div id={i} className={sty.contentbox} style={{margin:"0px 40px 20px"}} onClick={handleTechRepleClick}>                      
                             <div className={sty.boxsubject} style={{margin:"20px 20px 0px"}}>{techRepleFirSubject[i]} / {techRepleSecSubject[i]}</div>
                             <div className={sty.boxname} style={{margin:"20px 20px 0px"}}>{item}</div>
                             <div className={sty.boxcontents} style={{margin:"10px 20px 50px"}}>{techRepleContents[i]}</div>

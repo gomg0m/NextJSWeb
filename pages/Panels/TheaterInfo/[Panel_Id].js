@@ -79,7 +79,7 @@ function a11yProps(index) {
 
 
 export default function TheaterInfoPanel(){   
-  const classes = useStyles(); /////?????
+  const classes = useStyles(); /////TabPanne CustomStyle 사용
   const router = useRouter();
   const {Panel_Id} = router.query;
 

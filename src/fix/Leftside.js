@@ -15,7 +15,8 @@ import Link from 'next/link';
 import StepButton from '@mui/material/StepButton';
 import Button from '@mui/material/Button';
 
-import AppContext from '../AppContext';
+import { useContext } from "react";
+import AppContext from '../component/AppContext';
 
 const theme = createTheme({
   typography: {
