@@ -6,7 +6,6 @@ import Box from '@mui/material/Box';
 
 
 export const FormInputDropdown = ({MenuList, name, control, label}) => {
-  console.log("홈네임리스트", MenuList);
   const generateSelectOptions = () => {
     return MenuList.map((item) => {
       return (

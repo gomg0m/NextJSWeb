@@ -97,7 +97,7 @@ export default function VerticalLinearStepper() {
                         </Step>
                         
                         <Step completed={false} expanded={true}>
-                            <Link href ='/PlanInfoWrite'>
+                            <Link href ='/Dashboard'>
                                 <StepLabel sx={{mt: -5}} StepIconComponent={Circle1Icon}>
                                     <Button className={styles.subLabel}>공연기획정보</Button>
                                 </StepLabel>
@@ -119,7 +119,7 @@ export default function VerticalLinearStepper() {
                         </Step>
 
                         <Step completed={false} expanded={true}>
-                            <Link href='/HopeInfoWrite'>
+                            <Link href='/HopeDashboard'>
                                 <StepLabel sx={{mt: -5}} StepIconComponent={Circle2Icon}>
                                     <Button className={styles.subLabel}>희망연출정보</Button>
                                 </StepLabel>
@@ -127,7 +127,7 @@ export default function VerticalLinearStepper() {
                         </Step>
 
                         <Step completed={false} expanded={true}>
-                            <Link href='/TechDiscussWrite'>
+                            <Link href='/TechDashboard'>
                                 <StepLabel sx={{mt: -5}} StepIconComponent={Circle22Icon}>
                                     <Button className={styles.subLabel}>기술구체화협의 </Button>
                                 </StepLabel>

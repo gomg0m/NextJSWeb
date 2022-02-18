@@ -163,7 +163,6 @@ export default function NewTechProject(props){
       setOpen(false);
       props.close();
     }
-    const [hopename, setHopename] = React.useState([]);
     
     // Select information
     const [info, setInfo] = React.useState('');
@@ -202,7 +201,8 @@ export default function NewTechProject(props){
       props.close();
     };
 
-
+    const [hopename, setHopename] = React.useState([]);
+    
     //희망연출드롭다운 가져오기
     function getHopeData(){
       Axios.get<any>("/api/getHopeInfo").then((res) => {                 
@@ -215,9 +215,9 @@ export default function NewTechProject(props){
 
           setHopename(name);
           console.log('이름', name);
-      }
+        }
         console.log('res.data',res.data);
- });    
+      });    
     }
 
    

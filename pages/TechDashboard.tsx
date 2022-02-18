@@ -1,5 +1,5 @@
 import React, { useState,useEffect, useCallback } from 'react';
-import Leftside from '../src/fix/Leftside';
+import Leftside from '../src/fix/Leftside2(2)';
 import Header from '../src/fix/Header';
 import styles from '../src/css/TechDashboard.module.css';
 import { Box, Button, Divider, Modal, Typography, InputLabel, MenuItem, FormControl, Select, TextField, Input, IconButton } from '@mui/material';
