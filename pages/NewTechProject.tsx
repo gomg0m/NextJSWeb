@@ -17,6 +17,7 @@ import {IconButton} from '@mui/material';
 import { FormInputText } from "../src/component/FormInputText";
 import { FormInputDatetimePicker } from "../src/component/FormInputDatetimePicker";
 import {FormInputDropdown} from '../src/component/FormInputDropdown'
+import { getDate } from 'date-fns';
 
 ////  Dropzone에 사용할 변수
 type Information = { src:string; width:number; height:number };
@@ -162,7 +163,8 @@ export default function NewTechProject(props){
       setOpen(false);
       props.close();
     }
-  
+    const [hopename, setHopename] = React.useState([]);
+    
     // Select information
     const [info, setInfo] = React.useState('');
 
@@ -199,7 +201,30 @@ export default function NewTechProject(props){
       setOpen(false);
       props.close();
     };
-    
+
+
+    //희망연출드롭다운 가져오기
+    function getHopeData(){
+      Axios.get<any>("/api/getHopeInfo").then((res) => {                 
+        if(res.status == 200){      
+          console.log("호프이름", res.data.users);
+          let name = [];
+          res.data.users.map((item) => (
+            name.push(item.hope_name)
+          ))
+
+          setHopename(name);
+          console.log('이름', name);
+      }
+        console.log('res.data',res.data);
+ });    
+    }
+
+   
+    useEffect(() => {
+      getHopeData();
+
+    }, [])
   
   return(
         <>
@@ -215,7 +240,7 @@ export default function NewTechProject(props){
             <Divider className={styles.modaldivider} orientation="horizontal" variant="fullWidth" flexItem />            
             <div className={sty.body_row1}>
                 <div className={sty.body_row_subitem1}>희망연출정보</div>
-                <div className={sty.body_row_subitem2} style={{margin:"0px 40px 0px"}}><FormInputDropdown name="prj_hope" control={control} label="Text Input"/></div>
+                <div className={sty.body_row_subitem2} style={{margin:"0px 40px 0px"}}><FormInputDropdown MenuList={hopename} name="prj_hope" control={control} label="Text Input"/></div>
             </div>
             <div className={sty.body_row2}>
                 <div className={sty.body_row_subitem1}>기술구체화협의명</div>                     

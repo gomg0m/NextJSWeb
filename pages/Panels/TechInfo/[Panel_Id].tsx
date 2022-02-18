@@ -14,8 +14,7 @@ import Axios from 'axios';
 import { Box, Button, Divider, Modal, Typography, InputLabel, MenuItem, FormControl, Select, TextField, Input, IconButton, listSubheaderClasses } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
-import {FormInputDropdown1} from '../../../src/component/1stSubDrop';
-import {FormInputDropdown2} from '../../../src/component/2ndSubDrop';
+import {FormInputDropdown} from '../../../src/component/FormInputDropdown';
 import { FormInputMultilineText } from '../../../src/component/FormInputMultilineText';
 import { FormInputText } from "../../../src/component/FormInputText";
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
@@ -303,6 +302,8 @@ export default function TechDiscussInfoPanel(){
   } ,[Panel_Id]);
 
   //========================불러오는 정보 끝========================//
+  const options1 = [ "사전확인", "사업계획", "고려사항",  "대상물", "연출내용", "구현환경", "반입 및 설치" ];
+  const options2 = [ "공연에서 차지하는 비중", "연출 영역(반경)", "동선",  "리프팅 높이", "이동 거리", "속도", "이동 시의 움직임" ];
 
     return(
         <>
@@ -332,8 +333,8 @@ export default function TechDiscussInfoPanel(){
                   </div>
                   <div className={sty.body_row2}>
                       <div className={sty.body_row_subitem1}>검토내용</div>                     
-                      <div className={sty.body_row_subitem2} style={{width:"500px", margin:"-15px 30px 0px"}} ><FormInputDropdown1 name="techreple_1stsubject" control={control} label="검토 주제" /></div>
-                      <div className={sty.body_row_subitem2} style={{width:"500px", margin:"-15px 30px 0px"}} ><FormInputDropdown2 name="techreple_2ndsubject" control={control} label="세부 주제" /></div>
+                      <div className={sty.body_row_subitem2} style={{width:"500px", margin:"-15px 30px 0px"}} ><FormInputDropdown MenuList={options1} name="techreple_1stsubject" control={control} label="검토 주제" /></div>
+                      <div className={sty.body_row_subitem2} style={{width:"500px", margin:"-15px 30px 0px"}} ><FormInputDropdown MenuList={options2} name="techreple_2ndsubject" control={control} label="세부 주제" /></div>
                       <div className={sty.body_row_subitem2} style={{width:"500px", margin:"-15px 30px 0px"}} ><FormInputMultilineText name="techreple_contents" control={control} label="검토 내용을 입력하세요" /></div>   
                   </div>
                   
@@ -358,7 +359,7 @@ export default function TechDiscussInfoPanel(){
                         </div>  
                     )) }
                 </div>
-                
+
                 {/* 협의 완료 버튼 */}
                 <div className={sty.button}>    
                     <Button className={sty.notosanskr_bold_black_24px} style={{margin:"50px 20px 0px"}} variant="contained">  검색 </Button>          

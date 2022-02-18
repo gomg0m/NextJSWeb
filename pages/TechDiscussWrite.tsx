@@ -11,8 +11,7 @@ import { useForm } from "react-hook-form";
 import { FormInputText } from "../src/component/FormInputText";
 import { FormInputDatetimePicker } from "../src/component/FormInputDatetimePicker";
 import {FormInputMultilineText} from '../src/component/FormInputMultilineText'
-import {FormInputDropdown1} from '../src/component/1stSubDrop'
-import {FormInputDropdown2} from '../src/component/2ndSubDrop'
+import {FormInputDropdown} from '../src/component/FormInputDropdown';
 import Router from 'next/router';
 
 
@@ -51,6 +50,8 @@ export default function HopeInfoWirte(){
         });
     }
 
+    const options1 = [ "사전확인", "사업계획", "고려사항",  "대상물", "연출내용", "구현환경", "반입 및 설치" ];
+    const options2 = [ "공연에서 차지하는 비중", "연출 영역(반경)", "동선",  "리프팅 높이", "이동 거리", "속도", "이동 시의 움직임" ];
 
     return(
     <div>
@@ -86,8 +87,8 @@ export default function HopeInfoWirte(){
                 </div>
                 <div className={sty.body_row3}>
                     <div className={sty.body_row_subitem1}>검토내용</div>
-                    <div className={sty.body_row_subitem2} style={{margin:"0px 40px 0px"}}><FormInputDropdown1 name="tech_1stsubject" control={control} label="검토 주제" /></div>
-                    <div className={sty.body_row_subitem2} style={{margin:"0px 40px 0px"}}><FormInputDropdown2 name="tech_2ndsubject" control={control} label="세부 주제" /></div>                    
+                    <div className={sty.body_row_subitem2} style={{margin:"0px 40px 0px"}}><FormInputDropdown MenuList={options1} name="tech_1stsubject" control={control} label="검토 주제" /></div>
+                    <div className={sty.body_row_subitem2} style={{margin:"0px 40px 0px"}}><FormInputDropdown MenuList={options2} name="tech_2ndsubject" control={control} label="세부 주제" /></div>                    
                 </div>
                 <div className={sty.body_row3}>
                     <div className={sty.body_row_subitem1}></div>
