@@ -240,7 +240,7 @@ export default function NewTechProject(props){
             <Divider className={styles.modaldivider} orientation="horizontal" variant="fullWidth" flexItem />            
             <div className={sty.body_row1}>
                 <div className={sty.body_row_subitem1}>희망연출정보</div>
-                <div className={sty.body_row_subitem2} style={{margin:"0px 40px 0px"}}><FormInputDropdown MenuList={hopename} name="prj_hope" control={control} label="Text Input"/></div>
+                <div className={sty.body_row_subitem2} style={{width:"300px", margin:"0px 40px 0px"}}><FormInputDropdown MenuList={hopename} name="prj_hope" control={control} label="Text Input"/></div>
             </div>
             <div className={sty.body_row2}>
                 <div className={sty.body_row_subitem1}>기술구체화협의명</div>                     

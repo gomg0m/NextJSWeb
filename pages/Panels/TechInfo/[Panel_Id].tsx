@@ -301,6 +301,10 @@ export default function TechDiscussInfoPanel(){
     }
   } ,[Panel_Id]);
 
+  function getHopeName(){
+      
+  }
+
   //========================불러오는 정보 끝========================//
   const options1 = [ "사전확인", "사업계획", "고려사항",  "대상물", "연출내용", "구현환경", "반입 및 설치" ];
   const options2 = [ "공연에서 차지하는 비중", "연출 영역(반경)", "동선",  "리프팅 높이", "이동 거리", "속도", "이동 시의 움직임" ];
@@ -313,7 +317,7 @@ export default function TechDiscussInfoPanel(){
         <div className={sty.infoframe}>
             <div
                 style={{
-                    width: "1496px",
+                    width: "1005px",
                     textAlign: "center",
                     borderBottom: "4px solid #ff0000",
                     lineHeight: "0.2em",
@@ -323,34 +327,51 @@ export default function TechDiscussInfoPanel(){
                 <div className={sty.layout_top_txt1}>기술구체화협의</div>
                 <div className={sty.layout_top_txt2}>현재 id값의 협의명 들어가야함</div>
 
+                <div
+                    style={{
+                        width: "950px",
+                        borderBottom: "2px solid #E0E0E0",
+                        lineHeight: "0.2em",
+                        margin: "30px 20px 0px",                    
+                    }}> 
+                </div>
+
                 {/* 유저들의 의견 작성 추가 박스 */}
-                <div className={sty.addbox} style={{margin:"30px 40px 20px"}}>
-                <Box sx={sty}>
-       
+                
+                <div className={sty.addreple}>
+                    
                   <div className={sty.body_row1}>
-                      <div className={sty.body_row_subitem1}>기술명</div>
-                      <div className={sty.body_row_subitem2} style={{margin:"0px 40px 0px"}}><FormInputText name="techreple_name" control={control} label="기술명을 입력하세요."/></div>
+                      <div className={sty.title}>기술명</div>
+                      <div className={sty.inputbox} style={{width:"700px"}}><FormInputText name="techreple_name" control={control} label="기술명을 입력하세요."/></div>
                   </div>
                   <div className={sty.body_row2}>
-                      <div className={sty.body_row_subitem1}>검토내용</div>                     
-                      <div className={sty.body_row_subitem2} style={{width:"500px", margin:"-15px 30px 0px"}} ><FormInputDropdown MenuList={options1} name="techreple_1stsubject" control={control} label="검토 주제" /></div>
-                      <div className={sty.body_row_subitem2} style={{width:"500px", margin:"-15px 30px 0px"}} ><FormInputDropdown MenuList={options2} name="techreple_2ndsubject" control={control} label="세부 주제" /></div>
-                      <div className={sty.body_row_subitem2} style={{width:"500px", margin:"-15px 30px 0px"}} ><FormInputMultilineText name="techreple_contents" control={control} label="검토 내용을 입력하세요" /></div>   
+                      <div className={sty.title}>검토내용</div>                     
+                      <div className={sty.dropdown1} style={{width:"250px"}} ><InputLabel>검토 주제를 선택하세요</InputLabel><FormInputDropdown MenuList={options1} name="techreple_1stsubject" control={control} /></div>
+                      <div className={sty.dropdown2} style={{width:"250px"}} ><InputLabel>세부 주제를 선택하세요</InputLabel><FormInputDropdown MenuList={options2} name="techreple_2ndsubject" control={control} /></div>
+                      <div className={sty.inputbox2} style={{width:"700px"}} ><FormInputMultilineText name="techreple_contents" control={control} label="검토 내용을 입력하세요" /></div>   
                   </div>
-                  
-                  <div className={sty.addshowoption4}>대표 이미지
-                    <div><ImgUpload /></div>
+                  <div className={sty.body_row3}>
+                  <div className={sty.title}>대표 이미지</div>
+                    <div style={{margin:"-20px 70px 0px"}}><ImgUpload /></div>
                   </div>
 
-                  <Button  className={sty.notosanskr_bold_cyan_24px} style={{margin:"0px 20px 0px"}}  onClick={handleSubmit(onSubmit)} > 올리기 </Button>
+                  <Button  className={sty.upload} style={{margin:"0px 850px 0px"}}  onClick={handleSubmit(onSubmit)} > 올리기 </Button>
 
-                </Box>
                 </div>
+                <div
+                    style={{
+                        width: "950px",
+                        borderBottom: "2px solid #E0E0E0",
+                        lineHeight: "0.2em",
+                        margin: "20px 20px 50px",                    
+                    }}> 
+                </div>
+                
                 
                <div>
                 {
                     techRepleName.map((item, i) => (
-                        <div className={sty.contentbox} style={{margin:"0px 40px 0px"}}>                      
+                        <div className={sty.contentbox} style={{margin:"0px 40px 20px"}}>                      
                             <div className={sty.boxsubject} style={{margin:"20px 20px 0px"}}>{techRepleFirSubject[i]} / {techRepleSecSubject[i]}</div>
                             <div className={sty.boxname} style={{margin:"20px 20px 0px"}}>{item}</div>
                             <div className={sty.boxcontents} style={{margin:"10px 20px 50px"}}>{techRepleContents[i]}</div>

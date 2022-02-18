@@ -21,9 +21,9 @@ export const FormInputDropdown = ({MenuList, name, control, label}) => {
       control={control}
       name={name}
       render={({ field: { onChange, value } }) => ( 
-        <Box sx={{ minWidth: 120 }}>
+        <Box >
         <FormControl fullWidth>
-        <InputLabel>장르 선택</InputLabel>
+        {/* <InputLabel>클릭해서 선택해주세요</InputLabel> */}
         <Select onChange={onChange} value={value}>
           {generateSelectOptions()}
         </Select>
