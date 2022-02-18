@@ -1,14 +1,222 @@
-import { getTableBodyUtilityClass } from '@mui/material';
-import React from 'react';
-import {useState, useEffect} from 'react';
+import React, {useState, useCallback, useMemo, useEffect} from 'react';
+import sty from '../css/PerformInfoWirte.module.css'
+import IconButton from './withiconbtn';
+import Button from '@mui/material/Button';
 import Axios from 'axios';
+import { useForm } from "react-hook-form";
+import { FormInputText } from "./FormInputText";
+import { FormInputMultilineText } from './FormInputMultilineText'
+import Router from 'next/router';
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
+import { useDropzone } from 'react-dropzone';
 
-export default function TechCommentWrite(props){
+interface IFormInput {
+    concerthall_id: string;
+    hall_place: string;
+    hall_seatnumber: string;
+    hall_size: string;
+    hall_blueprint: string;
+    hall_exterior: string;
+    hall_interior: string;
+    hall_seatinformation: string;
+    hall_exception: string;
+    }
     
+    const defaultValues = {
+    concerthall_id: "",
+    hall_place:"",
+    hall_seatnumber: "",
+    hall_size: "",
+    hall_blueprint: "",
+    hall_exterior: "",
+    hall_interior: "",
+    hall_seatinformation: "",
+    hall_exception: "",
+    };
 
-    return (                
-        <div> {/*//사진, 이름, 소속, 작성일자, 의견, 이미지*/}
-            rms
-        </div> 
+
+    
+///Dropzone에 사용할 변수
+type Information = { src:string; width:number; height:number };
+
+var pics = new Array<Information>(); 
+var pic_count:number = 0 ;
+var imgUploadFileList:string;
+
+const baseStyle = {
+    display : 'flex',
+    align: 'center',
+    padding: '2px',
+    borderWidth: 2,
+    borderRadius: 2,
+    borderColor: '#eeeeee',
+    borderStyle: 'dashed',
+    backgroundColor: '#fafafa',
+    color: '#bdbdbd',
+    transition: 'border .3s ease-in-out',
+    width: '300px',
+    height: '40px',
+    margin: "-10px 30px 0px",
+    font: 'bold 0.7em/1em areal',
+};
+
+const activeStyle = {
+    borderColor: '#2196f3'
+};
+
+const acceptStyle = {
+    borderColor: '#00e676'
+};
+
+const rejectStyle = {
+    borderColor: '#ff1744'
+};
+
+
+
+//---------------- Image File Drag&Drop Component ----------------
+const ImgUpload = () => {
+
+    const [thumb, setThumb] = useState<string[]>([]);
+    const [progress, setProgress] = useState<number>(0);
+  
+    //--- 이미지 thumbnail의 Delete Icon Button의 이벤트 핸들러
+    const deleteHandler =(index) =>{
+        console.log("deleting index", index);
+        //지워질 이미지 이름 저장.
+        let delThumb = thumb[index];
+
+        //이미지 스테이트에 들어있는 모든 이미지 이름을 복사해서
+        // newThemb이라는 배열에 넣는다.
+        let newThumb = [...thumb];
+
+        //newThumb배열안에 있는 파일 이름 중 
+        //클릭한 인덱스의 파일이름을 지워줌
+        newThumb.splice(index, 1);
+
+        //새로운 이미지 이름 배열인 newThumb으로
+        //setThumb 해준다.
+        setThumb(newThumb);
+        
+        ////미리 저장된 지워질 이미지을 Sever측에 삭제 요청 API를 호출한다.
+        const data = "d:/Web_dev/nextjsweb/public/uploads/"+ delThumb;
+        console.log("deleting file", data);
+        
+        Axios.post("/api/deletefile", {data}).then((res)=>{
+        if(res.status == 200){
+        //       //login 성공
+            console.log("파일삭제 결과", res.data.users);
+        }
+        });    
+        ////////
+
+    }; //End Of deleteHandler
+  
+    //--- Dropzone Area Drop시의 이벤트 핸들러
+    const onDrop = useCallback(
+        acceptedFiles => {
+            const formData = new FormData();
+            const config = { headers: { "content-type": "multipart/form-data" } }
+
+            acceptedFiles.forEach((file) => {        
+                formData.append("file", file);
+                console.log("acceptFilesNum",acceptedFiles);
+            })
+
+            {///let은 Block 내에서만 작용하기 떄문에 newThumb을 사용하려면 이렇게 빈 블럭구분을 사용해야 함.
+                let newThumb = [...thumb]; 
+                Axios.post<any>("/api/imgupload", formData, config).then((res) => {                 
+                    setThumb([...thumb, ...res.data]);  
+                    newThumb =[...thumb, ...res.data];
+                    console.log("new thumb list", newThumb);
+                    imgUploadFileList=JSON.stringify(newThumb);
+                    console.log("imgUplist", imgUploadFileList);
+                });    
+            }
+        }, [thumb]
+    )
+   
+    //--- Dropzon Area 설정 및 작동 부분 
+    const {getRootProps,getInputProps,isDragActive, isDragAccept,isDragReject} = useDropzone({onDrop,accept: 'image/jpeg, image/png', multiple:true});
+
+    const style = useMemo(() => ({
+        ...baseStyle,
+        ...(isDragActive ? activeStyle : {}),
+        ...(isDragAccept ? acceptStyle : {}),
+        ...(isDragReject ? rejectStyle : {})
+    }), [
+        isDragActive,
+        isDragReject,
+        isDragAccept
+    ]);
+
+    return (
+        
+        <div style={{display:"flex"}}>
+        <div>      
+            <div {...getRootProps({style})} >    
+            <input {...getInputProps()} />
+            {
+                isDragActive ?
+                <p>여기에 드롭!</p> :
+                <p>파일 드래그 또는 클릭</p>         
+            }      
+            </div>
+        </div>
+        <div style={{margin:"0px 15px 0px", display:"flex"}}>
+            {thumb &&
+                thumb.map((item: string, index: number) => {
+                return (              
+                    <div>                  
+                    <img src={`/uploads/${item}`} height="50" alt="업로드이미지"></img>
+                    <IconButton color="primary" aria-label="upload picture" component="span">
+                        <HighlightOffIcon onClick={()=> deleteHandler(index)}/>
+                    </IconButton>                                    
+                    </div>
+                );
+                })}
+                </div>
+        </div>
+        
+    );
+
+
+
+};
+
+
+/////=========== TheaterInfoWrite 페이지 메인 =====================================
+export const TechCommentWrite = ()=> {
+    let boxprops ={ width:400, height:150};
+    const methods = useForm({ defaultValues: defaultValues });
+    const { handleSubmit, reset, control, setValue } = methods;
+    
+    const onSubmit = (data: IFormInput) => {
+        Axios.post("/api/getTheaterInfo", {data}).then((res)=>{
+            if(res.status == 200){
+                //login 성공
+                console.log(res.data.users);
+                Router.push("/TheaterInfoPanel")
+            }
+        });
+    }
+
+    return(
+        <div className={sty.fullbox}>
+            
+            <div className={sty.body_row8}>
+                <div className={sty.body_row_subitem1}>의견</div>
+                <div className={sty.body_row_subitem2} style={{width:"1100px", margin:"-25px 30px 0px"}} ><FormInputMultilineText name="hall_exception" control={control} label="기타 특이사항을 작성하세요"/></div>
+            </div>
+            <div className={sty.body_row4}>
+                <div style={{margin:"15px 0px 0px"}}> <ImgUpload /></div>
+            </div>
+            <div className={sty.layout_bottom}>                 
+                <Button className={sty.notosanskr_bold_cyan_24px} style={{margin:"0px 20px 0px"}} onClick={handleSubmit(onSubmit)} variant="contained"> 의견쓰기 </Button> 
+            </div>
+        </div>
     );
 }
+
+
+export default TechCommentWrite;

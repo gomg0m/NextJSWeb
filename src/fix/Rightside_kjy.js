@@ -135,8 +135,8 @@ export default function Rightside(props) {
             </TabPanel>
           <TabPanel value={Number(props.tabID.TabID)} index={2}>  {/*----- 의견 Tab 내용 -----*/}
               ... 공사중 : 의견 페이지
-              TechCommentWrite 
-              TechCommentElement
+              <TechCommentWrite />
+              <TechCommentElement/>
           </TabPanel>      
         </Box>        
       </Paper>
