@@ -18,8 +18,7 @@ connection.connect(function(err) {
 export default function handler(req, res) {
 
   if(req.method =='POST'){
-    const user_query = 'SELECT techcomment_name, techcomment_team, techcomment_addtime, techcomment_contents, techcomment_image FROM TECHCOMMENT'+String(req.body.id);  
-
+    const user_query = 'SELECT techcomment_id, techcomment_name, techcomment_team, techcomment_lasttime, techcomment_contents, techcomment_image FROM TECHCOMMENT'+ String(req.body.tableID);
     connection.query(user_query, function (error, result, fields){
       if (error) throw error;
       res.status(200).json({ users: result})

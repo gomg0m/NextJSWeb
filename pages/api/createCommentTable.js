@@ -26,10 +26,10 @@ export default function handler(req, res) {
 
   if(req.method == 'POST') {
     
-    const user_query = 'CREATE TABLE TECHRCOMMENT' 
-    + String(req.body.id)
+    const user_query = 'CREATE TABLE TECHCOMMENT'
+    + String(req.body.tableID)
     + '(techcomment_id INT PRIMARY KEY AUTO_INCREMENT, techcomment_name VARCHAR(1024), techcomment_team VARCHAR(1024)'
-    + ',techcomment_addtime VARCHAR(1024), techcomment_contents VARCHAR(1024), techcomment_image VARCHAR(1024)'
+    + ',techcomment_lasttime VARCHAR(1024), techcomment_contents VARCHAR(1024), techcomment_image VARCHAR(1024)'
      + ') DEFAULT CHARACTER SET UTF8 COLLATE utf8_general_ci';
      
 

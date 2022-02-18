@@ -6,6 +6,7 @@ import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import CalendarPicker from '@mui/lab/CalendarPicker';
 import Grid from '@mui/material/Grid';
 import { Box, Button} from '@mui/material';
+import Axios from 'axios';
 
 ///// TabPanel 관련
 import PropTypes from 'prop-types';
@@ -85,8 +86,8 @@ export default function Rightside(props) {
   const classes = useStyles(); /////TabPanne CustomStyle 사용
   const [repleID, setRepleID] = React.useState(1);  ///TabPanel 관련
   const [value, setValue] = React.useState(1);  ///TabPanel 관련
-
-  console.log ('props tabID', props.tabID.TabID);
+  const [techComment, setTechComment] = React.useState([{}]);
+ 
   
     //Tabs Handle 
     const handleTabChange = (event, newValue) => {      
@@ -101,19 +102,57 @@ export default function Rightside(props) {
     // func (Axios.pos(get))
     // get useState
 
-  // function getCommentTable(tableID){
-  //     Axios.post("/api/getTechComment", {tableID}).then((res)=>{
-  //         if (res.status == 200 )
-  //         {
+  function getCommentTable(tableID){
+      Axios.post("/api/getTechComment", {tableID}).then((res)=>{
+          if (res.status == 200 )
+          {
 
-  //         }//Eof res.status
+            let tmp_techcmt=[];
 
-  //     }); //Eof Axios
-  // }
-  useEffect(()=>{
-    //getCommentTable(props.tableID);
-    console.log("TechRiple Clicked", props.tabID.RepleID);
-},[props.tabID.RepleID]);
+            res.data.users.map((item)=>{
+              if(item.techcomment_image){
+                //// techcomment_image를 일반 스트링 배열로 전환
+                let parsedPhotos = JSON.parse(item.techcomment_image);
+                let photosFormat =[];
+              
+              
+                parsedPhotos.map((photo)=>{
+                  photo = '/uploads/'+ photo;
+                  photosFormat.push({src:photo,width:3,height:3});                        
+                });    
+                  tmp_techcmt.push({
+                  id:item.techcomment_id, 
+                  name: item.techcomment_name,
+                  team: item.techcomment_team,
+                  lasttime: item.techcomment_lasttime,
+                  contents: item.techcomment_contents,
+                  image: parsedPhotos,
+                })                                  
+              }
+              else {
+                tmp_techcmt.push({
+                  id:item.techcomment_id, 
+                  name: item.techcomment_name,
+                  team: item.techcomment_team,
+                  lasttime: item.techcomment_lasttime,
+                  contents: item.techcomment_contents,
+                  image: null,
+                })                                                
+              }            
+
+            });
+            setTechComment(tmp_techcmt);
+            console.log('cmt', tmp_techcmt);              
+          }//Eof res.status
+
+      }); //Eof Axios
+  }
+  
+  useEffect(()=>{    
+    var id = props.tabID.RepleID;
+    getCommentTable(id);
+
+  },[props.tabID.RepleID]);
 
   return (
      
@@ -133,10 +172,11 @@ export default function Rightside(props) {
           <TabPanel value={Number(props.tabID.TabID)} index={1}>  {/*----- 체크리스트 Tab 내용 -----*/}
               ... 공사중 : 체크리스트 페이지 
             </TabPanel>
-          <TabPanel value={Number(props.tabID.TabID)} index={2}>  {/*----- 의견 Tab 내용 -----*/}
-              ... 공사중 : 의견 페이지
+          <TabPanel value={Number(props.tabID.TabID)} index={2}>  {/*----- 의견 Tab 내용 -----*/}              
               <TechCommentWrite />
-              <TechCommentElement/>
+              {
+                  techComment.map((item)=>(<TechCommentElement value={item}/>))
+              }
           </TabPanel>      
         </Box>        
       </Paper>

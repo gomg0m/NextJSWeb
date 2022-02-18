@@ -322,7 +322,7 @@ const {Panel_Id} = router.query;
   const options2 = [ "공연에서 차지하는 비중", "연출 영역(반경)", "동선",  "리프팅 높이", "이동 거리", "속도", "이동 시의 움직임" ];
 
   function handleTechRepleClick(e){    
-      let rpID = techRepleIds[e.currentTarget.id];
+      let rpID = techRepleIds[Number(e.currentTarget.id)];
     setRightsideTabID({TabID:2, RepleID:rpID});
   }
 
