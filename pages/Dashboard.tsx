@@ -19,6 +19,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import {makeStyles} from '@material-ui/core';
 
+//global id 가져오기
 import { useContext } from "react";
 import AppContext from "../src/component/AppContext";
 
@@ -89,7 +90,7 @@ const useStyles = makeStyles({
   customStyleOnTab:{
     fontSize:'20px',
     color:'black',
-    fontWeight: '700'
+    // fontWeight: '700'
 
   },
   customStyleOnActiveTab:{
@@ -97,7 +98,7 @@ const useStyles = makeStyles({
   },
   activeTab:{
     fontSize:'16px',
-    fontWeight:'600',
+    // fontWeight:'600',
     color:'pink'
   },
   PanelText:{
@@ -144,7 +145,7 @@ return {
 
 var clickID=1;
 
-/////=========== Dashboard 메인 페이지 ================================
+/////=========== Dashboard 메인 페이지 ==========================////
 export default function DashboardView(){ 
 
   const [list, setList] = useState([]);
@@ -165,12 +166,13 @@ export default function DashboardView(){
   const [hopeIds, setHopeIds] = useState([]);
   const [techIds, setTechIds] = useState([]);
 
+  //leftside에도 추가하기
   const globalPlanID = useContext(AppContext);
 
   var CardID:number;
 
   function getData(){
-      Axios.get("/api/getProjects").then((res) =>{
+      Axios.get("/api/getPlanInfo").then((res) =>{
         console.log("projects get data",res.data.users);
         setList(res.data.users);
     });
@@ -189,7 +191,7 @@ export default function DashboardView(){
     console.log("clickid",clickID);
     console.log("tabValue",tabValue);
 
-    globalPlanID.statefunc(100);
+    globalPlanID.statefunc(e.currentTarget.id);
 
     if(tabValue==0) {
       AboutButtonState(e.currentTarget.id);
@@ -376,12 +378,12 @@ export default function DashboardView(){
 
   function handleDialogData(diglogdata:IDialogueNewProject){
     console.log('handleDialogData',diglogdata);
-    Axios.post("/api/insertPrjInfo", {diglogdata}).then((res)=>{
+    Axios.post("/api/insertPlanInfo", {diglogdata}).then((res)=>{
       if(res.status == 200){
           //login 성공
           console.log(res.data.users);
           //대쉬보드 업데이트를 위해서 다시한번 정보가져와서 카드list 리랜더링
-          Axios.get("/api/getProjects").then((res)=>{
+          Axios.get("/api/getPlanInfo").then((res)=>{
               if(res.status == 200){
                   //login 성공
                   setList(res.data.users);
@@ -481,7 +483,9 @@ export default function DashboardView(){
                 </Card>
             )) }
         </div>
+        
         < DialogNewProject open={open} close={handleClose} getdialogdata={handleDialogData}/>
+        
         <div style= {{ position:"absolute", top:"900px", left:"20px", width:"1400px", height:"650px"}}>
           <Box sx={{ width: 1310 , height: 600 }}> {/*!!! 판넬 Size  */}
             <Box sx={{borderBottom: 1, borderColor: 'divider' }}>

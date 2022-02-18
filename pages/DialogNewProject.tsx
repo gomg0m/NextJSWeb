@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from '../src/css/Show.module.css';
+import sty from '../src/css/planInfoWirte.module.css';
 import { Checkbox, FormControlLabel, Box, Button, Divider, Modal, Typography, InputLabel, MenuItem, 
   FormControl, Select, TextField, Paper, InputBase} from '@mui/material';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
@@ -68,7 +69,7 @@ const ImgUpload = (props) => {
       setThumb("");
       
       ////미리 저장된 지워질 이미지을 Sever측에 삭제 요청 API를 호출한다.
-      const data = "E:/webdev_work/nextjsweb/public/uploads/"+ imgUploadFileList;
+      const data = "c:/Web/nextjsweb/public/uploads/"+ imgUploadFileList;
       
       Axios.post("/api/deletefile", {data}).then((res)=>{
       if(res.status == 200){      
@@ -110,21 +111,20 @@ const ImgUpload = (props) => {
   ]);
 
   return (
-      
-      <div style={{display:"flex"}}>
+    <div style={{display:"flex"}}>
       <div>      
           <div {...getRootProps({style})} >    
-          <input {...getInputProps()} />
-          {
-              isDragActive ?
-              <p>여기에 드롭!</p> :
-              <p>{props.label} 파일 드래그 또는 클릭</p>         
-          }      
+            <input {...getInputProps()} />
+              {
+                isDragActive ?
+                <p>여기에 드롭!</p> :
+                <p>{props.label} 파일 드래그 또는 클릭</p>         
+              }      
           </div>
       </div>
       <div style={{margin:"0px 15px 0px", display:"flex"}}>
           {thumb &&
-              thumb.map((item: string, index: number) => {
+            thumb.map((item: string, index: number) => {
               return (              
                   <div>                  
                   <img src={`/uploads/${item}`} height="50" alt="업로드이미지"></img>
@@ -133,14 +133,11 @@ const ImgUpload = (props) => {
                   </IconButton>                                    
                   </div>
               );
-              })}
-              </div>
-      </div>
-      
+            })
+          }
+        </div>
+    </div>    
   );
-
-
-
 };
 
 const style = {
@@ -157,8 +154,7 @@ const style = {
   p: 4,
 };
 
-import sty from '../src/css/planInfoWirte.module.css';
-
+/////=========== modal 메인 페이지 ================================
 export default function NewProjectDialog(props) {
   
   const [open, setOpen] = React.useState(props.open);
@@ -240,7 +236,7 @@ export default function NewProjectDialog(props) {
             <div className={styles.addshowoption4}>대표 이미지
               <div style={{margin:"15px 0px 0px"}}><ImgUpload label="공연의 포스터, 공연 관련 이미지를 추가해주세요."/></div>
             </div>                 
-            <Button  className={sty.notosanskr_bold_cyan_24px} style={{margin:"0px 20px 0px"}}  onClick={handleSubmit(onSubmit)} >만들기</Button>
+            <Button  className={sty.notosanskr_bold_cyan_24px} style={{margin:"0px 300px 0px"}}  onClick={handleSubmit(onSubmit)} >만들기</Button>
 
           </Box>
         </Modal>

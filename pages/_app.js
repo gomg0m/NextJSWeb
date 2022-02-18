@@ -1,5 +1,3 @@
-
-//_app.js
 import { useState } from "react";
 import AppContext from "../src/component/AppContext";
 

@@ -25,23 +25,15 @@ export default function handler(req, res) {
   }
 
   if(req.method == 'POST') {
-    console.log("req.body.dia",req.body.diglogdata );
     
-    const user_query = 'INSERT INTO PLANINFO'
-    + ' (plan_genre, plan_name, plan_start, plan_end, plan_firstimage)'
-    + ' VALUES (?, ?, ?, ?, ?)';
-  
-    let genre = req.body.diglogdata.prj_genre;
-    let name = req.body.diglogdata.prj_name;
-    let start = req.body.diglogdata.prj_start;
-    let end = req.body.diglogdata.prj_end;
-    let firstimage = req.body.diglogdata.prj_firstimage;
+    const user_query = 'CREATE TABLE TECHRCOMMENT' 
+    + String(req.body.id)
+    + '(techcomment_id INT PRIMARY KEY AUTO_INCREMENT, techcomment_name VARCHAR(1024), techcomment_team VARCHAR(1024)'
+    + ',techcomment_addtime VARCHAR(1024), techcomment_contents VARCHAR(1024), techcomment_image VARCHAR(1024)'
+     + ') DEFAULT CHARACTER SET UTF8 COLLATE utf8_general_ci';
+     
 
-    let params = [genre, name, start, end, firstimage];
-
-    
-
-    connection.query(user_query, params, function (error, result, fields){
+    connection.query(user_query, function (error, result, fields){
         if (error) throw error;
         res.status(200).json({ users: result})
     });
