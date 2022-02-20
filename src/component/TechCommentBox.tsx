@@ -1,5 +1,5 @@
 import React, { useState,useEffect, useCallback, useContext } from "react";
-import sty from '../css/TheaterInfoPanel.module.css';
+import {useStyles} from './styles/TechCommentBoxStyles';
 import Button from '@mui/material/Button';
 
 import ListViewPicture from './ListViewPicture';
@@ -8,7 +8,7 @@ import ListViewPicture from './ListViewPicture';
 
 /////=========== PlanInfoPanel 메인 페이지 ================================
 export default function TechCommentElement(props){ 
-
+  const classes = useStyles();
   const [photos, setPhotos]  = useState([{}]);
 
   
@@ -35,10 +35,15 @@ export default function TechCommentElement(props){
   },[props.value.image]);
 
     console.log('Props of Element', props.value.image);
-  return(       
-    <>
-        <div>{props.value.name}{props.value.team}{props.value.lasttime}{props.value.contents}</div>
-            { photos ? <div><ListViewPicture photos={photos}/> </div> : null }
-    </>   
+  return(    
+    <div className={classes.ContainerMain}>
+      <div className={classes.ContainerSub1}>
+        <div className={classes.Name}> {props.value.name} </div>
+        <div className={classes.Team}> {props.value.team} </div>
+        <div className={classes.Lasttime}> {props.value.lasttime} </div>
+      </div>
+      <div className={classes.Content}> {props.value.contents}</div>
+            { photos ? <div className={classes.ImgUpload}><ListViewPicture photos={photos}/> </div> : null }
+    </div>   
   );
 }

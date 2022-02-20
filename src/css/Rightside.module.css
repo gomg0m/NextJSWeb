@@ -1,215 +1,213 @@
 @import url("https://fonts.googleapis.com/css?family=Noto+Sans+KR:400,700,500|Roboto:400");
 
-.rightsidebox{
-    position: absolute;
-    width: 555px;
-    height: 989px;
-    left: 1368px;
-    top: 91px;
-    border-width: 0px 0px 0px 2px ;
-    border-style: solid;
-    border-color: #E0E0E0;
-    
-    background: #FBFDFF;
+.rightsidebox {
+  position: absolute;
+  width: 555px;
+  height: 989px;
+  left: 1368px;
+  top: 91px;
+  border-width: 0px 0px 0px 2px;
+  border-style: solid;
+  border-color: #e0e0e0;
+
+  background: #fbfdff;
 }
 
-.textsbox{
-    position: absolute;
-    width: 432px;
-    height: 24px;
-    left: 10px;
-    top: 61px;       
+.textsbox {
+  position: absolute;
+  width: 432px;
+  height: 24px;
+  left: 10px;
+  top: 61px;
 }
 
 .illjung {
-    position: absolute;
-    width: 45px;
-    height: 24px;
-    left: 60px;
-    top: 61px;
-    
-    font-family: Noto Sans KR;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 24px;
-    line-height: 24px;
-    /* identical to box height, or 100% */
-    
-    display: flex;
-    align-items: center;
-    
-    color: #000000;
+  position: absolute;
+  width: 45px;
+  height: 24px;
+  left: 60px;
+  top: 61px;
+
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 24px;
+  /* identical to box height, or 100% */
+
+  display: flex;
+  align-items: center;
+
+  color: #000000;
 }
 
-.gongji{
-    position: absolute;
-    width: 67px;
-    height: 24px;
-    left: 351px;
-    top: 61px;
-    
-    font-family: Noto Sans KR;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 18px;
-    line-height: 24px;
-    /* identical to box height, or 133% */
-    
-    display: flex;
-    align-items: center;
-    
-    color: #C4C4C4;    
+.gongji {
+  position: absolute;
+  width: 67px;
+  height: 24px;
+  left: 351px;
+  top: 61px;
+
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  /* identical to box height, or 133% */
+
+  display: flex;
+  align-items: center;
+
+  color: #c4c4c4;
 }
 
-.library{
-    position: absolute;
-    width: 50px;
-    height: 24px;
-    left: 442px;
-    top: 61px;
-    
-    font-family: Noto Sans KR;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 18px;
-    line-height: 24px;
-    /* identical to box height, or 133% */
-    
-    display: flex;
-    align-items: center;
-    
-    color: #C4C4C4;
+.library {
+  position: absolute;
+  width: 50px;
+  height: 24px;
+  left: 442px;
+  top: 61px;
+
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  /* identical to box height, or 133% */
+
+  display: flex;
+  align-items: center;
+
+  color: #c4c4c4;
 }
 
-.calender{
-    position: absolute;
-    left: 60px;
-    top: 180px;
-    /*line*/
-    border: 1px solid #E2E7FC;
-    /* box-sizing: border-box; */
-    box-shadow: 0px 0px 6px #E2E7FC;
-    border-radius: 8px;   
+.calender {
+  position: absolute;
+  left: 60px;
+  top: 180px;
+  /*line*/
+  border: 1px solid #e2e7fc;
+  /* box-sizing: border-box; */
+  box-shadow: 0px 0px 6px #e2e7fc;
+  border-radius: 8px;
 }
 
-.todaybox{
-    position: absolute;
-    width: 432px;
-    height: 263px;
-    left: 60px;
-    top: 626px;    
+.todaybox {
+  position: absolute;
+  width: 432px;
+  height: 263px;
+  left: 60px;
+  top: 626px;
 }
 
-.todaytitle{
-    position: absolute;
-    width: 42px;
-    height: 21px;
-    left: 24px;
-    top: 30px;
-    
-    font-family: Noto Sans KR;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 14px;
-    line-height: 20px;
-    /* identical to box height */
-    
-    
-    color: #000000;  
+.todaytitle {
+  position: absolute;
+  width: 42px;
+  height: 21px;
+  left: 24px;
+  top: 30px;
+
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 20px;
+  /* identical to box height */
+
+  color: #000000;
 }
 
-.artist{
-    position: absolute;
-    width: 34px;
-    height: 18px;
-    left: 36px;
-    top: 77px;
-    
-    font-family: Noto Sans KR;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 17px;
-    /* identical to box height */  
-    /* gray/icon */  
-    color: #828282;
+.artist {
+  position: absolute;
+  width: 34px;
+  height: 18px;
+  left: 36px;
+  top: 77px;
+
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 17px;
+  /* identical to box height */
+  /* gray/icon */
+  color: #828282;
 }
 
-.time{
-    position: absolute;
-    width: 75px;
-    height: 18px;
-    left: 74px;
-    top: 77px;
-    
-    font-family: Noto Sans KR;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 17px;
-    /* identical to box height */
-    
-    
-    /* gray/icon */
-    
-    color: #828282;
+.time {
+  position: absolute;
+  width: 75px;
+  height: 18px;
+  left: 74px;
+  top: 77px;
+
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 17px;
+  /* identical to box height */
+
+  /* gray/icon */
+
+  color: #828282;
 }
 
-.dis1{
-    position: absolute;
-    width: 141px;
-    height: 18px;
-    left: 36px;
-    top: 101px;
-    
-    font-family: Noto Sans KR;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 17px;
-    /* identical to box height */   
-    color: #000000;
+.dis1 {
+  position: absolute;
+  width: 141px;
+  height: 18px;
+  left: 36px;
+  top: 101px;
+
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 17px;
+  /* identical to box height */
+  color: #000000;
 }
 
-.dis2{
-    position: absolute;
-    width: 158px;
-    height: 18px;
-    left: 36px;
-    top: 121px;
-    
-    font-family: Noto Sans KR;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 17px;
-    /* identical to box height */
-    /* Gray 3 */
-    color: #828282;
+.dis2 {
+  position: absolute;
+  width: 158px;
+  height: 18px;
+  left: 36px;
+  top: 121px;
+
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 17px;
+  /* identical to box height */
+  /* Gray 3 */
+  color: #828282;
 }
 
-.gogasi{
-    position: absolute;
-    width: 120px;
-    height: 26px;
-    left: 320px;
-    top: 77px;
-    /* Gray 5 */
-    border: 1px solid #E0E0E0;
-    box-sizing: border-box;
-    border-radius: 6px;
-    position: absolute;
+.gogasi {
+  position: absolute;
+  width: 120px;
+  height: 26px;
+  left: 320px;
+  top: 77px;
+  /* Gray 5 */
+  border: 1px solid #e0e0e0;
+  box-sizing: border-box;
+  border-radius: 6px;
+  position: absolute;
 
-    font-family: Noto Sans KR;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 17px;
-    /* identical to box height */
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 17px;
+  /* identical to box height */
 
-    text-align: right;
+  text-align: right;
 
-    /* Gray 3 */
+  /* Gray 3 */
 
-    font: #828282;
+  font: #828282;
 }

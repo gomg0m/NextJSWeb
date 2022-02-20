@@ -1,35 +1,35 @@
 @import url("https://fonts.googleapis.com/css?family=Noto+Sans+KR:400,700,500|Roboto:400");
 
 .headerbox {
-    display: flex;
-    width: 1920px;
-    height: 90px;
-    background-color: white; 
-    border-width: 0px 0px 2px 0px ;
-    border-style: solid;
-    border-color: #BDBDBD;
-    position: absolute;
+  display: flex;
+  width: 1920px;
+  height: 90px;
+  background-color: white;
+  border-width: 0px 0px 2px 0px;
+  border-style: solid;
+  border-color: #bdbdbd;
+  position: absolute;
 }
 
 .logocontainer {
-    display: flex;
-    justify-content: flex-start;
-    margin-left: 100px;
-    align-self: center;
+  display: flex;
+  justify-content: flex-start;
+  margin-left: 100px;
+  align-self: center;
 }
 
 .logo {
-    margin-left: 200px;
+  margin-left: 200px;
 }
 
 .logotext {
-    color: black;
-    font-family: var(--font-family-noto_sans_kr);
-    font-size: 20px;
-    font-weight: 700;
-    font-style: normal;
-    margin-top: 4px;
-    margin-left: 10px;
+  color: black;
+  font-family: var(--font-family-noto_sans_kr);
+  font-size: 20px;
+  font-weight: 700;
+  font-style: normal;
+  margin-top: 4px;
+  margin-left: 10px;
 }
 
 .headercontainer {
@@ -65,7 +65,7 @@
 .loginbutton {
   margin-top: -2px;
   margin-left: 5px;
-  background-color: #2D9CDB;
+  background-color: #2d9cdb;
   width: 77px;
   height: 36px;
 }
@@ -226,7 +226,7 @@
   height: 48px;
   top: 490px;
   left: 70px;
-  background: #2D9CDB;
+  background: #2d9cdb;
   border-radius: 6px;
 
   font-family: Noto Sans KR;
@@ -316,7 +316,7 @@
   height: 48px;
   top: 350px;
   left: 80px;
-  background: #2D9CDB;
+  background: #2d9cdb;
   border-radius: 6px;
 
   font-family: Noto Sans KR;

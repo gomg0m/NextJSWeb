@@ -1,11 +1,7 @@
 import * as React from 'react';
 import {useEffect} from 'react';
 import styles from '../css/Rightside.module.css';
-import AdapterDateFns from '@mui/lab/AdapterDateFns';
-import LocalizationProvider from '@mui/lab/LocalizationProvider';
-import CalendarPicker from '@mui/lab/CalendarPicker';
-import Grid from '@mui/material/Grid';
-import { Box, Button} from '@mui/material';
+import { Box, Button, gridClasses} from '@mui/material';
 import Axios from 'axios';
 
 ///// TabPanel 관련
@@ -171,7 +167,7 @@ export default function Rightside(props) {
   return (
      
     <div className={styles.rightsidebox}>
-      <Paper sx={{width:680, height:[calcHeight], m:"0px 20px 0px"}} elevation={1}>
+      {/* <Paper sx={{width:680, height:[calcHeight], m:"0px 20px 0px"}} elevation={1}> */}
         <Box sx={{ width: '100%' }}>  {/*----- Tab 메뉴 -----*/}
           <Box sx={{borderBottom: 1, borderColor: 'divider' }}>
             <Tabs value={tabValue} onChange={handleTabChange} aria-label="basic tabs example" >
@@ -188,12 +184,16 @@ export default function Rightside(props) {
             </TabPanel>
           <TabPanel value={tabValue} index={2}>  {/*----- 의견 Tab 내용 -----*/}              
               <TechCommentWrite parentFunc={onClickDiscussWrite}/>
+
               {
+                
                   techComment.map((item)=>(<TechCommentElement value={item}/>))
+                
               }
+            
           </TabPanel>      
         </Box>        
-      </Paper>
+      {/* </Paper> */}
     </div>
   );
 

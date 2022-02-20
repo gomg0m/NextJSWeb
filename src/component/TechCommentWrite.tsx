@@ -9,6 +9,7 @@ import { FormInputMultilineText } from './FormInputMultilineText'
 import Router from 'next/router';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import { useDropzone } from 'react-dropzone';
+import {useStyles} from './styles/TechCommentWriteStyles'; //Material UI Style Box
 
 interface IFormInput {
     name:String;
@@ -182,29 +183,28 @@ export const TechCommentWrite = (props)=> {
     let boxprops ={ width:400, height:150};
     const methods = useForm({ defaultValues: defaultValues });
     const { handleSubmit, reset, control, setValue } = methods;
-    
+    const classes = useStyles();
+
     const onSubmit = (data: IFormInput) => {
         let sendData:IFormInput = {name:data.name, team:"기술팀", comment:data.comment, image:imgUploadFileList, lasttime:"20220219"};
         props.parentFunc(sendData);
     }
 
     return(
-        <div className={sty.fullbox}>
-            
-            <div className={sty.body_row8}>
-                <div className={sty.body_row_subitem1}>의견</div>
-                <div className={sty.body_row_subitem2} style={{width:"1100px", margin:"-25px 30px 0px"}} ><FormInputText name="name" control={control} label="작성자의 이름을 등록하세요"/></div>
-                <div className={sty.body_row_subitem2} style={{width:"1100px", margin:"-25px 30px 0px"}} ><FormInputText name="team" control={control} label="소속을 적으세요"/></div>
-                <div className={sty.body_row_subitem2} style={{width:"1100px", margin:"-25px 30px 0px"}} ><FormInputMultilineText name="comment" control={control} label="기타 특이사항을 작성하세요"/></div>
 
+            <div className={classes.ContainerMain}>
+                <div className={classes.ContainerSub1}>
+                    <div className={classes.Label1}>의견</div>
+                        {/* <div className={classes.Name} > <FormInputText name="name" control={control} label="작성자의 이름을 등록하세요"/></div>
+                        <div className={classes.Team} > <FormInputText name="team" control={control} label="소속을 적으세요"/></div> */}
+                        <div className={classes.Content} > <FormInputMultilineText name="comment" control={control} label="의견을 남겨 보세요"/></div>
+                    </div>
+                <div className={classes.ContainerSub2}>
+                    <div className={classes.ImgUpload}> <ImgUpload /> </div>
+                    <div> <Button className={classes.Button} onClick={handleSubmit(onSubmit)} variant="contained"> 의견쓰기 </Button> </div>
+                </div>
             </div>
-            <div className={sty.body_row4}>
-                <div style={{margin:"100px 800px 0px"}}> <ImgUpload /></div>
-            </div>
-            <div className={sty.layout_bottom}>                 
-                <Button className={sty.notosanskr_bold_cyan_24px} style={{margin:"0px 20px 0px"}} onClick={handleSubmit(onSubmit)} variant="contained"> 의견쓰기 </Button> 
-            </div>
-        </div>
+
     );
 }
 

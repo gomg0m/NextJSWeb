@@ -355,7 +355,7 @@ export default function TechDiscussInfoPanel(){
   const options1 = [ "사전확인", "사업계획", "고려사항",  "대상물", "연출내용", "구현환경", "반입 및 설치" ];
   const options2 = [ "공연에서 차지하는 비중", "연출 영역(반경)", "동선",  "리프팅 높이", "이동 거리", "속도", "이동 시의 움직임" ];
 
-  function handleTechRepleClick(e){    
+  function handleDiscussButtonClick(e){    
       let rpID = techRepleIds[Number(e.currentTarget.id)];
     setRightsideTabID({TabID:2, RepleID:rpID});
   }
@@ -422,12 +422,12 @@ export default function TechDiscussInfoPanel(){
                <div>
                 {
                     techRepleName.map((item, i) => (
-                        <div id={i} className={sty.contentbox} style={{margin:"0px 40px 20px"}} onClick={handleTechRepleClick}>                      
+                        <div className={sty.contentbox} style={{margin:"0px 40px 20px"}}>                      
                             <div className={sty.boxsubject} style={{margin:"20px 20px 0px"}}>{techRepleFirSubject[i]} / {techRepleSecSubject[i]}</div>
                             <div className={sty.boxname} style={{margin:"20px 20px 0px"}}>{item}</div>
                             <div className={sty.boxcontents} style={{margin:"10px 20px 50px"}}>{techRepleContents[i]}</div>
 
-                            <div className={sty.comment} style={{margin:"0px 850px 10px"}}>의견</div>
+                            <Button id={i} className={sty.comment} style={{margin:"0px 800px 10px"}} onClick={handleDiscussButtonClick} >의견</Button>
                         </div>  
                     )) }
                 </div>

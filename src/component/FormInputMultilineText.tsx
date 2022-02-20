@@ -31,7 +31,7 @@ export const FormInputMultilineText = ({ name, control, label }: FormInputProps)
             variant="outlined"
             fullWidth
             multiline
-            rows={7}
+            rows={5}
           />
           )}
           /> 
