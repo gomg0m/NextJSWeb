@@ -17,28 +17,9 @@ import ViewHopeInfoPanel from '../component/ViewHopeInfoPanel';
 import TechCommentWrite from '../component/TechCommentWrite';
 import TechCommentElement from '../component/TechCommentBox';
 
-/////TabPanel 관련 
-const useStyles = makeStyles({
-  customStyleOnTab:{
-    fontSize:'20px',
-    color:'black',
-    fontWeight: '700'
+import {useStyles} from '../css/RightsideStyles';
 
-  },
-  customStyleOnActiveTab:{
-    color:'red'
-  },
-  activeTab:{
-    fontSize:'16px',
-    fontWeight:'600',
-    color:'pink'
-  },
-  PanelText:{
-    fontSize:'16px',
-    color:'pink'
-  }
-})
- 
+
 TabPanel.propTypes = {
 children: PropTypes.node,
 index: PropTypes.number.isRequired,
@@ -84,15 +65,13 @@ export default function Rightside(props) {
   const [tabValue, setTabValue] = React.useState(1);  ///TabPanel 관련
   const [techComment, setTechComment] = React.useState([{}]);
   
-  
     //Tabs Handle 
     const handleTabChange = (event, newValue) => {      
-      
       setTabValue(newValue);
     };
   
     const calcHeight = 1020; ///??? 향후 관련 로직 추가 필요
-    const HopeInfo_Id = 3; ///??? 향후 관련 로직 추가 필요
+    const RightHope_Id = 3; ///??? 향후 관련 로직 추가 필요
       //useEffect call func
     // func (Axios.pos(get))
     // get useState

@@ -7,7 +7,7 @@ import Link from 'next/link';
 
 import Axios from 'axios';
 import {Card, CardContent, CardMedia, CardActionArea, CardActions } from '@mui/material';
-import cardsty from "../src/css/card.module.css"
+import cardsty from "../src/css/card2.module.css"
 import { Box, Button, Typography } from '@mui/material';
 import Router from "next/router";
 

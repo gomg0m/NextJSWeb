@@ -1,6 +1,6 @@
 import React, {useState, useCallback, useMemo, useEffect} from 'react';
 import sty from '../css/PerformInfoWirte.module.css'
-import IconButton from './withiconbtn';
+import IconButton from '../component/withiconbtn';
 import Button from '@mui/material/Button';
 import Axios from 'axios';
 import { useForm } from "react-hook-form";
@@ -9,7 +9,7 @@ import { FormInputMultilineText } from './FormInputMultilineText'
 import Router from 'next/router';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import { useDropzone } from 'react-dropzone';
-import {useStyles} from './styles/TechCommentWriteStyles'; //Material UI Style Box
+import {useStyles} from '../../src/css/TechCommentWriteStyles'; //Material UI Style Box
 
 interface IFormInput {
     name:String;

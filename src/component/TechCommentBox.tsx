@@ -1,5 +1,5 @@
 import React, { useState,useEffect, useCallback, useContext } from "react";
-import {useStyles} from './styles/TechCommentBoxStyles';
+import {useStyles} from '../../src/css/TechCommentBoxStyles';
 import Button from '@mui/material/Button';
 
 import ListViewPicture from './ListViewPicture';

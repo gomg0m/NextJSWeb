@@ -1,5 +1,6 @@
 import React, { useState,useEffect, useCallback, useMemo } from "react";
 import Header from '../src/fix/Header';
+import Rightside from "../src/fix/Rightside1";
 import Link from 'next/link';
 import Axios from 'axios';
 
@@ -22,7 +23,8 @@ import {makeStyles} from '@material-ui/core';
 //global id 가져오기
 import { useContext } from "react";
 import AppContext from "../src/component/AppContext";
-
+import { width } from "@mui/system";
+import {ComboStyles} from '../src/css/ComboStyles';
 
 interface IFormInput {
   plan_id: string;
@@ -60,25 +62,37 @@ interface IFormInput {
   };
 
 
+  // const ComboStyles = makeStyles({
+  //   ContainerMain: {
+  //     fontSize: "12px",
+  //     fontFamily: "Noto Sans KR",
+  //     fontWeight: "700",
+  //     width: "100px",
+  //     height: "30px"
+  //   }
+  // });
+
 function Combo(){
   const [age, setAge] = React.useState('');
 
+  const classe = ComboStyles();
   const handleChange = (event) => {
     setAge(event.target.value);
   };
   return(
-  <FormControl fullWidth>
-  <InputLabel id="demo-simple-select-label">모든상태</InputLabel>
-  <Select
+  <FormControl className={cardsty.Container}>
+    
+  <InputLabel className={classe.InputLabel} id="demo-simple-select-label">상태</InputLabel>
+  <Select className={classe.ContainerMain}
     labelId="demo-simple-select-label"
     id="demo-simple-select"
     value={age}
     label="Age"
     onChange={handleChange}
   >
-    <MenuItem value={10}>계획중</MenuItem>
-    <MenuItem value={20}>제작중</MenuItem>
-    <MenuItem value={30}>종료</MenuItem>
+    <MenuItem className={classe.MenuItem} value={10}>계획중</MenuItem>
+    <MenuItem className={classe.MenuItem} value={20}>제작중</MenuItem>
+    <MenuItem className={classe.MenuItem} value={30}>종료</MenuItem>
   </Select>
 </FormControl>
 );
@@ -324,40 +338,7 @@ export default function DashboardView(){
     switch(newValue) {
       case 0: //About
         break;
-      case 1:  // pre-production
-        //Axio.post('path',{id}) get hopeinfo & theaterinfo db data from table
-        //setHopeInfo(data), setTheaterInfo(data)
-        // let id=cardID;
-        // Axios.post("/api/getPlanInfo", {id} ).then((res) => {
-        //   if(res.status==200)
-        //   {
-        //     let parsedList = JSON.parse(res.data.users[0].plan_hopeids);
-        //     console.log('parsedlist',parsedList);
-        //     let ids =[...parsedList];
-        //     console.log('ids',ids)
-        //     Axios.post("/api/getHopeInfoids", {ids}).then((res)=>{
-        //       if(res.status == 200){
-        //           //login 성공
-        //           console.log(res.data.users);
-        //           let kkk=[];
-        //           res.data.users.map((item)=>{kkk.push(JSON.parse(item.hope_firstimage))});
-        //           console.log('hopeimagelist',kkk);
-        //           setHopeList(kkk);
-        //           //대쉬보드 업데이트를 위해서 다시한번 정보가져와서 카드list 리랜더링
-        //           Axios.post("/api/getTechInfoids", {ids}).then((res)=>{
-        //               if(res.status == 200){
-        //                   //login 성공
-        //                   console.log(res.data.users);
-        //                   let kkk=[];
-        //                   res.data.users.map((item)=>{kkk.push(JSON.parse(item.hope_firstimage))});
-        //                   console.log('techimagelist',kkk);                          
-        //                   setTechList(kkk);
-        //               }//if
-        //           });
-        //       }//if status
-        //     });//end of Axio                  
-        //   }
-        // });//end of Axio                  
+      case 1:  // pre-production              
         break;
       case 2:  // production
         break;
@@ -433,6 +414,7 @@ export default function DashboardView(){
   return(
         <>
         <Header />
+        <Rightside />
       <div>
         <Box className={styles.showbackground} sx={{ width: 1365, height: '100%', backgroundColor: '#F6F7FB', }} />
         <div className={styles.showsubtitle}>협업 공연</div>
@@ -445,16 +427,16 @@ export default function DashboardView(){
             <IconButton type="submit" sx={{ p: '10px' }} aria-label="search"> <SearchIcon /> </IconButton>
           </Paper>
         </div>     
-          <div className={cardsty.card_container} style= {{ position:"absolute", top:"300px", overflow:"auto", width:"1310px", height:"550px"}} >
+          <div className={cardsty.card_container} style= {{ position:"absolute", top:"250px", overflow:"auto", width:"1320px", height:"410px"}} >
             { 
             list.map((item)=>(
-                <Card className={cardsty.card_item} sx={{ minWidth: 345, minHeight: 350, borderColor: 'primary.main', border:0 }}  >
+                <Card className={cardsty.card_item} >
                   <CardActionArea>
                     <CardActions>
                       <CardMedia
                         component="img"
                         // !!!!!카드 이미지 높이 설정!!!!
-                        height="250px" 
+                        height="180px"
                         image={'/uploads/'+item.plan_firstimage}
                         alt="IU"  
                         onClick={cardHandler}
@@ -463,30 +445,21 @@ export default function DashboardView(){
                       </CardActions>
                     </CardActionArea>
                     <CardContent>
-                      <Typography gutterBottom variant="h4" component="div">
-                        {item.plan_name}
-                        <Combo/>
-                      </Typography>
-                      <Typography variant="h5" color="text.secondary">
-                        {item.plan_genre}
-                      </Typography>
-                      <Typography variant="h5" color="text.secondary">
-                        {item.plan_start+' ~ '+item.plan_end}
-                      </Typography>
-                    </CardContent>
-                  
-                  <CardActions>
-                    <Button size="small" color="primary" onClick={btnHandler}>
-                      Share
-                    </Button>
-                </CardActions>  
+                      <Typography className={cardsty.name} gutterBottom component="div" >{item.plan_name}</Typography>
+                      <Typography className={cardsty.title} >장르 </Typography>
+                      <Typography className={cardsty.content} >{item.plan_genre}</Typography>
+                      <Typography className={cardsty.title}> 일시 </Typography>
+                      <Typography className={cardsty.content}>{item.plan_start+' ~ '+item.plan_end}</Typography>
+                    </CardContent> 
+                    <Combo/>
                 </Card>
             )) }
         </div>
         
+        <div className={styles.ingtitle}>공연 진행상황</div>
         < DialogNewProject open={open} close={handleClose} getdialogdata={handleDialogData}/>
         
-        <div style= {{ position:"absolute", top:"900px", left:"20px", width:"1400px", height:"650px"}}>
+        <div style= {{ position:"absolute", top:"700px", left:"20px", width:"1400px", height:"650px"}}>
           <Box sx={{ width: 1310 , height: 600 }}> {/*!!! 판넬 Size  */}
             <Box sx={{borderBottom: 1, borderColor: 'divider' }}>
               <Tabs value={tabValue} onChange={handleTabChange} aria-label="basic tabs example" >

@@ -34,14 +34,14 @@
 
 .infoframe {
   position: absolute;
-  width: 1496px;
+  width: 1000px;
   left: 364px;
   top: 176px;
 }
 
 .layout_top {
   display: block;
-  width: 1400px;
+  width: 1000px;
 }
 
 .layout_top_txt1 {
@@ -486,4 +486,32 @@
   line-height: 50px;
   letter-spacing: -0.02em;
   text-align: left;
+}
+
+.finish{
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  color: #FFFFFF;
+
+  background: #2D9CDB;
+  border-radius: 4px;
+}
+
+.search{
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  color: #828282;
+
+  background: #FFFFFF;
+  border: 1px solid #999999;
+  box-sizing: border-box;
+  border-radius: 4px;
+}
+
+.techbutton{
+  margin-left: 1070px;
 }

@@ -9,7 +9,7 @@ import Axios from 'axios';
 import Router from "next/router";
 import NewTechProject from "./NewTechProject";
 import {Card, CardContent, CardMedia, CardActionArea, CardActions } from '@mui/material';
-import cardsty from "../src/css/card.module.css"
+import cardsty from "../src/css/card2.module.css"
 
 //모달 디자인
 const style = {
