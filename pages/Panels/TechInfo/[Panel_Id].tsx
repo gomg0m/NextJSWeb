@@ -263,7 +263,7 @@ export default function TechDiscussInfoPanel(){
 }
   
     function getTechData(){
-        console.log('페이지아이디',techname);
+        //console.log('페이지아이디',techname);
         Axios.get("/api/getTechInfo").then((res) => {                 
             if(res.status == 200){      
                 res.data.users.map((item, i) => {

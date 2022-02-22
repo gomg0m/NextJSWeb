@@ -131,8 +131,9 @@ export default function Rightside(props) {
 
 
   function onClickDiscussWrite (params){
+    
     //1.새로운 의견을 Comment Table에 새로운 행으로 추가
-    //Comment Table의 뒷자리수는 RepleID와 동일
+    //Comment Table의 뒷자리수는 RepleID와 동일 
     let data = {...params, tableid: props.tabID.RepleID}
     Axios.post("/api/insertTechComments", {data}).then((res)=>{
       if (res.status == 200 )

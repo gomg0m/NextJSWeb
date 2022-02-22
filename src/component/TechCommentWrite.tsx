@@ -186,8 +186,22 @@ export const TechCommentWrite = (props)=> {
     const classes = useStyles();
 
     const onSubmit = (data: IFormInput) => {
-        let sendData:IFormInput = {name:data.name, team:"기술팀", comment:data.comment, image:imgUploadFileList, lasttime:"20220219"};
-        props.parentFunc(sendData);
+
+        const user = Axios.get('/api/getUserCookieInfo').then((res)=> {
+            // console.log('l',res.data.user);
+            if (res.status == 200) {
+              if (res.data.statusCode == 1) {
+                let today = String(new Date());
+                let sendData:IFormInput = {name:res.data.user.username, team:res.data.user.team, comment:data.comment, image:imgUploadFileList, lasttime:today};
+                props.parentFunc(sendData);
+              }
+            } else {
+            
+            }
+       
+          }); 
+    
+        
     }
 
     return(
