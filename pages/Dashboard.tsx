@@ -23,7 +23,7 @@ import {makeStyles} from '@material-ui/core';
 //global id 가져오기
 import { useContext } from "react";
 import AppContext from "../src/component/AppContext";
-import { width } from "@mui/system";
+import { margin, width } from "@mui/system";
 import {ComboStyles} from '../src/css/ComboStyles';
 
 interface IFormInput {
@@ -61,7 +61,6 @@ interface IFormInput {
   
   };
 
-
 function Combo(){
   const [age, setAge] = React.useState('');
 
@@ -92,19 +91,22 @@ function Combo(){
 /////TabPanel 관련 
 const useStyles = makeStyles({
   customStyleOnTab:{
-    fontSize:'20px',
+    fontFamily: "Noto Sans KR",
+    fontSize:'22px',
+    fontWeight: '500',
     color:'black',
-    // fontWeight: '700'
 
   },
+
   customStyleOnActiveTab:{
     color:'red'
   },
+
   activeTab:{
     fontSize:'16px',
-    // fontWeight:'600',
     color:'pink'
   },
+
   PanelText:{
     fontSize:'16px',
     color:'pink'
@@ -212,7 +214,7 @@ export default function DashboardView(){
         ))
         setPlanname(name);
       }
-    })
+    })////////
 
     if(tabValue==0) {
       AboutButtonState(e.currentTarget.id);
@@ -236,13 +238,14 @@ export default function DashboardView(){
           Axios.post("/api/getHopeInfoids", {ids}).then((res)=>{
             if(res.status == 200){
                 //login 성공
-                console.log(res.data.users);
+                console.log('데이터',res.data.users);
                 let hopefirstimg=[];
                 let hopelasttime=[];
-                res.data.users.map((item)=>{hopefirstimg.push(JSON.parse(item.hope_firstimage))});
+                res.data.users.map((item)=>{hopefirstimg.push(item.hope_firstimage)});
                 res.data.users.map((item)=>{hopelasttime.push(item.hope_lasttime)});
                 console.log('hopeimagelist',hopefirstimg);
                 console.log('hopelasttime',hopelasttime);
+                console.log('호프리스트', hopefirstimg);
                 setHopeList(hopefirstimg);
                 setHopeLastTime(hopelasttime);
                 let parsedTechList = [];
@@ -381,7 +384,6 @@ export default function DashboardView(){
           });
       }
     });//end of Axio
-
   }
 
   const onTheaterBtnClick= ()=>{
@@ -465,7 +467,7 @@ export default function DashboardView(){
             )) }
           </div>
         
-        <div className={styles.ingtitle}>{planname} 공연 진행상황</div>
+        <div className={styles.ingtitle1}>{planname} <span style={{color:'#000000', margin:"0px 8px 0px"}}> 공연 진행상황</span></div>
         < DialogNewProject open={open} close={handleClose} getdialogdata={handleDialogData}/>
         
         <div style= {{ position:"absolute", top:"700px", left:"20px", width:"1400px", height:"650px"}}>
@@ -482,16 +484,17 @@ export default function DashboardView(){
               <TabPanel value={tabValue} index={0}>                
                 <div style={{display: 'flex', flexDirection: "row", width:"1260px"}}>                  
                   <Paper sx={{width:680, height:280}} elevation={1}> {/*!!! 판넬내 페이지 사이즈 */}
-                    <div className={styles.boxinfo} style={{margin:"30px 60px 0px"}}>공연기획 정보</div>
-                    <div className={styles.boxtitle} style={{margin:"5px 60px 0px"}}>{planname} 공연기획 정보</div>
-                    <div className={styles.boxdate} style={{margin:"5px 60px 0px"}}>마지막 수정</div>
-                    <Button style={{left:500, top:-50}} variant="contained" onClick={onPlanBtnClick}>{planInfoState}</Button>
+                    <img src="images/show.jpg" width="60" height="60" style={{margin:"30px 30px 0px"}}></img>
+                    <div className={styles.boxinfo} style={{margin:"-70px 110px 0px"}}>공연기획 정보</div>
+                    <div className={styles.boxtitle} style={{margin:"5px 110px 0px"}}>{planname} 공연기획 정보</div>
+                    <div className={styles.boxdate} style={{margin:"5px 110px 0px"}}>마지막 수정</div>
+                    <Button style={{left:470, top:-50}} color="secondary" variant="contained" onClick={onPlanBtnClick}>{planInfoState}</Button>
                   </Paper>
                   <Paper sx={{width:680, height:280, m:"0px 20px 0px"}} elevation={1}>
-                    <img src="images/show.jpg" width="60" height="60" margin-left="100px"></img>
-                    <div className={styles.boxinfo} style={{margin:"30px 60px 0px"}}>공연장 정보</div>
-                    <div className={styles.boxtitle} style={{margin:"5px 60px 0px"}}>{planname} 공연장 정보</div>
-                    <div className={styles.boxdate} style={{margin:"5px 60px 0px"}}>마지막 수정</div>
+                    <img src="images/show.jpg" width="60" height="60" style={{margin:"30px 30px 0px"}}></img>
+                    <div className={styles.boxinfo} style={{margin:"-70px 110px 0px"}}>공연장 정보</div>
+                    <div className={styles.boxtitle} style={{margin:"5px 110px 0px"}}>{planname} 공연장 정보</div>
+                    <div className={styles.boxdate} style={{margin:"5px 110px 0px"}}>마지막 수정</div>
                     <Button style={{left:470, top:-50}} variant="contained" onClick={onTheaterBtnClick}>{theaterInfoState}</Button>
                   </Paper>                  
                 </div>
@@ -501,6 +504,7 @@ export default function DashboardView(){
                 <div style={{display: 'flex', flexDirection: "row", width:"1260px"}}>                  
                   <Paper sx={{width:680, height:280}} elevation={1}> {/*!!! 판넬내 페이지 사이즈 */}
                   <>희망연출 정보</>
+                  
                   {
                   hopeList.map((item, i)=>(                    
                     <div style={{display:"flex", flexDirection:"row"}}>                

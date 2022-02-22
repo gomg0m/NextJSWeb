@@ -42,7 +42,7 @@ export default function handler(req, res) {
       
       connection.query(user_query, function (error, result, fields){
         if (error) throw error;
-        
+        console.log('result',result);
         res.status(200).json({ users: result})
       });
     }

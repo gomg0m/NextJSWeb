@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import Header from '../src/fix/HomeHeader';
+import Header from '../src/component/HomeHeader';
 import Footer from '../src/fix/Footer';
 import styles from '../src/css/Home.module.css';
 import { Container, Card, CardContent, CardMedia, Typography, CardActionArea, Button, Box } from '@mui/material';
@@ -9,7 +9,7 @@ import { Container, Card, CardContent, CardMedia, Typography, CardActionArea, Bu
 function Home() {
   return (
     <>
-      {/* <Header /> */}
+      <Header />
 
       <div className={styles.maintext}>
         공연의 과정이 <br/>

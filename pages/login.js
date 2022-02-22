@@ -22,11 +22,11 @@ export default function Login(){
             if (res.status == 200) {
                 console.log(res.data.users);
                 if(res.data.statusCode == 1) {
-                    //router.push('/Home2');
+                    router.push('/Home2');
                 }
 
                 if(res.data.statusCode == 2) {
-                    //router.push('/Home');
+                    router.push('/Home');
                     console.log("fail!!!")
                 }
                 console.log("fail!!!", res.data)
