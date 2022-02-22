@@ -156,7 +156,7 @@ export default function Rightside(props) {
             </Tabs>
           </Box>
           <TabPanel value={tabValue} index={0}>  {/*----- 연출정보 Tab 내용 -----*/}
-              <ViewHopeInfoPanel Panel_Id = {HopeInfo_Id}/>
+              <ViewHopeInfoPanel Panel_Id = {RightHope_Id}/>
           </TabPanel>
           <TabPanel value={tabValue} index={1}>  {/*----- 체크리스트 Tab 내용 -----*/}
               ... 공사중 : 체크리스트 페이지 

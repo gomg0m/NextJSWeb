@@ -1,9 +1,32 @@
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans+KR:400,700,500|Roboto:400");
+
 .card_container {
   display: flex;
   flex-direction: row;
-  margin: 20px;
-  margin-left: 400px;
+  margin-left: 380px;
 }
+
 .card_item {
   margin: 10px;
+  width: 356px;
+  height: 300px;
+  border: 0;
+}
+
+.title {
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 26px;
+  color: #333333;
+}
+
+.subtitle {
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 17px;
+  color: #2D9CDB;
 }

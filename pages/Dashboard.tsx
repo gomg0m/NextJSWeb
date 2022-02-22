@@ -62,16 +62,6 @@ interface IFormInput {
   };
 
 
-  // const ComboStyles = makeStyles({
-  //   ContainerMain: {
-  //     fontSize: "12px",
-  //     fontFamily: "Noto Sans KR",
-  //     fontWeight: "700",
-  //     width: "100px",
-  //     height: "30px"
-  //   }
-  // });
-
 function Combo(){
   const [age, setAge] = React.useState('');
 
@@ -180,6 +170,8 @@ export default function DashboardView(){
   const [hopeIds, setHopeIds] = useState([]);
   const [techIds, setTechIds] = useState([]);
 
+  const [planname, setPlanname] = React.useState([]);
+
   //leftside에도 추가하기
   const globalPlanID = useContext(AppContext);
 
@@ -191,24 +183,40 @@ export default function DashboardView(){
         setList(res.data.users);
     });
   }
-
+  
   useEffect(()=>{getData();},[]);
   
+
   const btnHandler=()=>{console.log('btn clickted')};
   
   /////-----Card Image Click시 핸들러 
   const cardHandler=(e)=>{
     console.log("e",e)        
     setCardID(e.currentTarget.id);
-    console.log("id", cardID);
+    console.log("카드id", cardID);
     clickID = e.currentTarget.id;
-    console.log("clickid",clickID);
+    console.log("클릭id",clickID);
     console.log("tabValue",tabValue);
 
     globalPlanID.statefunc(e.currentTarget.id);
 
+    //=========공연정보이름 가져오기==========//
+    let id=e.currentTarget.id;
+    Axios.post("/api/getPlanInfo", {id} ).then((res) => {
+      if(res.status==200)
+      { 
+        console.log("공연이름", res.data.users);
+        let name = [];
+        res.data.users.map((item) => (
+          name.push(item.plan_name)
+        ))
+        setPlanname(name);
+      }
+    })
+
     if(tabValue==0) {
       AboutButtonState(e.currentTarget.id);
+
     }
 
     if(tabValue==1)
@@ -216,8 +224,9 @@ export default function DashboardView(){
       let id=clickID;
       ////plane_id에 해당하는 PlanInfo Table 가져옴
       Axios.post("/api/getPlanInfo", {id} ).then((res) => {
+
         if(res.status==200)
-        {
+        { 
           let parsedHopeList = JSON.parse(res.data.users[0].plan_hopeids);
           console.log('parsedHopeList',parsedHopeList);
           let ids =[...parsedHopeList];
@@ -454,9 +463,9 @@ export default function DashboardView(){
                     <Combo/>
                 </Card>
             )) }
-        </div>
+          </div>
         
-        <div className={styles.ingtitle}>공연 진행상황</div>
+        <div className={styles.ingtitle}>{planname} 공연 진행상황</div>
         < DialogNewProject open={open} close={handleClose} getdialogdata={handleDialogData}/>
         
         <div style= {{ position:"absolute", top:"700px", left:"20px", width:"1400px", height:"650px"}}>
@@ -473,12 +482,17 @@ export default function DashboardView(){
               <TabPanel value={tabValue} index={0}>                
                 <div style={{display: 'flex', flexDirection: "row", width:"1260px"}}>                  
                   <Paper sx={{width:680, height:280}} elevation={1}> {/*!!! 판넬내 페이지 사이즈 */}
-                    <div className={styles.showsubtitle}>기획 정보</div>
-                    <Button style={{left:460, top:20}} variant="contained" onClick={onPlanBtnClick}>{planInfoState}</Button>
+                    <div className={styles.boxinfo} style={{margin:"30px 60px 0px"}}>공연기획 정보</div>
+                    <div className={styles.boxtitle} style={{margin:"5px 60px 0px"}}>{planname} 공연기획 정보</div>
+                    <div className={styles.boxdate} style={{margin:"5px 60px 0px"}}>마지막 수정</div>
+                    <Button style={{left:500, top:-50}} variant="contained" onClick={onPlanBtnClick}>{planInfoState}</Button>
                   </Paper>
                   <Paper sx={{width:680, height:280, m:"0px 20px 0px"}} elevation={1}>
-                    <div className={styles.showsubtitle}>기획 정보</div>
-                    <Button style={{left:460, top:20}} variant="contained" onClick={onTheaterBtnClick}>{theaterInfoState}</Button>
+                    <img src="images/show.jpg" width="60" height="60" margin-left="100px"></img>
+                    <div className={styles.boxinfo} style={{margin:"30px 60px 0px"}}>공연장 정보</div>
+                    <div className={styles.boxtitle} style={{margin:"5px 60px 0px"}}>{planname} 공연장 정보</div>
+                    <div className={styles.boxdate} style={{margin:"5px 60px 0px"}}>마지막 수정</div>
+                    <Button style={{left:470, top:-50}} variant="contained" onClick={onTheaterBtnClick}>{theaterInfoState}</Button>
                   </Paper>                  
                 </div>
 
