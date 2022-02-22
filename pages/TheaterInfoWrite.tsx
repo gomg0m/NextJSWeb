@@ -192,7 +192,7 @@ export const TheaterInfoWrite = ()=> {
     let boxprops ={ width:400, height:150};
     const methods = useForm({ defaultValues: defaultValues });
     const { handleSubmit, reset, control, setValue } = methods;
-    
+
     const onSubmit = (data: IFormInput) => {
         Axios.post("/api/getTheaterInfo", {data}).then((res)=>{
             if(res.status == 200){
