@@ -1,7 +1,7 @@
 import React from 'react';
-import Header from '../../../src/fix/Header';
-import Leftside from '../../../src/fix/Leftside2';
-import sty from '../../../src/css/HopeInfoPanel.module.css';
+import Header from '../src/fix/Header';
+import Leftside from '../src/fix/Leftside2';
+import sty from '../src/css/RightHopeInfo.module.css';
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Axios from 'axios';
@@ -10,8 +10,8 @@ import { styled } from '@mui/material/styles';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
 
 //테이블 불러오기
-import ListViewTable from '../../../src/component/ListViewTable';
-import ListViewPicture from '../../../src/component/ListViewPicture';
+import ListViewTable from '../src/component/ListViewTable';
+import ListViewPicture from '../src/component/ListViewPicture';
 
 
 /////=========== HopeInfoPanel 메인 페이지 ================================
@@ -97,20 +97,8 @@ export default function HopeInfoPanel(){
 
     return(
         <>
-          <Header />
-          <Leftside />
-        <div className={sty.infoframe}>
-            <div
-                //빨강색 선
-                style={{
-                    width: "1496px",
-                    textAlign: "center",
-                    borderBottom: "4px solid #ff0000",
-                    lineHeight: "0.2em",
-                    margin: "0px 0 20px",                    
-                }}>
-              </div>
 
+        <div className={sty.infoframe}>
             <div className={sty.layout_top}>
               <div className={sty.layout_top_txt1}>희망연출정보</div>
               {/* 희명연출정보 제목 가져오기 */}

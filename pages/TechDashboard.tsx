@@ -9,7 +9,7 @@ import Axios from 'axios';
 import Router from "next/router";
 import NewTechProject from "./NewTechProject";
 import {Card, CardContent, CardMedia, CardActionArea, CardActions } from '@mui/material';
-import cardsty from "../src/css/card.module.css"
+import cardsty from "../src/css/card2.module.css"
 
 //모달 디자인
 const style = {
@@ -29,6 +29,8 @@ const style = {
 
 /////=========== Dashboard 메인 페이지 ============================/////
 export default function TechDashboard() {
+  //상태버튼
+  const [techInfoState, setTechInfoState] = useState("협의대기");
 
   // Modal Open/Close
   const [list, setList] = useState([]);
@@ -49,9 +51,7 @@ const btnHandler=()=>{console.log('btn clickted')};
 
 //카드 누르면 해당 페이지로 이동
 const cardHandler=(e)=>{
-  console.log("e",e.target.attributes[3].value)
   let routeTarget = "/Panels/TechInfo/"+ e.target.attributes[3].value;
-  console.log("id", routeTarget);
   Router.push(routeTarget);
 };
 
@@ -77,8 +77,8 @@ function handleDialogData(diglogdata:IDialogueNewProject){
         });
     }
   });//end of Axio
-}
-//==============새로운 기술협의 추가 모달 띄우기 완료==================//
+}//==============새로운 기술협의 추가 모달 띄우기 완료==================//
+
   
   return (
     <>
@@ -86,21 +86,17 @@ function handleDialogData(diglogdata:IDialogueNewProject){
       <Leftside />
 
       <div> 
-        <Box className={styles.prebackground} sx={{ width: 1560, height: '150%', backgroundColor: '#F6F7FB', }} />
+        <Box className={styles.prebackground} sx={{ width: 1550, height: '150%', backgroundColor: '#F6F7FB', }} />
         <div className={styles.presubtitle}>기술구체화협의</div>
 
         <Button className={styles.addmeetingbutton} variant="contained" onClick={handleOpen}>+ 새로운 기술구체화협의 추가</Button>
         <NewTechProject style={{margin:"0px 30px 0px"}} open={open} close={handleClose} getdialogdata={handleDialogData}/>
 
-        <div className={styles.order1}>최근 생성순</div>
-        <div className={styles.order2}>모든상태</div>
-
         {/* =========카드 나오기========== */}
-        <div className={cardsty.card_container} style= {{ position:"absolute", top:"300px", overflow:"auto", width:"1310px", height:"450px"}} >
+        <div className={cardsty.card_container} style= {{ position:"absolute", top:"220px", overflow:"auto", width:"1470px", height:"350px"}} >
           { 
             list.map((item)=>(
-              <Card className={cardsty.card_item} sx={{ minWidth: 345, minHeight: 350}} >
-                
+              <Card className={cardsty.card_item} sx={{ minWidth: 356, minHeight: 300}} >
                 <CardActionArea>
                   <CardActions>
                     <CardMedia
@@ -114,20 +110,14 @@ function handleDialogData(diglogdata:IDialogueNewProject){
                 </CardActionArea>
 
                 <CardContent>
-                  <Typography gutterBottom variant="h5" component="div">
+                  <Typography className={cardsty.title} component="div">
                     {item.tech_discussname} 기술구체화협의
                   </Typography>
-                  <Typography gutterBottom variant="h6" component="div">
+                  <Typography className={cardsty.subtitle} component="div">
                     {item.tech_hope}
                   </Typography>
+                  <Button>협의 진행하기</Button>
                 </CardContent> 
-
-                <CardActions>
-                  <Button size="small" color="primary" onClick={btnHandler}>
-                    Share
-                  </Button>
-                </CardActions> 
-
               </Card>
             )) 
           }

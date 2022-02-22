@@ -211,3 +211,156 @@
 
   font: #828282;
 }
+
+.infoframe {
+  position: absolute;
+  width: 1496px;
+  left: 364px;
+  top: 176px;
+}
+
+.layout_top {
+  display: block;
+  width: 1400px;
+}
+
+.layout_top_txt1 {
+  color: rgb(134, 134, 134);
+  font-family: var(--font-family-noto_sans_kr);
+  font-size: 29px;
+  font-weight: 500;
+  font-style: normal;
+  margin-top: 107px;
+  margin-left: 24px;
+}
+
+.layout_top_txt2 {
+  color: black;
+  font-family: var(--font-family-noto_sans_kr);
+  font-size: 46px;
+  font-weight: 500;
+  font-style: normal;
+  margin-top: 20px;
+  margin-left: 24px;
+}
+
+.addreple{
+  margin-left: 10px;
+  margin-top: 50px;
+}
+
+.body_row1{
+  margin-top: 30px;
+  margin-left: 20px;
+}
+
+.body_row2{
+  margin-top: 70px;
+  margin-left: 20px;
+}
+
+.body_row3{
+  margin-top: 30px;
+  margin-left: 20px;
+}
+
+.title{
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 22px;
+}
+
+.inputbox{
+  margin-top: -40px;
+  margin-left: 100px;
+}
+
+.inputbox2{
+  margin-top: 30px;
+  margin-left: 90px;
+}
+
+.dropdown1{
+  margin-top: -40px;
+  margin-left: 100px;
+}
+
+.dropdown2{
+  margin-top: -48px;
+  margin-left: 400px;
+}
+
+.contentbox { 
+  background: #FFFFFF;
+  border: 1px solid #2D9CDB;
+  box-sizing: border-box;
+  border-radius: 8px; 
+  width: 900px;
+}
+
+.boxsubject {
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 19px;
+  /* identical to box height */
+  color: #2D9CDB;
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  margin: 0px 0px;
+}
+
+.boxname {
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 15px;
+  line-height: 22px;
+  /* identical to box height */
+  color: #000000;  
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  margin: 0px 0px;  
+}
+
+.boxcontents{
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 22px;
+
+  /* Gray 1 */
+
+  color: #333333;
+}
+
+.comment {
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 23px;
+  width: 30px;
+  /* Gray 4 */
+
+  color: #BDBDBD;
+}
+
+.button{
+  margin-left: 700px;
+  /* margin-left: 1100px; */
+  width: 350px;
+  color: var(--black);
+  font-family: var(--font-family-noto_sans_kr);
+  font-size: 24px;
+  font-weight: 500;
+  font-style: normal;
+}

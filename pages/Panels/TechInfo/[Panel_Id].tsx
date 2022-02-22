@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../../../src/fix/Header';
 import Leftside from '../../../src/fix/Leftside2(2)';
-import Rightside from '../../../src/fix/Rightside_kjy';
+import Rightside from '../../../src/fix/Rightside2';
 import sty from '../../../src/css/TechDiscussPanel.module.css';
 import Link from 'next/link';
 import HopePicture from '../../../src/component/HopePicture';
@@ -263,7 +263,7 @@ export default function TechDiscussInfoPanel(){
 }
   
     function getTechData(){
-        console.log('페이지아이디',techname);
+        //console.log('페이지아이디',techname);
         Axios.get("/api/getTechInfo").then((res) => {                 
             if(res.status == 200){      
                 res.data.users.map((item, i) => {
@@ -365,7 +365,15 @@ export default function TechDiscussInfoPanel(){
         <Header />
         <Leftside />
         <Rightside tabID={rightsideTabID} />
+
+        {/* 협의 완료 버튼 */}
+        <div className={sty.techbutton}>    
+            <Button className={sty.search} style={{margin:"110px 30px 0px"}} variant="contained">  검색 </Button>          
+            <Button className={sty.finish} style={{margin:"110px 0px 0px"}} variant="contained">  협의 완료하기 </Button>
+        </div>
+
         <div className={sty.infoframe}>
+            {/* 빨간색 선 */}
             <div
                 style={{
                     width: "1005px",
@@ -377,7 +385,7 @@ export default function TechDiscussInfoPanel(){
             <div className={sty.layout_top}>
                 <div className={sty.layout_top_txt1}>기술구체화협의</div>
                 <div className={sty.layout_top_txt2}>{techname} 기술구체화 협의</div>
-
+                 {/* 회색 선 */}
                 <div
                     style={{
                         width: "950px",
@@ -432,11 +440,7 @@ export default function TechDiscussInfoPanel(){
                     )) }
                 </div>
 
-                {/* 협의 완료 버튼 */}
-                <div className={sty.button}>    
-                    <Button className={sty.notosanskr_bold_black_24px} style={{margin:"50px 20px 0px"}} variant="contained">  검색 </Button>          
-                    <Button className={sty.notosanskr_bold_cyan_24px} style={{margin:"50px 20px 0px"}} variant="contained">  협의 완료하기 </Button>
-                </div>
+
             </div>
         </div>
     </>                

@@ -1,5 +1,5 @@
 import React from 'react';
-import sty from '../css/HopeInfoPanel.module.css';
+import sty from '../css/RightHopeInfo.module.css';
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Axios from 'axios';
@@ -95,17 +95,6 @@ export default function HopeInfoPanel(props){
     return(
         <>
         <div className={sty.infoframe}>
-            <div
-                //빨강색 선
-                style={{
-                    width: "1496px",
-                    textAlign: "center",
-                    borderBottom: "4px solid #ff0000",
-                    lineHeight: "0.2em",
-                    margin: "0px 0 20px",                    
-                }}>
-              </div>
-
             <div className={sty.layout_top}>
               <div className={sty.layout_top_txt1}>희망연출정보</div>
               {/* 희명연출정보 제목 가져오기 */}
@@ -113,7 +102,7 @@ export default function HopeInfoPanel(props){
               <div className={sty.layout_body_drawing} > <ListViewPicture photos={photos}/> </div>
 
             <div className={sty.layout_body}>
-              <div className={sty.subtitle} style={{margin:"50px 0px 0px"}}>희망연출 기술</div>
+              <div className={sty.subtitle} style={{margin:"50px 0px 0px"}}>희망연출 내용</div>
               <div className={sty.layout_top_table} style={{margin:"20px 0px 0px"}}><ListViewTable tableContents={HopeInfoTable}/></div>
               <div className={sty.subtitle} style={{margin:"50px 0px 0px"}}>희망연출 목표</div>
               <div className={sty.layout_top_table} style={{margin:"20px 0px 0px"}}><ListViewTable tableContents={HopeObjectiveTable}/></div>

@@ -27,6 +27,26 @@
   color: #000000;
 }
 
+.ingtitle {
+  position: absolute;
+  width: 400px;
+  height: 24px;
+  left: 60px;
+  top: 637px;
+
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 24px;
+  /* identical to box height, or 100% */
+
+  display: flex;
+  align-items: center;
+
+  color: #000000;
+}
+
 .searchconcert {
   margin-top: 188px;
   margin-left: 1069px;
@@ -294,4 +314,34 @@
   line-height: 50px;
   letter-spacing: -0.02em;
   text-align: left;
+}
+
+/* 공연 진행상황 박스 디자인들 */
+.boxinfo {
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 23px;
+  
+  color: #BDBDBD;  
+}
+
+.boxtitle {
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 23px;
+  
+  color: #000000;
+}
+
+.boxdate {
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 19px;
+  color: #BDBDBD;
 }

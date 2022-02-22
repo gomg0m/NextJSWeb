@@ -16,7 +16,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
       backgroundColor: 'whitesmoke',
       color: '#4F4F4F',
       fontSize: 16,
-      minWidth: 200,
+      minWidth: 250,
       fontWeight: 'bold'
     },
   }));
@@ -30,7 +30,8 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
       backgroundColor: 'white',
       color: '#333333',
       minWidth: 980,
-      fontSize: 16,    
+      fontSize: 16,  
+      textOverflow: 'ellipsis'
     },
   }));
 
