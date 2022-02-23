@@ -230,7 +230,7 @@ export const TheaterInfoWrite = ()=> {
                         margin: "40px 0 20px",
                     }}></div>
             </div>
-            <div className={sty.layout_body}>
+            <div className={sty.layout_body} >
                 <div className={sty.body_row1}>
                         <div className={sty.body_row_subitem1}>공연장소</div>
                         <div className={sty.body_row_subitem2} style={{width:"300px", margin:"-15px 30px 0px"}} ><FormInputText name="hall_place" control={control} label="공연장소를 검색하세요"/></div>

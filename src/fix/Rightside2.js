@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {useEffect} from 'react';
+
 import styles from '../css/Rightside.module.css';
 import { Box, Button, gridClasses} from '@mui/material';
 import Axios from 'axios';
