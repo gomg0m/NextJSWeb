@@ -42,7 +42,9 @@ export default function NoticeViewTable(props) {
  
   const today = String(new Date());
   const classes = useStyles();
-
+  const handlerClicTableRow = (e)=>{
+    console.log(e.currentTarget.id);
+  }
     return (
       <TableContainer component={Paper}>
         <Table aria-label="customized table">
@@ -55,7 +57,7 @@ export default function NoticeViewTable(props) {
           </TableHead>
           <TableBody>
             {props.tableContents.map((row, i) => (
-              <TableRow key={i}>
+              <TableRow id={i} key={i} onClick={handlerClicTableRow}>
                 <StyledTableCell component="th" scope="row" align='left'>공지사항{i}</StyledTableCell>
                 <StyledTableCell align="left"><span>김진영 </span><span className={classes.Team}>기술팀</span></StyledTableCell>
                 <StyledTableCell align="left">{today}</StyledTableCell>
