@@ -1,41 +1,35 @@
 import React, {useState, useCallback, useMemo, useEffect} from 'react';
-import Header from '../src/fix/Header';
-import Leftside from '../src/fix/Leftside1(1)';
-import sty from '../src/css/PerformInfoWirte.module.css'
-import IconButton from '../src/component/withiconbtn';
+import sty from '../css/PerformInfoWirte.module.css'
+import IconButton from './withiconbtn';
 import Button from '@mui/material/Button';
 import Axios from 'axios';
 import { useForm } from "react-hook-form";
-import { FormInputText } from "../src/component/FormInputText";
-import { FormInputMultilineText } from '../src/component/FormInputMultilineText'
+import { FormInputText } from "./FormInputText";
+import { FormInputMultilineText } from './FormInputMultilineText'
 import Router from 'next/router';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import { useDropzone } from 'react-dropzone';
+import {useStyles} from '../css/TechCommentWriteStyles'; //Material UI Style Box
+import {Modal, Box} from '@mui/material';
+import styles from '../css/Notice.module.css';
+
 
 interface IFormInput {
-    concerthall_id: string;
-    hall_place: string;
-    hall_seatnumber: string;
-    hall_size: string;
-    hall_blueprint: string;
-    hall_exterior: string;
-    hall_interior: string;
-    hall_seatinformation: string;
-    hall_exception: string;
+    name:String;
+    team:String;
+    comment:String;
+    image:String;
+    lasttime:String;
     }
     
     const defaultValues = {
-    concerthall_id: "",
-    hall_place:"",
-    hall_seatnumber: "",
-    hall_size: "",
-    hall_blueprint: "",
-    hall_exterior: "",
-    hall_interior: "",
-    hall_seatinformation: "",
-    hall_exception: "",
+        name:"",
+        team:"",
+        comment:"",
+        image: "",
+        lasttime: "",
     };
-
+    
 
     
 ///Dropzone에 사용할 변수
@@ -186,106 +180,88 @@ const ImgUpload = () => {
 
 };
 
+const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 816,
+    height: 666,
+    bgcolor: 'background.paper',
+    border: '1px solid #E0E0E0',
+    borderRadius: 2,
+    boxShadow: 24,
+    p: 4,
+  };
+  
 
 /////=========== TheaterInfoWrite 페이지 메인 =====================================
-export const TheaterInfoWrite = ()=> {
+export const TechCommentWrite = (props)=> {
     let boxprops ={ width:400, height:150};
     const methods = useForm({ defaultValues: defaultValues });
     const { handleSubmit, reset, control, setValue } = methods;
-
-    const onSubmit = (data: IFormInput) => {
-        Axios.post("/api/getTheaterInfo", {data}).then((res)=>{
-            if(res.status == 200){
-                //login 성공
-                console.log(res.data.users);
-                Router.push("/TheaterInfoPanel")
-            }
-        });
+    const classes = useStyles();
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => {
+        setOpen(false);
+        props.onClose(false); //Parent에 값 전달
     }
 
-    return(
-        <>
-        <Header />
-        <Leftside />
-        <div className={sty.fullbox}>
+    const onSubmit = (data: IFormInput) => {
+
+        const user = Axios.get('/api/getUserCookieInfo').then((res)=> {
+            // console.log('l',res.data.user);
+            if (res.status == 200) {
+              if (res.data.statusCode == 1) {
+                let today = String(new Date());
+                let sendData:IFormInput = {name:res.data.user.username, team:res.data.user.team, comment:data.comment, image:imgUploadFileList, lasttime:today};
+                props.parentFunc(sendData);
+              }
+            } else {
             
-        <div className={sty.infoframe}>
-            <div
-                style={{
-                    width: "1496px",
-                    textAlign: "center",
-                    borderBottom: "4px solid #EABB41",
-                    lineHeight: "0.2em",
-                    margin: "0px 0 20px",                    
-                }}></div>
-            <div className={sty.layout_top}>
-                <div className={sty.layout_top_txt1}>공연장정보</div>
-                <div className={sty.layout_top_txt2}>공연장정보 작성</div>
-                <div
-                    style={{
-                        width: "840px",
-                        textAlign: "center",
-                        borderBottom: "2px solid #aaa",
-                        lineHeight: "0.2em",
-                        margin: "40px 0 20px",
-                    }}></div>
-            </div>
-            <div className={sty.layout_body} >
-                <div className={sty.body_row1}>
-                        <div className={sty.body_row_subitem1}>공연장소</div>
-                        <div className={sty.body_row_subitem2} style={{width:"300px", margin:"-15px 30px 0px"}} ><FormInputText name="hall_place" control={control} label="공연장소를 검색하세요"/></div>
-                </div>
-                <div className={sty.body_row2}>
-                    <div className={sty.body_row_subitem1}>공연장 객석 수</div>
-                    <div className={sty.body_row_subitem2} style={{width:"700px", margin:"-15px 30px 0px"}} ><FormInputText name="hall_seatnumber" control={control} label="객석수를 입력하세요"/></div>                    
-                    <div>석</div>
-                </div>
-                <div className={sty.body_row3}>
-                    <div className={sty.body_row_subitem1}>공연장 크기</div>
-                    <div className={sty.body_row_subitem2} style={{width:"700px", margin:"-15px 30px 0px"}} ><FormInputText name="hall_size" control={control} label="공영장 크기를 입력하세요"/></div>                    
-                    <div>㎥</div>
-                </div>
+            }
+       
+          }); 
+        setOpen(false);
+        props.onClose(false); //Parent에 값 전달
+                            
+    }
 
-                <div className={sty.body_row4}>
-                    <div className={sty.body_row_subitem1}>공연도면</div>
-                    <div style={{margin:"15px 0px 0px"}}> <ImgUpload /></div>
-                </div>
+    const handleCancelBtn = () => {
+        handleClose(false);
+    }
 
-                <div className={sty.body_row5}>
-                    <div className={sty.body_row_subitem1}>공연장 외관</div>
-                    <div style={{margin:"15px 0px 0px"}}> <ImgUpload /></div>
-                </div>
+    useEffect(()=>{
+        setOpen(props.open);
+    },[props.open]);
 
-                <div className={sty.body_row6}>
-                    <div className={sty.body_row_subitem1}>공연장 내부</div>
-                    <div style={{margin:"15px 0px 0px"}}> <ImgUpload /></div>
-                </div>
+    return(
 
-                <div className={sty.body_row7}>
-                    <div className={sty.body_row_subitem1}>무대공간</div>
-                    <div style={{margin:"15px 0px 0px"}}> <ImgUpload /></div>                    
-                </div>
-
-                <div className={sty.body_row8}>
-                    <div className={sty.body_row_subitem1}>객석</div>
-                    <div style={{margin:"15px 0px 0px"}}> <ImgUpload /></div>
-                </div>
-
-
-                <div className={sty.body_row8}>
-                    <div className={sty.body_row_subitem1}>특이사항</div>
-                    <div className={sty.body_row_subitem2} style={{width:"1100px", margin:"-25px 30px 0px"}} ><FormInputMultilineText name="hall_exception" control={control} label="기타 특이사항을 작성하세요"/></div>
+    <Modal
+        open={open}
+        onClose={handleClose}
+      >
+          <Box sx={style}>
+            <Button className={styles.addclosebutton} variant="text" onClick={handleClose}>X</Button>
+            <div className={classes.ContainerMain}>
+                <div className={classes.ContainerSub1}>
+                    <div className={classes.Label1}>의견</div>
+                        {/* <div className={classes.Name} > <FormInputText name="name" control={control} label="작성자의 이름을 등록하세요"/></div>
+                        <div className={classes.Team} > <FormInputText name="team" control={control} label="소속을 적으세요"/></div> */}
+                        <div className={classes.Content} > <FormInputMultilineText name="comment" control={control} label="의견을 남겨 보세요"/></div>
+                    </div>
+                <div className={classes.ContainerSub2}>
+                    <div className={classes.ImgUpload}> <ImgUpload /> </div>
+                    <div> <Button className={classes.Button} onClick={handleSubmit(onSubmit)} variant="contained"> 의견쓰기 </Button> </div>
+                    <div> <Button className={classes.Button} onClick={handleCancelBtn} variant="contained"> 취소 </Button> </div>
                 </div>
             </div>
-            <div className={sty.layout_bottom}>                 
-                <Button className={sty.notosanskr_bold_black_24px} style={{margin:"0px 20px 0px"}} onClick={() => reset()} variant="contained">  취소 </Button>                                         
-                <Button className={sty.notosanskr_bold_cyan_24px} style={{margin:"0px 20px 0px"}} onClick={handleSubmit(onSubmit)} variant="contained">  저장하기 </Button> 
-            </div>
-        </div>
-    </div>
-    </>                
+            </Box>
+        </Modal>
+
     );
 }
 
 
-export default TheaterInfoWrite;
+export default TechCommentWrite;

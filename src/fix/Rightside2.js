@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {useEffect} from 'react';
+
 import styles from '../css/Rightside.module.css';
 import { Box, Button, gridClasses} from '@mui/material';
 import Axios from 'axios';
@@ -138,10 +138,11 @@ export default function Rightside(props) {
     Axios.post("/api/insertTechComments", {data}).then((res)=>{
       if (res.status == 200 )
       {
+         //2. 다시 해당 Comment Table을 읽어와 리렌더링
+        getCommentTable(props.tabID.RepleID)
       }
     })
-    //2. 다시 해당 Comment Table을 읽어와 리렌더링
-    getCommentTable(props.tabID.RepleID)
+
   }
 
   return (
