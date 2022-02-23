@@ -1,15 +1,15 @@
 import React from 'react';
 import Header from '../src/fix/Header';
-import Left from '../src/fix/Leftside2';
-import styles from '../src/css/Notice.module.css';
-import { Checkbox, FormControlLabel, Box, Button, Divider, Modal, Typography, InputLabel, MenuItem, 
-  FormControl, Select, TextField, Paper, InputBase, IconButton, Input } from '@mui/material';
-import AdapterDateFns from '@mui/lab/AdapterDateFns';
-import LocalizationProvider from '@mui/lab/LocalizationProvider';
-import DatePicker from '@mui/lab/DatePicker';
-import { styled } from '@mui/material/styles';
-import SearchIcon from '@mui/icons-material/Search';
-import AttachFileIcon from '@mui/icons-material/AttachFile';
+// import Left from '../src/fix/Leftside2';
+// import styles from '../src/css/Notice.module.css';
+ import { Box, Button } from '@mui/material';
+// import AdapterDateFns from '@mui/lab/AdapterDateFns';
+// import LocalizationProvider from '@mui/lab/LocalizationProvider';
+// import DatePicker from '@mui/lab/DatePicker';
+// import { styled } from '@mui/material/styles';
+// import SearchIcon from '@mui/icons-material/Search';
+// import AttachFileIcon from '@mui/icons-material/AttachFile';
+import {useStyles} from '../src/css/NoticeCSS';
 import TechCommentWrite from '../src/component/NoticeWrite_kjy';
 import NoticeViewTable from '../src/component/NoticeViewTable';
 
@@ -43,6 +43,8 @@ function Notice() {
     {name: '특이사항 및 추가 참고사항', content: ''}
   ]); 
 
+  const classes = useStyles();
+  
   const onClickDiscussWrite = (params) => {
   //1.새로운 의견을 Comment Table에 새로운 행으로 추가
     //Comment Table의 뒷자리수는 RepleID와 동일 
@@ -57,19 +59,20 @@ function Notice() {
   }
   
   return (
-    <>
+    <div>
     <Header />
-      <Box sx={{ width: '1000px', height: '100%', backgroundColor: '#F6F7FB', }}>
-        <Box  sx={{ width: '900px', height: 906, backgroundColor: 'white', }}>
-          <div>
-            <div style={{marginTop:'200px'}}>공지사항</div>
-            <Button sx={{m:'0px 20px 0px'}} variant="contained" onClick={handleOpen}>작성하기</Button>
+      <Box sx={{ width: '1496x', backgroundColor: '#E5E5E5', }}>
+      <Box sx={{ width: '1296x', backgroundColor: '#FFFFFF', }}>
+          <div className={classes.Tilte}>
+            <div>공지사항</div>
+            <div className={classes.Button}><Button variant="contained" onClick={handleOpen}>작성하기</Button></div>
           </div>
-          <NoticeViewTable tableContents = {HopeInfoTable}/>
-        </Box> 
+          <div className={classes.Table}><NoticeViewTable tableContents = {HopeInfoTable}/></div>
+         
+      </Box> 
       </Box> 
       <TechCommentWrite parentFunc={onClickDiscussWrite} open={open} onClose={handleClose}/>
-    </>
+    </div>
   );
 }
 

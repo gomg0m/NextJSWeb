@@ -6,30 +6,33 @@ import TableRow from '@mui/material/TableRow';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
+import { Button, TableHead } from "@mui/material";
+import { ClassNames } from "@emotion/react";
+import {useStyles} from '../css/NoticeCSS';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
-      backgroundColor: "lightblue",
-      color: theme.palette.primary.white,
+      backgroundColor: "#F8F8F8",
+      color: "Black",
+      fontSize: 16,
+      fontWeight: 600,
     },
     [`&.${tableCellClasses.body}`]: {
-      backgroundColor: 'whitesmoke',
+      backgroundColor: 'white',
       color: '#4F4F4F',
       fontSize: 16,
-      minWidth: 250,
-      fontWeight: 'bold'
+      fontWeight: 400,
+      minWidth: 50,
+      fontWeight: 'bold',
+      textOverflow: 'ellipsis'
     },
   }));
   
   const StyledTableCell2 = styled(TableCell)(({ theme }) => ({
-    [`&.${tableCellClasses.head}`]: {
-      backgroundColor: "lightblue",
-      color: theme.palette.primary.white,
-    },
     [`&.${tableCellClasses.body}`]: {
       backgroundColor: 'white',
       color: '#333333',
-      minWidth: 980,
+      minWidth: 80,
       fontSize: 16,  
       textOverflow: 'ellipsis'
     },
@@ -37,20 +40,25 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 
 export default function NoticeViewTable(props) {
  
+  const today = String(new Date());
+  const classes = useStyles();
+
     return (
       <TableContainer component={Paper}>
         <Table aria-label="customized table">
-          <TableBody>          
-          <TableRow key="kkk">
-                <StyledTableCell component="th" scope="row"> 내용 </StyledTableCell>
-                <StyledTableCell align="left">작성자</StyledTableCell>
-                <StyledTableCell align="left">등록일</StyledTableCell>
+          <TableHead>          
+          <TableRow >
+                <StyledTableCell Width='750' align='center' component="th" scope="row"> 내용 </StyledTableCell>
+                <StyledTableCell Width='120' align="center">작성자</StyledTableCell>
+                <StyledTableCell width='230' align="center">등록일</StyledTableCell>
               </TableRow>
-            {props.tableContents.map((row) => (
-              <TableRow key={row.name}>
-                <StyledTableCell component="th" scope="row"> {row.name} </StyledTableCell>
-                <StyledTableCell align="left">{row.content}</StyledTableCell>
-                <StyledTableCell align="left">{row.content}</StyledTableCell>
+          </TableHead>
+          <TableBody>
+            {props.tableContents.map((row, i) => (
+              <TableRow key={i}>
+                <StyledTableCell component="th" scope="row" align='left'>공지사항{i}</StyledTableCell>
+                <StyledTableCell align="left"><span>김진영 </span><span className={classes.Team}>기술팀</span></StyledTableCell>
+                <StyledTableCell align="left">{today}</StyledTableCell>
               </TableRow>
             ))}
           </TableBody>

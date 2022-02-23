@@ -9,7 +9,7 @@ import { FormInputMultilineText } from './FormInputMultilineText'
 import Router from 'next/router';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import { useDropzone } from 'react-dropzone';
-import {useStyles} from '../css/TechCommentWriteStyles'; //Material UI Style Box
+import {useStyles} from '../css/NoticeWriteCSS'; //Material UI Style Box
 import {Modal, Box} from '@mui/material';
 import styles from '../css/Notice.module.css';
 
@@ -186,7 +186,7 @@ const style = {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: 816,
-    height: 666,
+    height: 646,
     bgcolor: 'background.paper',
     border: '1px solid #E0E0E0',
     borderRadius: 2,
@@ -246,15 +246,25 @@ export const TechCommentWrite = (props)=> {
             <Button className={styles.addclosebutton} variant="text" onClick={handleClose}>X</Button>
             <div className={classes.ContainerMain}>
                 <div className={classes.ContainerSub1}>
-                    <div className={classes.Label1}>의견</div>
-                        {/* <div className={classes.Name} > <FormInputText name="name" control={control} label="작성자의 이름을 등록하세요"/></div>
-                        <div className={classes.Team} > <FormInputText name="team" control={control} label="소속을 적으세요"/></div> */}
-                        <div className={classes.Content} > <FormInputMultilineText name="comment" control={control} label="의견을 남겨 보세요"/></div>
-                    </div>
+                    <div className={classes.Label1}>공지사항</div>
+                    <div><span className={classes.Label2}>공지사항을 작성해 주세요: </span><span className={classes.Label3}><span style={{color:'red'}}>*</span>는 필수사항입니다.</span></div>
+                </div>
+                <div
+                    style={{
+                        width: "816px",
+                        textAlign: "center",
+                        borderBottom: "2px solid #aaa",
+                        lineHeight: "0.2em",
+                        margin: "10px 0 0px",
+                    }}></div>
                 <div className={classes.ContainerSub2}>
-                    <div className={classes.ImgUpload}> <ImgUpload /> </div>
-                    <div> <Button className={classes.Button} onClick={handleSubmit(onSubmit)} variant="contained"> 의견쓰기 </Button> </div>
-                    <div> <Button className={classes.Button} onClick={handleCancelBtn} variant="contained"> 취소 </Button> </div>
+                    <div className={classes.Title}><div>제목<span style={{color:'red'}}>*</span></div> <div style={{marginLeft:'130px', width:"620px"}} ><FormInputText name="comment" control={control} label="제목을 입력해 주세요"/></div></div>
+                    <div className={classes.Content}><div>내용<span style={{color:'red'}}>*</span></div> <div style={{marginLeft:'120px', width:"620px"}} ><FormInputMultilineText name="comment" control={control} label="공지사항 내용을 작성해 주세요"/></div></div>
+                    <div className={classes.ImgUpload}><div>첨부이미지</div><div style={{marginLeft:'50px', width:"500px"}} > <ImgUpload /> </div> </div>
+                </div>
+                <div className={classes.ContainerSub3}>
+                    <div> <Button className={classes.Button1} onClick={handleSubmit(onSubmit)} variant="contained"> 등록완료 </Button> </div>
+                    <div> <Button className={classes.Button2} onClick={handleCancelBtn} variant="contained"> 취소 </Button> </div>
                 </div>
             </div>
             </Box>
