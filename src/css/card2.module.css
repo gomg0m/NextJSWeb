@@ -6,6 +6,18 @@
   margin-left: 380px;
 }
 
+.card_container::-webkit-scrollbar {
+  height: 8px;
+  border-radius: 8px;
+  background-color: #F2F2F2;
+}
+
+.card_container::-webkit-scrollbar-thumb {
+  height: 8px;
+  border-radius: 8px;
+  background-color: #C4C4C4;
+}
+
 .card_item {
   margin: 10px;
   width: 356px;

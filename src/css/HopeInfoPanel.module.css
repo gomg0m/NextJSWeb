@@ -35,11 +35,21 @@
   font-style: normal;
 }
 
+.background {
+  background-size: cover;
+  height: 100vh;
+
+  left: 0px;
+  top: 0px;
+  background-color: #F6F7FB;
+}
+
 .infoframe {
   position: absolute;
-  width: 1496px;
+  width: 887px;
   left: 364px;
-  top: 176px;
+  top: 179px;
+  background-color: #ffffff;
 }
 
 .layout_top {
@@ -47,23 +57,28 @@
   width: 1400px;
 }
 
-.layout_top_txt1 {
-  color: rgb(134, 134, 134);
-  font-family: var(--font-family-noto_sans_kr);
-  font-size: 29px;
-  font-weight: 500;
+.top_title {
+  font-family: Noto Sans KR;
   font-style: normal;
-  margin-top: 107px;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 29px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.15px; 
+  color: #6D6D6D;
+  margin-top: 39px;
   margin-left: 24px;
 }
 
-.layout_top_txt2 {
-  color: black;
-  font-family: var(--font-family-noto_sans_kr);
-  font-size: 46px;
-  font-weight: 500;
+.top_subtitle {
+  font-family: Noto Sans KR;
   font-style: normal;
-  margin-top: 20px;
+  font-weight: bold;
+  font-size: 32px;
+  line-height: 46px;
+  color: #333333;
+  margin-top: 5px;
   margin-left: 24px;
 }
 
@@ -78,7 +93,8 @@
 }
 
 .layout_body {
-  margin-left: 100px;
+  margin-left: 20px;
+  margin-top: 0px;
   color: var(--black);
   font-family: var(--font-family-noto_sans_kr);
   font-size: 24px;
@@ -87,6 +103,23 @@
 }
 
 .layout_body_drawing {
+  width: 680px;
+  border-style: solid;
+  border-radius: 20px;
+  border-width: 1.5px;
+  border-color: #c9c9c9;
+}
+
+.photos {
+  width: 680px;
+  /* width: 844px; */
+  height: 300px;
+  margin-left: 20px;
+  margin-top: 20px;
+  border-style: solid;
+  border-radius: 20px;
+  border-width: 1.5px;
+  border-color: #c9c9c9;
 }
 
 .layout_body_picture {
@@ -110,7 +143,7 @@
 }
 
 .button{
-  margin-left: 1100px;
+  margin-left: 600px;
   width: 350px;
   color: var(--black);
   font-family: var(--font-family-noto_sans_kr);
@@ -119,18 +152,41 @@
   font-style: normal;
 }
 
+.edit{
+  width: 69px;
+  height: 40px;
+  background: #FFFFFF;
+  border: 1px solid #999999;
+  box-sizing: border-box;
+  border-radius: 4px;
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  text-transform: uppercase;
+  color: #828282;
+}
+
+.confirm{
+  width: 148px;
+  height: 40px;  
+  background: #2D9CDB;
+  border-radius: 4px;
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  text-transform: uppercase;  
+  color: #FFFFFF; 
+}
+
 .subtitle {
-  /* position: absolute;
-  width: 120px;
-  height: 29px;
-  left: 0px;
-  top: 0px; */
   font-family: Noto Sans KR;
   font-style: normal;
   font-weight: bold;
   font-size: 20px;
   line-height: 29px;
-  /* identical to box height */
-  /* Gray 1 */
   color: #333333;
 }

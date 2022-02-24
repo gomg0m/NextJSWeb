@@ -158,7 +158,7 @@ const ImgUpload = () => {
                   {
                       isDragActive ?
                       <p>여기에 드롭!</p> :
-                      <p>파일 드래그 또는 클릭</p>         
+                      <p>첨부할 이미지를 드래그 또는 클릭하세요</p>         
                   }      
               </div>
           </div>
@@ -383,8 +383,8 @@ export default function TechDiscussInfoPanel(){
                     margin: "0px 0 20px",                    
                 }}></div>
             <div className={sty.layout_top}>
-                <div className={sty.layout_top_txt1}>기술구체화협의</div>
-                <div className={sty.layout_top_txt2}>{techname} 기술구체화 협의</div>
+                <div className={sty.top_title}>기술구체화협의</div>
+                <div className={sty.top_subtitle}>{techname} 기술구체화 협의</div>
                  {/* 회색 선 */}
                 <div
                     style={{
@@ -426,7 +426,7 @@ export default function TechDiscussInfoPanel(){
                     }}> 
                 </div>
                 
-                
+                {/* 유저의 의견들 나오는 구간 */}
                <div>
                 {
                     techRepleName.map((item, i) => (

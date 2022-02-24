@@ -44,6 +44,33 @@
   width: 1000px;
 }
 
+.top_title {
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 29px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.15px;   
+  color: #6D6D6D;
+
+  margin-top: 107px;
+  margin-left: 24px;
+}
+
+.top_subtitle {
+  font-family: Noto Sans KR;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 32px;
+  line-height: 46px;
+  color: #333333;
+
+  margin-top: 20px;
+  margin-left: 24px;
+}
+
 .layout_top_txt1 {
   color: rgb(134, 134, 134);
   font-family: var(--font-family-noto_sans_kr);
