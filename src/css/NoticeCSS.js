@@ -46,6 +46,7 @@ export const useStyles = makeStyles({
     color: 'white',
     borderRadius:'5px',
     backgroundColor: 'magenta',
+    marginLeft: '10px',
   },
 
   Lasttime: {

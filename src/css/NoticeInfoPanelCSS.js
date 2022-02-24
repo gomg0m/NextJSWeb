@@ -5,9 +5,11 @@ export const useStyles = makeStyles({
    position: 'relative',
   },
 
-  ContainerMain: {
+  ContainerMain1: {
     display:"flex",
     flexDirection : 'column',
+    postion: 'relative',
+    top:'30px',
   },
 
   ContainerSub1: {
@@ -37,12 +39,13 @@ export const useStyles = makeStyles({
     top:'10px'
   },
 
-  Title: {
-    fontSize: "20px",
+  TitleNotice: {
+    fontSize: "30px",
     fontWeight: 700,
-    display:"flex",
-    flexDirection : 'row',
-    marginTop: '40px'
+    postion: 'relative',
+    top: '10px',
+    left: '10px',
+    marginTop: '40px'    
   },
 
   Content: {
@@ -53,12 +56,9 @@ export const useStyles = makeStyles({
     marginTop: '24px'
   },
 
-  ImgUpload: {
+  ImgUpload1: {
     fontSize: "20px",
     fontWeight: 700,
-    display:"flex",
-    flexDirection : 'row',
-    marginTop: '34px'
   },
 
 

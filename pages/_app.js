@@ -1,7 +1,7 @@
 //import '../styles/globals.css';
 import { useState } from "react";
 import AppContext from "../src/component/AppContext";
-
+import '../styles/globals.css';
 
 function MyApp({ Component, pageProps }) {
   const [planID, setPlanID] = useState(1);
