@@ -71,7 +71,7 @@ export default function Rightside(props) {
     };
   
     const calcHeight = 1020; ///??? 향후 관련 로직 추가 필요
-    const RightHope_Id = 3; ///??? 향후 관련 로직 추가 필요
+    const RightHope_Id = 1; ///??? 향후 관련 로직 추가 필요
       //useEffect call func
     // func (Axios.pos(get))
     // get useState

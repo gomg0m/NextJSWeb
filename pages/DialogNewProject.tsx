@@ -118,7 +118,7 @@ const ImgUpload = (props) => {
               {
                 isDragActive ?
                 <p>여기에 드롭!</p> :
-                <p>{props.label} 파일 드래그 또는 클릭</p>         
+                <p>{props.label}</p>         
               }      
           </div>
       </div>
@@ -236,9 +236,9 @@ export default function NewProjectDialog(props) {
                 </div>
             
             <div className={styles.addshowoption4}>대표 이미지
-              <div style={{margin:"15px 0px 0px"}}><ImgUpload label="공연의 포스터, 공연 관련 이미지를 추가해주세요."/></div>
+              <div style={{margin:"15px 0px 0px"}}><ImgUpload label="파일 드래그 또는 클릭하여 공연의 포스터를 추가해주세요."/></div>
             </div>                 
-            <Button  className={sty.notosanskr_bold_cyan_24px} style={{margin:"0px 700px 0px"}}  onClick={handleSubmit(onSubmit)} >만들기</Button>
+            <Button  className={sty.notosanskr_bold_cyan_24px} style={{margin:"0px 500px 0px"}}  onClick={handleSubmit(onSubmit)} >만들기</Button>
 
           </Box>
         </Modal>
