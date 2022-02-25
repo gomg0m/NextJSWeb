@@ -31,7 +31,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.body}`]: {
       backgroundColor: 'white',
       color: '#333333',
-      minWidth: 980,
+      minWidth: 580,
       fontSize: 16,  
       textOverflow: 'ellipsis'
     },
@@ -46,7 +46,7 @@ export default function ListViewTable(props) {
           <TableBody>          
             {props.tableContents.map((row) => (
               <TableRow key={row.name}>
-                <StyledTableCell component="th" scope="row"> {row.name} </StyledTableCell>
+                <StyledTableCell component="th" scope="row"  align="left"> {row.name} </StyledTableCell>
                 <StyledTableCell2 align="left">{row.content}</StyledTableCell2>
               </TableRow>
             ))}

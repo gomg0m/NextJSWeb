@@ -87,8 +87,7 @@ export default function VerticalLinearStepper() {
             </div>
 
             <div className={styles.process}>Process 메뉴</div> 
-     
-                <Box sx={{ maxWidth: 400}, {mt: 7, ml: 5}}>
+                <Box sx={{ maxWidth: 400}, {mt: 7}}>
                     <Stepper activeStep={activeStep} orientation="vertical" sx={{ color: "gray" }}>
                         <Step completed={false} expanded={true}>
                                 <StepLabel StepIconComponent={Number1Icon} > 

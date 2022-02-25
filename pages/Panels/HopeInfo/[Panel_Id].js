@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from '../../../src/fix/Header';
 import Leftside from '../../../src/fix/Leftside2';
+import Rightside from '../../../src/fix/Rightside1';
 import sty from '../../../src/css/HopeInfoPanel.module.css';
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
@@ -103,6 +104,7 @@ export default function HopeInfoPanel(){
         <div className={sty.background}>
           <Header />
           <Leftside />
+          <Rightside />
           
           <div className={sty.infoframe}>
             <div
@@ -126,9 +128,7 @@ export default function HopeInfoPanel(){
               <div className={sty.top_title}>희망연출정보</div>
               {/* 희명연출정보 제목 가져오기 */}
               <div className={sty.top_subtitle}> {HopeInfoTable[0].content} </div>
-              <div className={sty.layout_body_drawing} > <ListViewPicture photos={photos}/> </div>
-              {/* <div className={sty.photos} > <ListViewPicture photos={photos}/> </div> */}
-
+              <div className={sty.photos} > <ListViewPicture photos={photos}/> </div>
               <div className={sty.layout_body}>
                 <div className={sty.subtitle} style={{margin:"50px 0px 0px"}}>희망연출 내용</div>
                 <div className={classes.Table} style={{margin:"20px 0px 0px"}}><ListViewTable tableContents={HopeInfoTable}/></div>

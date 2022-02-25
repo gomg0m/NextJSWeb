@@ -483,10 +483,10 @@ export default function DashboardView(){
           <Box sx={{ width: 1310 , height: 600 }}> {/*!!! 판넬 Size  */}
             <Box sx={{borderBottom: 1, borderColor: 'divider' }}>
               <Tabs value={tabValue} onChange={handleTabChange} aria-label="basic tabs example" >
-                <Tab label={<span className={classes.customStyleOnTab}>About</span>} {...a11yProps(0)}/> 
-                <Tab label={<span className={classes.customStyleOnTab}>Pre-Production</span>} {...a11yProps(1)} />
-                <Tab label={<span className={classes.customStyleOnTab}>Production</span>} {...a11yProps(2)} />
-                <Tab label={<span className={classes.customStyleOnTab}>Post-Production</span>} {...a11yProps(3)} />
+                <Tab style={{textTransform:'none'}} label={<span className={classes.customStyleOnTab}>About</span>} {...a11yProps(0)}/> 
+                <Tab style={{textTransform:'none'}} label={<span className={classes.customStyleOnTab}>Pre-Production</span>} {...a11yProps(1)} />
+                <Tab style={{textTransform:'none'}} label={<span className={classes.customStyleOnTab}>Production</span>} {...a11yProps(2)} />
+                <Tab style={{textTransform:'none'}} label={<span className={classes.customStyleOnTab}>Post-Production</span>} {...a11yProps(3)} />
               </Tabs>
             </Box> 
             {/* <Box  sx={{ bgcolor: 'background.default', flexWrap: 'wrap','& > :not(style)': { m: 1, width: 528, height: 328,},}} >               */}
