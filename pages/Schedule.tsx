@@ -38,28 +38,23 @@ const style = {
 
 //  =======================================
 interface IFormInput {
-  schedule_id: string;
-  schedule_writer: string;
-  schedule_title: string;
-  schedule_place: string;
-  schedule_start: string;
-  schedule_end: string;
-  schedule_people: string;
-  schedule_location: string;
-  schedule_addtime: string;
-};
+  schedule_title:String;
+  schedule_start:String;
+  schedule_end:String;
+  schedule_participants:String;
+  schedule_place:String;
+  schedule_taskspace:String;
+  }
   
-const defaultValues = {
-  schedule_id: "",
-  schedule_writer: "",
-  schedule_title: "",
-  schedule_place: "",
-  schedule_start: "",
-  schedule_end: "",
-  schedule_people: "",
-  schedule_location: "",
-  schedule_addtime: ""
-};
+  const defaultValues = {
+      schedule_title:"",
+      schedule_start:"",
+      schedule_end:"",
+      schedule_participants:"",
+      schedule_place: "",
+      schedule_taskspace:"",
+  };
+  
 
 
 function Schedule() {

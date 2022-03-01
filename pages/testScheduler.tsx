@@ -29,6 +29,26 @@ import ScheduleInfotWrite from '../src/component/ScheduleWrite';
 import SmallCSS from '../src/css/SmallSche.module.css';
 import { width } from "@mui/system";
 
+//  =======================================
+interface IFormInput {
+  schedule_title:String;
+  schedule_start:String;
+  schedule_end:String;
+  schedule_participants:String;
+  schedule_place:String;
+  schedule_taskspace:String;
+  }
+  
+  const defaultValues = {
+      schedule_title:"",
+      schedule_start:"",
+      schedule_end:"",
+      schedule_participants:"",
+      schedule_place: "",
+      schedule_taskspace:"",
+  };
+  
+
 const PREFIX = "Demo";
 
 const classes = {
@@ -300,14 +320,14 @@ export default function SchedulerView() {
     }
   ]);
   
- const kkk=
- { 
-  id: 0,
-  title:"공연 상연",
-  startDate: new Date(2022, 1, 23, 2, 0),
-  endDate: new Date(2022, 1, 24, 2, 0),
-  ownerId: 2
+ interface IScheduleFormat { 
+  id: Number;
+  title: String;
+  startDate:Date;
+  endDate: Date;
+  ownerId: Number;
 } 
+
 const jjj=
 { 
  id: 1,
@@ -318,13 +338,13 @@ const jjj=
 } 
   // #FOLD_BLOCK
   const [appointments, setAppointments] = useState([ 
-    kkk
+    jjj
   ]);
     
   
   const [open, setOpen] = useState(false);
 
-  const onClickNoticeWrite = (params) => {
+  const handleScheduleWrite = (params:IFormInput) => {
     //1.새로운 의견을 Comment Table에 새로운 행으로 추가
       //Comment Table의 뒷자리수는 RepleID와 동일 
       // let data = {...params}
@@ -338,7 +358,15 @@ const jjj=
       // })
 
       let data = [...appointments];
-      data.push(jjj)
+      let dumy:IScheduleFormat = {
+        id : 1, 
+        title : params.schedule_title,
+        startDate : new Date(params.schedule_start),
+        endDate : new Date(params.schedule_end),
+        ownerId : 1,
+      };
+   
+      data.push(dumy);
       console.log(data);
       setAppointments(data);
     }
@@ -454,7 +482,7 @@ function handleDoubleClickForWrite(e){setOpen(true);}
           <AppointmentForm/>
           <DragDropProvider />
         </Scheduler>
-        <ScheduleInfotWrite parentFunc={onClickNoticeWrite} open={open} onClose={handleClose}/>
+        <ScheduleInfotWrite parentFunc={handleScheduleWrite} open={open} onClose={handleClose}/>
       </Paper>
       </div>
     );

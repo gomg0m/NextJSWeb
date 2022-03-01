@@ -3,34 +3,34 @@ import IconButton from './withiconbtn';
 import Button from '@mui/material/Button';
 import Axios from 'axios';
 import { useForm } from "react-hook-form";
-import { FormInputText } from "./FormInputText";
-import { FormInputMultilineText } from './FormInputMultilineText'
+
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import { useDropzone } from 'react-dropzone';
 import {useStyles} from '../css/NoticeWriteCSS'; //Material UI Style Box
 import {Modal, Box} from '@mui/material';
 import styles from '../css/Notice.module.css';
-import { FormInputDatetimePicker } from './FormInputDatetimePicker';
 
+import { FormInputText } from "./FormInputText";
+import { FormInputDatetimePicker } from './FormInputDatetimePicker';
+import {FormInputDropdown} from './FormInputDropdown';
+import {FormInputSearch} from './FormInputSearch';
 
 interface IFormInput {
-    name:String;
-    team:String;
-    title:String;
-    content:String;
-    image:String;
-    file:String;
-    lasttime:String;
+    schedule_title:String;
+    schedule_start:String;
+    schedule_end:String;
+    schedule_participants:String;
+    schedule_place:String;
+    schedule_taskspace:String;
     }
     
     const defaultValues = {
-        name:"",
-        team:"",
-        title:"",
-        content:"",
-        image: "",
-        file:"",
-        lasttime: "",
+        schedule_title:"",
+        schedule_start:"",
+        schedule_end:"",
+        schedule_participants:"",
+        schedule_place: "",
+        schedule_taskspace:"",
     };
     
 
@@ -206,13 +206,25 @@ export const TechCommentWrite = (props)=> {
     const { handleSubmit, reset, control, setValue } = methods;
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
+    
+    const [taskList, setTaskList] = React.useState(['기획정보','희망연출','기술구체화', '기술협의']);
+    const [scheduleTaskspace, setScheduleTaskspace] = React.useState("");
+    const [schduleTilte, setScheduleTitle] = React.useState("");
+    const [schduleStart, setScheduleStart] = React.useState(new Date());
+    const [schduleEnd, setScheduleEnd] = React.useState(new Date());
+    const [schdulePlace, setSchedulePlace] = React.useState("");
+    const [schduleParticipants, setScheduleParticipants] = React.useState("");
+
     const handleOpen = () => setOpen(true);
     const handleClose = () => {
         setOpen(false);
         props.onClose(false); //Parent에 값 전달
     }
 
-
+    const handleGetData= (data)=>{
+        console.log('dropdown',data)
+        setScheduleTaskspace(data);
+    }
   
     const onSubmit = (data: IFormInput) => {
         
@@ -237,7 +249,16 @@ export const TechCommentWrite = (props)=> {
        
         //   }); 
         /////---- 
-        props.parentFunc();
+         setScheduleTitle(data.schedule_title);
+         setScheduleStart(data.schedule_start);
+         setScheduleEnd(data.schedule_end);
+         setSchedulePlace(data.schedule_place);
+         setScheduleParticipants(data.schedule_participants);
+
+        data.schedule_taskspace = scheduleTaskspace;
+        console.log('onsumit',data);
+
+        props.parentFunc(data);
         setOpen(false);
         props.onClose(false); //Parent에 값 전달
         
@@ -274,11 +295,11 @@ export const TechCommentWrite = (props)=> {
                         margin: "10px 0 0px",
                     }}></div>
                 <div className={classes.ContainerSub2}>
-                    <div className={classes.Title}><div>일정제목<span style={{color:'red'}}>*</span></div> <div style={{marginLeft:'130px', width:"620px"}} ><FormInputText name="notice_title" control={control} label="제목을 입력해 주세요"/></div></div>
-                    <div className={classes.Content}><div>소속협업공간<span style={{color:'red'}}>*</span></div> <div style={{marginLeft:'120px', width:"620px"}} ></div></div>
-                    <div className={classes.ImgUpload}><div>날짜선택</div><div style={{marginLeft:'50px', width:"500px"}} >  </div> </div>
-                    <div className={classes.ImgUpload}><div>참여자</div><div style={{marginLeft:'50px', width:"500px"}} >  </div> </div>
-                    <div className={classes.ImgUpload}><div>장소</div><div style={{marginLeft:'130px', width:"620px"}} ><FormInputText name="notice_title" control={control} label="제목을 입력해 주세요"/></div> </div>
+                    <div className={classes.Title}><div>일정제목<span style={{color:'red'}}>*</span></div> <div style={{marginLeft:'130px', width:"620px"}} ><FormInputText name="schedule_title" control={control} label="제목을 입력해 주세요"/></div></div>
+                    <div className={classes.Content}><div>소속협업공간<span style={{color:'red'}}>*</span></div> <div style={{marginLeft:'120px', width:"620px"}} ></div> <FormInputDropdown MenuList={taskList} name="schedule_participants" control={control} label="제목을 입력해 주세요"/></div>
+                    <div className={classes.ImgUpload}><div>날짜선택</div><div style={{marginLeft:'50px', width:"500px"}} >  </div> <FormInputDatetimePicker name="schedule_start" control={control} label="제목을 입력해 주세요"/> <FormInputDatetimePicker name="schedule_end" control={control} label="제목을 입력해 주세요"/></div>
+                    <div className={classes.ImgUpload}><div>참여자</div><div style={{marginLeft:'50px', width:"500px"}} >  </div><FormInputSearch getdata={handleGetData}/></div>
+                    <div className={classes.ImgUpload}><div>장소</div><div style={{marginLeft:'130px', width:"620px"}} ><FormInputText name="schedule_place" control={control} label="제목을 입력해 주세요"/></div> </div>
                 </div>
                 <div className={classes.ContainerSub3}>
                     <div> <Button className={classes.Button1} onClick={handleSubmit(onSubmit)} variant="contained"> 등록완료 </Button> </div>
