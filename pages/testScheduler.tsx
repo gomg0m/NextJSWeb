@@ -23,11 +23,13 @@ import FilterDrama from "@mui/icons-material/FilterDrama";
 import Opacity from "@mui/icons-material/Opacity";
 import ColorLens from "@mui/icons-material/ColorLens";
 // import { owners } from "./tstSchedulerData";
-import {useState} from 'react';
+import {useState, useContext} from 'react';
 import { getAllJSDocTags } from "typescript";
 import ScheduleInfotWrite from '../src/component/ScheduleWrite';
 import SmallCSS from '../src/css/SmallSche.module.css';
 import { width } from "@mui/system";
+
+import AppContext from "../src/component/AppContext";
 
 //  =======================================
 interface IFormInput {
@@ -343,6 +345,9 @@ const jjj=
     
   
   const [open, setOpen] = useState(false);
+  const value = useContext(AppContext);
+  const scheduleID = value.state.scheduleID;
+  const setScheduleID = value.setScheduleID;
 
   const handleScheduleWrite = (params:IFormInput) => {
     //1.새로운 의견을 Comment Table에 새로운 행으로 추가
@@ -358,17 +363,21 @@ const jjj=
       // })
 
       let data = [...appointments];
+      let schID = scheduleID;
+
       let dumy:IScheduleFormat = {
-        id : 1, 
+        id : schID, 
         title : params.schedule_title,
         startDate : new Date(params.schedule_start),
         endDate : new Date(params.schedule_end),
         ownerId : 1,
       };
-   
+      
       data.push(dumy);
-      console.log(data);
+      schID=schID+1;
       setAppointments(data);
+      setScheduleID(schID);
+      console.log('schID',schID);
     }
 
     const handleOpen = () => setOpen(true);
