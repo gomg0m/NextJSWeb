@@ -312,19 +312,19 @@ const CellBase = React.memo(
 
 const TimeTableCell = CellBase;
 
-const Appointment = ({ ...restProps }) => (
-  <StyledAppointmentsAppointment
-    {...restProps}
-    className={classes.appointment}
-  />
-);
+// const Appointment = ({ ...restProps }) => (
+//   <StyledAppointmentsAppointment
+//     {...restProps}
+//     className={classes.appointment}
+//   />
+// );
 
-const AppointmentContent = ({ ...restProps }) => (
-  <StyledAppointmentsAppointmentContent
-    {...restProps}
-    className={classes.apptContent}
-  />
-);
+// const AppointmentContent = ({ ...restProps }) => (
+//   <StyledAppointmentsAppointmentContent
+//     {...restProps}
+//     className={classes.apptContent}
+//   />
+// );
 
 const FlexibleSpace = ({ ...restProps }) => (
   <StyledToolbarFlexibleSpace {...restProps} className={classes.flexibleSpace}>
@@ -376,28 +376,48 @@ export default class Demo extends React.PureComponent {
     const { data } = this.state;
 
     return (
-      <Paper>
-        <Scheduler data={data}>
-          <EditingState onCommitChanges={this.commitChanges} />
-          <ViewState defaultCurrentDate="2018-07-17" />
+      // <Paper>
+      //   <Scheduler data={data}>
+      //     <EditingState onCommitChanges={this.commitChanges} />
+      //     <ViewState defaultCurrentDate="2018-07-17" />
 
-          <MonthView
-            timeTableCellComponent={TimeTableCell}
-            dayScaleCellComponent={DayScaleCell}
-          />
-          <Appointments
-            appointmentComponent={Appointment}
-            appointmentContentComponent={AppointmentContent}
-          />
-          <Resources data={resources} />
-          <Toolbar flexibleSpaceComponent={FlexibleSpace} />
-          <DateNavigator />
-          <EditRecurrenceMenu />
-          <AppointmentTooltip showCloseButton showDeleteButton showOpenButton />
-          <AppointmentForm />
-          <DragDropProvider />
-        </Scheduler>
-      </Paper>
+      //     <MonthView
+      //       timeTableCellComponent={TimeTableCell}
+      //       dayScaleCellComponent={DayScaleCell}
+      //     />
+      //     <Appointments
+      //       // appointmentComponent={Appointment}
+      //       // appointmentContentComponent={AppointmentContent}
+      //     />
+      //     <Resources data={resources} />
+      //     <Toolbar flexibleSpaceComponent={FlexibleSpace} />
+      //     <DateNavigator />
+      //     <EditRecurrenceMenu />
+      //     <AppointmentTooltip showCloseButton showDeleteButton showOpenButton />
+      //     <AppointmentForm readOnly />
+      //     <DragDropProvider />
+      //   </Scheduler>
+      // </Paper>
+      <Paper>
+      <Scheduler
+        data={data}
+        height={660}
+      >
+        <WeekView
+          startDayHour={9}
+          endDayHour={19}
+        />
+
+        <Appointments />
+        <AppointmentTooltip
+          showCloseButton
+          showOpenButton
+        />
+        <AppointmentForm
+          readOnly
+        />
+      </Scheduler>
+    </Paper>      
     );
   }
 }
