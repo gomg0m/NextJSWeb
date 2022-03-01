@@ -1026,39 +1026,39 @@
   dependencies:
     "@date-io/core" "^2.13.1"
 
-"@devexpress/dx-core@3.0.1":
-  "integrity" "sha512-nLYSD+RwGnrPmp03Z2wUsEKZnC6B5if7WUH6FYjmw8AJp5cN13DuFoFKHeImW55VsJwtND2G5q1Uz7IAy9AQ1g=="
-  "resolved" "https://registry.npmjs.org/@devexpress/dx-core/-/dx-core-3.0.1.tgz"
-  "version" "3.0.1"
+"@devexpress/dx-core@3.0.2":
+  "integrity" "sha512-aBs9sAlcrEPd7TkK9T9tcgtBKeC1fSl0Vtuz07e770vh398RPt5Kswn3/284aBltFtgMoNqip0l9PpcFWDgXvg=="
+  "resolved" "https://registry.npmjs.org/@devexpress/dx-core/-/dx-core-3.0.2.tgz"
+  "version" "3.0.2"
 
-"@devexpress/dx-react-core@3.0.1":
-  "integrity" "sha512-qrrh509mF+7xQtMpsgH9J12OljAfh9WhYWW3VSz9+FJoqG/AJMLE1/GksCbM6ivj2Ihw0IyQvGF5ds9+h531bA=="
-  "resolved" "https://registry.npmjs.org/@devexpress/dx-react-core/-/dx-react-core-3.0.1.tgz"
-  "version" "3.0.1"
+"@devexpress/dx-react-core@3.0.2":
+  "integrity" "sha512-ISl8Ljw6kR8d+ckOsRmq4om3pjnA/5y4IjH/cf/P6Fnf279AjTUBE8ReqpZum02Zp8n09namrbH8GqQNBXj/Xw=="
+  "resolved" "https://registry.npmjs.org/@devexpress/dx-react-core/-/dx-react-core-3.0.2.tgz"
+  "version" "3.0.2"
   dependencies:
-    "@devexpress/dx-core" "3.0.1"
+    "@devexpress/dx-core" "3.0.2"
     "prop-types" "^15.7.2"
 
-"@devexpress/dx-react-scheduler-material-ui@^3.0.1":
-  "integrity" "sha512-8sXwAJnQ0ZZzGMC2um8My5OtsjBwBfx7JyKbJwAZ07v/4kj85rTp4blsOp9uNtpSTjr+7B+hoBRAKEyBbO2AhA=="
-  "resolved" "https://registry.npmjs.org/@devexpress/dx-react-scheduler-material-ui/-/dx-react-scheduler-material-ui-3.0.1.tgz"
-  "version" "3.0.1"
+"@devexpress/dx-react-scheduler-material-ui@^3.0.2":
+  "integrity" "sha512-B6VTn3OuZs2GuhcqC2rsCzWuDHbNz9zxJVJhzNNrr2ObTZbSWPCwDcApAXRibbY5P6V07+kNcXCF5R+ppMd6jw=="
+  "resolved" "https://registry.npmjs.org/@devexpress/dx-react-scheduler-material-ui/-/dx-react-scheduler-material-ui-3.0.2.tgz"
+  "version" "3.0.2"
   dependencies:
     "@date-io/moment" "^1.3.11"
     "clsx" "^1.0.4"
     "prop-types" "^15.7.2"
 
-"@devexpress/dx-react-scheduler@^3.0.1", "@devexpress/dx-react-scheduler@3.0.1":
-  "integrity" "sha512-wak0ghEuMdAJRuTDi+lIa5bIPeTfeYNPe+8EZqpYR/bxDRb7MhQN+rCNkXVz3adbqdAwOELJAwdadSeCv605EQ=="
-  "resolved" "https://registry.npmjs.org/@devexpress/dx-react-scheduler/-/dx-react-scheduler-3.0.1.tgz"
-  "version" "3.0.1"
+"@devexpress/dx-react-scheduler@^3.0.2", "@devexpress/dx-react-scheduler@3.0.2":
+  "integrity" "sha512-S/nOAmbdhwxwLLD5zH0xkT3VgOmNEqBPzBwKCvlHHiOymF0PMVLw6EOQusXrAT57x0iOsS2Qia3aAdKmc+Rdpw=="
+  "resolved" "https://registry.npmjs.org/@devexpress/dx-react-scheduler/-/dx-react-scheduler-3.0.2.tgz"
+  "version" "3.0.2"
   dependencies:
-    "@devexpress/dx-scheduler-core" "3.0.1"
+    "@devexpress/dx-scheduler-core" "3.0.2"
 
-"@devexpress/dx-scheduler-core@3.0.1":
-  "integrity" "sha512-Qn+idYKy4+FJNzNlpfJv4j3ZGVk6WQKb21A43fu/FA+B6TR7sGec6IsyBm7Jmuc6JQ5fO+IjEEQHm23yMlbAzQ=="
-  "resolved" "https://registry.npmjs.org/@devexpress/dx-scheduler-core/-/dx-scheduler-core-3.0.1.tgz"
-  "version" "3.0.1"
+"@devexpress/dx-scheduler-core@3.0.2":
+  "integrity" "sha512-Y9AH0LYMnV9dLEi2NxPMWkmFh85ToQbFOOrJkYUuD0p7MO4FvqmCh6nFRISpO9Ly22E7ojo8youCcL4lTmdzmA=="
+  "resolved" "https://registry.npmjs.org/@devexpress/dx-scheduler-core/-/dx-scheduler-core-3.0.2.tgz"
+  "version" "3.0.2"
   dependencies:
     "moment" "^2.24.0"
     "rrule" "2.6.4"

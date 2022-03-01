@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../src/fix/Header';
 import Leftside from '../src/fix/Leftside3';
-import Rightside from '../src/fix/Rightside';
+import Rightside from '../src/fix/Rightside2';
 import sty from '../src/css/TechDiscussPanel.module.css';
 import Link from 'next/link';
 // import HopeTableContent from '../src/component/HopeTable_content';

@@ -168,7 +168,9 @@ export default function DashboardView(){
   const [hopeList, setHopeList] = useState([]);
   const [techList, setTechList] = useState([]);
   const [hopeLastTime, setHopeLastTime] = useState([]);
+  const [hopeName, setHopeName] = useState([]);
   const [techLastTime, setTechLastTime] = useState([]);
+  const [techName, setTechName] = useState([]);
   const [hopeIds, setHopeIds] = useState([]);
   const [techIds, setTechIds] = useState([]);
 
@@ -241,13 +243,17 @@ export default function DashboardView(){
                 console.log('데이터',res.data.users);
                 let hopefirstimg=[];
                 let hopelasttime=[];
+                let hopename=[];
                 res.data.users.map((item)=>{hopefirstimg.push(item.hope_firstimage)});
                 res.data.users.map((item)=>{hopelasttime.push(item.hope_lasttime)});
+                res.data.users.map((item)=>{hopename.push(item.hope_name)});
                 console.log('hopeimagelist',hopefirstimg);
                 console.log('hopelasttime',hopelasttime);
+                console.log('hopename',hopename);
                 console.log('호프리스트', hopefirstimg);
                 setHopeList(hopefirstimg);
                 setHopeLastTime(hopelasttime);
+                setHopeName(hopename);
                 let parsedTechList = [];
                 let itemList = [];
                 res.data.users.map((item)=>{
@@ -266,12 +272,15 @@ export default function DashboardView(){
                         console.log(res.data.users);
                         let techfirstimg=[];
                         let techlasttime=[];
-                        res.data.users.map((item)=>{techfirstimg.push(JSON.parse(item.tech_firstimage))});
+                        let techname=[];
+                        res.data.users.map((item)=>{techfirstimg.push(item.tech_firstimage)});
                         res.data.users.map((item)=>{techlasttime.push(item.tech_lasttime)});
+                        res.data.users.map((item)=>{techname.push(item.tech_discussname)});
                         console.log('techimagelist',techfirstimg);                      
                         console.log('techlasttime',techlasttime);
                         setTechList(techfirstimg);                        
                         setTechLastTime(techlasttime);
+                        setTechName(techname);
                     }//if
                 });
             }//if status
@@ -427,7 +436,7 @@ export default function DashboardView(){
         <Header />
         <Rightside />
       <div>
-        <Box className={styles.showbackground} sx={{ width: 1365, height: '100%', backgroundColor: '#F6F7FB', }} />
+        <Box className={styles.showbackground} sx={{ width: 1365, height: '150%', backgroundColor: '#F6F7FB', }} />
         <div className={styles.showsubtitle}>협업 공연</div>
 
         <Button className={styles.addconcertbutton} variant="contained" onClick={handleOpen}>+ 새로운 공연 추가</Button>
@@ -438,10 +447,10 @@ export default function DashboardView(){
             <IconButton type="submit" sx={{ p: '10px' }} aria-label="search"> <SearchIcon /> </IconButton>
           </Paper>
         </div>     
-          <div className={cardsty.card_container} style= {{ position:"absolute", top:"250px", overflow:"auto", width:"1320px", height:"410px"}} >
+          <div className={cardsty.card_container} style= {{ position:"absolute", top:"250px", overflow:"auto", width:"1320px", height:"340px"}} >
             { 
             list.map((item)=>(
-                <Card className={cardsty.card_item} >
+                <Card className={cardsty.card_item} sx={{ minWidth: 300, minHeight: 300, borderColor: 'primary.main', border:0 }}>
                   <CardActionArea>
                     <CardActions>
                       <CardMedia
@@ -467,30 +476,32 @@ export default function DashboardView(){
             )) }
           </div>
         
-        <div className={styles.ingtitle1}>{planname} <span style={{color:'#000000', margin:"0px 8px 0px"}}> 공연 진행상황</span></div>
+        <div className={styles.ingtitle1} style={{ margin:"50px 0px 0px"}}>{planname} <span style={{color:'#000000', margin:"0px 8px 0px"}}> 공연 진행상황</span></div>
         < DialogNewProject open={open} close={handleClose} getdialogdata={handleDialogData}/>
         
-        <div style= {{ position:"absolute", top:"700px", left:"20px", width:"1400px", height:"650px"}}>
+        <div style= {{ position:"absolute", top:"750px", left:"20px", width:"1400px", height:"650px"}}>
           <Box sx={{ width: 1310 , height: 600 }}> {/*!!! 판넬 Size  */}
             <Box sx={{borderBottom: 1, borderColor: 'divider' }}>
               <Tabs value={tabValue} onChange={handleTabChange} aria-label="basic tabs example" >
-                <Tab label={<span className={classes.customStyleOnTab}>About</span>} {...a11yProps(0)}/> 
-                <Tab label={<span className={classes.customStyleOnTab}>Pre-Production</span>} {...a11yProps(1)} />
-                <Tab label={<span className={classes.customStyleOnTab}>Production</span>} {...a11yProps(2)} />
-                <Tab label={<span className={classes.customStyleOnTab}>Post-Production</span>} {...a11yProps(3)} />
+                <Tab style={{textTransform:'none'}} label={<span className={classes.customStyleOnTab}>About</span>} {...a11yProps(0)}/> 
+                <Tab style={{textTransform:'none'}} label={<span className={classes.customStyleOnTab}>Pre-Production</span>} {...a11yProps(1)} />
+                <Tab style={{textTransform:'none'}} label={<span className={classes.customStyleOnTab}>Production</span>} {...a11yProps(2)} />
+                <Tab style={{textTransform:'none'}} label={<span className={classes.customStyleOnTab}>Post-Production</span>} {...a11yProps(3)} />
               </Tabs>
             </Box> 
-            <Box  sx={{ bgcolor: 'background.default', flexWrap: 'wrap','& > :not(style)': { m: 1, width: 528, height: 328,},}} >              
+            {/* <Box  sx={{ bgcolor: 'background.default', flexWrap: 'wrap','& > :not(style)': { m: 1, width: 528, height: 328,},}} >               */}
               <TabPanel value={tabValue} index={0}>                
-                <div style={{display: 'flex', flexDirection: "row", width:"1260px"}}>                  
-                  <Paper sx={{width:680, height:280}} elevation={1}> {/*!!! 판넬내 페이지 사이즈 */}
+                <div style={{display: 'flex', flexDirection: "row", width:"1260px"}}>     
+                   
+                  <Paper sx={{width:640, height:293}} elevation={1} > {/*!!! 판넬내 페이지 사이즈 */}
                     <img src="images/show.jpg" width="60" height="60" style={{margin:"30px 30px 0px"}}></img>
                     <div className={styles.boxinfo} style={{margin:"-70px 110px 0px"}}>공연기획 정보</div>
                     <div className={styles.boxtitle} style={{margin:"5px 110px 0px"}}>{planname} 공연기획 정보</div>
                     <div className={styles.boxdate} style={{margin:"5px 110px 0px"}}>마지막 수정</div>
-                    <Button style={{left:470, top:-50}} color="secondary" variant="contained" onClick={onPlanBtnClick}>{planInfoState}</Button>
+                    <Button style={{left:470, top:-50}} variant="contained" onClick={onPlanBtnClick}>{planInfoState}</Button>
                   </Paper>
-                  <Paper sx={{width:680, height:280, m:"0px 20px 0px"}} elevation={1}>
+                   
+                  <Paper sx={{width:640, height:293, m:"0px 20px 0px"}} elevation={1}>
                     <img src="images/show.jpg" width="60" height="60" style={{margin:"30px 30px 0px"}}></img>
                     <div className={styles.boxinfo} style={{margin:"-70px 110px 0px"}}>공연장 정보</div>
                     <div className={styles.boxtitle} style={{margin:"5px 110px 0px"}}>{planname} 공연장 정보</div>
@@ -501,42 +512,45 @@ export default function DashboardView(){
 
               </TabPanel>
               <TabPanel value={tabValue} index={1}>
-                <div style={{display: 'flex', flexDirection: "row", width:"1260px"}}>                  
-                  <Paper sx={{width:680, height:280}} elevation={1}> {/*!!! 판넬내 페이지 사이즈 */}
-                  <>희망연출 정보</>
+                <div style={{display: 'flex', flexDirection: "row", width:"1284px"}}>
+                  <div  style={{width: '650px'}}>  
+                  <Paper className={cardsty.scrollstyle} sx={{width:640, height:293, overflow:'auto'}} elevation={1}> {/*!!! 판넬내 페이지 사이즈 */}
                   
                   {
                   hopeList.map((item, i)=>(                    
                     <div style={{display:"flex", flexDirection:"row"}}>                
-                      <img src={`/uploads/${item}`} height="50" alt={item}></img>                   
+                      <img src={`/uploads/${item}`} width="60" height="60" style={{margin:"30px 30px 0px"}} alt={item}></img>                   
                       <div>
-                            <div> 희망연출 명</div>
-                            <div> 최종 수정일자:  : {techLastTime[i]} </div>
-                        </div>
-                      <Button id={hopeIds[i]} style={{left:0, top:0}} variant="contained" onClick={onHopeBtnClick}>바로가기</Button>
+                        <div className={styles.boxinfo} style={{margin:"20px 0px 0px"}}>희망연출 정보</div>
+                        <div className={styles.boxtitle} style={{margin:"5px 0px 0px"}}>{hopeName[i]} 희망연출 정보</div>
+                        <div className={styles.boxdate} style={{margin:"5px 0px 0px"}}>마지막 수정 {hopeLastTime[i]}</div>
+                        <Button id={hopeIds[i]} style={{left:400, top:-50}} variant="contained" onClick={onHopeBtnClick}>바로가기</Button>
+                      </div>                    
                     </div>
                   )) 
                   
                   }
-                
-                  </Paper>
                   
-                  <Paper sx={{width:680, height:280, m:"0px 20px 0px"}} elevation={1}>
-                  <>기술 구체화 정보</>
+                  </Paper>
+                  </div>
+                   
+                  <Paper className={cardsty.scrollstyle} sx={{width:640, height:293, overflow:'auto',  m:"0px 20px 0px"}} elevation={1}>
                   { 
                       techList.map((item, i)=>(
                         <div style={{display:"flex", flexDirection:"row"}}>                          
-                          <img src={`/uploads/${item}`} height="50" alt={item}></img>
+                          <img src={`/uploads/${item}`} width="60" height="60" style={{margin:"30px 30px 0px"}} alt={item}></img>
                           <div>
-                            <div> 기술구체화 명</div>
-                            <div> 최종 수정일자 : {hopeLastTime[i]} </div>
-                          </div>
-                          <Button id={techIds[i]} style={{left:0, top:0}} variant="contained" onClick={onTechBtnClick}>바로가기</Button>                    
+                            <div className={styles.boxinfo} style={{margin:"20px 0px 0px"}}>기술구체화 정보</div>
+                            <div className={styles.boxtitle} style={{margin:"5px 0px 0px"}}>{techName[i]} 기술구체화 정보</div>
+                            <div className={styles.boxdate} style={{margin:"5px 0px 0px"}}>마지막 수정 {techLastTime[i]}</div>
+                            <Button id={techIds[i]} style={{left:365, top:-50}} variant="contained" onClick={onTechBtnClick}>바로가기</Button>
+                          </div>                  
                         </div>
                     )) 
                     
                   }                  
-                  </Paper>                  
+                  </Paper> 
+                                
                 </div>
                 <Paper/>
               </TabPanel>
@@ -546,7 +560,7 @@ export default function DashboardView(){
               <TabPanel value={tabValue} index={3}>
                 <Paper/>
               </TabPanel>      
-            </Box>
+            {/* </Box> */}
           </Box>   
         </div>         
       </div>

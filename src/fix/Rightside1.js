@@ -5,6 +5,8 @@ import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import CalendarPicker from '@mui/lab/CalendarPicker';
 import Grid from '@mui/material/Grid';
 import { Box, Button} from '@mui/material';
+import Schedule from '../../pages/Schedule';
+import Link from 'next/link';
 
 const minDate = new Date('2020-01-01T00:00:00.000');
 const maxDate = new Date('2034-01-01T00:00:00.000');
@@ -16,14 +18,17 @@ export default function Rightside() {
     <div className={styles.rightsidebox}>
         <div className={styles.textsbox}>
           <div className={styles.illjung}>일정</div>
-          <div className={styles.gongji} style={{cursor:'pointer'}}>공지사항</div>
+          <Link href ='/Notice'>
+            <div className={styles.gongji} style={{cursor:'pointer'}}>공지사항</div>
+          </Link>
           <div className={styles.library} style={{cursor:'pointer'}}>자료실</div>
         </div>
-        <div className={styles.calender} sx={{ width: 432, height: 485}}>
+        <div><Schedule /></div>
+        {/* <div className={styles.calender} sx={{ width: 432, height: 485}}>
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <CalendarPicker date={date} onChange={(newDate) => setDate(newDate)} />
         </LocalizationProvider> 
-        </div>
+        </div> */}
 
         <div className={styles.todaybox} >
           

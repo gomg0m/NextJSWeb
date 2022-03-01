@@ -158,7 +158,7 @@ const ImgUpload = () => {
                   {
                       isDragActive ?
                       <p>여기에 드롭!</p> :
-                      <p>파일 드래그 또는 클릭</p>         
+                      <p>첨부할 이미지를 드래그 또는 클릭하세요</p>         
                   }      
               </div>
           </div>
@@ -362,34 +362,37 @@ export default function TechDiscussInfoPanel(){
 
     return(
         <>
+        <div className={sty.background}>
         <Header />
         <Leftside />
         <Rightside tabID={rightsideTabID} />
-
-        {/* 협의 완료 버튼 */}
-        <div className={sty.techbutton}>    
-            <Button className={sty.search} style={{margin:"110px 30px 0px"}} variant="contained">  검색 </Button>          
-            <Button className={sty.finish} style={{margin:"110px 0px 0px"}} variant="contained">  협의 완료하기 </Button>
-        </div>
 
         <div className={sty.infoframe}>
             {/* 빨간색 선 */}
             <div
                 style={{
-                    width: "1005px",
+                    width: "887px",
                     textAlign: "center",
-                    borderBottom: "4px solid #ff0000",
+                    borderBottom: "4px solid #DE6A6A",
                     lineHeight: "0.2em",
-                    margin: "0px 0 20px",                    
+                    left: "364px",
+                    top: "179px"                    
                 }}></div>
+
+            {/* 협의 완료 버튼 */}
+            <div className={sty.techbutton}>    
+                <Button className={sty.search} style={{margin:"30px 20px 0px"}} variant="contained">  검색 </Button>          
+                <Button className={sty.finish} style={{margin:"30px 0px 0px"}} variant="contained">  협의 완료하기 </Button>
+            </div>
+
             <div className={sty.layout_top}>
-                <div className={sty.layout_top_txt1}>기술구체화협의</div>
-                <div className={sty.layout_top_txt2}>{techname} 기술구체화 협의</div>
+                <div className={sty.top_title}>기술구체화협의</div>
+                <div className={sty.top_subtitle}>{techname} 기술구체화 협의</div>
                  {/* 회색 선 */}
                 <div
                     style={{
-                        width: "950px",
-                        borderBottom: "2px solid #E0E0E0",
+                        width: "840px",
+                        borderBottom: "1px solid #E0E0E0",
                         lineHeight: "0.2em",
                         margin: "30px 20px 0px",                    
                     }}> 
@@ -413,29 +416,27 @@ export default function TechDiscussInfoPanel(){
                   <div className={sty.title}>대표 이미지</div>
                     <div style={{margin:"-20px 70px 0px"}}><ImgUpload /></div>
                   </div>
-
-                  <Button  className={sty.upload} style={{margin:"0px 850px 0px"}}  onClick={handleSubmit(onSubmit)} > 올리기 </Button>
-
+                  <Button className={sty.upload} style={{margin:"-40px 770px 0px"}} variant="contained" onClick={handleSubmit(onSubmit)} > 올리기 </Button>
                 </div>
                 <div
                     style={{
-                        width: "950px",
-                        borderBottom: "2px solid #E0E0E0",
+                        width: "840px",
+                        borderBottom: "1px solid #E0E0E0",
                         lineHeight: "0.2em",
                         margin: "20px 20px 50px",                    
                     }}> 
                 </div>
                 
-                
+                {/* 유저의 의견들 나오는 구간 */}
                <div>
                 {
                     techRepleName.map((item, i) => (
-                        <div className={sty.contentbox} style={{margin:"0px 40px 20px"}}>                      
+                        <div className={sty.contentbox} style={{margin:"0px 20px 20px"}}>                      
                             <div className={sty.boxsubject} style={{margin:"20px 20px 0px"}}>{techRepleFirSubject[i]} / {techRepleSecSubject[i]}</div>
                             <div className={sty.boxname} style={{margin:"20px 20px 0px"}}>{item}</div>
                             <div className={sty.boxcontents} style={{margin:"10px 20px 50px"}}>{techRepleContents[i]}</div>
 
-                            <Button id={i} className={sty.comment} style={{margin:"0px 800px 10px"}} onClick={handleDiscussButtonClick} >의견</Button>
+                            <Button id={i} className={sty.comment} style={{margin:"0px 765px 10px"}} onClick={handleDiscussButtonClick} >의견</Button>
                         </div>  
                     )) }
                 </div>
@@ -443,6 +444,7 @@ export default function TechDiscussInfoPanel(){
 
             </div>
         </div>
+      </div>
     </>                
     );
 }

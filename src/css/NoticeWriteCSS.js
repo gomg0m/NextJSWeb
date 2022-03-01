@@ -1,7 +1,10 @@
 import { makeStyles } from "@material-ui/core/styles";
 
 export const useStyles = makeStyles({
- 
+  Page:{
+   position: 'relative',
+  },
+
   ContainerMain: {
     display:"flex",
     flexDirection : 'column',
@@ -39,7 +42,8 @@ export const useStyles = makeStyles({
     fontWeight: 700,
     display:"flex",
     flexDirection : 'row',
-    marginTop: '40px'
+    marginTop: '40px',
+    width: '800px'
   },
 
   Content: {
