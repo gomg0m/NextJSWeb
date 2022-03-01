@@ -19,6 +19,7 @@ import TechCommentElement from '../component/TechCommentBox';
 
 import {useStyles} from '../css/RightsideStyles';
 
+import {useEffect} from 'react';
 
 TabPanel.propTypes = {
 children: PropTypes.node,

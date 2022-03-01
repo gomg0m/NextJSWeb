@@ -2,15 +2,12 @@ import { makeStyles } from "@material-ui/core/styles";
 
 export const useStyles = makeStyles({
  
-<<<<<<< HEAD
-=======
   full:{
     position:'absolute',
     left:'388px',
     top:'50x'
   },
   
->>>>>>> 82755cbe9677c2fac6fecdc3973e7fd711672363
   Tilte: {
     display:'flex',
     width : '1296px',
@@ -26,11 +23,7 @@ export const useStyles = makeStyles({
 
   Button: {
     position: 'relative',
-<<<<<<< HEAD
-    left: '700px',
-=======
     left: '1000px',
->>>>>>> 82755cbe9677c2fac6fecdc3973e7fd711672363
     width : '100px',
   },
 
@@ -59,14 +52,7 @@ export const useStyles = makeStyles({
     color: 'white',
     borderRadius:'5px',
     backgroundColor: 'magenta',
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
     marginLeft: '10px',
->>>>>>> 82755cbe9677c2fac6fecdc3973e7fd711672363
-=======
-    marginLeft: '10px',
->>>>>>> 65c28565837fc742d71df425a959bdd8dcee9fc8
   },
 
   Lasttime: {
