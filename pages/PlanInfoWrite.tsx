@@ -122,16 +122,6 @@ const ImgUpload = () => {
             console.log("파일삭제 결과", res.data.users);
         }
         });    
-        ////////
-
-        ///MySQL에 지워진 파일을 반영한 이미지 파일이름 배열 데이터 저장    
-        // console.log("deleted 배열", newThumb);
-        // Axios.post("/api/jsonaccess", {newThumb}).then((res)=>{
-        // if(res.status == 200){
-        //     //login 성공
-        //     console.log("삭제후 DB결과",res.data.users);
-        // }
-        // });
 
     }; //End Of deleteHandler
   

@@ -6,6 +6,7 @@ import TableRow from '@mui/material/TableRow';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
+import {useStyles} from '../css/TableCSS';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -17,7 +18,8 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
       color: '#4F4F4F',
       fontSize: 16,
       minWidth: 250,
-      fontWeight: 'bold'
+      fontWeight: 'bold',
+      textOverflow: 'ellipsis'
     },
   }));
   
@@ -29,21 +31,22 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.body}`]: {
       backgroundColor: 'white',
       color: '#333333',
-      minWidth: 980,
+      minWidth: 580,
       fontSize: 16,  
       textOverflow: 'ellipsis'
     },
   }));
 
 export default function ListViewTable(props) {
- 
+  const classes = useStyles();
+
     return (
       <TableContainer component={Paper}>
         <Table aria-label="customized table">
           <TableBody>          
             {props.tableContents.map((row) => (
               <TableRow key={row.name}>
-                <StyledTableCell component="th" scope="row"> {row.name} </StyledTableCell>
+                <StyledTableCell component="th" scope="row"  align="left"> {row.name} </StyledTableCell>
                 <StyledTableCell2 align="left">{row.content}</StyledTableCell2>
               </TableRow>
             ))}

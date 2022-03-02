@@ -1,4 +1,4 @@
-import Notice from '../src/component/ViewHopeInfoPanel';
+import Notice from './Notice2';
 
 export default function Home() {
 

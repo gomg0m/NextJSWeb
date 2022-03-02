@@ -116,7 +116,7 @@ function handleDialogData(diglogdata:IDialogueNewProject){
                   <Typography className={cardsty.subtitle} component="div">
                     {item.tech_hope}
                   </Typography>
-                  <Button>협의 진행하기</Button>
+                  <Button className={styles.discbutton}>협의 진행하기</Button>
                 </CardContent> 
               </Card>
             )) 

@@ -17,6 +17,7 @@ export const FormInputText = ({ name, control, label }: FormInputProps) => {
           helperText={error ? error.message : null}
           error={!!error}
           onChange={onChange}
+          id="filled-basic"
           value={value}
           fullWidth
           label={label}

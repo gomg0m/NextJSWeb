@@ -360,3 +360,11 @@
   line-height: 19px;
   color: #BDBDBD;
 }
+
+.contentbox { 
+  background: #FFFFFF;
+  border: 1px solid #2D9CDB;
+  box-sizing: border-box;
+  border-radius: 8px; 
+  width: 900px;
+}

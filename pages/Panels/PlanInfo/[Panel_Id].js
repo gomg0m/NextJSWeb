@@ -27,6 +27,7 @@ export default function PlanInfoPanel(){
     {name: '목표관객수', content: ''},
     {name: '공연내용', content: ''},
     {name: '공연특이사항', content: ''},
+    {name: '대표이미지', content: ''},
   ]);
   const [photos, setPhotos] = useState([]);
   const [firstImage, setFirstImage] = useState();
@@ -55,6 +56,7 @@ export default function PlanInfoPanel(){
         obj[6].content = res.data.users[0].goal_price;
         obj[7].content = res.data.users[0].plan_contents;
         obj[8].content = res.data.users[0].plan_exception;
+        obj[9].content = res.data.users[0].plan_firstimage;
 
         setPlanInfoTable(obj);
 
@@ -72,7 +74,7 @@ export default function PlanInfoPanel(){
           /////
 
           setPhotos(photosFormat);
-          setFirstImage('/uploads/'+parsedPhotos[0]);  //대표이미지이름에 서버 저장경로 붙임.
+          setFirstImage('/uploads/'+obj[9].content);  //대표이미지이름에 서버 저장경로 붙임.
         }
       });
   }
@@ -90,7 +92,8 @@ export default function PlanInfoPanel(){
   
  
   return(
-        <>
+    <>
+      <div className={sty.background}>
         <Header />
         <Leftside />
         
@@ -104,11 +107,11 @@ export default function PlanInfoPanel(){
                     margin: "0px 0 20px",                    
                 }}></div>
             <div className={sty.layout_top}>
-                <div className={sty.layout_top_txt1}>공연기획 정보</div>
-                <div className={sty.layout_top_txt2}>공연기획 정보</div>
-                <div className={sty.layout_top_image}><img src={firstImage} alt="Map" width={1300}></img></div>
+                <div className={sty.top_title}>공연기획 정보</div>
+                <div className={sty.top_subtitle}>공연기획 정보</div>
+                <div className={sty.photobox}><img className={sty.photo} src={firstImage} alt="Map" width={1300} height={470}></img></div>
 
-                <div className={sty.layout_body_drawing} > <ListViewPicture photos={photos}/> </div>
+                <div className={sty.photos}><ListViewPicture photos={photos}/> </div>
                 <div className={sty.layout_top_table}><ListViewTable tableContents={planInfoTable}/></div>
 
                 <div
@@ -129,7 +132,8 @@ export default function PlanInfoPanel(){
                 </Link>    
             </div>
         </div>
+      </div>
     </div> 
-    </>               
+  </>               
   );
 }

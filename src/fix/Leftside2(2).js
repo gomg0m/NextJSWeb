@@ -1,5 +1,6 @@
 import styles from '../css/Leftside1.module.css';
 import * as React from "react";
+import { useState, useEffect } from 'react';
 import Box from "@mui/material/Box";
 import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
@@ -14,6 +15,8 @@ import Typography from '@mui/material/Typography';
 import Link from 'next/link';
 import StepButton from '@mui/material/StepButton';
 import Button from '@mui/material/Button';
+import Axios from 'axios';
+import { useRouter } from "next/router";
 
 const theme = createTheme({
   typography: {
@@ -70,10 +73,48 @@ function Circle44Icon(props) {
 
 export default function VerticalLinearStepper() {
   const [activeStep] = React.useState(0);
+  const [imgName, setImgName] = useState();
+  const [userName, setUserName]= useState();
+  const [teamName, setTeamName] = useState();
+  const [userLevel, setUserLevel] = useState();
 
+  const router = useRouter();
+
+  function getUser(){
+    const user = Axios.get('/api/getUserCookieInfo').then((res)=> {
+        // console.log('l',res.data.user);
+        if (res.status == 200) {
+          if (res.data.statusCode == 1) { //쿠키 있을때 처리 루프
+            console.log(res.data.user);
+            let imgname = "/uploads/" + res.data.user.username + ".jpg";
+            setImgName(imgname);
+            setUserName(res.data.user.username);
+            setTeamName(res.data.user.team);
+            setUserLevel(res.data.user.level);
+          } else {  //쿠키 없을떄 처리 루프
+            console.log(res.data.user);
+            router.push('/login')
+          } 
+
+        } else {
+            // res.status Error 처리
+        }
+      }); 
+  }
+
+  useEffect(()=>{
+    let user = getUser();
+  },[])
 
   return (
     <div className={styles.leftsidebox}> 
+      <div style={{marginTop:'40px', marginLeft:'40px', display:'flex'}}>
+        <img src={imgName} style={{width:48, height:48, borderRadius:48/2}}/>
+        <div style={{marginLeft: '6px', marginTop:'5px'}}>
+          <div style={{fontFamily:"Noto Sans KR", fontSize:'14px', fontWeight:500}}><span>{userName}</span><span style={{fontWeight:400}}>(Level{userLevel})</span></div>
+          <div style={{marginTop:'10px'}}>{teamName}</div>
+        </div>
+      </div>
         <div className={styles.contentscontainer}>
             <div className={styles.gongtong}> 공통 메뉴</div>
                 <Link href ='/Notice'>
@@ -88,7 +129,7 @@ export default function VerticalLinearStepper() {
 
             <div className={styles.process}>Process 메뉴</div> 
      
-                <Box sx={{ maxWidth: 400}, {mt: 7}}>
+                <Box sx={{ maxWidth: 400}, {mt: 7, ml: 5}}>
                     <Stepper activeStep={activeStep} orientation="vertical" sx={{ color: "gray" }}>
                         <Step completed={false} expanded={true}>
                                 <StepLabel StepIconComponent={Number1Icon} > 
@@ -141,9 +182,11 @@ export default function VerticalLinearStepper() {
                         </Step>
 
                         <Step completed={false} expanded={true}>
+                          <Link href='/ProducDashboard'>
                             <StepLabel sx={{mt: -5}} StepIconComponent={Circle3Icon}> 
                                 <Button className={styles.subLabel}>제작공간</Button> 
                             </StepLabel>
+                          </Link>
                         </Step>
 
                         <Step completed={false} expanded={true}>
@@ -153,9 +196,11 @@ export default function VerticalLinearStepper() {
                         </Step>
 
                         <Step completed={false} expanded={true}>
+                          <Link href='/OutDashboard'>
                             <StepLabel sx={{mt: -5}} StepIconComponent={Circle4Icon}>
                                 <Button className={styles.subLabel}>철거 및 반출 협의</Button>
                             </StepLabel>
+                          </Link>
                         </Step>
 
                         <Step completed={false} expanded={true}>

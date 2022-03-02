@@ -42,7 +42,8 @@ export const useStyles = makeStyles({
     fontWeight: 700,
     display:"flex",
     flexDirection : 'row',
-    marginTop: '40px'
+    marginTop: '40px',
+    width: '800px'
   },
 
   Content: {

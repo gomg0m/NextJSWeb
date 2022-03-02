@@ -88,7 +88,7 @@ export default function VerticalLinearStepper() {
 
             <div className={styles.process}>Process 메뉴</div> 
      
-                <Box sx={{ maxWidth: 400}, {mt: 7}}>
+                <Box sx={{ maxWidth: 400}, {mt: 7, ml: 5}}>
                     <Stepper activeStep={activeStep} orientation="vertical" sx={{ color: "gray" }}>
                         <Step completed={false} expanded={true}>
                                 <StepLabel StepIconComponent={Number1Icon} > 
@@ -97,7 +97,7 @@ export default function VerticalLinearStepper() {
                         </Step>
                         
                         <Step completed={false} expanded={true}>
-                            <Link href ='/PlanInfoWrite'>
+                            <Link href ='/Dashboard'>
                                 <StepLabel sx={{mt: -5}} StepIconComponent={Circle1Icon}>
                                     <Button className={styles.subLabel}>공연기획정보</Button>
                                 </StepLabel>
@@ -119,7 +119,7 @@ export default function VerticalLinearStepper() {
                         </Step>
 
                         <Step completed={false} expanded={true}>
-                            <Link href='/HopeInfoWrite'>
+                            <Link href='/HopeInfoDashboard'>
                                 <StepLabel sx={{mt: -5}} StepIconComponent={Circle2Icon}>
                                     <Button className={styles.subLabel}>희망연출정보</Button>
                                 </StepLabel>
@@ -127,7 +127,7 @@ export default function VerticalLinearStepper() {
                         </Step>
 
                         <Step completed={false} expanded={true}>
-                            <Link href='/TechDiscussWrite'>
+                            <Link href='/TechDiscussDashboard'>
                                 <StepLabel sx={{mt: -5}} StepIconComponent={Circle22Icon}>
                                     <Button className={styles.subLabel}>기술구체화협의 </Button>
                                 </StepLabel>
@@ -141,15 +141,19 @@ export default function VerticalLinearStepper() {
                         </Step>
 
                         <Step completed={false} expanded={true}>
+                          <Link href='/ProducDashboard'>
                             <StepLabel sx={{mt: -5}} StepIconComponent={Circle3Icon}> 
                                 <Button className={styles.subLabel}>제작공간</Button> 
                             </StepLabel>
+                          </Link>
                         </Step>
 
                         <Step completed={false} expanded={true}>
+                          <Link href='/OutDashboard'>
                             <StepLabel StepIconComponent={Number4Icon}>
                                 <div className={styles.mainLabel}>Post-Production</div>
                             </StepLabel>
+                          </Link>
                         </Step>
 
                         <Step completed={false} expanded={true}>

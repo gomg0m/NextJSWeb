@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from '../../../src/fix/Header';
 import Leftside from '../../../src/fix/Leftside2';
+import Rightside from '../../../src/fix/Rightside1';
 import sty from '../../../src/css/HopeInfoPanel.module.css';
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
@@ -8,6 +9,7 @@ import Axios from 'axios';
 import { Box, Button, Divider, Modal, Typography, InputLabel, MenuItem, FormControl, Select, TextField, Input, IconButton } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
+import {useStyles} from '../../../src/css/TableCSS';
 
 //테이블 불러오기
 import ListViewTable from '../../../src/component/ListViewTable';
@@ -16,7 +18,8 @@ import ListViewPicture from '../../../src/component/ListViewPicture';
 
 /////=========== HopeInfoPanel 메인 페이지 ================================
 export default function HopeInfoPanel(){
-
+  
+  const classes = useStyles();
   const router = useRouter();
   const {Panel_Id} = router.query;
 
@@ -96,42 +99,47 @@ export default function HopeInfoPanel(){
       );
 
     return(
-        <>
+        
+      <>
+        <div className={sty.background}>
           <Header />
           <Leftside />
-        <div className={sty.infoframe}>
+          <Rightside />
+          
+          <div className={sty.infoframe}>
             <div
-                //빨강색 선
-                style={{
-                    width: "1496px",
-                    textAlign: "center",
-                    borderBottom: "4px solid #ff0000",
-                    lineHeight: "0.2em",
-                    margin: "0px 0 20px",                    
-                }}>
+              //빨강색 선
+              style={{
+                width: "887px",
+                textAlign: "center",
+                borderBottom: "4px solid #DE6A6A",
+                lineHeight: "0.2em",
+                left: "364px",
+                top: "179px"                   
+              }}>
+            </div>
+            
+            <div className={sty.button}>       
+                <Button className={sty.edit} style={{margin:"30px 20px 0px"}} variant="contained">  수정 </Button>          
+                <Button className={sty.confirm} style={{margin:"30px 0px 0px"}} variant="contained">  논의 확정하기 </Button>
               </div>
 
             <div className={sty.layout_top}>
-              <div className={sty.layout_top_txt1}>희망연출정보</div>
+              <div className={sty.top_title}>희망연출정보</div>
               {/* 희명연출정보 제목 가져오기 */}
-              <div className={sty.layout_top_txt2}> {HopeInfoTable[0].content} </div>
-              <div className={sty.layout_body_drawing} > <ListViewPicture photos={photos}/> </div>
-
-            <div className={sty.layout_body}>
-              <div className={sty.subtitle} style={{margin:"50px 0px 0px"}}>희망연출 내용</div>
-              <div className={sty.layout_top_table} style={{margin:"20px 0px 0px"}}><ListViewTable tableContents={HopeInfoTable}/></div>
-              <div className={sty.subtitle} style={{margin:"50px 0px 0px"}}>희망연출 목표</div>
-              <div className={sty.layout_top_table} style={{margin:"20px 0px 0px"}}><ListViewTable tableContents={HopeObjectiveTable}/></div>
-              <div className={sty.subtitle} style={{margin:"50px 0px 0px"}}>희망연출 기술</div>
-              <div className={sty.layout_top_table} style={{margin:"20px 0px 0px"}}><ListViewTable tableContents={HopeTechTable}/></div>
-            </div>            
-            
-            <div className={sty.button}>       
-              <Button className={sty.notosanskr_bold_black_24px} style={{margin:"50px 20px 0px"}} variant="contained">  수정 </Button>          
-              <Button className={sty.notosanskr_bold_cyan_24px} style={{margin:"50px 20px 0px"}} variant="contained">  논의 확정하기 </Button>
+              <div className={sty.top_subtitle}> {HopeInfoTable[0].content} </div>
+              <div className={sty.photos} > <ListViewPicture photos={photos}/> </div>
+              <div className={sty.layout_body}>
+                <div className={sty.subtitle} style={{margin:"50px 0px 0px"}}>희망연출 내용</div>
+                <div className={classes.Table} style={{margin:"20px 0px 0px"}}><ListViewTable tableContents={HopeInfoTable}/></div>
+                <div className={sty.subtitle} style={{margin:"50px 0px 0px"}}>희망연출 목표</div>
+                <div className={classes.Table} style={{margin:"20px 0px 0px"}}><ListViewTable tableContents={HopeObjectiveTable}/></div>
+                <div className={sty.subtitle} style={{margin:"50px 0px 0px"}}>희망연출 기술</div>
+                <div className={classes.Table} style={{margin:"20px 0px 0px"}}><ListViewTable tableContents={HopeTechTable}/></div>
+              </div>                         
             </div>
-        </div>
-    </div>  
-    </>              
+          </div>  
+        </div>  
+      </>            
     );
 }

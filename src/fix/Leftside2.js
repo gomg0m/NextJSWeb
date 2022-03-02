@@ -76,7 +76,7 @@ export default function VerticalLinearStepper() {
     <div className={styles.leftsidebox}> 
         <div className={styles.contentscontainer}>
             <div className={styles.gongtong}> 공통 메뉴</div>
-                <Link href ='/Notice'>
+                <Link href ='/Notice'> 
                     <div className={styles.notice} style={{cursor:'pointer'}}>공지사항</div>
                 </Link>
                     <div className={styles.schedule} style={{cursor:'pointer'}}>일정</div> 
@@ -88,7 +88,7 @@ export default function VerticalLinearStepper() {
 
             <div className={styles.process}>Process 메뉴</div> 
      
-                <Box sx={{ maxWidth: 400}, {mt: 7}}>
+                <Box sx={{ maxWidth: 400}, {mt: 7, ml: 5}}>
                     <Stepper activeStep={activeStep} orientation="vertical" sx={{ color: "gray" }}>
                         <Step completed={false} expanded={true}>
                                 <StepLabel StepIconComponent={Number1Icon} > 
@@ -141,9 +141,11 @@ export default function VerticalLinearStepper() {
                         </Step>
 
                         <Step completed={false} expanded={true}>
+                          <Link href='/ProducDashboard'>
                             <StepLabel sx={{mt: -5}} StepIconComponent={Circle3Icon}> 
                                 <Button className={styles.subLabel}>제작공간</Button> 
                             </StepLabel>
+                          </Link>
                         </Step>
 
                         <Step completed={false} expanded={true}>
@@ -153,9 +155,11 @@ export default function VerticalLinearStepper() {
                         </Step>
 
                         <Step completed={false} expanded={true}>
+                          <Link href='/OutDashboard'>
                             <StepLabel sx={{mt: -5}} StepIconComponent={Circle4Icon}>
                                 <Button className={styles.subLabel}>철거 및 반출 협의</Button>
                             </StepLabel>
+                          </Link>
                         </Step>
 
                         <Step completed={false} expanded={true}>

@@ -31,7 +31,7 @@ export default function handler(req, res) {
 
   if(req.method == 'POST') {
       console.log('req',req.body.ids);
-      let user_query ='SELECT hope_firstimage, hope_lasttime, hope_techids FROM HOPEINFO WHERE hope_id in (';
+      let user_query ='SELECT hope_name, hope_firstimage, hope_lasttime, hope_techids FROM HOPEINFO WHERE hope_id in (';
       
       req.body.ids.map((id,i)=>{
         if(i<(req.body.ids.length-1)) user_query += id+',';

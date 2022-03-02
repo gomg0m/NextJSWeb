@@ -2,6 +2,12 @@ import { makeStyles } from "@material-ui/core/styles";
 
 export const useStyles = makeStyles({
  
+  full:{
+    position:'absolute',
+    left:'388px',
+    top:'50x'
+  },
+  
   Tilte: {
     display:'flex',
     width : '1296px',
@@ -17,15 +23,15 @@ export const useStyles = makeStyles({
 
   Button: {
     position: 'relative',
-    left: '700px',
+    left: '1000px',
     width : '100px',
   },
 
   Table: {
     position : "relative",
-    width : '1000px',
-    left: '0px',
-    top: '100px',
+    width : '1200px',
+    left: '50px',
+    top: '150px',
   },
 
 

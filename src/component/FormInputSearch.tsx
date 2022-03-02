@@ -1,14 +1,10 @@
 import React, {useState, useEffect} from "react";
 import Autocomplete from '@mui/material/Autocomplete';
-import { Controller } from "react-hook-form";
 import TextField from "@material-ui/core/TextField";
-import { FormInputProps } from "./FormInputProps";
-
-const options = ["김진영", "조자양", "김승조", "윤다예", "김지만"];
 
 export const FormInputSearch = (props) =>{
   const [inputValue, setInputValue] = useState('');
-  const [value1, setValue1] = useState("조자양");
+  const [value1, setValue1] = useState("");
   
   const onChange1=(event, newValue) => {
     console.log(newValue);
@@ -25,7 +21,7 @@ export const FormInputSearch = (props) =>{
               setInputValue(newInputValue);
             }}            
             id="controllable-states-demo"
-            options={options}
+            options={props.options}
             sx={{ width: 300 }}
             renderInput={(params) => <TextField {...params} label={props.label} />}
             />

@@ -6,13 +6,15 @@
     flex-direction: column;
     width: 339px;
     height: 1848px;
+    /* height: 100%; */
     left: 0px;
     top: 91px;
     border-width: 0px 2px 0px 0px ;
     border-style: solid;
     border-color: #E0E0E0;
     position: absolute;
-    margin-left: 20px;
+    margin-left: 0px;
+    background-color: #ffffff;
 }
 
 .contentscontainer{
@@ -137,20 +139,14 @@
     height: 26px;
     left: 41px;
     top: 495px;
-
     font-family: Noto Sans KR;
     font-style: normal;
     font-weight: 500;
     font-size: 18px;
     line-height: 26px;
-    /* identical to box height */
-
     display: flex;
     align-items: center;
     letter-spacing: 0.15px;
-
-    /* Gray 3 */
-
     color: #828282;
 }
 

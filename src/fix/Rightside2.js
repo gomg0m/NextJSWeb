@@ -19,6 +19,7 @@ import TechCommentElement from '../component/TechCommentBox';
 
 import {useStyles} from '../css/RightsideStyles';
 
+import {useEffect} from 'react';
 
 TabPanel.propTypes = {
 children: PropTypes.node,
@@ -71,7 +72,7 @@ export default function Rightside(props) {
     };
   
     const calcHeight = 1020; ///??? 향후 관련 로직 추가 필요
-    const RightHope_Id = 3; ///??? 향후 관련 로직 추가 필요
+    const RightHope_Id = 1; ///??? 향후 관련 로직 추가 필요
       //useEffect call func
     // func (Axios.pos(get))
     // get useState

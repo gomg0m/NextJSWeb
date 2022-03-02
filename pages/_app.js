@@ -5,14 +5,17 @@ import '../styles/globals.css';
 
 function MyApp({ Component, pageProps }) {
   const [planID, setPlanID] = useState(1);
+  const [scheduleID, setScheduleID] = useState(10);
 
   return (
     <AppContext.Provider
       value={{
         state: {
           statevar: planID,
+          scheduleID: scheduleID,
         },
         statefunc: setPlanID,
+        setScheduleID: setScheduleID,
       }}
     >
       <Component {...pageProps} />

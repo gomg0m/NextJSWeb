@@ -7,6 +7,30 @@
   margin-left: 20px;
 }
 
+.card_container::-webkit-scrollbar {
+  height: 8px;
+  border-radius: 8px;
+  background-color: #F2F2F2;
+}
+
+.card_container::-webkit-scrollbar-thumb {
+  height: 8px;
+  border-radius: 8px;
+  background-color: #C4C4C4;
+}
+
+.scrollstyle::-webkit-scrollbar {
+  width: 7px;
+  border-radius: 8px;
+  background-color: #F2F2F2;
+}
+
+.scrollstyle::-webkit-scrollbar-thumb {
+  width: 7px;
+  border-radius: 8px;
+  background-color: #C4C4C4;
+}
+
 .card_item {
   margin: 10px;
   width: 300px;
