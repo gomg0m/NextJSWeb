@@ -174,6 +174,23 @@ export default function DashboardView(){
   const [hopeIds, setHopeIds] = useState([]);
   const [techIds, setTechIds] = useState([]);
 
+  const [productList, setProductList] = useState([]);
+  const [productLastTime, setProductLastTime] = useState([]);
+  const [productName, setProductName] = useState([]);
+  const [productIds, setProductIds] = useState([]);
+
+  const [postListIN, setPostListIN] = useState([]);
+  const [postLastTimeIN, setPostLastTimeIN] = useState([]);
+  const [postNameIN, setPostNameIN] = useState([]);
+  const [postListOUT, setPostListOUT] = useState([]);
+  const [postLastTimeOUT, setPostLastTimeOUT] = useState([]);
+  const [postNameOUT, setPostNameOUT] = useState([]);
+  const [postListETC, setPostListETC] = useState([]);
+  const [postLastTimeETC, setPostLastTimeETC] = useState([]);
+  const [postNameETC, setPostNameETC] = useState([]);
+  
+  const [postIds, setPostIds] = useState([]);
+
   const [planname, setPlanname] = React.useState([]);
 
   //leftside에도 추가하기
@@ -218,12 +235,12 @@ export default function DashboardView(){
       }
     })////////
 
-    if(tabValue==0) {  {/*** PRODUCTION Tab ***/}
+    if(tabValue===0) {  {/*** PRODUCTION Tab ***/}
       AboutButtonState(e.currentTarget.id);
 
     }
 
-    if(tabValue==1) {   {/*** PRODUCTION Tab ***/}
+    if(tabValue===1) {   {/*** PRODUCTION Tab ***/}
       let id=clickID;
       ////plane_id에 해당하는 PlanInfo Table 가져옴
       Axios.post("/api/getPlanInfo", {id} ).then((res) => {
@@ -288,7 +305,7 @@ export default function DashboardView(){
       });//end of Axio  
     }    
 
-    if(tabValue==2) {/*** PRODUCTION Tab ***/}
+    if(tabValue===2) {/*** PRODUCTION Tab ***/}
     {
       let id=clickID;
       ////plane_id에 해당하는 PlanInfo Table 가져옴
@@ -296,58 +313,34 @@ export default function DashboardView(){
 
         if(res.status==200)
         { 
-          let parsedHopeList = JSON.parse(res.data.users[0].plan_hopeids);
-          console.log('parsedHopeList',parsedHopeList);
-          let ids =[...parsedHopeList];
-          console.log('ids',ids)
-          setHopeIds(ids);
-          ////PlanInfo관련된 hopeInfo Table 가져옴
-          Axios.post("/api/getHopeInfoids", {ids}).then((res)=>{
-            if(res.status == 200){
-                //login 성공
-                console.log('데이터',res.data.users);
-                let hopefirstimg=[];
-                let hopelasttime=[];
-                res.data.users.map((item)=>{hopefirstimg.push(item.hope_firstimage)});
-                res.data.users.map((item)=>{hopelasttime.push(item.hope_lasttime)});
-                console.log('hopeimagelist',hopefirstimg);
-                console.log('hopelasttime',hopelasttime);
-                console.log('호프리스트', hopefirstimg);
-                setHopeList(hopefirstimg);
-                setHopeLastTime(hopelasttime);
-                let parsedTechList = [];
-                let itemList = [];
-                res.data.users.map((item)=>{
-                  itemList = JSON.parse(item.hope_techids);
-                  parsedTechList = [...parsedTechList,...itemList];                  
-                });
-
-                console.log('parsedTechList',parsedTechList);
-                let ids =[...parsedTechList];
-                console.log('ids',ids);
-                setTechIds(ids);
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           git
-                Axios.post("/api/getTechInfoids", {ids}).then((res)=>{
-                    if(res.status == 200){
-                        //login 성공
-                        console.log(res.data.users);
-                        let techfirstimg=[];
-                        let techlasttime=[];
-                        res.data.users.map((item)=>{techfirstimg.push(JSON.parse(item.tech_firstimage))});
-                        res.data.users.map((item)=>{techlasttime.push(item.tech_lasttime)});
-                        console.log('techimagelist',techfirstimg);                      
-                        console.log('techlasttime',techlasttime);
-                        setTechList(techfirstimg);                        
-                        setTechLastTime(techlasttime);
-                    }//if
-                });
-            }//if status
-          });//end of Axio                  
+          let parsedProductList = JSON.parse(res.data.users[0].plan_productids);
+          ////PlanInfo관련된 ProductInfo Table 가져옴
+          console.log('parsedProductList',parsedProductList);
+          let ids =[...parsedProductList];
+          console.log('ids',ids);
+          setProductIds(ids);
+          Axios.post("/api/getProductInfoids", {ids}).then((res)=>{
+              if(res.status == 200){
+                  //login 성공
+                  console.log(res.data.users);
+                  let firstimg=[];
+                  let lasttime=[];
+                  let productname=[];
+                  res.data.users.map((item)=>{firstimg.push(item.product_firstimage)});
+                  res.data.users.map((item)=>{lasttime.push(item.product_lasttime)});
+                  res.data.users.map((item)=>{productname.push(item.product_discussname)});
+                  console.log('productimagelist',firstimg);                      
+                  console.log('productlasttime',lasttime);
+                  setProductList(firstimg);                        
+                  setProductLastTime(lasttime);
+                  setProductName(productname);
+              }//if
+          }); //end of Axio
         }
-      });//end of Axio  
-    }//end of tabVale
+      });//end of Axio                  
+    }
 
-    if(tabValue==3) {/*** POST-PRODUCTION Tab ***/}
+    if(tabValue===3) {/*** POST-PRODUCTION Tab ***/}
     {
       let id=clickID;
       ////plane_id에 해당하는 PlanInfo Table 가져옴
@@ -355,55 +348,55 @@ export default function DashboardView(){
 
         if(res.status==200)
         { 
-          let parsedHopeList = JSON.parse(res.data.users[0].plan_hopeids);
-          console.log('parsedHopeList',parsedHopeList);
-          let ids =[...parsedHopeList];
-          console.log('ids',ids)
-          setHopeIds(ids);
-          ////PlanInfo관련된 hopeInfo Table 가져옴
-          Axios.post("/api/getHopeInfoids", {ids}).then((res)=>{
-            if(res.status == 200){
-                //login 성공
-                console.log('데이터',res.data.users);
-                let hopefirstimg=[];
-                let hopelasttime=[];
-                res.data.users.map((item)=>{hopefirstimg.push(item.hope_firstimage)});
-                res.data.users.map((item)=>{hopelasttime.push(item.hope_lasttime)});
-                console.log('hopeimagelist',hopefirstimg);
-                console.log('hopelasttime',hopelasttime);
-                console.log('호프리스트', hopefirstimg);
-                setHopeList(hopefirstimg);
-                setHopeLastTime(hopelasttime);
-                let parsedTechList = [];
-                let itemList = [];
-                res.data.users.map((item)=>{
-                  itemList = JSON.parse(item.hope_techids);
-                  parsedTechList = [...parsedTechList,...itemList];                  
-                });
-
-                console.log('parsedTechList',parsedTechList);
-                let ids =[...parsedTechList];
-                console.log('ids',ids);
-                setTechIds(ids);
-                //hopeInfo와 관련된 TechInfo 값 가져옴.
-                Axios.post("/api/getTechInfoids", {ids}).then((res)=>{
-                    if(res.status == 200){
-                        //login 성공
-                        console.log(res.data.users);
-                        let techfirstimg=[];
-                        let techlasttime=[];
-                        res.data.users.map((item)=>{techfirstimg.push(JSON.parse(item.tech_firstimage))});
-                        res.data.users.map((item)=>{techlasttime.push(item.tech_lasttime)});
-                        console.log('techimagelist',techfirstimg);                      
-                        console.log('techlasttime',techlasttime);
-                        setTechList(techfirstimg);                        
-                        setTechLastTime(techlasttime);
-                    }//if
-                });
-            }//if status
-          });//end of Axio                  
-        }
-      });//end of Axio  
+          let parsedPostList = JSON.parse(res.data.users[0].plan_postids);
+          console.log('parsedPostList',parsedPostList);
+          let ids =[...parsedPostList];
+          console.log('ids',ids);
+          setPostIds(ids);
+          //PlanInfo와 관련된 PostInfo 값 가져옴.
+          Axios.post("/api/getPostInfoids", {ids}).then((res)=>{
+              if(res.status == 200){
+                  //login 성공
+                  console.log(res.data.users);
+                  let firstimgIN=[];
+                  let lasttimeIN=[];
+                  let postnameIN=[];
+                  let firstimgOUT=[];
+                  let lasttimeOUT=[];
+                  let postnameOUT=[];
+                  let firstimgETC=[];
+                  let lasttimeETC=[];
+                  let postnameETC=[];                                    
+                  res.data.users.map((item)=>{
+                    if(item.post_type === '반입'){
+                      firstimgIN.push(item.post_firstimage);
+                      lasttimeIN.push(item.post_lasttime);
+                      postnameIN.push(item.post_discussname);
+                    }
+                    if(item.post_type === '반출'){
+                      firstimgOUT.push(item.post_firstimage);
+                      lasttimeOUT.push(item.post_lasttime);
+                      postnameOUT.push(item.post_discussname);
+                      }
+                    if(item.post_type === '기타'){
+                      firstimgETC.push(item.post_firstimage);
+                      lasttimeETC.push(item.post_lasttime);
+                      postnameETC.push(item.post_discussname);
+                      }
+                  });
+                  setPostListIN(firstimgIN);       
+                  setPostLastTimeIN(lasttimeIN);
+                  setPostNameIN(postnameIN);
+                  setPostListOUT(firstimgOUT);       
+                  setPostLastTimeOUT(lasttimeOUT);
+                  setPostNameOUT(postnameOUT);
+                  setPostListETC(firstimgETC);       
+                  setPostLastTimeETC(lasttimeETC);
+                  setPostNameETC(postnameETC);
+              }//if
+            });
+          }//if status
+      });//end of Axio                          
     }//end of tabVale
 
   };
@@ -611,7 +604,7 @@ export default function DashboardView(){
               <TabPanel value={tabValue} index={0}>                
                 <div style={{display: 'flex', flexDirection: "row", width:"1260px"}}>     
                    
-                  <Paper sx={{width:640, height:293}} elevation={1} > {/*!!! 판넬내 페이지 사이즈 */}
+                  <Paper sx={{width:640, height:400}} elevation={1} > {/*!!! 판넬내 페이지 사이즈 */}
                     <img src="images/show.jpg" width="60" height="60" style={{margin:"30px 30px 0px"}}></img>
                     <div className={styles.boxinfo} style={{margin:"-70px 110px 0px"}}>공연기획 정보</div>
                     <div className={styles.boxtitle} style={{margin:"5px 110px 0px"}}>{planname} 공연기획 정보</div>
@@ -619,7 +612,7 @@ export default function DashboardView(){
                     <Button style={{left:470, top:-50}} variant="contained" onClick={onPlanBtnClick}>{planInfoState}</Button>
                   </Paper>
                    
-                  <Paper sx={{width:640, height:293, m:"0px 20px 0px"}} elevation={1}>
+                  <Paper sx={{width:640, height:400, m:"0px 20px 0px"}} elevation={1}>
                     <img src="images/show.jpg" width="60" height="60" style={{margin:"30px 30px 0px"}}></img>
                     <div className={styles.boxinfo} style={{margin:"-70px 110px 0px"}}>공연장 정보</div>
                     <div className={styles.boxtitle} style={{margin:"5px 110px 0px"}}>{planname} 공연장 정보</div>
@@ -632,7 +625,7 @@ export default function DashboardView(){
               <TabPanel value={tabValue} index={1}>
                 <div style={{display: 'flex', flexDirection: "row", width:"1284px"}}>
                   <div  style={{width: '650px'}}>  
-                  <Paper className={cardsty.scrollstyle} sx={{width:640, height:293, overflow:'auto'}} elevation={1}> {/*!!! 판넬내 페이지 사이즈 */}
+                  <Paper className={cardsty.scrollstyle} sx={{width:640, height:400, overflow:'auto'}} elevation={1}> {/*!!! 판넬내 페이지 사이즈 */}
                   
                   {
                   hopeList.map((item, i)=>(                    
@@ -647,12 +640,11 @@ export default function DashboardView(){
                     </div>
                   )) 
                   
-                  }
-                  
+                  }                  
                   </Paper>
                   </div>
                    
-                  <Paper className={cardsty.scrollstyle} sx={{width:640, height:293, overflow:'auto',  m:"0px 20px 0px"}} elevation={1}>
+                  <Paper className={cardsty.scrollstyle} sx={{width:640, height:400, overflow:'auto',  m:"0px 20px 0px"}} elevation={1}>
                   { 
                       techList.map((item, i)=>(
                         <div style={{display:"flex", flexDirection:"row"}}>                          
@@ -675,36 +667,18 @@ export default function DashboardView(){
               <TabPanel value={tabValue} index={2}>  {/*** PRODUCTION Tab ***/}
                
               <div style={{display: 'flex', flexDirection: "row", width:"1260px"}}>                  
-                  <Paper sx={{width:680, height:280}} elevation={1}> {/*!!! 판넬내 페이지 사이즈 */}
-                  <>희망연출 정보</>
                   
-                  {
-                  hopeList.map((item, i)=>(                    
-                    <div style={{display:"flex", flexDirection:"row"}}>                
-                      <img src={`/uploads/${item}`} height="50" alt={item}></img>                   
-                      <div>
-                            <div> 희망연출 명</div>
-                            <div> 최종 수정일자:  : {techLastTime[i]} </div>
-                        </div>
-                      <Button id={hopeIds[i]} style={{left:0, top:0}} variant="contained" onClick={onHopeBtnClick}>바로가기</Button>
-                    </div>
-                  )) 
-                  
-                  }
-                
-                  </Paper>
-                  
-                  <Paper sx={{width:680, height:280, m:"0px 20px 0px"}} elevation={1}>
+                  <Paper sx={{width:1240, height:400, m:"0px 20px 0px", overflow:'auto'}} elevation={1}>
                   <>제작 정보</>
                   { 
-                      techList.map((item, i)=>(
+                      productList.map((item, i)=>(
                         <div style={{display:"flex", flexDirection:"row"}}>                          
                           <img src={`/uploads/${item}`} height="50" alt={item}></img>
                           <div>
-                            <div> 제작기술 명</div>
-                            <div> 최종 수정일자 : {hopeLastTime[i]} </div>
+                            <div> {productName[i]}</div>
+                            <div> 최종 수정일자 : {productLastTime[i]} </div>
                           </div>
-                          <Button id={techIds[i]} style={{left:0, top:0}} variant="contained" onClick={onTechBtnClick}>바로가기</Button>                    
+                          <Button id={productIds[i]} style={{left:0, top:0}} variant="contained" onClick={onTechBtnClick}>바로가기</Button>                    
                         </div>
                     )) 
                     
@@ -717,18 +691,18 @@ export default function DashboardView(){
               <TabPanel value={tabValue} index={3}> {/*** POST-PRODUCTION Tab ***/}
                
               <div style={{display: 'flex', flexDirection: "row", width:"1260px"}}>                  
-                  <Paper sx={{width:680, height:280}} elevation={1}> {/*!!! 판넬내 페이지 사이즈 */}
+                  <Paper sx={{width:680, height:250, overflow:'auto'}} elevation={1} > {/*!!! 판넬내 페이지 사이즈 */}
                   <>반입 정보</>
                   
                   {
-                  hopeList.map((item, i)=>(                    
+                  postListIN.map((item, i)=>(                    
                     <div style={{display:"flex", flexDirection:"row"}}>                
                       <img src={`/uploads/${item}`} height="50" alt={item}></img>                   
                       <div>
-                            <div> 반입장비 명</div>
-                            <div> 최종 수정일자:  : {techLastTime[i]} </div>
+                            <div> {postNameIN[i]} </div>
+                            <div> 최종 수정일자:  : {postLastTimeIN[i]} </div>
                         </div>
-                      <Button id={hopeIds[i]} style={{left:0, top:0}} variant="contained" onClick={onHopeBtnClick}>바로가기</Button>
+                      <Button id={postIds[i]} style={{left:0, top:0}} variant="contained" onClick={onHopeBtnClick}>바로가기</Button>
                     </div>
                   )) 
                   
@@ -736,22 +710,41 @@ export default function DashboardView(){
                 
                   </Paper>
                   
-                  <Paper sx={{width:680, height:280, m:"0px 20px 0px"}} elevation={1}>
+                  <Paper sx={{width:680, height:250, m:"0px 20px 0px", overflow:'auto'}} elevation={1}>
                   <>반출 정보</>
                   { 
-                      techList.map((item, i)=>(
+                      postListOUT.map((item, i)=>(
                         <div style={{display:"flex", flexDirection:"row"}}>                          
                           <img src={`/uploads/${item}`} height="50" alt={item}></img>
                           <div>
-                            <div> 반출장비 명</div>
-                            <div> 최종 수정일자 : {hopeLastTime[i]} </div>
+                            <div> {postNameOUT[i]}</div>
+                            <div> 최종 수정일자 : {postLastTimeOUT[i]} </div>
                           </div>
-                          <Button id={techIds[i]} style={{left:0, top:0}} variant="contained" onClick={onTechBtnClick}>바로가기</Button>                    
+                          <Button id={postIds[i]} style={{left:0, top:0}} variant="contained" onClick={onTechBtnClick}>바로가기</Button>                    
                         </div>
                     )) 
                     
                   }                  
-                  </Paper>                  
+                  </Paper>               
+                </div>
+                <div>
+                <Paper sx={{width:1240, height:150, overflow:'auto'}} elevation={1}> {/*!!! 판넬내 페이지 사이즈 */}
+                  <>기타</>
+                  
+                  {
+                  postListETC.map((item, i)=>(                    
+                    <div style={{display:"flex", flexDirection:"row"}}>                
+                      <img src={`/uploads/${item}`} height="50" alt={item}></img>                   
+                      <div>
+                            <div> {postNameETC[i]}</div>
+                            <div> 최종 수정일자:  : {postLastTimeETC[i]} </div>
+                        </div>
+                      <Button id={postIds[i]} style={{left:0, top:0}} variant="contained" onClick={onHopeBtnClick}>바로가기</Button>
+                    </div>
+                  )) 
+                  
+                  }                
+                  </Paper>   
                 </div>
                 <Paper/>
 
