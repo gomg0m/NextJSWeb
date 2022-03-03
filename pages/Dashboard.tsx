@@ -201,7 +201,7 @@ export default function DashboardView(){
         console.log("projects get data",res.data.users);
         setList(res.data.users);
         setCardID(res.data.users[0].plan_id);
-        globalPlanID.statefunc(res.data.users[0].plan_id); //선택한 공연카드의 PlanID를 전역변수 globalPlanID에 저장    
+        globalPlanID.setPlanID(res.data.users[0].plan_id); //선택한 공연카드의 PlanID를 전역변수 globalPlanID에 저장    
         getPlanName(res.data.users[0].plan_id);            //공연정보이름 가져오기 
         updateAboutTabState(res.data.users[0].plan_id);           //*** ABOUT Tab과 관련된 정보 가져오기 및 상태변수 update    
         updatePreproductionTabState(res.data.users[0].plan_id);   //*** PRE-PRODUCTION Tab과 관련된 정보 가져오기 및 상태변수 update           
@@ -222,7 +222,7 @@ export default function DashboardView(){
         setPlanname(name);
       }
     })////////
-}
+  }
 
 function updateAboutTabState(id){
   Axios.post("/api/getPlanInfo", {id} ).then((res) => {
@@ -450,12 +450,13 @@ function updatePreproductionTabState(id){
   const cardHandler=(e)=>{  /////------------------------ Card Image Click시 핸들러 -------------
     
     setCardID(e.currentTarget.id);    //선택한 공연카드의 PlanID를 상태변수 cardID에 저장
-    globalPlanID.statefunc(e.currentTarget.id); //선택한 공연카드의 PlanID를 전역변수 globalPlanID에 저장    
+    globalPlanID.setPlanID(e.currentTarget.id); //선택한 공연카드의 PlanID를 전역변수 globalPlanID에 저장    
     getPlanName(e.currentTarget.id); //공연정보이름 가져오기 
     updateAboutTabState(e.currentTarget.id);           //*** ABOUT Tab과 관련된 정보 가져오기 및 상태변수 update    
     updatePreproductionTabState(e.currentTarget.id);   //*** PRE-PRODUCTION Tab과 관련된 정보 가져오기 및 상태변수 update           
     updateProductionTabState(e.currentTarget.id);      ///*** PRODUCTION Tab과 관련된 정보 가져오기 및 상태변수 update  
-    updatePostProductionTabState(e.currentTarget.id);  ///*** POST-PRODUCTION Tab 과 관련된 정보 가져오기 및 상태변수 update      
+    updatePostProductionTabState(e.currentTarget.id);  ///*** POST-PRODUCTION Tab 과 관련된 정보 가져오기 및 상태변수 update    
+    console.log("setPlanID",globalPlanID.state.planID)    ;
   }//////---------------------------------------------------------------------------------------
 
 

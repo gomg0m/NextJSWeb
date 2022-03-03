@@ -2,6 +2,7 @@ import { result } from 'lodash';
 
 const mysql = require('mysql');
 let connection = mysql.createConnection({
+  connectionLimit: 1000,
   host: 'repledb.c7vqsuewchgh.ap-northeast-2.rds.amazonaws.com',
   user: 'admin',
   password: 'kitech123',
@@ -36,8 +37,9 @@ export default function handler(req, res) {
       if (error) throw error;
       res.status(200).json({ users: result})
     });
-  }
     res.statusCode = 200;
 
+  }
+    
     
 }

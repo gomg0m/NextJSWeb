@@ -31,7 +31,7 @@ export default function handler(req, res) {
 
   if(req.method == 'POST') {
       console.log('req',req.body.ids);
-      let user_query ='SELECT product_discussname, product_firstimage, product_lasttime FROM PRODUCTINFO WHERE product_id in (';
+      let user_query ='SELECT product_id, product_hope, product_discussname, product_firstimage, product_lasttime FROM PRODUCTINFO WHERE product_id in (';
       req.body.ids.map((id,i)=>{
         if(i<(req.body.ids.length-1)) user_query += id+',';
         else user_query += id;

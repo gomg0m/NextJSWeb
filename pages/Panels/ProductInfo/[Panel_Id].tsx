@@ -23,19 +23,19 @@ import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 
 //=========유저가 리플 input할 수 있게======//
 interface IFormInput {
-  techreple_name: string,
-  techreple_1stsubject: string,
-  techreple_2ndsubject: string,
-  techreple_contents: string,
-  techreple_image: string
+  prdtreple_name: string,
+  prdtreple_1stsubject: string,
+  prdtreple_2ndsubject: string,
+  prdtreple_contents: string,
+  prdtreple_image: string
   }
   
   const defaultValues = {
-  techreple_name: "",
-  techreple_1stsubject:"",
-  techreple_2ndsubject: "",
-  techreple_contents: "",
-  techreple_image: ""
+    prdtreple_name: "",
+    prdtreple_1stsubject:"",
+    prdtreple_2ndsubject: "",
+    prdtreple_contents: "",
+    prdtreple_image: ""
 };
 
 ///Dropzone에 사용할 변수
@@ -186,71 +186,71 @@ const ImgUpload = () => {
 
 
 var kkk=0;
-/////=========== TechDisucssInfoPanel 메인 페이지 ================================
-export default function TechDiscussInfoPanel(){  
+/////=========== ProductDisucssInfoPanel 메인 페이지 ================================
+export default function ProductDiscussInfoPanel(){  
   
   //=================================유저가 의견(리플) '올리기 버튼 누르면 작동하는 onSubmit=====================================//
   const methods = useForm({ defaultValues: defaultValues });
   const { handleSubmit, reset, control, setValue } = methods;
   
-  const [techRepleIds, setTechRepleIds] = useState([]);
-  const [techRepleName, setTechRepleName] = useState([]);
-  const [techRepleFirSubject, setTechrepleFirSubject] = useState([]);
-  const [techRepleSecSubject, setTechrepleSecSubject] = useState([]);
-  const [techRepleContents, setTechrepleContents] = useState([]);
-  const [techRepleImage, setTechrepleImage] = useState([]);
-  const [techRepleLastTime, setTechreplelastTime] = useState([]);
+  const [productRepleIds, setProductRepleIds] = useState([]);
+  const [productRepleName, setProductRepleName] = useState([]);
+  const [productRepleFirSubject, setProductRepleFirSubject] = useState([]);
+  const [productRepleSecSubject, setProductRepleSecSubject] = useState([]);
+  const [productRepleContents, setProductRepleContents] = useState([]);
+  const [productRepleImage, setProductRepleImage] = useState([]);
+  const [productRepleLastTime, setProductReplelastTime] = useState([]);
   const [rightsideTabID, setRightsideTabID] = useState({TabID:0, RepleID:1});
 
   //===========TECH 테이블에서 tech_discussname 가져오기============//
-  const [techname, setTechname] = React.useState([]);
+  const [productName, setProductName] = useState([]);
   const router = useRouter();
   const {Panel_Id} = router.query;
 
 //=============아래 리플들 정보 갖고오는 부분=================//
    //★★★리플 박스 내용들
-  const [TechRepleInfoTable, setTechRepleInfoTable] = useState([
-    {name: '기술명', content: ''},
+  const [productRepleInfoTable, setProductRepleInfoTable] = useState([
+    {name: '제작명', content: ''},
     {name: '검토주제', content: ''},
     {name: '세부주제', content: ''},
     {name: '검토내용', content: ''},
   ]);
 
 
-  var obj = [...TechRepleInfoTable]; //state인 TechInfoTable의 변경에 사용할 변수
+  var obj = [...productRepleInfoTable]; //state인 TechInfoTable의 변경에 사용할 변수
 
   const onSubmit = (data: IFormInput) => {
-    data.techreple_image=imgUploadFileList; //Dropzone에서 등록된 image file list를 data에 추가함.
+    data.prdtreple_image=imgUploadFileList; //Dropzone에서 등록된 image file list를 data에 추가함.
     console.log("Form data", data);
     let tableID;
     
-    Axios.post("/api/insertTechRepleInfo", {data}).then((res)=>{  //TechReple 테이블에 새로운 행 추가
+    Axios.post("/api/insertProductRepleInfo", {data}).then((res)=>{  //TechReple 테이블에 새로운 행 추가
         if(res.status == 200){
             //login 성공
             console.log(res.data.users);
-            Axios.get("/api/getLastTechRepleInfo").then((res)=>{ //추가된 행의 ID 값은 자동생성되므로 그 값을 얻기위해  최근 추가행의 값들을 다시 읽어옴.
+            Axios.get("/api/getLastProductRepleInfo").then((res)=>{ //추가된 행의 ID 값은 자동생성되므로 그 값을 얻기위해  최근 추가행의 값들을 다시 읽어옴.
                 if(res.status == 200){
                     //login 성공
                     
-                    tableID = res.data.users[0].techreple_id;
-                    console.log("last techreple_id",tableID);
-                    Axios.post("/api/createCommentTable",{tableID}).then((res)=>{ //추가된 행의 ID 값으로 TECHCOMMENT 테이블 생성
+                    tableID = res.data.users[0].prdtreple_id;
+                    console.log("last prdtreple_id",tableID);
+                    Axios.post("/api/createProductCommentTable",{tableID}).then((res)=>{ //추가된 행의 ID 값으로 TECHCOMMENT 테이블 생성
                         if(res.status == 200){
                             //login 성공
                             console.log("create comment success", res.data.users);
                         }
                     });
                     //1. 새로 생성된 techriple id를 techinfo 테이블의 techrple_ids에 추가하고 json techreple_ids 값으로 변환
-                    let tmp_arrids =[...techRepleIds,String(tableID)];//기존 ids값에 새 id 추가
+                    let tmp_arrids =[...productRepleIds,String(tableID)];//기존 ids값에 새 id 추가
                     let tmp_jsids = JSON.stringify(tmp_arrids);
 
-                    let data = {tech_id: Panel_Id , tech_repleids: tmp_jsids };
+                    let data = {product_id: Panel_Id , product_repleids: tmp_jsids };
                     console.log("tmp_jsids",tmp_jsids );
                     //2. TechInfo의 ids update
-                    Axios.post("/api/updateTechInfoids",{data}).then((res)=>{ 
+                    Axios.post("/api/updateProductInfoids",{data}).then((res)=>{ 
                         if(res.status == 200){
                             //login 성공
-                            console.log("updateTechInfoids", res.data.users);
+                            console.log("updateProductInfoids", res.data.users);
                             //3. 새로 추가된 techriple을 리랜더링하기 위해 DB 다시 읽어들임.
                             getData(Panel_Id);
                         }
@@ -262,20 +262,20 @@ export default function TechDiscussInfoPanel(){
     });
 }
   
-    function getTechData(){
+    function getProductData(){
         //console.log('페이지아이디',techname);
-        Axios.get("/api/getTechInfo").then((res) => {                 
+        Axios.get("/api/getProductInfo").then((res) => {                 
             if(res.status == 200){      
                 res.data.users.map((item, i) => {
-                    if(item.tech_id == Panel_Id){
-                    setTechname(res.data.users[i].tech_discussname);
+                    if(item.product_id == Panel_Id){
+                    setProductName(res.data.users[i].product_discussname);
                 }})
             }
         });    
     }
     
     useEffect(() => {
-    getTechData();
+    getProductData();
 
 }, [])
 
@@ -285,63 +285,53 @@ export default function TechDiscussInfoPanel(){
   function getData(id){
     console.log('pageid',Panel_Id);
 
-    Axios.post("/api/getTechInfo", {id} ).then((res) => {
+    Axios.post("/api/getProductInfo", {id} ).then((res) => {
         if(res.status==200)
         {
-          let parsedTechRepleList = JSON.parse(res.data.users[0].tech_repleids);
-          console.log('parsedTechRepleList',parsedTechRepleList);
-          let ids =[...parsedTechRepleList];
-          console.log('ids',ids)
-          setTechRepleIds(ids);
-          
-            Axios.post("/api/getTechRepleids", {ids} ).then((res) =>{
-          
-                if(res.status == 200){
-                    //login 성공
-                    console.log('res.data.users', res.data.users);
-                    let techreplename=[];
-                    let techreplefirsubject=[];
-                    let techreplesecsubject=[];
-                    let techreplecontents=[];
-                    let techrepleimage=[];
-                    let techreplelasttime=[];
+            if(res.data.users[0].prodcut_repleids === undefined) {
+                let parsedProductRepleList = JSON.parse(res.data.users[0].product_repleids);
+                console.log('parsedProductRepleList',parsedProductRepleList);
+                let ids =[...parsedProductRepleList];
+                console.log('ids',ids)
+                setProductRepleIds(ids);
+                
+                    Axios.post("/api/getProductRepleids", {ids} ).then((res) =>{
+                
+                        if(res.status == 200){
+                            //login 성공
+                            console.log('res.data.users', res.data.users);
+                            let productreplename=[];
+                            let productreplefirsubject=[];
+                            let productreplesecsubject=[];
+                            let productreplecontents=[];
+                            let productrepleimage=[];
+                            let productreplelasttime=[];
 
-                    res.data.users.map((item)=>{techreplename.push(item.techreple_name)});
-                    res.data.users.map((item)=>{techreplefirsubject.push(item.techreple_1stsubject)});
-                    res.data.users.map((item)=>{techreplesecsubject.push(item.techreple_2ndsubject)});
-                    res.data.users.map((item)=>{techreplecontents.push(item.techreple_contents)});
-                    res.data.users.map((item)=>{techrepleimage.push(JSON.parse(item.techreple_image))});
-                    res.data.users.map((item)=>{techreplelasttime.push(item.techreple_lasttime)});
+                            res.data.users.map((item)=>{productreplename.push(item.productreple_name)});
+                            res.data.users.map((item)=>{productreplefirsubject.push(item.prdtreple_1stsubject)});
+                            res.data.users.map((item)=>{productreplesecsubject.push(item.prdtreple_2ndsubject)});
+                            res.data.users.map((item)=>{productreplecontents.push(item.prdtreple_contents)});
+                            res.data.users.map((item)=>{productrepleimage.push(JSON.parse(item.prdtreple_image))});
+                            res.data.users.map((item)=>{productreplelasttime.push(item.prdtreple_lasttime)});
 
-                    setTechRepleName(techreplename);
-                    setTechrepleFirSubject(techreplefirsubject);
-                    setTechrepleSecSubject(techreplesecsubject);
-                    setTechrepleContents(techreplecontents);
-                    setTechrepleImage(techrepleimage);
-                    setTechreplelastTime(techreplelasttime);
-    
+                            setProductRepleName(productreplename);
+                            setProductrepleFirSubject(productreplefirsubject);
+                            setProductrepleSecSubject(productreplesecsubject);
+                            setProductrepleContents(productreplecontents);
+                            setProductrepleImage(productrepleimage);
+                            setProductreplelastTime(productreplelasttime);
+            
 
-                    console.log('name',techrepleimage);
-
-
-                    //게시판 코멘트 부분 붙이기
-                    // Axios.post("/api/getTechInfoComments", {id}).then((res)=>{
-                    //     if(res.status == 200){
-                    //         //login 성공
-                    //         console.log(res.data.users);
-                    //         let techfirstimg=[];
-                    //         let techlasttime=[];
-                    //         res.data.users.map((item)=>{techfirstimg.push(JSON.parse(item.tech_firstimage))});
-                    //         res.data.users.map((item)=>{techlasttime.push(item.tech_lasttime)});
-                    //         console.log('techimagelist',techfirstimg);                      
-                    //         console.log('techlasttime',techlasttime);
-                    //         setTechList(techfirstimg);                        
-                    //         setTechLastTime(techlasttime);
-                    //     }//if
-                    // });
+                            console.log('name',productrepleimage);
+                        }
+                    });//if2
+                } //if res null
+                else{
+                    console.log('No Reple')
                 }
-            });//if2
-        }})//if1
+            }//if status
+        })//axios
+        
     }//function
 
   useEffect(()=>{
@@ -356,7 +346,7 @@ export default function TechDiscussInfoPanel(){
   const options2 = [ "공연에서 차지하는 비중", "연출 영역(반경)", "동선",  "리프팅 높이", "이동 거리", "속도", "이동 시의 움직임" ];
 
   function handleDiscussButtonClick(e){    
-      let rpID = techRepleIds[Number(e.currentTarget.id)];
+      let rpID = productRepleIds[Number(e.currentTarget.id)];
     setRightsideTabID({TabID:2, RepleID:rpID});
   }
 
@@ -386,8 +376,8 @@ export default function TechDiscussInfoPanel(){
             </div>
 
             <div className={sty.layout_top}>
-                <div className={sty.top_title}>기술구체화협의</div>
-                <div className={sty.top_subtitle}>{techname} 기술구체화 협의</div>
+                <div className={sty.top_title}>제작관련협의</div>
+                <div className={sty.top_subtitle}>{productName} 제작관련 협의</div>
                  {/* 회색 선 */}
                 <div
                     style={{
@@ -403,14 +393,14 @@ export default function TechDiscussInfoPanel(){
                 <div className={sty.addreple}>
                     
                   <div className={sty.body_row1}>
-                      <div className={sty.title}>기술명</div>
-                      <div className={sty.inputbox} style={{width:"700px"}}><FormInputText name="techreple_name" control={control} label="기술명을 입력하세요."/></div>
+                      <div className={sty.title}>제작명</div>
+                      <div className={sty.inputbox} style={{width:"700px"}}><FormInputText name="prdtreple_name" control={control} label="기술명을 입력하세요."/></div>
                   </div>
                   <div className={sty.body_row2}>
                       <div className={sty.title}>검토내용</div>                     
-                      <div className={sty.dropdown1} style={{width:"250px"}} ><InputLabel>검토 주제를 선택하세요</InputLabel><FormInputDropdown MenuList={options1} name="techreple_1stsubject" control={control} /></div>
-                      <div className={sty.dropdown2} style={{width:"250px"}} ><InputLabel>세부 주제를 선택하세요</InputLabel><FormInputDropdown MenuList={options2} name="techreple_2ndsubject" control={control} /></div>
-                      <div className={sty.inputbox2} style={{width:"700px"}} ><FormInputMultilineText name="techreple_contents" control={control} label="검토 내용을 입력하세요" /></div>   
+                      <div className={sty.dropdown1} style={{width:"250px"}} ><InputLabel>검토 주제를 선택하세요</InputLabel><FormInputDropdown MenuList={options1} name="prdtreple_1stsubject" control={control} /></div>
+                      <div className={sty.dropdown2} style={{width:"250px"}} ><InputLabel>세부 주제를 선택하세요</InputLabel><FormInputDropdown MenuList={options2} name="prdtreple_2ndsubject" control={control} /></div>
+                      <div className={sty.inputbox2} style={{width:"700px"}} ><FormInputMultilineText name="prdtreple_contents" control={control} label="검토 내용을 입력하세요" /></div>   
                   </div>
                   <div className={sty.body_row3}>
                   <div className={sty.title}>대표 이미지</div>
@@ -430,11 +420,11 @@ export default function TechDiscussInfoPanel(){
                 {/* 유저의 의견들 나오는 구간 */}
                <div>
                 {
-                    techRepleName.map((item, i) => (
+                    productRepleName.map((item, i) => (
                         <div className={sty.contentbox} style={{margin:"0px 20px 20px"}}>                      
-                            <div className={sty.boxsubject} style={{margin:"20px 20px 0px"}}>{techRepleFirSubject[i]} / {techRepleSecSubject[i]}</div>
+                            <div className={sty.boxsubject} style={{margin:"20px 20px 0px"}}>{productRepleFirSubject[i]} / {productRepleSecSubject[i]}</div>
                             <div className={sty.boxname} style={{margin:"20px 20px 0px"}}>{item}</div>
-                            <div className={sty.boxcontents} style={{margin:"10px 20px 50px"}}>{techRepleContents[i]}</div>
+                            <div className={sty.boxcontents} style={{margin:"10px 20px 50px"}}>{productRepleContents[i]}</div>
 
                             <Button id={i} className={sty.comment} style={{margin:"0px 765px 10px"}} onClick={handleDiscussButtonClick} >의견</Button>
                         </div>  

@@ -5,7 +5,7 @@ import styles from '../src/css/TechDashboard.module.css';
 import { Box, Button, Typography, InputLabel, MenuItem, FormControl, Select, TextField, Input, IconButton } from '@mui/material';
 import Axios from 'axios';
 import Router from "next/router";
-import NewTechProject from "./NewTechProject";
+import NewPostProject from "../src/component/popupPostWrite";
 import {Card, CardContent, CardMedia, CardActionArea, CardActions } from '@mui/material';
 import cardsty from "../src/css/card2.module.css";
 
@@ -39,7 +39,7 @@ export default function PostDashboard() {
   const [postListETC, setPostListETC] = useState([]);
 
   const globalPlanID = useContext(AppContext);
-  
+
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
@@ -66,9 +66,6 @@ export default function PostDashboard() {
         setPostListIN(postlistIN);       
         setPostListOUT(postlistOUT);       
         setPostListETC(postlistETC); 
-        console.log('k',postlistIN);
-        console.log('k',postlistOUT);
-        console.log('k',postlistETC);
     }//if
   });
 }//if status      
@@ -92,17 +89,28 @@ interface IDialogueNewProject {
   prj_firstimage: string
 }
 
-function handleDialogData(diglogdata:IDialogueNewProject){
-  console.log('handleDialogData',diglogdata);
+function handleDialogData(diglogdata:IDialogueNewProject){  //----------------------- popupModal 처리 -------------
+    //1. returned dialogdata => insertPostInfo : post_type, post_name, post_disccussname, post_hope, post_firstimage, post_lasttime
+    //2. get inserted post_id <= autoincremented
+    //3. post(inserted post_id) => API updatePlanInfoPostids : plan_postids
+    //4. updatePostInfo(); for update page view
+
+  //console.log('handleDialogData',diglogdata);
+  //1. + 2. 
   Axios.post("/api/insertPostInfo", {diglogdata}).then((res)=>{
     if(res.status == 200){
         //login 성공
         console.log(res.data.users);
-        //대쉬보드 업데이트를 위해서 다시한번 정보가져와서 카드list 리랜더링
-        UpdatePostInfo();
+        //3.
+        Axios.post("/api/updatePostInfoids", {diglogdata}).then((res)=>{
+          if(res.status == 200){              
+            //4. 대쉬보드 업데이트를 위해서 다시한번 정보가져와서 카드list 리랜더링
+            UpdatePostInfo();
+          }
+        });        
     }
   });//end of Axio
-}//==============새로운 기술협의 추가 모달 띄우기 완료==================//
+} //-------------------------------------------------------------------------------------------------------------------
 
   
   return (
@@ -116,7 +124,7 @@ function handleDialogData(diglogdata:IDialogueNewProject){
             <div style={{marginLeft:'100px'}}><Button variant="contained" onClick={handleOpen}>+ 새로운 후속처리 관련 협의 추가</Button></div>
           </div>
 
-          <NewTechProject style={{margin:"0px 30px 0px"}} open={open} close={handleClose} getdialogdata={handleDialogData}/>
+          <NewPostProject style={{margin:"0px 30px 0px"}} open={open} close={handleClose} getdialogdata={handleDialogData}/>
 
           <div style={{fontSize:'18px', fontWeight:'600', marginLeft:'50px', marginTop:'50px'}}>반입</div>
           {/* =========카드 나오기========== */}

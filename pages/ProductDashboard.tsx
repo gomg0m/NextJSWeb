@@ -5,7 +5,7 @@ import styles from '../src/css/TechDashboard.module.css';
 import { Box, Button, Typography} from '@mui/material';
 import Axios from 'axios';
 import Router from "next/router";
-import NewTechProject from "./NewTechProject";
+import NewProductProject from "../src/component/popupProductWrite";
 import {Card, CardContent, CardMedia, CardActionArea, CardActions } from '@mui/material';
 import cardsty from "../src/css/card2.module.css"
 import AppContext from "../src/component/AppContext";
@@ -26,6 +26,12 @@ const style = {
 };
 
 
+interface IDialogueNewProject {  
+  prj_discussname: string,
+  prj_contents: string,
+  prj_firstimage: string,
+  prj_lasttime: string,  
+}
 
 /////=========== Dashboard 메인 페이지 ============================/////
 export default function ProductDashboard() {
@@ -35,53 +41,87 @@ export default function ProductDashboard() {
   // Modal Open/Close
   const [list, setList] = useState([]);
   const [open, setOpen] = useState(false);
-
-  const globalPlanID = useContext(AppContext);
+  const [productids, setProductIDs] = useState([])
+  const gValue = useContext(AppContext);
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  function getData(){
-    Axios.get("/api/getProductInfo").then((res) =>{
-      console.log("projects get data",res.data.users);
-      setList(res.data.users);
-  });
-}
 
-useEffect(()=>{getData();},[]);
+  const getPlanProductIDS = async (id) => {    
+    
+    try{
+      const response = await Axios.post("/api/getPlanInfo", {id} );
+      let ids = [];
+      ids = JSON.parse(response.data.users[0].plan_productids); 
+      setProductIDs(ids);
+      return ids;
+
+    } catch(error){
+      console.log("Error >>", error);
+    }
+    
+  }
+
+  const updateProductInfo = async (ids) => {
+    //1. post(global palnId)=> getPlanInfo 
+    //2. plan_productids parsing
+    //3. post(productids) => getProductIds
+    //4. setList
+   try{
+      const response = await Axios.post("/api/getProductInfoids", {ids});      
+      setList(response.data.users);      
+      return response.data.users[response.data.users.length-1].product_id; //last product_id    
+    }catch(error){
+      console.log("Error >>", error);      
+    }
+  }
+
+  const updatePlanInfoProductids = async(data) => {
+    
+  }
+
+  const createProductInfo = async(dialogdata:IDialogueNewProject) => { 
+    //1. returned dialogdata => insertProductInfo : product_name, product_disccussname, product_hope, product_firstimage, prudct_lasttime
+    //2. updateProductInfo() <-- get last product_id;inserted product_id 
+    //3. post(inserted product_id) => updatePlaninfoProductids : plan_productids    
+    try {
+      dialogdata.prj_lasttime = String(new Date());  
+      //1. insert product info.
+      const resInsertProduct = await Axios.post("/api/insertProductInfo", {dialogdata});
+      //2. get last index
+      const resGetProduct = await Axios.get("/api/getProductInfo");
+      let newids = [...productids, String(resGetProduct.data.users[resGetProduct.data.users.length-1].product_id)];      
+      setProductIDs(newids);
+      const resProductID = await updateProductInfo(newids);
+      let snewids = JSON.stringify(newids);
+      let data = {plan_id:gValue.state.planID, plan_productids:snewids};
+      const resUpdatePlanids = await Axios.post("/api/updatePlaninfoProductids", {data});    
+    }catch(error){
+      console.log("Error >>", error); 
+    }
+  }
+
+useEffect(()=>{  
+  getPlanProductIDS(gValue.state.planID).then((result)=>{    
+    updateProductInfo(result);
+  });
+  
+},[]);
 
 const btnHandler=()=>{console.log('btn clickted')};
 
 //카드 누르면 해당 페이지로 이동
-const cardHandler=(e)=>{
+const cardHandler = (e)=>{  
   let routeTarget = "/Panels/ProductInfo/"+ e.currentTarget.id;
   Router.push(routeTarget);
 };
 
-//==============새로운 기술협의 추가 모달 띄우기 시작==================//
-interface IDialogueNewProject {
-  prj_name: string,
-  prj_contents: string,
-  prj_firstimage: string
-}
 
-function handleDialogData(diglogdata:IDialogueNewProject){
-  console.log('handleDialogData',diglogdata);
-  Axios.post("/api/insertTechInfo", {diglogdata}).then((res)=>{
-    if(res.status == 200){
-        //login 성공
-        console.log(res.data.users);
-        //대쉬보드 업데이트를 위해서 다시한번 정보가져와서 카드list 리랜더링
-        Axios.get("/api/getTechInfo").then((res)=>{
-            if(res.status == 200){
-                //login 성공
-                setList(res.data.users);
-            }
-        });
-    }
-  });//end of Axio
-}//==============새로운 기술협의 추가 모달 띄우기 완료==================//
 
+function handleDialogData(dialogdata:IDialogueNewProject){  //----------------------- popupModal 처리 -------------
+    createProductInfo(dialogdata);
+} //-----------------------------------------------------------------------------------------------------------------
   
   return (
     <>
@@ -93,7 +133,7 @@ function handleDialogData(diglogdata:IDialogueNewProject){
         <div className={styles.presubtitle}>제작 공간</div>
 
         <Button className={styles.addmeetingbutton} variant="contained" onClick={handleOpen}>+ 새로운 제작관련 협의 추가</Button>
-        <NewTechProject style={{margin:"0px 30px 0px"}} open={open} close={handleClose} getdialogdata={handleDialogData}/>
+        <NewProductProject style={{margin:"0px 30px 0px"}} open={open} close={handleClose} getdialogdata={handleDialogData}/>
 
         {/* =========카드 나오기========== */}
         <div className={cardsty.card_container} style= {{ position:"absolute", top:"220px", overflow:"auto", width:"1470px", height:"350px"}} >
@@ -105,7 +145,7 @@ function handleDialogData(diglogdata:IDialogueNewProject){
                     <CardMedia
                       component="img"
                       height="150"
-                      image={'/uploads/'+item.product_firstimage}
+                      image={'/uploads/'+item.product_firstimage}                      
                       onClick={cardHandler}
                       id={item.product_id}
                     />
@@ -114,7 +154,7 @@ function handleDialogData(diglogdata:IDialogueNewProject){
 
                 <CardContent>
                   <Typography className={cardsty.title} component="div">
-                    {item.product_discussname} 기술구체화협의
+                    {item.product_discussname}
                   </Typography>
                   <Typography className={cardsty.subtitle} component="div">
                     {item.product_hope}
