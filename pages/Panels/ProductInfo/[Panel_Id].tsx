@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../../../src/fix/Header';
 import Leftside from '../../../src/fix/Leftside2(2)';
-import Rightside from '../../../src/fix/Rightside2';
+import Rightside from '../../../src/fix/Rightside3';
 import sty from '../../../src/css/TechDiscussPanel.module.css';
 import Link from 'next/link';
 import HopePicture from '../../../src/component/HopePicture';
@@ -27,7 +27,8 @@ interface IFormInput {
   prdtreple_1stsubject: string,
   prdtreple_2ndsubject: string,
   prdtreple_contents: string,
-  prdtreple_image: string
+  prdtreple_image: string,
+  prdtreple_lasttime: string
   }
   
   const defaultValues = {
@@ -35,7 +36,8 @@ interface IFormInput {
     prdtreple_1stsubject:"",
     prdtreple_2ndsubject: "",
     prdtreple_contents: "",
-    prdtreple_image: ""
+    prdtreple_image: "",
+    prdtreple_lasttime: ""
 };
 
 ///Dropzone에 사용할 변수
@@ -194,6 +196,7 @@ export default function ProductDiscussInfoPanel(){
   const { handleSubmit, reset, control, setValue } = methods;
   
   const [productRepleIds, setProductRepleIds] = useState([]);
+
   const [productRepleName, setProductRepleName] = useState([]);
   const [productRepleFirSubject, setProductRepleFirSubject] = useState([]);
   const [productRepleSecSubject, setProductRepleSecSubject] = useState([]);
@@ -219,126 +222,93 @@ export default function ProductDiscussInfoPanel(){
 
   var obj = [...productRepleInfoTable]; //state인 TechInfoTable의 변경에 사용할 변수
 
-  const onSubmit = (data: IFormInput) => {
-    data.prdtreple_image=imgUploadFileList; //Dropzone에서 등록된 image file list를 data에 추가함.
-    console.log("Form data", data);
-    let tableID;
-    
-    Axios.post("/api/insertProductRepleInfo", {data}).then((res)=>{  //TechReple 테이블에 새로운 행 추가
-        if(res.status == 200){
-            //login 성공
-            console.log(res.data.users);
-            Axios.get("/api/getLastProductRepleInfo").then((res)=>{ //추가된 행의 ID 값은 자동생성되므로 그 값을 얻기위해  최근 추가행의 값들을 다시 읽어옴.
-                if(res.status == 200){
-                    //login 성공
-                    
-                    tableID = res.data.users[0].prdtreple_id;
-                    console.log("last prdtreple_id",tableID);
-                    Axios.post("/api/createProductCommentTable",{tableID}).then((res)=>{ //추가된 행의 ID 값으로 TECHCOMMENT 테이블 생성
-                        if(res.status == 200){
-                            //login 성공
-                            console.log("create comment success", res.data.users);
-                        }
-                    });
-                    //1. 새로 생성된 techriple id를 techinfo 테이블의 techrple_ids에 추가하고 json techreple_ids 값으로 변환
-                    let tmp_arrids =[...productRepleIds,String(tableID)];//기존 ids값에 새 id 추가
-                    let tmp_jsids = JSON.stringify(tmp_arrids);
+    const createProductDiscussInfo = async(idata)=>{
+        try{
+            const resProductRepleInfo = await Axios.post("/api/insertProductRepleInfo", {idata});  //PRODUCTREPLEINFO 테이블에 새로운 행 추가
+            const resGetLastReple = await Axios.get("/api/getLastProductRepleInfo"); //추가된 행의 ID 값은 자동생성되므로 그 값을 얻기위해  최근 추가행의 값들을 다시 읽어옴.                   
+            let tableID = resGetLastReple.data.users[0].prdtreple_id;
+            console.log("last prdtreple_id",tableID);
+            const resCreateCommentTable = await Axios.post("/api/createProductCommentTable",{tableID});//추가된 행의 ID 값으로 PROCUCTCOMMENT 테이블 생성
+            //1. 새로 생성된 techriple id를 techinfo 테이블의 techrple_ids에 추가하고 json techreple_ids 값으로 변환
+            let tmp_arrids =[...productRepleIds,String(tableID)];//기존 ids값에 새 id 추가
+            let tmp_jsids = JSON.stringify(tmp_arrids);
 
-                    let data = {product_id: Panel_Id , product_repleids: tmp_jsids };
-                    console.log("tmp_jsids",tmp_jsids );
-                    //2. TechInfo의 ids update
-                    Axios.post("/api/updateProductInfoids",{data}).then((res)=>{ 
-                        if(res.status == 200){
-                            //login 성공
-                            console.log("updateProductInfoids", res.data.users);
-                            //3. 새로 추가된 techriple을 리랜더링하기 위해 DB 다시 읽어들임.
-                            getData(Panel_Id);
-                        }
-                    });
-
-                }
-            });
+            let data = {product_id: Panel_Id , product_repleids: tmp_jsids};
+            console.log("tmp_jsids",data);
+            //2. ProductInfo의 ids update
+            const resUpdateProductInfoids = await Axios.post("/api/updateProductInfoids",{data});
+            const resGetData = await updateProductRepleInfo(Panel_Id);
+        }catch(error){
+            console.log('Error>>',error);
         }
-    });
-}
-  
-    function getProductData(){
-        //console.log('페이지아이디',techname);
-        Axios.get("/api/getProductInfo").then((res) => {                 
-            if(res.status == 200){      
-                res.data.users.map((item, i) => {
-                    if(item.product_id == Panel_Id){
-                    setProductName(res.data.users[i].product_discussname);
-                }})
-            }
-        });    
+
+    }
+
+    const getProductData = async () => {
+        try{
+            const res = await Axios.get("/api/getProductInfo");
+            res.data.users.map((item, i) => {
+                if(item.product_id == Panel_Id){ setProductName(res.data.users[i].product_discussname);}
+            })        
+        }catch(error){
+            console.log('Error>>',error);
+        }
     }
     
-    useEffect(() => {
-    getProductData();
+    useEffect(() => {  getProductData(); }, [])
+    useEffect(()=>{ if(Panel_Id) { updateProductRepleInfo(Panel_Id); } } ,[Panel_Id]);
+                                
+    const onSubmit = (data: IFormInput) => {
+        data.prdtreple_image=imgUploadFileList; //Dropzone에서 등록된 image file list를 data에 추가함.
+        console.log("Form data", data);        
+        createProductDiscussInfo(data);
+        }
+    
+    async function updateProductRepleInfo(id){
+      try{
+        console.log('pageid',Panel_Id);
+        const resGetProductInfo = await Axios.post("/api/getProductInfo", {id});
+        if(resGetProductInfo.data.users[0].prodcut_repleids === undefined) {
+            let parsedProductRepleList = JSON.parse(resGetProductInfo.data.users[0].product_repleids);
+            console.log('parsedProductRepleList',parsedProductRepleList);
+            let ids =[...parsedProductRepleList];
+            console.log('ids',ids)
+            setProductRepleIds(ids);
 
-}, [])
+            const resGetProductRepleids = await Axios.post("/api/getProductRepleids", {ids})
+            console.log('res.data.users', resGetProductRepleids.data.users);
+            let productreplename=[];
+            let productreplefirsubject=[];
+            let productreplesecsubject=[];
+            let productreplecontents=[];
+            let productrepleimage=[];
+            let productreplelasttime=[];
 
+            resGetProductRepleids.data.users.map((item)=>{productreplename.push(item.prdtreple_name)});
+            resGetProductRepleids.data.users.map((item)=>{productreplefirsubject.push(item.prdtreple_1stsubject)});
+            resGetProductRepleids.data.users.map((item)=>{productreplesecsubject.push(item.prdtreple_2ndsubject)});
+            resGetProductRepleids.data.users.map((item)=>{productreplecontents.push(item.prdtreple_contents)});
+            resGetProductRepleids.data.users.map((item)=>{productrepleimage.push(JSON.parse(item.prdtreple_image))});
+            resGetProductRepleids.data.users.map((item)=>{productreplelasttime.push(item.prdtreple_lasttime)});
 
+            setProductRepleName(productreplename);
+            setProductRepleFirSubject(productreplefirsubject);
+            setProductRepleSecSubject(productreplesecsubject);
+            setProductRepleContents(productreplecontents);
+            setProductRepleImage(productrepleimage);
+            setProductReplelastTime(productreplelasttime);
 
-
-  function getData(id){
-    console.log('pageid',Panel_Id);
-
-    Axios.post("/api/getProductInfo", {id} ).then((res) => {
-        if(res.status==200)
-        {
-            if(res.data.users[0].prodcut_repleids === undefined) {
-                let parsedProductRepleList = JSON.parse(res.data.users[0].product_repleids);
-                console.log('parsedProductRepleList',parsedProductRepleList);
-                let ids =[...parsedProductRepleList];
-                console.log('ids',ids)
-                setProductRepleIds(ids);
-                
-                    Axios.post("/api/getProductRepleids", {ids} ).then((res) =>{
-                
-                        if(res.status == 200){
-                            //login 성공
-                            console.log('res.data.users', res.data.users);
-                            let productreplename=[];
-                            let productreplefirsubject=[];
-                            let productreplesecsubject=[];
-                            let productreplecontents=[];
-                            let productrepleimage=[];
-                            let productreplelasttime=[];
-
-                            res.data.users.map((item)=>{productreplename.push(item.productreple_name)});
-                            res.data.users.map((item)=>{productreplefirsubject.push(item.prdtreple_1stsubject)});
-                            res.data.users.map((item)=>{productreplesecsubject.push(item.prdtreple_2ndsubject)});
-                            res.data.users.map((item)=>{productreplecontents.push(item.prdtreple_contents)});
-                            res.data.users.map((item)=>{productrepleimage.push(JSON.parse(item.prdtreple_image))});
-                            res.data.users.map((item)=>{productreplelasttime.push(item.prdtreple_lasttime)});
-
-                            setProductRepleName(productreplename);
-                            setProductrepleFirSubject(productreplefirsubject);
-                            setProductrepleSecSubject(productreplesecsubject);
-                            setProductrepleContents(productreplecontents);
-                            setProductrepleImage(productrepleimage);
-                            setProductreplelastTime(productreplelasttime);
-            
-
-                            console.log('name',productrepleimage);
-                        }
-                    });//if2
-                } //if res null
-                else{
-                    console.log('No Reple')
-                }
-            }//if status
-        })//axios
-        
-    }//function
-
-  useEffect(()=>{
-    if(Panel_Id) {
-      getData(Panel_Id);
+            console.log('img',productrepleimage);
+        }                    
+        else{
+            console.log('No Reple')
+        }
+    }catch(error){
+        console.log('Error>>',error);
     }
-  } ,[Panel_Id]);
+  }//function
+
+ 
 
 
   //========================불러오는 정보 끝========================//
@@ -346,7 +316,7 @@ export default function ProductDiscussInfoPanel(){
   const options2 = [ "공연에서 차지하는 비중", "연출 영역(반경)", "동선",  "리프팅 높이", "이동 거리", "속도", "이동 시의 움직임" ];
 
   function handleDiscussButtonClick(e){    
-      let rpID = productRepleIds[Number(e.currentTarget.id)];
+    let rpID = productRepleIds[Number(e.currentTarget.id)];
     setRightsideTabID({TabID:2, RepleID:rpID});
   }
 
