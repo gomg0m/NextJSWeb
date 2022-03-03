@@ -12,13 +12,15 @@ import { Box, Button, Typography } from '@mui/material';
 import Router from "next/router";
 
 
-/////=========== Dashboard 메인 페이지 ================================
+/////=========== Productino Dashboard 메인 페이지 ================================
 function Preproduction1() {
   
   const [list, setList] = useState([]);
+  const [open, setOpen] = React.useState(false);
+
   const handleOpen = () => setOpen(true);
   const handleClose = ()=> setOpen(false);
-  const [open, setOpen] = React.useState(false);
+  
 
   function getData(){
       Axios.get("/api/getHopeInfo").then((res) =>{
