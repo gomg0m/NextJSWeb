@@ -141,7 +141,7 @@ export default function VerticalLinearStepper() {
                         </Step>
 
                         <Step completed={false} expanded={true}>
-                          <Link href='/ProducDashboard'>
+                          <Link href='/ProductDashboard'>
                             <StepLabel sx={{mt: -5}} StepIconComponent={Circle3Icon}> 
                                 <Button className={styles.subLabel}>제작공간</Button> 
                             </StepLabel>
@@ -156,7 +156,7 @@ export default function VerticalLinearStepper() {
 
                         <Step completed={false} expanded={true}>
                             <StepLabel sx={{mt: -5}} StepIconComponent={Circle4Icon}>
-                                <Button className={styles.subLabel}>철거 및 반출 협의</Button>
+                                <Button className={styles.subLabel}>후속처리 공간</Button>
                             </StepLabel>
                         </Step>
 

@@ -18,7 +18,7 @@ connection.connect(function(err) {
 export default function handler(req, res) {
 
   if(req.method =='GET'){
-    const user_query = 'SELECT post_id, post_name, post_discussname, post_firstimage FROM POSTINFO';
+    const user_query = 'SELECT post_type, post_id, post_name, post_discussname, post_firstimage, post_hope FROM POSTINFO';
 
     connection.query(user_query, function (error, result, fields){
       if (error) throw error;

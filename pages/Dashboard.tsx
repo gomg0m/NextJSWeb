@@ -7,9 +7,8 @@ import Axios from 'axios';
 import {Card, CardContent, CardMedia, CardActionArea, CardActions } from '@mui/material';
 import cardsty from "../src/css/card.module.css"
 
-import {FormInputDropdown} from '../src/component/FormInputDropdown'
 import styles from '../src/css/Show.module.css';
-import { Checkbox, FormControlLabel, Box, Button, Divider, Modal, Typography, InputLabel, MenuItem, 
+import { Checkbox, Box, Button, Typography, InputLabel, MenuItem, 
   FormControl, Select, TextField, Paper, InputBase, IconButton } from '@mui/material';
 import Router from "next/router";
 import SearchIcon from '@mui/icons-material/Search';
@@ -23,7 +22,6 @@ import {makeStyles} from '@material-ui/core';
 //global id 가져오기
 import { useContext } from "react";
 import AppContext from "../src/component/AppContext";
-import { margin, width } from "@mui/system";
 import {ComboStyles} from '../src/css/ComboStyles';
 
 interface IFormInput {
@@ -71,7 +69,7 @@ function Combo(){
   return(
   <FormControl className={cardsty.Container}>
     
-  <InputLabel className={classe.InputLabel} id="demo-simple-select-label">상태결정</InputLabel>
+  <InputLabel className={classe.InputLabel} id="demo-simple-select-label">상태</InputLabel>
   <Select className={classe.ContainerMain}
     labelId="demo-simple-select-label"
     id="demo-simple-select"
@@ -202,6 +200,13 @@ export default function DashboardView(){
       Axios.get("/api/getPlanInfo").then((res) =>{
         console.log("projects get data",res.data.users);
         setList(res.data.users);
+        setCardID(res.data.users[0].plan_id);
+        globalPlanID.statefunc(res.data.users[0].plan_id); //선택한 공연카드의 PlanID를 전역변수 globalPlanID에 저장    
+        getPlanName(res.data.users[0].plan_id);            //공연정보이름 가져오기 
+        updateAboutTabState(res.data.users[0].plan_id);           //*** ABOUT Tab과 관련된 정보 가져오기 및 상태변수 update    
+        updatePreproductionTabState(res.data.users[0].plan_id);   //*** PRE-PRODUCTION Tab과 관련된 정보 가져오기 및 상태변수 update           
+        updateProductionTabState(res.data.users[0].plan_id);      ///*** PRODUCTION Tab과 관련된 정보 가져오기 및 상태변수 update  
+        updatePostProductionTabState(res.data.users[0].plan_id);  ///*** POST-PRODUCTION Tab 과 관련된 정보 가져오기 및 상태변수 update          
     });
   }
   
@@ -435,7 +440,7 @@ function updatePreproductionTabState(id){
   });//end of Axio                            
 }
 
-  // USEEFFECT! =============================================================================
+  // USEEFFECT! 페이지 진입 초기화 ===========================================================
   useEffect(()=>{getAllPlanInfo();},[]);
   //=========================================================================================
 
@@ -566,7 +571,7 @@ const handleTabChange = (event, newValue) => {    ////------- Tab Click Event �
                       <Typography className={cardsty.title}> 일시 </Typography>
                       <Typography className={cardsty.content}>{item.plan_start+' ~ '+item.plan_end}</Typography>
                     </CardContent> 
-                    {/* <Combo/> */}
+                    <Combo/>
                 </Card>
             )) }
           </div>
@@ -594,8 +599,7 @@ const handleTabChange = (event, newValue) => {    ////------- Tab Click Event �
                     <div className={styles.boxinfo} style={{margin:"-70px 110px 0px"}}>공연기획 정보</div>
                     <div className={styles.boxtitle} style={{margin:"5px 110px 0px"}}>{planname} 공연기획 정보</div>
                     <div className={styles.boxdate} style={{margin:"5px 110px 0px"}}>마지막 수정</div>                    
-                    <Button style={{left:470, top:-80}} variant="contained" onClick={onPlanBtnClick}>{planInfoState}</Button>
-                    <div className={styles.boxdate} style={{margin:"15px 270px 0px"}}><Combo/></div>
+                    <Button style={{left:460, top:-50}} variant="contained" onClick={onPlanBtnClick}>{planInfoState}</Button>
                   </Paper>
                    
                   <Paper sx={{width:640, height:400, m:"0px 20px 0px"}} elevation={1}>
@@ -603,8 +607,7 @@ const handleTabChange = (event, newValue) => {    ////------- Tab Click Event �
                     <div className={styles.boxinfo} style={{margin:"-70px 110px 0px"}}>공연장 정보</div>
                     <div className={styles.boxtitle} style={{margin:"5px 110px 0px"}}>{planname} 공연장 정보</div>
                     <div className={styles.boxdate} style={{margin:"5px 110px 0px"}}>마지막 수정</div>                    
-                    <Button style={{left:470, top:-80}} variant="contained" onClick={onTheaterBtnClick}>{theaterInfoState}</Button>
-                    <div className={styles.boxdate} style={{margin:"15px 280px 0px"}}><Combo/></div>
+                    <Button style={{left:439, top:-50}} variant="contained" onClick={onTheaterBtnClick}>{theaterInfoState}</Button>
                   </Paper>                  
                 </div>
 
@@ -624,8 +627,7 @@ const handleTabChange = (event, newValue) => {    ////------- Tab Click Event �
                         <div className={styles.boxinfo} style={{margin:"20px 0px 0px"}}>희망연출 정보</div>
                         <div className={styles.boxtitle} style={{margin:"5px 0px 0px"}}>{hopeName[i]} 희망연출 정보</div>
                         <div className={styles.boxdate} style={{margin:"5px 0px 0px"}}>마지막 수정 {hopeLastTime[i]}</div>                        
-                        <Button id={hopeIds[i]} style={{left:400, top:-80}} variant="contained" onClick={onHopeBtnClick}>바로가기</Button>
-                        <div className={styles.boxdate} style={{margin:"15px 200px 0px"}}><Combo/></div>
+                        <Button id={hopeIds[i]} style={{left:400, top:-50}} variant="contained" onClick={onHopeBtnClick}>바로가기</Button>                        
                       </div>                    
                     </div>
                   ))                   
@@ -643,8 +645,7 @@ const handleTabChange = (event, newValue) => {    ////------- Tab Click Event �
                             <div className={styles.boxinfo} style={{margin:"20px 0px 0px"}}>기술구체화 정보</div>
                             <div className={styles.boxtitle} style={{margin:"5px 0px 0px"}}>{techName[i]} 기술구체화 정보</div>
                             <div className={styles.boxdate} style={{margin:"5px 0px 0px"}}>마지막 수정 {techLastTime[i]}</div>                            
-                            <Button id={techIds[i]} style={{left:365, top:-80}} variant="contained" onClick={onTechBtnClick}>바로가기</Button>
-                            <div className={styles.boxdate} style={{margin:"15px 170px 0px"}}><Combo/></div>
+                            <Button id={techIds[i]} style={{left:365, top:-50}} variant="contained" onClick={onTechBtnClick}>바로가기</Button>                            
                           </div>                  
                         </div>
                     ))                     
@@ -666,8 +667,7 @@ const handleTabChange = (event, newValue) => {    ////------- Tab Click Event �
                           <div>
                             <div> {productName[i]}</div>
                             <div> 최종 수정일자 : {productLastTime[i]} </div>                            
-                            <Button id={productIds[i]} style={{left:400, top:-60}} variant="contained" onClick={onTechBtnClick}>바로가기</Button> 
-                            <div className={styles.boxdate} style={{margin:"35px 200px 0px"}}><Combo/></div>
+                            <Button id={productIds[i]} style={{left:400, top:-50}} variant="contained" onClick={onTechBtnClick}>바로가기</Button>                             
                           </div>
                         </div>
                     ))
@@ -690,8 +690,7 @@ const handleTabChange = (event, newValue) => {    ////------- Tab Click Event �
                      <div>
                         <div> {postNameIN[i]} </div>
                         <div> 최종 수정일자:  : {postLastTimeIN[i]} </div>                        
-                        <Button id={postIds[i]} style={{left:400, top:-60}} variant="contained" onClick={onHopeBtnClick}>바로가기</Button>
-                        <div className={styles.boxdate} style={{margin:"35px 200px 0px"}}><Combo/></div>
+                        <Button id={postIds[i]} style={{left:400, top:-50}} variant="contained" onClick={onHopeBtnClick}>바로가기</Button>                        
                       </div>              
                     </div>
                   ))                   
@@ -706,8 +705,7 @@ const handleTabChange = (event, newValue) => {    ////------- Tab Click Event �
                           <div>
                             <div> {postNameOUT[i]}</div>
                             <div> 최종 수정일자 : {postLastTimeOUT[i]} </div>
-                            <Button id={postIds[i]} style={{left:400, top:-60}} variant="contained" onClick={onTechBtnClick}>바로가기</Button>
-                            <div className={styles.boxdate} style={{margin:"35px 200px 0px"}}><Combo/></div>
+                            <Button id={postIds[i]} style={{left:400, top:-50}} variant="contained" onClick={onTechBtnClick}>바로가기</Button>                            
                           </div>
                         </div>
                     ))                     
@@ -724,8 +722,7 @@ const handleTabChange = (event, newValue) => {    ////------- Tab Click Event �
                       <div>
                         <div> {postNameETC[i]}</div>
                         <div> 최종 수정일자:  : {postLastTimeETC[i]} </div>
-                        <Combo/>
-                        <Button id={postIds[i]} style={{left:0, top:0}} variant="contained" onClick={onHopeBtnClick}>바로가기</Button>
+                        <Button id={postIds[i]} style={{left:400, top:-50}} variant="contained" onClick={onHopeBtnClick}>바로가기</Button>
                       </div>
                     </div>
                   ))                   

@@ -58,9 +58,9 @@ function Postproduction() {
     <Header /> 
     <Leftside /> 
       <Box className={styles.postbackground} sx={{ width: 1026, height: '100%', backgroundColor: '#F6F7FB', }} />
-      <div className={styles.postsubtitle}>철거 및 반출 협의</div>
+      <div className={styles.postsubtitle}>후속처리 공간</div>
 
-      <Button className={styles.adddiscussbutton} variant="contained" onClick={handleOpen}>+ 새로운 철거 및 반출 협의 추가</Button>
+      <Button className={styles.adddiscussbutton} variant="contained" onClick={handleOpen}>+ 새로운 후속처리 공간 추가</Button>
 
       <Modal
           open={open}
@@ -69,12 +69,12 @@ function Postproduction() {
           <Box sx={style}>
           <Button className={styles.addclosebutton} variant="text" onClick={handleClose}>X</Button>
 
-            <Typography className={styles.adddistitle}>철거 및 반출 협의</Typography>
+            <Typography className={styles.adddistitle}>후속처리 공간</Typography>
             <Typography className={styles.adddissubtitle}>철거 및 반출협의 내용을 입력해주세요.</Typography>
             <Divider className={styles.modaldivider} orientation="horizontal" variant="fullWidth" flexItem />
 
             <div className={styles.adddisoption1}>제목</div>
-            <TextField className={styles.disinfo1} sx={{ minWidth: 570 }} id="outlined-basic" label="철거 및 반출 협의 공간의 제목을 입력해주세요." variant="outlined"/>
+            <TextField className={styles.disinfo1} sx={{ minWidth: 570 }} id="outlined-basic" label="후속처리 공간 공간의 제목을 입력해주세요." variant="outlined"/>
 
 
             <div className={styles.adddisoption2}>철거일</div>

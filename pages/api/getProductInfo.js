@@ -18,7 +18,7 @@ connection.connect(function(err) {
 export default function handler(req, res) {
 
   if(req.method =='GET'){
-    const user_query = 'SELECT product_id, product_name, product_discussname, product_firstimage FROM PRODUCTINFO';
+    const user_query = 'SELECT product_id, product_name, product_discussname, product_firstimage, product_hope FROM PRODUCTINFO';
 
     connection.query(user_query, function (error, result, fields){
       if (error) throw error;
