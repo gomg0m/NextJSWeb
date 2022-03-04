@@ -639,10 +639,10 @@ export default function DashboardView(){
                   }
                 
                   </Paper>
-                  
                   <Paper sx={{width:680, height:280, m:"0px 20px 0px"}} elevation={1}>
                   <>기술 구체화 정보</>
                   { 
+              
                       techList.map((item, i)=>(
                         <div style={{display:"flex", flexDirection:"row"}}>                          
                           <img src={`/uploads/${item}`} height="50" alt={item}></img>
