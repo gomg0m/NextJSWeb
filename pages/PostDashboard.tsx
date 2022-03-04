@@ -45,7 +45,7 @@ export default function PostDashboard() {
   const [postListOUT, setPostListOUT] = useState([]); // post_type(반입/반출/기타)에 따라 state 변수 분리
   const [postListETC, setPostListETC] = useState([]);
 
-  const [open, setOpen] = React.useState(false);    //협의 작성을 위한 Modal 창 열기/닫기용 state 변수
+  const [open, setOpen] = useState(false);    //협의 작성을 위한 Modal 창 열기/닫기용 state 변수
   
   const [postids, setPostIDs] = useState([])    //postids: PLANINFO 테이블의 plan_ids값을 배열로 저장
 
