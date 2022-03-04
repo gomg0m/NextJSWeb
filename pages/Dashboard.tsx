@@ -525,8 +525,29 @@ const handleTabChange = (event, newValue) => {    ////------- Tab Click Event �
 
   const onTechBtnClick = (e)=>{////-----------------------------------------------------------------
     console.log('e', e.currentTarget.id);
-    Router.push('/Panels/TechDiscuss/'+String(e.currentTarget.id));
+    Router.push('/Panels/TechInfo/'+String(e.currentTarget.id));
   }////-------------------------------------------------------------------------------------------
+
+  const onProductBtnClick = (e)=>{////-----------------------------------------------------------------
+    console.log('e', e.currentTarget.id);
+    Router.push('/Panels/ProductInfo/'+String(e.currentTarget.id));
+  }////-
+
+  const onPostBtnClick = (e)=>{////-----------------------------------------------------------------
+    console.log('e', e.currentTarget.id);
+    Router.push('/Panels/PostInfo/'+String(e.currentTarget.id));
+  }////-
+
+  const onProductDashboardBtnClick = (e)=>{////-----------------------------------------------------------------
+    console.log('e', e.currentTarget.id);
+    Router.push('/ProductDashboard/');
+  }////-
+
+
+  const onPostDashboardBtnClick = (e)=>{////-----------------------------------------------------------------
+    console.log('e', e.currentTarget.id);
+    Router.push('/PostDashboard/');
+  }////-
 
   return(
       <>
@@ -656,34 +677,33 @@ const handleTabChange = (event, newValue) => {    ////------- Tab Click Event �
                 <Paper/>
               </TabPanel>
               <TabPanel value={tabValue} index={2}>  {/*** PRODUCTION Tab ***/}
-
-              {/* *** PRODUCTION TAB *** */}
-              <div style={{display: 'flex', flexDirection: "row", width:"1260px"}}>                                    
-                  <Paper sx={{width:1240, height:400, m:"0px 20px 0px", overflow:'auto'}} elevation={1}>
-                  <>제작 정보</>
-                  { 
-                      productList.map((item, i)=>(
-                        <div style={{display:"flex", flexDirection:"row"}}>                                                
-                          <img src={`/uploads/${item}`} height="50" alt={item}></img>
-                          <div>
-                            <div> {productName[i]}</div>
-                            <div> 최종 수정일자 : {productLastTime[i]} </div>                            
-                            <Button id={productIds[i]} style={{left:400, top:-50}} variant="contained" onClick={onTechBtnClick}>바로가기</Button>                             
+                <Button style={{left:400, top:-50}} variant="contained" onClick={onProductDashboardBtnClick}>제작 공간 바로가기</Button>
+                <div style={{display: 'flex', flexDirection: "row", width:"1260px"}}>                                        
+                    <Paper sx={{width:1240, height:400, m:"0px 20px 0px", overflow:'auto'}} elevation={1}>
+                    <>제작 정보</>
+                    { 
+                        productList.map((item, i)=>(
+                          <div style={{display:"flex", flexDirection:"row"}}>                                                
+                            <img src={`/uploads/${item}`} height="50" alt={item}></img>
+                            <div>
+                              <div> {productName[i]}</div>
+                              <div> 최종 수정일자 : {productLastTime[i]} </div>                            
+                              <Button id={productIds[i]} style={{left:400, top:-50}} variant="contained" onClick={onProductBtnClick}>바로가기</Button>                             
+                            </div>
                           </div>
-                        </div>
-                    ))
-                  }               
-                  </Paper>                  
-                </div>
-                <Paper/>
-
-              </TabPanel>      
+                      ))
+                    }               
+                    </Paper>                  
+                  </div>
+                  <Paper/>
+                </TabPanel>      
               <TabPanel value={tabValue} index={3}> {/*** POST-PRODUCTION Tab ***/}
-
-              {/* *** POST-PRODUCTION TAB *** */}
-              <div style={{display: 'flex', flexDirection: "row", width:"1260px"}}>                  
+                <Button style={{left:400, top:-50}} variant="contained" onClick={onPostDashboardBtnClick}>후속처리 공간 바로가기</Button>
+                {/* *** POST-PRODUCTION TAB *** */}
+                <div style={{display: 'flex', flexDirection: "row", width:"1260px"}}>                  
                   <Paper sx={{width:680, height:250, overflow:'auto'}} elevation={1} > {/*!!! 판넬내 페이지 사이즈 */}
-                  <>반입 정보</>                  
+                  <>반입 정보</>
+                  
                   {
                   postListIN.map((item, i)=>(                    
                     <div style={{display:"flex", flexDirection:"row"}}>                
@@ -691,7 +711,7 @@ const handleTabChange = (event, newValue) => {    ////------- Tab Click Event �
                      <div>
                         <div> {postNameIN[i]} </div>
                         <div> 최종 수정일자:  : {postLastTimeIN[i]} </div>                        
-                        <Button id={postIds[i]} style={{left:400, top:-50}} variant="contained" onClick={onHopeBtnClick}>바로가기</Button>                        
+                        <Button id={postIds[i]} style={{left:400, top:-50}} variant="contained" onClick={onPostBtnClick}>바로가기</Button>                        
                       </div>              
                     </div>
                   ))                   
@@ -706,7 +726,7 @@ const handleTabChange = (event, newValue) => {    ////------- Tab Click Event �
                           <div>
                             <div> {postNameOUT[i]}</div>
                             <div> 최종 수정일자 : {postLastTimeOUT[i]} </div>
-                            <Button id={postIds[i]} style={{left:400, top:-50}} variant="contained" onClick={onTechBtnClick}>바로가기</Button>                            
+                            <Button id={postIds[i]} style={{left:400, top:-50}} variant="contained" onClick={onPostBtnClick}>바로가기</Button>                            
                           </div>
                         </div>
                     ))                     
@@ -723,7 +743,7 @@ const handleTabChange = (event, newValue) => {    ////------- Tab Click Event �
                       <div>
                         <div> {postNameETC[i]}</div>
                         <div> 최종 수정일자:  : {postLastTimeETC[i]} </div>
-                        <Button id={postIds[i]} style={{left:400, top:-50}} variant="contained" onClick={onHopeBtnClick}>바로가기</Button>
+                        <Button id={postIds[i]} style={{left:400, top:-50}} variant="contained" onClick={onPostBtnClick}>바로가기</Button>
                       </div>
                     </div>
                   ))                   
