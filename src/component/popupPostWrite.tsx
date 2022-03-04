@@ -155,6 +155,8 @@ const style = {
   p: 4,
 };
 
+const PostTypeOption = ["반입", "반출", "기타"]
+
 /////=========== modal 메인 페이지 ================================
 export default function NewPostProject(props){ 
 
@@ -178,12 +180,14 @@ export default function NewPostProject(props){
     
     //=====NewTechProject 모달 부분======//
     interface IDialogueNewProject {
+      prj_type: string,
       prj_hope: string,
       prj_name: string,
       prj_firstimage: string
     };
   
     const defaultValues = {
+      prj_type: "",
       prj_hope: "",
       prj_name: '',
       prj_firstimage: ''
@@ -194,7 +198,7 @@ export default function NewPostProject(props){
   
   
     //부모에게 값 전달
-    const onSubmit = (dialogdata:IDialogueNewProject)=>{
+    const onSubmit = (dialogdata:IDialogueNewProject)=>{      
       dialogdata.prj_firstimage = imgUploadFileList;
       props.getdialogdata(dialogdata);
       setOpen(false);
@@ -240,7 +244,7 @@ export default function NewPostProject(props){
             <Divider className={styles.modaldivider} orientation="horizontal" variant="fullWidth" flexItem />
             <div className={sty.body_row1}>
                 <div className={sty.body_row_subitem1}>분류</div>
-                <div className={sty.body_row_subitem2} style={{width:"300px", margin:"0px 40px 0px"}}><FormInputDropdown MenuList={hopename} name="prj_hope" control={control} label="Text Input"/></div>
+                <div className={sty.body_row_subitem2} style={{width:"300px", margin:"0px 40px 0px"}}><FormInputDropdown MenuList={PostTypeOption} name="prj_type" control={control} label="Text Input"/></div>
             </div>
 
             <div className={sty.body_row1}>

@@ -18,7 +18,7 @@ connection.connect(function(err) {
 export default function handler(req, res) {
 
   if(req.method =='GET'){
-    const user_query = 'SELECT post_type, post_id, post_name, post_discussname, post_firstimage, post_hope FROM POSTINFO';
+    const user_query = 'SELECT post_type, post_id, post_name, post_discussname, post_firstimage, post_hope, post_lasttime FROM POSTINFO';
 
     connection.query(user_query, function (error, result, fields){
       if (error) throw error;
@@ -29,7 +29,7 @@ export default function handler(req, res) {
   }
 
   if(req.method == 'POST') {
-    const user_query = 'SELECT * FROM TECHINFO WHERE post_id = ? ';
+    const user_query = 'SELECT * FROM POSTINFO WHERE post_id = ? ';
 
     let params = [req.body.id];
     connection.query(user_query, params, function (error, result, fields){

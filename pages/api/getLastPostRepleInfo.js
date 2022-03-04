@@ -1,3 +1,5 @@
+//TechDashboard에서 처음 정보 입력할 때!!! 
+
 import { result } from 'lodash';
 
 const mysql = require('mysql');
@@ -18,7 +20,7 @@ connection.connect(function(err) {
 export default function handler(req, res) {
 
   if(req.method =='GET'){
-    const user_query = 'SELECT * FROM POSTINFO';
+    const user_query = 'SELECT postreple_id FROM POSTREPLE ORDER BY postreple_id DESC LIMIT 1';
 
       console.log(req.body.data);
         connection.query(user_query, function (error, result, fields){
@@ -29,21 +31,4 @@ export default function handler(req, res) {
     res.statusCode = 200;
   }
 
-  if(req.method == 'POST') {
-      console.log('req',req.body.ids);
-      let user_query ='SELECT post_id, post_hope, post_type, post_discussname, post_firstimage, post_lasttime FROM POSTINFO WHERE post_id in (';
-      req.body.ids.map((id,i)=>{
-        if(i<(req.body.ids.length-1)) user_query += id+',';
-        else user_query += id;
-      });
-      user_query += ')';
-      console.log('query',user_query);
-      
-      connection.query(user_query, function (error, result, fields){
-        if (error) throw error;
-
-        res.status(200).json({ users: result})
-      });
-    }
-      res.statusCode = 200;
 }

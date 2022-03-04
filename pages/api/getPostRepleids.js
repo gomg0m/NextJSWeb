@@ -29,7 +29,7 @@ export default function handler(req, res) {
   }
 
   if(req.method == 'POST') {
-    let user_query = 'SELECT postreple_name, postreple_image, postreple_1stsubject, postreple_2ndsubject, postreple_contents FROM PRODUCTREPLE WHERE postreple_id in (';
+    let user_query = 'SELECT postreple_name, postreple_image, postreple_1stsubject, postreple_2ndsubject, postreple_contents FROM POSTREPLE WHERE postreple_id in (';
 
     req.body.ids.map((id,i)=>{
       if(i<(req.body.ids.length-1)) user_query += id+',';
