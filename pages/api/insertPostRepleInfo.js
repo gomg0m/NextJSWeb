@@ -1,3 +1,5 @@
+//TechDashboard에서 처음 정보 입력할 때!!! 
+
 import { result } from 'lodash';
 
 const mysql = require('mysql');
@@ -18,7 +20,7 @@ connection.connect(function(err) {
 export default function handler(req, res) {
 
   if(req.method =='GET'){
-    const user_query = 'SELECT * FROM PRODUCTIONINFO';
+    const user_query = 'SELECT * FROM TECHREPLE';
 
       console.log(req.body.data);
         connection.query(user_query, function (error, result, fields){
@@ -30,16 +32,20 @@ export default function handler(req, res) {
   }
 
   if(req.method == 'POST') {
-    const user_query = 'INSERT INTO PRODUCTIONINFO VALUES(null, ?, ?, ?, ?, ?)';
-    let id = req.body.data.production_id;
-    let name = req.body.data.production_name;
-    let information = req.body.data.production_information;
-    let discussname = req.body.data.production_discussname;
-    let image = req.body.data.production_image;
-    let addtime = req.body.data.production_addtime;
+   
+    let user_query = 'INSERT INTO POSTREPLE'
+    + ' (postreple_name, postreple_1stsubject, postreple_2ndsubject, postreple_contents, postreple_image, postreple_lasttime)'
+    + ' VALUES (?, ?, ?, ?, ?, ?)';
 
-    let params = [name, information, discussname, image , addtime];
-    console.log(req.body.data);
+    let name = req.body.idata.postreple_name;
+    let firsubject = req.body.idata.postreple_1stsubject;
+    let secsubject = req.body.idata.postreple_2ndsubject;
+    let contents = req.body.idata.postreple_contents;
+    let image = req.body.idata.postreple_image;
+    let lasttime = req.body.idata.postreple_lasttime;
+
+    let params = [name, firsubject, secsubject, contents, image, lasttime];
+
         connection.query(user_query, params, function (error, result, fields){
             if (error) throw error;
             res.status(200).json({ users: result})

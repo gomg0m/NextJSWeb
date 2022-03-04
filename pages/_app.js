@@ -11,10 +11,10 @@ function MyApp({ Component, pageProps }) {
     <AppContext.Provider
       value={{
         state: {
-          statevar: planID,
+          planID: planID,
           scheduleID: scheduleID,
         },
-        statefunc: setPlanID,
+        setPlanID: setPlanID,
         setScheduleID: setScheduleID,
       }}
     >

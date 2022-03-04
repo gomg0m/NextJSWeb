@@ -2,7 +2,6 @@ import { result } from 'lodash';
 
 const mysql = require('mysql');
 let connection = mysql.createConnection({
-  connectionLimit: 1000,
   host: 'repledb.c7vqsuewchgh.ap-northeast-2.rds.amazonaws.com',
   user: 'admin',
   password: 'kitech123',
@@ -17,29 +16,29 @@ connection.connect(function(err) {
 });
 
 export default function handler(req, res) {
-
   if(req.method == 'GET') {
-    const user_query = 'SELECT plan_id, plan_name, plan_genre, plan_start, plan_end, plan_firstimage FROM PLANINFO';
-
+    const user_query = 'SELECT plan_id FROM PLANINFO ORDER BY plan_id DESC LIMIT 1';
     connection.query(user_query, function (error, result, fields){
       if (error) throw error;
       res.status(200).json({ users: result})
     });
-
-    res.statusCode = 200;
   }
-  
+
   if(req.method == 'POST') {
-    const user_query = 'SELECT * FROM PLANINFO WHERE plan_id = ? ';
-    console.log('getPlanInfoid',req.body.id);
-    let params = [req.body.id];
-    connection.query(user_query, params, function (error, result, fields){
-      if (error) throw error;
-      res.status(200).json({ users: result})
-    });
-    res.statusCode = 200;
-
-  }
     
+    const user_query = 'CREATE TABLE PRODUCTCOMMENT'
+    + String(req.body.tableID)
+    + '(prdtcomment_id INT PRIMARY KEY AUTO_INCREMENT, prdtcomment_name VARCHAR(1024), prdtcomment_team VARCHAR(1024)'
+    + ',prdtcomment_lasttime VARCHAR(1024), prdtcomment_contents VARCHAR(1024), prdtcomment_image VARCHAR(1024)'
+     + ') DEFAULT CHARACTER SET UTF8 COLLATE utf8_general_ci';
+     
+
+    connection.query(user_query, function (error, result, fields){
+        if (error) throw error;
+        res.status(200).json({ users: result})
+    });
+
+    res.statusCode = 200;
+}
     
 }

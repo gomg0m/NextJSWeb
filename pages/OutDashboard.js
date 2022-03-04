@@ -43,7 +43,7 @@ function Preproduction1() {
       <Header />
       <Leftside />
         <Box className={sty.prebackground1} sx={{ width: 1550, height: '150%', backgroundColor: '#F6F7FB'}} />
-        <div className={sty.presubtitle1}>철거 및 반출 협의</div>
+        <div className={sty.presubtitle1}>후속처리 공간</div>
 
         <Link href ='/HopeInfoWrite'>
           <Button className={sty.addinfobutton1} variant="contained" onClick={handleOpen}>+ 새로운 철거 및 반출협의 추가</Button>
